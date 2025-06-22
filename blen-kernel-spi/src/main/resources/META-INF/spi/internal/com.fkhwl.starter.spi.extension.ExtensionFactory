@@ -1,0 +1,3 @@
+adaptive=factory.extension.dev.dong4j.zeka.kernel.spi.AdaptiveExtensionFactory
+spi=factory.extension.dev.dong4j.zeka.kernel.spi.SpiExtensionFactory
+spring=factory.extension.dev.dong4j.zeka.kernel.spi.SpringExtensionFactory

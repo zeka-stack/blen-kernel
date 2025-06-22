@@ -1,0 +1,58 @@
+package ${cfg.package_name};
+
+import dev.dong4j.zeka.starter.launcher.ZekaStarter;
+
+import org.jetbrains.annotations.NotNull;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * <p>Description: 模板启动类 (Auto))</p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Slf4j
+@SpringBootApplication
+public class ${cfg.model_name}Application extends ZekaStarter {
+
+    //region todo-${author} : (${cfg.date}) [根据需求实现以下扩展, 可全部删除]
+
+    /**
+     * 启动前处理逻辑
+     *
+     * @since ${cfg.version}
+     */
+    @Override
+    public void before() {
+        log.info("before");
+    }
+
+    /**
+     * 启动完成后处理逻辑
+     *
+     * @since ${cfg.version}
+     */
+    @Override
+    public void after() {
+        log.info("after");
+    }
+
+    /**
+     * 启动完成后发送自定义事件
+     *
+     * @param context the context
+     * @since ${cfg.version}
+     */
+    @Override
+    public void publishEvent(@NotNull ConfigurableApplicationContext context) {
+        // Object 替换为自定义事件实体, 需要继承 BaseEvent
+        context.publishEvent(new Object());
+    }
+    //endregion
+}

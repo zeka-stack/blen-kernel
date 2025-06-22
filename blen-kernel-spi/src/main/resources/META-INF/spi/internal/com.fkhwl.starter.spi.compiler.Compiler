@@ -1,0 +1,3 @@
+adaptive=support.compiler.dev.dong4j.zeka.kernel.spi.AdaptiveCompiler
+jdk=support.compiler.dev.dong4j.zeka.kernel.spi.JdkCompiler
+javassist=support.compiler.dev.dong4j.zeka.kernel.spi.JavassistCompiler

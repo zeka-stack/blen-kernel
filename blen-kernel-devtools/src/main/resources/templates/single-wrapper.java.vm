@@ -1,0 +1,25 @@
+package ${cfg.package_converter};
+
+import ${cfg.package_dto}.${entity}DTO;
+import ${cfg.package_vo}.${entity}VO;
+import ${cfg.package_po}.${entity};
+import dev.dong4j.zeka.kernel.common.mapstruct.BaseConverter;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * <p>Description: $!{table.comment} 转换器, 默认提供 4 种转换, 根据业务需求重写转换逻辑或新增转换接口 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Mapper
+public interface ${entity}Converter extends BaseConverter<${entity}VO, ${entity}DTO, ${entity}> {
+
+    /** INSTANCE */
+        ${entity}Converter INSTANCE = Mappers.getMapper(${entity}Converter.class);
+}

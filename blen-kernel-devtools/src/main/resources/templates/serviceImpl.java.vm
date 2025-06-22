@@ -1,0 +1,25 @@
+package ${package.ServiceImpl};
+
+import ${cfg.package_po}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * <p>Description: $!{table.comment} 服务接口实现类 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+#if(${entityLombokModel})
+@Slf4j
+#end
+@Service
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+    }

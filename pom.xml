@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>dev.dong4j</groupId>
+        <artifactId>arco-component-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>blen-kernel</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <!-- Project metadata -->
+    <name>Blen Kernel</name>
+    <description>Zeka.Stack 核心包</description>
+    <url>https://github.com/zeka-stack/blen-kernel</url>
+    <inceptionYear>2025</inceptionYear>
+
+    <!-- Organization -->
+    <organization>
+        <name>Zeka Stack Inc.</name>
+        <url>https://github.com/zeka-stack</url>
+    </organization>
+
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Developers -->
+    <developers>
+        <developer>
+            <id>dong4j</id>
+            <name>dong4j</name>
+            <email>dong4j@gmail.com</email>
+            <organization>Zeka.Stack</organization>
+            <organizationUrl>https://github.com/zeka-stack</organizationUrl>
+            <roles>
+                <role>designer</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- SCM (Source Control Management) -->
+    <scm>
+        <url>https://github.com/zeka-stack/blen-kernel</url>
+        <connection>scm:git:https://github.com/zeka-stack/blen-kernel.git</connection>
+        <developerConnection>scm:git:git@github.com:zeka-stack/blen-kernel.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- Issue tracking -->
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/zeka-stack/blen-kernel/issues</url>
+    </issueManagement>
+
+    <!-- CI/CD system -->
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/zeka-stack/blen-kernel/actions</url>
+    </ciManagement>
+
+    <!-- Contributors (optional) -->
+    <contributors>
+        <contributor>
+            <name>dong4j</name>
+            <email>dong4j@gmail.com</email>
+            <url>https://github.com/dong4j</url>
+            <organization>Zeka.Stack</organization>
+            <roles>
+                <role>maintainer</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <modules>
+        <module>blen-kernel-dependencies</module>
+        <module>blen-kernel-common</module>
+        <module>blen-kernel-auth</module>
+        <module>blen-kernel-notify</module>
+        <module>blen-kernel-test</module>
+        <module>blen-kernel-spi</module>
+        <module>blen-kernel-devtools</module>
+        <module>blen-kernel-validation</module>
+        <module>blen-kernel-autoconfigure</module>
+        <module>blen-kernel-web</module>
+        <module>blen-kernel-tracer</module>
+        <!-- <module>blen-kernel-extend</module> -->
+    </modules>
+
+    <properties>
+        <!-- Project revision -->
+        <revision>0.0.1-SNAPSHOT</revision>
+        <maven.test.skip>false</maven.test.skip>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+
+        <spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <swagger.version>1.5.22</swagger.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <commons-text.version>1.8</commons-text.version>
+        <reflections.version>0.9.11</reflections.version>
+        <javassist.version>3.25.0-GA</javassist.version>
+        <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
+        <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>dev.dong4j</groupId>
+                <artifactId>blen-kernel-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.dong4j</groupId>
+                <artifactId>blen-kernel-validation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.dong4j</groupId>
+                <artifactId>blen-kernel-test</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+            <!--
+                这个其实不需要加, 因为在 arco-dependencies-parent 已经做了声明. 但是单独打开 blen-kernel 项目时, IDEA 无法显示继承关系.
+                为了在 IDEA 中快速跳转到依赖定义的地方, 这里只能加上 (不加也不会报错)
+            -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 修复 未知的枚举常量 javax.annotation.meta.When.MAYBE 警告 -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${findbugs-jsr305.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

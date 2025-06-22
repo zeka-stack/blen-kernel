@@ -1,0 +1,54 @@
+package ${cfg.package_name};
+
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import dev.dong4j.zeka.kernel.common.context.SpringContext;
+import dev.dong4j.zeka.kernel.test.ZekaTest;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * <p>Description: 单元测试主类 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Slf4j
+@ZekaTest
+public class ${cfg.model_name}ApplicationTest {
+    /**
+     * Set up
+     *
+     * @since ${cfg.version}
+     */
+    @BeforeEach
+    void setUp() {
+        log.info("start ${cfg.model_name}Application test");
+    }
+
+    /**
+     * Tear down
+     *
+     * @since ${cfg.version}
+     */
+    @AfterEach
+    void tearDown() {
+        log.info("end ${cfg.model_name}Application test");
+    }
+
+    /**
+     * Test
+     *
+     * @since ${cfg.version}
+     */
+    @Test
+    void test() {
+        log.info("{}", SpringContext.getApplicationContext().getEnvironment().getProperty(ConfigKey.SpringConfigKey.APPLICATION_NAME));
+    }
+}

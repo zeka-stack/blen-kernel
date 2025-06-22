@@ -1,0 +1,23 @@
+package ${cfg.package_converter};
+
+import ${cfg.package_dto}.${entity}DTO;
+import ${cfg.package_po}.${entity};
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * <p>Description: $!{table.comment} 服务层转换器, 提供 po 和 dto 互转 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Mapper
+public interface ${entity}ServiceConverter extends ServiceConverter<${entity}DTO, ${entity}> {
+
+    /** INSTANCE */
+        ${entity}ServiceConverter INSTANCE = Mappers.getMapper(${entity}ServiceConverter.class);
+}

@@ -1,0 +1,15 @@
+package ${cfg.package_vo};
+
+import dev.dong4j.zeka.kernel.common.base.BasePage;
+
+/**
+ * <p>Description: $!{table.comment} 分页数据实体 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+public class ${entity}Page extends BasePage<${entity}VO> {
+}

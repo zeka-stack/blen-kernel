@@ -1,0 +1,27 @@
+package ${cfg.package_converter};
+
+import ${cfg.package_form}.${entity}Form;
+import ${cfg.package_dto}.${entity}DTO;
+import ${cfg.package_vo}.${entity}VO;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * <p>Description: $!{table.comment} 视图层转换器, 提供 vo 和 dto 互转 </p>
+ * form 和 dto 互转需要在此接口中自己添加.
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@gmail.com"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Mapper
+public interface ${entity}ViewConverter extends ViewConverter<${entity}Form, ${entity}DTO, ${entity}VO> {
+
+    /** INSTANCE */
+        ${entity}ViewConverter INSTANCE = Mappers.getMapper(${entity}ViewConverter.class);
+}
+
+
