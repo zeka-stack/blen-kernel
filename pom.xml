@@ -119,20 +119,12 @@
         <dependencies>
             <dependency>
                 <groupId>dev.dong4j</groupId>
-                <artifactId>blen-kernel-common</artifactId>
-                <version>${project.version}</version>
+                <artifactId>blen-kernel-dependencies</artifactId>
+                <version>${blen-kernel-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>dev.dong4j</groupId>
-                <artifactId>blen-kernel-validation</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>dev.dong4j</groupId>
-                <artifactId>blen-kernel-test</artifactId>
-                <version>${project.version}</version>
-                <scope>test</scope>
-            </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>transmittable-thread-local</artifactId>
@@ -159,4 +151,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!--region 日志依赖: 业务系统一般会直接使用 spring-boot 的日志组件, 其中包含了 slf4j-api 和 日志实现, 下面 2 个只是为了兼顾 lomkob.Slf4j 注解与单元测试  -->
+        <!-- 用于 @Slf4j 注解 (单元测试时使用) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 </project>
