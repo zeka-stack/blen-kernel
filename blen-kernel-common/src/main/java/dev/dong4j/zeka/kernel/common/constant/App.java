@@ -24,7 +24,7 @@ public final class App {
     /** 基础包 */
     public static final String BASE_PACKAGES = ConfigDefaultValue.BASE_PACKAGES;
     /** 启动标识, 所有项目只能使用 ZekaApplication 启动 */
-    public static final String START_ZEKA_APPLICATION = "start_zeka_application";
+    public static final String START_APPLICATION = "start_zeka_application";
     /** 依赖的 library */
     public static final String LIBRARY_NAME = "used.librarys";
     /** server.sh 中的启动参数, 用于获取配置文件路径 */

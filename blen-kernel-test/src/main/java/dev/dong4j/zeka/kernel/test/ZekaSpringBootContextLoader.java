@@ -357,7 +357,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
 
         String appName = System.getProperty(ConfigKey.SpringConfigKey.APPLICATION_NAME);
         // 启动标识
-        System.setProperty(App.START_ZEKA_APPLICATION, App.START_ZEKA_APPLICATION);
+        System.setProperty(App.START_APPLICATION, App.START_APPLICATION);
         System.setProperty(ConfigKey.SERVICE_VERSION, StringPool.NULL_STRING);
 
         Properties defaultProperties = new Properties();

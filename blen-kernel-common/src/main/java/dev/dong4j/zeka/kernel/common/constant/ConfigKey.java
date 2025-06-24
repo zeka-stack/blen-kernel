@@ -54,13 +54,15 @@ public final class ConfigKey {
     /** JASYPT_ENCRYPTOR_PASSWORD */
     public static final String JASYPT_ENCRYPTOR_PASSWORD = "jasypt.encryptor.password";
     /** 是否开启 banner */
-    public static final String ZEKA_ENABLE_BANNER = "zeka-stack.enable-banner";
+    public static final String ENABLE_BANNER = "zeka-stack.enable-banner";
     /** 应用分组 */
-    public static final String ZEKA_APP_GROUP = "zeka-stack.app.group";
-    /** ZEKA_APP_CONFIG_GROUP */
-    public static final String ZEKA_APP_CONFIG_GROUP = "zeka-stack.app.config-group";
+    public static final String APP_GROUP = "zeka-stack.app.group";
+    /** APP_CONFIG_GROUP */
+    public static final String APP_CONFIG_GROUP = "zeka-stack.app.config-group";
     /** DISCOVERY_GROUP */
-    public static final String ZEKA_APP_DISCOVERY_GROUP = "zeka-stack.app.discovery-group";
+    public static final String APP_DISCOVERY_GROUP = "zeka-stack.app.discovery-group";
+    /** Wiki 链接 */
+    public static final String WIKI = "zeka-stack.app.wiki";
 
     /**
      * <p>Description: </p>
@@ -280,23 +282,23 @@ public final class ConfigKey {
     @UtilityClass
     public static class NacosConfigKey {
         /** 配置中心地址 */
-        public static final String ZEKA_CONFIG = "zeka-stack.nacos.config.";
+        public static final String CONFIG = "zeka-stack.nacos.config.";
         /** CONFIG_SERVER_ADDRESS */
-        public static final String CONFIG_SERVER_ADDRESS = ZEKA_CONFIG + "server-addr";
+        public static final String CONFIG_SERVER_ADDRESS = CONFIG + "server-addr";
         /** 配置中心 namespace */
-        public static final String CONFIG_NAMESPACE = ZEKA_CONFIG + "namespace";
+        public static final String CONFIG_NAMESPACE = CONFIG + "namespace";
         /** 配置中心 dataId */
-        public static final String CONFIG_DATA_ID = ZEKA_CONFIG + "data-id";
+        public static final String CONFIG_DATA_ID = CONFIG + "data-id";
         /** 配置中心 分组 */
-        public static final String CONFIG_GROUP = ZEKA_CONFIG + "group";
-        /** ZEKA_DISCOVERY */
-        public static final String ZEKA_DISCOVERY = "zeka-stack.nacos.discovery.";
+        public static final String CONFIG_GROUP = CONFIG + "group";
+        /** DISCOVERY */
+        public static final String DISCOVERY = "zeka-stack.nacos.discovery.";
         /** 服务注册与发现地址 */
-        public static final String DISCOVERY_SERVER_ADDR = ZEKA_DISCOVERY + "server-addr";
+        public static final String DISCOVERY_SERVER_ADDR = DISCOVERY + "server-addr";
         /** 服务注册与发现 namespace */
-        public static final String DISCOVERY_NAMESPACE = ZEKA_DISCOVERY + "namespace";
+        public static final String DISCOVERY_NAMESPACE = DISCOVERY + "namespace";
         /** 服务注册与发现 分组 */
-        public static final String DISCOVERY_GROUP = ZEKA_DISCOVERY + "group";
+        public static final String DISCOVERY_GROUP = DISCOVERY + "group";
         /** 是否自动创建配置 */
         public static final String ENABLE_AUTO_CREATE_CONFIG = "zeka-stack.nacos.enable-auto-create-config";
         /** 是否使用 Nacos 配置 */
