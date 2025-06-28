@@ -6,6 +6,7 @@ import dev.dong4j.zeka.kernel.common.bundle.BasicBundle;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,6 @@ import lombok.ToString;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: 请求响应返回结构封装, 所有请求都要求返回此类.
@@ -63,7 +62,7 @@ public abstract class Result<T> implements Serializable {
     /** EXTEND */
     public static final String EXTEND = "extend";
     /** 反序列化时处理多态问题的标识 */
-    public static final String TYPE_NAME = "StandardResult";
+    public static final String TYPE_NAME = "R";
     /** 请求成功代码 */
     public static final String SUCCESS_CODE = "2000";
     /** 请求成功消息 */
