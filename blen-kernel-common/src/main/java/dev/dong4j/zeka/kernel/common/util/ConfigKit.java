@@ -11,6 +11,22 @@ import dev.dong4j.zeka.kernel.common.exception.BaseException;
 import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -38,23 +54,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertySourceFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
 
 /**
  * <p>Description: 全局配置工具类, 用于获取整个应用的配置 </p>
@@ -607,7 +606,11 @@ public class ConfigKit {
      */
     public static Integer getPort(String key) {
         String port = getProperty(key);
-        return StringUtils.isBlank(port) ? -1 : Integer.parseInt(port);
+        if (StringUtils.isBlank(port)) {
+            log.debug("获取 [{}] 未空, 默认返回 -1", key);
+            return -1;
+        }
+        return Integer.parseInt(port);
     }
 
     /**
