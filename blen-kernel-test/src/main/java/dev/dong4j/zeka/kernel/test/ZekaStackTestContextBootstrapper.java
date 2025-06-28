@@ -3,6 +3,7 @@ package dev.dong4j.zeka.kernel.test;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -19,8 +20,6 @@ import org.springframework.test.context.MergedContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.Assert;
 
-import java.io.File;
-
 /**
  * <p>Description:  </p>
  *
@@ -31,7 +30,7 @@ import java.io.File;
  * @since 1.0.0
  */
 @Slf4j
-class ZekaTestContextBootstrapper extends SpringBootTestContextBootstrapper {
+class ZekaStackTestContextBootstrapper extends SpringBootTestContextBootstrapper {
 
     /**
      * 加载自定义上下文加载器

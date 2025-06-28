@@ -1,17 +1,16 @@
 package dev.dong4j.zeka.kernel.test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.BootstrapWith;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.BootstrapWith;
 
 /**
  * <p>Description: </p>
@@ -26,7 +25,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@BootstrapWith(ZekaTestContextBootstrapper.class)
+@BootstrapWith(ZekaStackTestContextBootstrapper.class)
 @ExtendWith(value = {StarterExtension.class})
 @ActiveProfiles
 public @interface ZekaTest {

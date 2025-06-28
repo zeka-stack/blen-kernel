@@ -9,6 +9,14 @@ import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.StartUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.Tools;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Properties;
+import java.util.ServiceLoader;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -45,15 +53,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Properties;
-import java.util.ServiceLoader;
-import java.util.stream.Collectors;
-
 import static org.springframework.test.context.support.TestPropertySourceUtils.INLINED_PROPERTIES_PROPERTY_SOURCE_NAME;
 import static org.springframework.test.context.support.TestPropertySourceUtils.convertInlinedPropertiesToMap;
 
@@ -86,7 +85,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
     }
 
     /**
-     * Get inlined properties
+     * 在这里手动添加一些全局配置
      *
      * @param config config
      * @return the string [ ]
@@ -98,9 +97,19 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
         // JMX bean names will clash if the same bean is used in multiple contexts
         properties.add("spring.jmx.enabled=false");
         properties.addAll(Arrays.asList(config.getPropertySourceProperties()));
-        if (this.notEmbeddedWebEnvironment(config) && !this.hasCustomServerPort(properties)) {
-            properties.add("server.port=-1");
-        }
+        return StringUtils.toStringArray(properties);
+    }
+
+    /**
+     * convend属性
+     *
+     * @param key   配置 key
+     * @param value 配置值
+     */
+    private String[] converdProperties(String key, String value) {
+        ArrayList<String> properties = new ArrayList<>();
+        // JMX bean names will clash if the same bean is used in multiple contexts
+        properties.add(key + StringPool.EQUALS + value);
         return StringUtils.toStringArray(properties);
     }
 
@@ -201,6 +210,12 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
             }
         } else {
             application.setWebApplicationType(WebApplicationType.NONE);
+            if (this.notEmbeddedWebEnvironment(config)
+                && !StringUtils.hasText(this.environment.getProperty(ConfigKey.SpringConfigKey.SERVER_PORT))) {
+                log.debug("监测到当前为非嵌入式 Web 环境, 默认设置 server.port=-1");
+                addInlinedPropertiesToEnvironment(this.environment,
+                    this.converdProperties(ConfigKey.SpringConfigKey.SERVER_PORT, "-1"));
+            }
         }
         application.setInitializers(initializers);
         return application.run(SpringBootTestArgs.get(config.getContextCustomizers()));
@@ -328,7 +343,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
         Assert.notNull(inlinedProperties, "'inlinedProperties' must not be null");
         if (!ObjectUtils.isEmpty(inlinedProperties)) {
             if (log.isDebugEnabled()) {
-                log.debug("Adding inlined properties to environment: " + ObjectUtils.nullSafeToString(inlinedProperties));
+                log.debug("Adding inlined properties to environment: {}", ObjectUtils.nullSafeToString(inlinedProperties));
             }
             MapPropertySource ps = (MapPropertySource)
                 environment.getPropertySources().get(INLINED_PROPERTIES_PROPERTY_SOURCE_NAME);
