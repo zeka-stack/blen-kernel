@@ -6,14 +6,6 @@ import dev.dong4j.zeka.kernel.common.constant.App;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
 import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.MDC;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
-import org.springframework.boot.WebApplicationType;
-
 import java.io.File;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -22,6 +14,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.MDC;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+import org.springframework.boot.WebApplicationType;
 
 /**
  * <p>Description: 启动相关工具类 </p>
@@ -144,7 +143,7 @@ public class StartUtils {
      * @param maxLength max length
      * @since 1.4.0
      */
-    private static void showStartInfo(String startInfo, int maxLength) {
+    private static void showStartInfo1(String startInfo, int maxLength) {
         int currentMaxLength = maxLength;
 
         // 添加自定义启动信息
@@ -183,6 +182,46 @@ public class StartUtils {
 
         COMPONENTS_INFO.clear();
         CUSTOM_COMPONENT.clear();
+    }
+
+    private static void showStartInfo(String startInfo, int maxLength) {
+        int currentMaxLength = maxLength;
+
+        // 添加自定义启动信息
+        for (CustomInfo customInfo : CUSTOM_COMPONENT) {
+            String custom = customInfo.custom();
+            COMPONENTS_INFO.add(custom);
+            currentMaxLength = Math.max(currentMaxLength, custom.length());
+        }
+
+        String line = repeat("━", currentMaxLength + 6);
+        Marker marker = MarkerFactory.getMarker("processor");
+
+        log.info(marker, "");
+        log.info(marker, line);
+        log.info(marker, String.format(" ✅ %s", startInfo));
+        log.info(marker, line);
+
+        if (CollectionUtils.isNotEmpty(COMPONENTS_INFO)) {
+            log.info(marker, " 📌 Usefull Information");
+            log.info(marker, line);
+            for (String component : COMPONENTS_INFO) {
+                log.info(marker, " {}", component);
+            }
+            log.info(marker, line);
+        }
+
+        log.info(marker, "");
+        COMPONENTS_INFO.clear();
+        CUSTOM_COMPONENT.clear();
+    }
+
+    private static String repeat(String str, int count) {
+        StringBuilder builder = new StringBuilder(str.length() * count);
+        for (int i = 0; i < count; i++) {
+            builder.append(str);
+        }
+        return builder.toString();
     }
 
     /**
