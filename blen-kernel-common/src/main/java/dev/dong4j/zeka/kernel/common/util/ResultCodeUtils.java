@@ -7,14 +7,13 @@ import dev.dong4j.zeka.kernel.common.annotation.ThirdLevel;
 import dev.dong4j.zeka.kernel.common.api.IResultCode;
 import dev.dong4j.zeka.kernel.common.api.Result;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
@@ -32,6 +31,7 @@ import static java.util.stream.Collectors.toMap;
 public class ResultCodeUtils {
     /** 枚举类缓存Map */
     private static final Map<String, Map<String, Field>> ENUM_FIELD_CACHE = new ConcurrentHashMap<>();
+    private static final String PATTERN = "^[A-Z]\\.[A-Z]-\\d+$";
 
     /**
      * 初始化枚举类字段等到缓存Map中
@@ -51,7 +51,7 @@ public class ResultCodeUtils {
     }
 
     /**
-     * 根据错误码生成一定规则的错误编码【B-项目标识-错误码】
+     * 根据错误码生成一定规则的错误编码【B.项目标识-错误码】
      *
      * @param resultCode result code
      * @return the string
@@ -125,4 +125,17 @@ public class ResultCodeUtils {
         Assertions.notNull(result, "result 不能为 空");
         return convert(result.getCode());
     }
+
+    /**
+     * 判断 code 是否为 X.X-数字 格式（如 A.B-123）
+     */
+    public static boolean isSpecialCodeFormat(String code) {
+        if (code == null || code.isEmpty()) {
+            return false;
+        }
+
+        // 匹配格式如：A.B-123 或 Z.X-456
+        return code.matches(PATTERN);
+    }
+
 }

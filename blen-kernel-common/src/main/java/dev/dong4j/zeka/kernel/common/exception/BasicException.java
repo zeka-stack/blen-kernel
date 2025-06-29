@@ -2,10 +2,9 @@ package dev.dong4j.zeka.kernel.common.exception;
 
 import dev.dong4j.zeka.kernel.common.context.Trace;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
+import java.io.PrintStream;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.PrintStream;
 
 /**
  * <p>Description: 框架基础异常基类 </p>

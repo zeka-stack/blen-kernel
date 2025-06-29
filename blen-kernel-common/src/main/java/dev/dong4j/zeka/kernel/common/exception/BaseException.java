@@ -92,7 +92,10 @@ public class BaseException extends BasicException {
 
             @Override
             public Integer getCode() {
-                return ResultCodeUtils.convert(code);
+                if (ResultCodeUtils.isSpecialCodeFormat(code)) {
+                    return ResultCodeUtils.convert(code);
+                }
+                return 5000;
             }
         };
     }

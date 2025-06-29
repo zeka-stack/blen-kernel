@@ -9,17 +9,16 @@ import dev.dong4j.zeka.kernel.common.enums.serialize.EntityEnumSerializer;
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.EnumUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.Serializable;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>Description: 可序列化为 json 的枚举接口 </p>
@@ -140,7 +139,7 @@ public interface SerializeEnum<T extends Serializable> {
         try {
             index = Integer.parseInt(value);
         } catch (Exception e) {
-            throw new BasicException("通过枚举下标查找枚举出错: [{}] 无法转换为下标", value);
+            throw new BasicException(StrFormatter.format("通过枚举下标查找枚举出错: [{}] 无法转换为下标", value));
         }
         // 使用下标匹配
         Optional<? extends Enum<?>> getForOrdinal = EnumUtils.of(clz, e -> e.ordinal() == index);

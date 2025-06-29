@@ -3,17 +3,6 @@ package dev.dong4j.zeka.kernel.common.util;
 import cn.hutool.core.util.StrUtil;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.exception.BaseException;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.beans.BeansException;
-import org.springframework.cglib.core.CodeGenerationException;
-import org.springframework.core.convert.Property;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.util.Assert;
-
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -32,6 +21,16 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.beans.BeansException;
+import org.springframework.cglib.core.CodeGenerationException;
+import org.springframework.core.convert.Property;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.util.Assert;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
@@ -267,7 +266,7 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
         if (StringUtils.isBlank(concatStr)) {
             concatStr = StringPool.EMPTY;
         }
-        if (str == null || str.length() == 0) {
+        if (str == null || str.isEmpty()) {
             return str;
         }
 
