@@ -58,6 +58,8 @@ public final class App {
     public static final String ENV_PREV = "prev";
     /** ENV_PROD */
     public static final String ENV_PROD = "prod";
+    /** 非生产环境 */
+    public static final String ENV_NOT_PROD = "!prod";
     /** maven 三要素, 会从中获取应用名, 应用版本(不需要手动配置, 应用打包时会自动创建) */
     public static final String APP_POM_PROP_NAME = "pom.properties";
     /** 由 arco-assist-maven-plugin 自动生成 */
