@@ -18,6 +18,8 @@ import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import dev.dong4j.zeka.kernel.common.util.WebUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -42,10 +44,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
+import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 import org.springframework.web.servlet.NoHandlerFoundException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 
 /**
  * <p>Description:  </p>
@@ -99,7 +99,10 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     private ExceptionInfo buildExceptionData(String hyperlink, @NotNull Throwable throwable, @NotNull HttpServletRequest request) {
         ExceptionInfo exceptionEntity = new ExceptionInfo();
         exceptionEntity.setPath(request.getRequestURI());
-        exceptionEntity.setParams(WebUtils.getRequestParamString(request));
+        // 判断是否为文件上传类型请求（multipart/form-data）
+        if (!MultipartResolutionDelegate.isMultipartRequest(request)) {
+            exceptionEntity.setParams(WebUtils.getRequestParamString(request));
+        }
         exceptionEntity.setMethod(request.getMethod());
         exceptionEntity.setRemoteAddr(request.getRemoteAddr());
         exceptionEntity.setHeaders(WebUtils.getHeader(request));

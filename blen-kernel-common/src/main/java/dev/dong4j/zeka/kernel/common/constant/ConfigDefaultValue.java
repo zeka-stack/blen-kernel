@@ -50,7 +50,7 @@ public final class ConfigDefaultValue {
     /** CONTAINER_LOCATION */
     public static final String CONTAINER_LOCATION = "/mnt/tmp";
     /** v5 服务默认的日志主目录 */
-    public static final String DEFAULT_LOGGING_LOCATION = "/mnt/syslogs/v5";
+    public static final String DEFAULT_LOGGING_LOCATION = "/mnt/syslogs/zeka.stack";
     /** 容器日志的默认目录 */
     public static final String DEFAULE_ACCESS_LOG_DIR = "container";
 
