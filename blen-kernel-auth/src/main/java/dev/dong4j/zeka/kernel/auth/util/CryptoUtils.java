@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class CryptoUtils {
 
     /** auth 系统内部盐值 */
-    private static final String AUTH_SALT = "cDfkHw13y3temu3eR";
+    private static final String AUTH_SALT = "7xL9sTqN2zXaVbKm";
 
     /**
      * 密码加密

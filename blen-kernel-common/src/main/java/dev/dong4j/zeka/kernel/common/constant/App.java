@@ -125,10 +125,10 @@ public final class App {
      */
     @UtilityClass
     public static class Components {
-        /** CUBO_REST_SPRING_BOOT */
-        public static final String CUBO_REST_SPRING_BOOT = "cubo-rest-spring-boot";
-        /** CUBO_AGENT_SPRING_BOOT */
-        public static final String CUBO_AGENT_SPRING_BOOT = "cubo-agent-spring-boot";
+        /** REST_SPRING_BOOT */
+        public static final String REST_SPRING_BOOT = "cubo-rest-spring-boot";
+        /** AGENT_SPRING_BOOT */
+        public static final String AGENT_SPRING_BOOT = "cubo-agent-spring-boot";
     }
 
     /**
