@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ZekaProperties {
-    public static final String ENABLE = "enabled";
+    public static final String ENABLED = "enabled";
     public static final String ON = "true";
     /** 组件全局可用状态 */
     private Boolean enabled = true;
