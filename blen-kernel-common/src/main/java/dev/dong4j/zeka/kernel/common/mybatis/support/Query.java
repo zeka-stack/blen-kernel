@@ -2,13 +2,12 @@ package dev.dong4j.zeka.kernel.common.mybatis.support;
 
 import dev.dong4j.zeka.kernel.common.base.BaseQuery;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 import org.jetbrains.annotations.Contract;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: 分页工具 </p>
@@ -22,7 +21,6 @@ import java.io.Serializable;
  * @deprecated 请直接使用 {@link BaseQuery}
  */
 @Data
-@Deprecated
 @SuperBuilder
 @Accessors(chain = true)
 @ApiModel(description = "查询条件")
