@@ -3,17 +3,16 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.util.Map;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Map;
 
 /**
  * <p>Description: 参数验证</p>
@@ -139,7 +138,7 @@ class PhoneTest extends AuthContextConfiguration {
             .password("123456")
             .code("xxx")
             .uuid("xxx")
-            .phone("18628362906")
+            .phone("18000000000")
             .build();
 
         try {
