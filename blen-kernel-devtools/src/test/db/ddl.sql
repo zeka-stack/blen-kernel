@@ -9,7 +9,7 @@ create table rule
     priority      int                                 null comment '匹配优先级',
     enabled       bit       default b'1'              null comment '是否启用',
     dispatch_mode varchar(20)                         null comment '分发模式, 如iphash、round-robin、random',
-    deleted       bit       default b'0'              not null comment '状态:0: 未删除 1: 已删除 (公共字段)',
+    deleted bigint default 0 not null comment '是否删除: 0-未删除, 大于 1 为已删除',
     create_time   timestamp default current_timestamp not null comment '创建时间 (公共字段)',
     update_time   timestamp default current_timestamp not null comment '最后更新时间 (公共字段)'
 ) comment '解析规则' charset = utf8mb4;
@@ -29,8 +29,8 @@ create table user
     api_key      varchar(50)                                   null comment 'open api key',
     secret_key   varchar(50)                                   null comment 'open api secret key',
     email        varchar(128)                                  null comment '用户邮箱',
-    status       tinyint(4) unsigned default 0                 not null comment '用户状态:0: 未审核, 1: 审核中, 2: 审核未通过, 3: 已锁定, 4: 正常',
-    deleted      bit                 default b'0'              not null comment '状态:0: 未删除 1: 已删除 (公共字段)',
+    state   tinyint(4) unsigned default 0 not null comment '用户状态:0: 未审核, 1: 审核中, 2: 审核未通过, 3: 已锁定, 4: 正常',
+    deleted bigint              default 0 not null comment '是否删除: 0-未删除, 大于 1 为已删除',
     create_time  timestamp           default current_timestamp not null comment '创建时间 (公共字段)',
     update_time  timestamp           default current_timestamp not null comment '最后更新时间 (公共字段)'
 ) comment '用户信息表' charset = utf8mb4;

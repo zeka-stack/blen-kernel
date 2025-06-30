@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.mapstruct;
 
-import dev.dong4j.zeka.kernel.common.enums.EnableEnum;
+import dev.dong4j.zeka.kernel.common.enums.EnabledEnum;
 import org.mapstruct.Named;
 
 /**
@@ -12,14 +12,14 @@ import org.mapstruct.Named;
  * @date 2020.01.27 18:11
  * @since 1.0.0
  */
-@Named("EnableEnumConverter")
-public class EnableEnumConverter extends EntityEnumConverter<EnableEnum, Boolean> {
+@Named("EnabledEnumConverter")
+public class EnabledEnumConverter extends EntityEnumConverter<EnabledEnum, Boolean> {
     /**
      * Enable enum converter
      *
      * @since 1.9.0
      */
-    public EnableEnumConverter() {
-        super(EnableEnum.class);
+    public EnabledEnumConverter() {
+        super(EnabledEnum.class);
     }
 }

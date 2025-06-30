@@ -1,7 +1,9 @@
 package dev.dong4j.zeka.kernel.common.base;
 
-import dev.dong4j.zeka.kernel.common.enums.DeleteEnum;
+import dev.dong4j.zeka.kernel.common.enums.DeletedEnum;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,9 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * <p>Description: controller 分页查询参数</p>
@@ -70,5 +69,5 @@ public abstract class BaseQuery<T extends Serializable> extends BaseForm<T> {
     /** Deleted */
     @Builder.Default
     @ApiModelProperty(value = "是否被删除, 默认未删除")
-    protected DeleteEnum deleted = DeleteEnum.N;
+    protected DeletedEnum deleted = DeletedEnum.N;
 }

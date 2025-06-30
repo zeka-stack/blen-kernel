@@ -2,13 +2,13 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
+import java.io.Serializable;
+import java.util.Map;
+import javax.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.validation.constraints.NotBlank;
-import java.util.Map;
 
 /**
  * <p>Description:  </p>
@@ -31,11 +31,11 @@ class EnumXTest extends AuthContextConfiguration {
     void test_1() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm1.builder()
-                .status(null)
+                .state(null)
                 .statusStr("")
                 .statusName("")
                 .build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -56,12 +56,12 @@ class EnumXTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm1 {
+    private static class TestForm1 implements Serializable {
         /** serialVersionUID */
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
-        private Test3Status status;
+        private Test3Status state;
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3")
         private String statusStr;
         @EnumX(value = Test3Status.class, message = "可选值: name:XXXX/YYYY/ZZZZ")
@@ -77,11 +77,11 @@ class EnumXTest extends AuthContextConfiguration {
     void test_2() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm2.builder()
-                .status(null)
+                .state(null)
                 .statusStr("")
                 .statusName("")
                 .build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -102,12 +102,12 @@ class EnumXTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm2 {
+    private static class TestForm2 implements Serializable {
         /** serialVersionUID */
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
-        private Test3Status status;
+        private Test3Status state;
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3")
         @NotBlank(message = "状态(value)不能为空")
         private String statusStr;
@@ -124,8 +124,8 @@ class EnumXTest extends AuthContextConfiguration {
     @Test
     void test_3() {
         try {
-            Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().status(Test3Status.XXXX).build());
-            if (validateobject != null && validateobject.size() > 0) {
+            Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().state(Test3Status.XXXX).build());
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -144,7 +144,7 @@ class EnumXTest extends AuthContextConfiguration {
     void test_4() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().statusStr("1").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -158,7 +158,7 @@ class EnumXTest extends AuthContextConfiguration {
     void test_5() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().statusStr("4").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -172,7 +172,7 @@ class EnumXTest extends AuthContextConfiguration {
     void test_6() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().statusName("XXXX").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -186,7 +186,7 @@ class EnumXTest extends AuthContextConfiguration {
     void test_7() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().statusName("OOOO").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -207,10 +207,10 @@ class EnumXTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm3 {
+    private static class TestForm3 implements Serializable {
         private static final long serialVersionUID = -5274383672719713886L;
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
-        private Test3Status status;
+        private Test3Status state;
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3")
         private String statusStr;
         @EnumX(value = Test3Status.class, message = "可选值: name:XXXX/YYYY/ZZZZ")

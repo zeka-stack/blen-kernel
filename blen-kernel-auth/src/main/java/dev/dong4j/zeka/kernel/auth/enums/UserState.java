@@ -1,12 +1,13 @@
 package dev.dong4j.zeka.kernel.auth.enums;
 
 import dev.dong4j.zeka.kernel.common.annotation.SerializeValue;
+import dev.dong4j.zeka.kernel.common.enums.DeletedEnum;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Description: 全平台用户状态, 未删除/已删除不属于用户状态, 请使用 {@link dev.dong4j.zeka.kernel.common.enums.DeleteEnum}</p>
+ * <p>Description: 全平台用户状态, 未删除/已删除不属于用户状态, 请使用 {@link DeletedEnum}</p>
  *
  * @author dong4j
  * @version 1.0.0
@@ -16,7 +17,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum UserStatus implements SerializeEnum<Integer> {
+public enum UserState implements SerializeEnum<Integer> {
 
     /** 用户状态: 已停用 */
     INVALID(2, "已停用"),

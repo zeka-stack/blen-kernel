@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.mapstruct;
 
-import dev.dong4j.zeka.kernel.common.enums.DeleteEnum;
+import dev.dong4j.zeka.kernel.common.enums.DeletedEnum;
 import org.mapstruct.Named;
 
 /**
@@ -12,15 +12,15 @@ import org.mapstruct.Named;
  * @date 2020.01.27 18:10
  * @since 1.0.0
  */
-@Named("DeleteEnumConverter")
-public class DeleteEnumConverter extends EntityEnumConverter<DeleteEnum, Boolean> {
+@Named("DeletedEnumConverter")
+public class DeletedEnumConverter extends EntityEnumConverter<DeletedEnum, Boolean> {
 
     /**
      * Delete enum converter
      *
      * @since 1.9.0
      */
-    public DeleteEnumConverter() {
-        super(DeleteEnum.class);
+    public DeletedEnumConverter() {
+        super(DeletedEnum.class);
     }
 }
