@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 @JsonDeserialize(using = EntityEnumDeserializer.class)
 public interface SerializeEnum<T extends Serializable> {
     /** log */
-    Logger LOG = LoggerFactory.getLogger(EntityEnumDeserializer.class);
+    Logger LOG = LoggerFactory.getLogger(SerializeEnum.class);
     /** 子类枚举的 vaule 字段的字段名 */
     String VALUE_FILED_NAME = "value";
     /** VALUE_METHOD_NAME */
