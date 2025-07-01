@@ -3,11 +3,11 @@ package ${cfg.package_vo};
 import dev.dong4j.zeka.kernel.common.base.BasePage;
 
 /**
- * <p>Description: $!{table.comment} 分页数据实体 </p>
+ * <p> $!{table.comment} 分页数据实体 </p>
  *
  * @author ${author}
  * @version ${cfg.version}
- * @email "mailto:${author}@gmail.com"
+ * @email "mailto:${author}@${cfg.email}"
  * @date ${cfg.date}
  * @since ${cfg.version}
  */

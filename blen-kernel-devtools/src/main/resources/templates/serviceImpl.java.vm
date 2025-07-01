@@ -1,18 +1,32 @@
 package ${package.ServiceImpl};
 
-import ${cfg.package_po}.${entity};
+import $!{package.Entity}.po.$!{entity};
+import $!{package.Entity}.dto.$!{entity}DTO;
+import $!{package.Entity}.form.$!{entity}Form;
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
+import $!{package.Entity}.converter.$!{entity}Converter;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
+import dev.dong4j.zeka.starter.mybatis.service.impl.BaseServiceImpl;
+import dev.dong4j.zeka.kernel.common.api.BaseCodes;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 /**
- * <p>Description: $!{table.comment} 服务接口实现类 </p>
+ * <p> $!{table.comment} 服务接口实现类 </p>
  *
  * @author ${author}
  * @version ${cfg.version}
- * @email "mailto:${author}@gmail.com"
+ * @email "mailto:${author}@${cfg.email}"
  * @date ${cfg.date}
  * @since ${cfg.version}
  */
@@ -20,6 +34,49 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 #end
 @Service
+@AllArgsConstructor
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
+    /**
+     * 根据 ID 获取详细信息
+     *
+     * @param id 主键
+     * @return 实体对象
+     * @since ${cfg.version}
+     */
+    @Override
+    public $!{entity}DTO detail(Long id) {
+        final $!{entity} po =this.baseMapper.selectById(id);
+        BaseCodes.DATA_ERROR.notNull(po);
+        return $!{entity}Converter.INSTANCE.dto(po);
     }
+
+    /**
+     * 新增数据
+     *
+     * @param form 参数实体
+     * @since ${cfg.version}
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void create($!{entity}Form form) {
+        final $!{entity} po =$!{entity}Converter.INSTANCE.f2p(form);
+        final int savedCount = this.baseMapper.insertIgnore(po);
+        BaseCodes.OPTION_FAILURE.isTrue(savedCount == 1);
+    }
+
+    /**
+     * 更新数据
+     *
+     * @param form 参数实体
+     * @since ${cfg.version}
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void edit($!{entity}Form form) {
+        final int updatedCount = this.baseMapper.updateById($!{entity}Converter.INSTANCE.f2p(form));
+        BaseCodes.OPTION_FAILURE.isTrue(updatedCount == 1);
+    }
+}
+
+

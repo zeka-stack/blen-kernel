@@ -1,20 +1,17 @@
 package dev.dong4j.zeka.kernel.devtools;
 
-import com.baomidou.mybatisplus.generator.config.ConstVal;
 import dev.dong4j.zeka.kernel.common.util.FileUtils;
-import dev.dong4j.zeka.kernel.common.util.Tools;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import dev.dong4j.zeka.kernel.devtools.core.config.ConstVal;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Field;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
 
 /**
  * <p>Description: Velocity 模板引擎实现文件输出 </p>
@@ -26,9 +23,7 @@ import java.util.Map;
  * @since 1.0.0
  */
 @Slf4j
-public class VelocityTemplateEngine extends com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine {
-    /** Velocity engine */
-    private VelocityEngine velocityEngine;
+public class ZekaVelocityTemplateEngine extends dev.dong4j.zeka.kernel.devtools.core.engine.VelocityTemplateEngine {
 
     /**
      * Writer *
@@ -40,17 +35,8 @@ public class VelocityTemplateEngine extends com.baomidou.mybatisplus.generator.e
      */
     @Override
     public void writer(Map<String, Object> objectMap, String templatePath, String outputFile) {
-        if (Tools.isEmpty(templatePath)) {
+        if (StringUtils.isEmpty(templatePath)) {
             return;
-        }
-
-        if (this.velocityEngine == null) {
-            try {
-                Field field = this.getClass().getSuperclass().getDeclaredField("velocityEngine");
-                field.setAccessible(true);
-                this.velocityEngine = (VelocityEngine) field.get(this);
-            } catch (NoSuchFieldException | IllegalAccessException ignored) {
-            }
         }
 
         outputFile = FileUtils.getRealFilePath(outputFile);

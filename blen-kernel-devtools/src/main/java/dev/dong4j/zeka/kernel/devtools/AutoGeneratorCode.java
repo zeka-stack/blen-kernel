@@ -1,38 +1,31 @@
 package dev.dong4j.zeka.kernel.devtools;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.FileOutConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.ITypeConvert;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.converts.OracleTypeConvert;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.DateType;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
-import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
-import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.constant.App;
 import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
+import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
 import dev.dong4j.zeka.kernel.common.util.DateUtils;
-import dev.dong4j.zeka.kernel.common.util.GsonUtils;
+import dev.dong4j.zeka.kernel.common.util.JsonUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import dev.dong4j.zeka.kernel.common.util.Tools;
-import lombok.Data;
-import lombok.experimental.Accessors;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import dev.dong4j.zeka.kernel.devtools.core.InjectionConfig;
+import dev.dong4j.zeka.kernel.devtools.core.JdbcUtils;
+import dev.dong4j.zeka.kernel.devtools.core.config.DataSourceConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.FileOutConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.GlobalConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.ITypeConvert;
+import dev.dong4j.zeka.kernel.devtools.core.config.PackageConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.StrategyConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.TemplateConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.converts.MySqlTypeConvert;
+import dev.dong4j.zeka.kernel.devtools.core.config.po.TableInfo;
+import dev.dong4j.zeka.kernel.devtools.core.config.rules.DateType;
+import dev.dong4j.zeka.kernel.devtools.core.config.rules.DbColumnType;
+import dev.dong4j.zeka.kernel.devtools.core.config.rules.IColumnType;
+import dev.dong4j.zeka.kernel.devtools.core.config.rules.NamingStrategy;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +33,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -60,9 +58,11 @@ public class AutoGeneratorCode {
     /** 自定义生成文件时需要指定文件后缀 */
     public static final String VM_SUFFIX = ".vm";
     /** TEMPLATE_CONTROLLER */
-    public static final String TEMPLATE_CONTROLLER = "/templates/controller.java";
+    public static final String TEMPLATE_ENUM = "/templates/enums.java" + VM_SUFFIX;
+    /** TEMPLATE_CONTROLLER */
+    public static final String TEMPLATE_CONTROLLER = "/templates/controller.java" + VM_SUFFIX;
     /** TEMPLATE_CONTROLLER_EX */
-    public static final String TEMPLATE_CONTROLLER_EX = "/templates/controller-ext.java";
+    public static final String TEMPLATE_CONTROLLER_EX = "/templates/controller-ext.java" + VM_SUFFIX;
     /** TEMPLATE_ENTITY_JAVA */
     public static final String TEMPLATE_ENTITY_JAVA = "/templates/entity.java" + VM_SUFFIX;
     /** TEMPLATE_VO_JAVA */
@@ -83,14 +83,16 @@ public class AutoGeneratorCode {
     public static final String TEMPLATE_OUTER_WRAPPER_JAVA = "/templates/outer-wrapper.java" + VM_SUFFIX;
     /** TEMPLATE_INNER_WRAPPER_JAVA */
     public static final String TEMPLATE_INNER_WRAPPER_JAVA = "/templates/inner-wrapper.java" + VM_SUFFIX;
+    /** TEMPLATE_EXTEND_WRAPPER_JAVA */
+    public static final String TEMPLATE_EXTEND_WRAPPER_JAVA = "/templates/extend-wrapper.java" + VM_SUFFIX;
     /** TEMPLATE_MAPPER */
-    public static final String TEMPLATE_MAPPER = "/templates/mapper.java";
+    public static final String TEMPLATE_MAPPER = "/templates/mapper.java" + VM_SUFFIX;
     /** TEMPLATE_XML */
     public static final String TEMPLATE_XML = "/templates/mapper.xml" + VM_SUFFIX;
     /** TEMPLATE_SERVICE */
-    public static final String TEMPLATE_SERVICE = "/templates/service.java";
+    public static final String TEMPLATE_SERVICE = "/templates/service.java" + VM_SUFFIX;
     /** TEMPLATE_SERVICEIMPL */
-    public static final String TEMPLATE_SERVICEIMPL = "/templates/serviceImpl.java";
+    public static final String TEMPLATE_SERVICEIMPL = "/templates/serviceImpl.java" + VM_SUFFIX;
     /** TEMPLATE_GLOBAL_PROPERTIES */
     public static final String TEMPLATE_GLOBAL_PROPERTIES = "/templates/application.properties" + VM_SUFFIX;
     /** TEMPLATE_APPLICATION */
@@ -119,6 +121,10 @@ public class AutoGeneratorCode {
     private String author;
     /** Version */
     private String version;
+    /** Company */
+    private String company;
+    /** Email */
+    private String email;
     /** Model name */
     private String modelName;
     /** Driver name */
@@ -134,7 +140,13 @@ public class AutoGeneratorCode {
     /** Prefix */
     private String[] prefix;
     /** 自定义实体父类 */
-    private String superEntityClass;
+    private String superBaseEntityClass;
+    /** Super extend entity class */
+    private String superExtendEntityClass;
+    /** Super with time entity class */
+    private String superWithTimeEntityClass;
+    /** Super with logic entity class */
+    private String superWithLogicEntityClass;
     /** 自定义 dao 父类 */
     private String superMapperClass;
     /** 自定义 service 基类 */
@@ -186,16 +198,16 @@ public class AutoGeneratorCode {
             // 设置 controller 名称 (%s 会自动填充表实体属性)
             .setControllerName("%sController")
             // 设置 service 名称
-            .setServiceName("%sRepositoryService")
+            .setServiceName("%sService")
             // 设置 serviceImpl 名称
-            .setServiceImplName("%sRepositoryServiceImpl")
+            .setServiceImplName("%sServiceImpl")
             // 设置 mapper 名称
-            .setMapperName("%sDao")
+            .setMapperName("%sMapper")
             // 设置 xml 名称
             .setXmlName("%sMapper")
             // 生成后是否打开目录
             .setOpen(false);
-        log.info("GlobalConfig = {}", GsonUtils.toJson(globalConfig, true));
+        log.info("GlobalConfig = {}", JsonUtils.toJson(globalConfig, true));
         return globalConfig;
     }
 
@@ -208,20 +220,9 @@ public class AutoGeneratorCode {
      */
     @SuppressWarnings("PMD.UndefineMagicConstantRule")
     DataSourceConfig buildDataSourceConfig() {
-        ITypeConvert convert;
+        ITypeConvert convert = null;
         DbType dbType = JdbcUtils.getDbType(this.url);
         switch (dbType) {
-            case ORACLE:
-                convert = new OracleTypeConvert() {
-                    // 自定义数据库表字段类型转换【可选】
-                    @Override
-                    public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-                        log.info("转换类型: {}", fieldType);
-                        // 注意！！processTypeConvert 存在默认类型转换,如果不是你要的效果请自定义返回、非如下直接返回.
-                        return super.processTypeConvert(globalConfig, fieldType);
-                    }
-                };
-                break;
             case MYSQL:
                 convert = new MySqlTypeConvert() {
                     @Override
@@ -239,16 +240,19 @@ public class AutoGeneratorCode {
                 };
                 break;
             default:
-                throw new UnsupportedOperationException("暂时不支持其他数据库类型转换");
+                break;
         }
 
         DataSourceConfig dataSourceConfig = new DataSourceConfig().setDriverName(this.driverName)
             .setUsername(this.userName)
             .setPassword(this.passWord)
-            .setUrl(this.url)
-            .setTypeConvert(convert);
+            .setUrl(this.url);
 
-        log.info("dataSourceConfig = {}", GsonUtils.toJson(dataSourceConfig, true));
+        if (convert != null) {
+            dataSourceConfig.setTypeConvert(convert);
+        }
+
+        log.info("dataSourceConfig = {}", dataSourceConfig);
         return dataSourceConfig;
     }
 
@@ -273,7 +277,10 @@ public class AutoGeneratorCode {
             // 需要生成的表
             .setInclude(this.tables)
             // 自定义实体父类
-            .setSuperEntityClass(this.superEntityClass)
+            .setSuperBaseEntityClass(this.superBaseEntityClass)
+            .setSuperExtendEntityClass(this.superExtendEntityClass)
+            .setSuperWithTimeEntityClass(this.superWithTimeEntityClass)
+            .setSuperWithLogicEntityClass(this.superWithLogicEntityClass)
             // 自定义实体,公共字段
             .setSuperEntityColumns("id", "deleted", "update_time", "create_time")
             // 自定义 dao 父类
@@ -287,9 +294,9 @@ public class AutoGeneratorCode {
             // 实体是否生成字段常量 (默认 false)
             .setEntityColumnConstant(true)
             // 实体是否为构建者模型 (默认 false)
-            .setEntityBuilderModel(false);
+            .setChainModel(false);
 
-        log.info("strategyConfig = {}", GsonUtils.toJson(strategyConfig, true));
+        log.info("strategyConfig = {}", JsonUtils.toJson(strategyConfig, true));
         return strategyConfig;
     }
 
@@ -306,7 +313,7 @@ public class AutoGeneratorCode {
             throw new PropertiesException("配置错误, 至少配置一个模块名吧!");
         }
         this.modelName = names[names.length - 1];
-        this.modelName = Tools.isBlank(this.modelName) ? "auto" : this.modelName;
+        this.modelName = StringUtils.isBlank(this.modelName) ? "auto" : this.modelName;
         // 首字母大写
         this.modelName = StringUtils.firstCharToUpper(this.modelName);
 
@@ -314,7 +321,7 @@ public class AutoGeneratorCode {
             .setParent(ROOT_PACKAGE + this.packageName)
             .setMapper("dao");
 
-        log.info("packageConfig = {}", GsonUtils.toJson(this.packageConfig, true));
+        log.info("packageConfig = {}", JsonUtils.toJson(this.packageConfig, true));
         return this.packageConfig;
     }
 
@@ -339,6 +346,10 @@ public class AutoGeneratorCode {
             // 是否生成其他全局配置
             for (String template : this.templates) {
                 switch (template) {
+                    case TemplatesConfig.ENUM:
+                        this.templatesConfig.setEnums(true);
+                        log.info("生成 enum 文件");
+                        break;
                     case TemplatesConfig.CONTROLLER:
                         this.templatesConfig.setController(true);
                         log.info("生成 controller 文件");
@@ -363,23 +374,19 @@ public class AutoGeneratorCode {
                         this.templatesConfig.setEntity(true);
                         log.info("生成 entity 文件");
                         break;
-                    case TemplatesConfig.VO:
-                        this.templatesConfig.setVo(true);
-                        log.info("生成 vo 文件");
+                    case TemplatesConfig.QUERY:
+                        this.templatesConfig.setQuery(true);
+                        log.info("生成 query 和 form 文件");
                         break;
                     case TemplatesConfig.DTO:
                         this.templatesConfig.setDto(true);
                         log.info("生成 dto 文件");
                         break;
-                    // noinspection deprecation
-                    case TemplatesConfig.WRAPPER:
-                        log.error("请使用 TemplatesConfig.CONVERTER 代替");
                     case TemplatesConfig.CONVERTER:
                         this.templatesConfig.setConverter(true);
                         log.info("生成 converter 文件");
                         break;
                     case TemplatesConfig.START:
-                        // 生成
                         this.templatesConfig.setStart(true);
                         log.info("生成启动类");
                         break;
@@ -400,12 +407,14 @@ public class AutoGeneratorCode {
      */
     private TemplateConfig buildTemplate() {
         TemplateConfig templateConfig = new TemplateConfig()
+            .setEnums(null)
             .setController(null)
             .setService(null)
             .setEntity(null)
             .setMapper(null)
             .setServiceImpl(null)
             .setXml(null);
+
         if (this.templatesConfig.isController()) {
             templateConfig.setController(TEMPLATE_CONTROLLER_EX);
         }
@@ -424,7 +433,7 @@ public class AutoGeneratorCode {
         if (this.templatesConfig.isDto()) {
             log.info("开启自定义 dto 生成");
         }
-        if (this.templatesConfig.isVo()) {
+        if (this.templatesConfig.isQuery()) {
             log.info("开启自定义 vo 生成");
         }
         if (this.templatesConfig.isConverter()) {
@@ -433,8 +442,11 @@ public class AutoGeneratorCode {
         if (this.templatesConfig.isXml()) {
             log.info("开启自定义 xml 生成");
         }
+        if (this.templatesConfig.isEnums()) {
+            log.info("开启自定义 enum 生成");
+        }
 
-        log.info("templateConfig = {}", GsonUtils.toJson(templateConfig, true));
+        log.info("templateConfig = {}", JsonUtils.toJson(templateConfig, true));
         return templateConfig;
     }
 
@@ -476,8 +488,13 @@ public class AutoGeneratorCode {
                         + AutoGeneratorCode.this.packageConfig.getEntity()
                         + StringPool.DOT
                         + "po");
-                map.put("package_converter", AutoGeneratorCode.this.packageConfig.getParent() + StringPool.DOT + "converter");
+                map.put("package_enums",
+                    AutoGeneratorCode.this.packageConfig.getParent()
+                        + StringPool.DOT + "enums");
+                map.put("package_converter", AutoGeneratorCode.this.packageConfig.getParent() + StringPool.DOT + "entity" + StringPool.DOT + "converter");
                 map.put("version", AutoGeneratorCode.this.getVersion());
+                map.put("company", AutoGeneratorCode.this.getCompany());
+                map.put("email", AutoGeneratorCode.this.getEmail());
                 map.put("date", DateUtils.format(new Date(), "yyyy.MM.dd HH:mm"));
                 map.put("model_name", AutoGeneratorCode.this.modelName);
                 map.put("package_name", AutoGeneratorCode.this.packageConfig.getParent());
@@ -514,7 +531,7 @@ public class AutoGeneratorCode {
         // 调整 xml 生成目录
         if (this.templatesConfig.isXml()) {
             focList.add(buildFileOutConfig(TEMPLATE_XML,
-                this.modelPath + RESOURCE_ROOT_PATH + "mapper",
+                this.modelPath + RESOURCE_ROOT_PATH + "mappers",
                 "Mapper.xml",
                 true));
         }
@@ -524,23 +541,9 @@ public class AutoGeneratorCode {
                 this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/po",
                 ".java",
                 true));
-            // 生成一个 enums 目录
-            File dir = new File(this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "enums");
-            if (!dir.mkdirs()) {
-                log.error("[{}] 创建失败", dir);
-            }
         }
-        // 生成 vo, form, query, page
-        if (this.templatesConfig.isVo()) {
-            focList.add(buildFileOutConfig(TEMPLATE_VO_JAVA,
-                this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/vo",
-                "VO.java",
-                true));
-            focList.add(buildFileOutConfig(TEMPLATE_PAGE_JAVA,
-                this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/vo",
-                "Page.java",
-                true));
-
+        // 生成 form, query
+        if (this.templatesConfig.isQuery()) {
             focList.add(buildFileOutConfig(TEMPLATE_FORM_JAVA,
                 this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/form",
                 "Form.java",
@@ -561,22 +564,31 @@ public class AutoGeneratorCode {
         // 生成  converter
         if (this.templatesConfig.isConverter()) {
             if (ModuleConfig.ModuleType.SINGLE_MODULE.equals(this.moduleType)) {
-                focList.add(buildFileOutConfig(TEMPLATE_SINGLE_WRAPPER_JAVA,
-                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "converter",
+                focList.add(buildFileOutConfig(TEMPLATE_EXTEND_WRAPPER_JAVA,
+                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/converter",
                     "Converter.java",
                     true));
             } else {
                 focList.add(buildFileOutConfig(TEMPLATE_OUTER_WRAPPER_JAVA,
-                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "converter",
+                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/converter",
                     "ViewConverter.java",
                     true));
                 focList.add(buildFileOutConfig(TEMPLATE_INNER_WRAPPER_JAVA,
-                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "converter",
+                    this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "entity/converter",
                     "ServiceConverter.java",
                     true));
             }
 
         }
+
+        // 生成枚举
+        if (this.templatesConfig.isEnums()) {
+            focList.add(buildFileOutConfig(TEMPLATE_ENUM,
+                this.modelPath + JAVA_ROOT_PATH + parentPath + File.separator + "enums",
+                "",
+                false));
+        }
+
     }
 
     /**
@@ -618,6 +630,7 @@ public class AutoGeneratorCode {
             }
 
         }
+
     }
 
     /**
@@ -630,6 +643,45 @@ public class AutoGeneratorCode {
         if (CollectionUtils.isNotEmpty(Collections.singleton(this.componets))) {
             Arrays.stream(this.componets).forEach(c -> {
                 switch (c) {
+                    case PropertiesConfig.ACTIVEMQ:
+                        this.propertiesConfig.setActivemq(true);
+                        log.info("生成 activemq 相关配置, 需要 cubo-activemq 依赖");
+                        break;
+                    case PropertiesConfig.EMAIL:
+                        this.propertiesConfig.setEmail(true);
+                        log.info("生成 email 相关配置, 需要 cubo-email 依赖");
+                        break;
+                    case PropertiesConfig.REDIS:
+                        this.propertiesConfig.setRedis(true);
+                        log.info("生成 redis 相关配置, 需要 cubo-redis 依赖, "
+                            + "默认为 standalone 模式, 其他模式配置参照 cubo-redis/src/test/resource 配置");
+                        break;
+                    case PropertiesConfig.ROCKTEMQ:
+                        this.propertiesConfig.setRocktemq(true);
+                        log.info("生成 rocketmq 相关配置, 需要 cubo-rocketmq 依赖");
+                        break;
+                    case PropertiesConfig.WEBSERVICE:
+                        this.propertiesConfig.setWebservice(true);
+                        log.info("生成 webservice 相关配置, 需要 cubo-webservice 依赖");
+                        break;
+                    case PropertiesConfig.WEBSOCKET:
+                        this.propertiesConfig.setWebsocket(true);
+                        log.info("生成 websocklet 相关配置, 需要 cubo-websocket 依赖");
+                        break;
+                    case PropertiesConfig.MYBATIS:
+                        this.propertiesConfig.setMybatis(true);
+                        log.info("生成 mybatis + jdbc + druid 相关配置, 需要 cubo-mybatis 依赖");
+                        log.info("如果是多数据源, 需要 ms-mybatis-multi 依赖, 如果不能满足需求, 可以参照 cubo-mybatis-multi");
+                        break;
+                    case PropertiesConfig.DUBBO:
+                        this.propertiesConfig.setDubbo(true);
+                        log.info("生成 dubbo 相关配置, 需要 ms-dubbo 依赖");
+                        break;
+                    case PropertiesConfig.ADMIN:
+                        this.propertiesConfig.setAdmin(true);
+                        log.warn("需要 spring-boot-starter-web, spring-boot-starter-actuator, "
+                            + "spring-boot-admin-starter-client, spring-boot-starter-security 依赖");
+                        break;
                     case PropertiesConfig.BOOT_CONFIG:
                         this.propertiesConfig.setBootConfig(true);
                         break;
@@ -659,7 +711,11 @@ public class AutoGeneratorCode {
         return new FileOutConfig(template) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                File dir = new File(finalPath);
+                String filePath = finalPath;
+                if (finalPath.contains("views/{}")) {
+                    filePath = StrFormatter.format(finalPath, tableInfo.getEntityName());
+                }
+                File dir = new File(filePath);
                 if (!dir.exists()) {
                     boolean result = dir.mkdirs();
                     if (result) {
@@ -667,10 +723,15 @@ public class AutoGeneratorCode {
                     }
                 }
                 if (isSuffix) {
-                    return dir + File.separator + tableInfo.getEntityName() + suffix;
+                    if (suffix.equals(".js")) {
+                        return dir + File.separator + StringUtils.firstCharToLower(tableInfo.getEntityName()) + suffix;
+                    } else {
+                        return dir + File.separator + tableInfo.getEntityName() + suffix;
+                    }
                 }
                 return dir + File.separator + suffix;
             }
         };
     }
+
 }

@@ -21,6 +21,8 @@ public class PropertiesConfig {
     public static final String WEBSOCKET = "websocket";
     /** WEBSERVICE */
     public static final String WEBSERVICE = "webservice";
+    /** ACTIVEMQ */
+    public static final String ACTIVEMQ = "activemq";
     /** ROCKTEMQ */
     public static final String ROCKTEMQ = "rocktemq";
     /** REDIS */

@@ -9,11 +9,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>Description: 模板启动类 (Auto))</p>
+ * <p> 模板启动类 (Auto))</p>
  *
  * @author ${author}
  * @version ${cfg.version}
- * @email "mailto:${author}@gmail.com"
+ * @email "mailto:${author}@${cfg.email}"
  * @date ${cfg.date}
  * @since ${cfg.version}
  */

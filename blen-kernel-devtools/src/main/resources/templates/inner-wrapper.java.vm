@@ -2,16 +2,17 @@ package ${cfg.package_converter};
 
 import ${cfg.package_dto}.${entity}DTO;
 import ${cfg.package_po}.${entity};
+import dev.dong4j.zeka.kernel.common.mapstruct.ServiceConverter;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * <p>Description: $!{table.comment} 服务层转换器, 提供 po 和 dto 互转 </p>
+ * <p> $!{table.comment} 服务层转换器, 提供 po 和 dto 互转 </p>
  *
  * @author ${author}
  * @version ${cfg.version}
- * @email "mailto:${author}@gmail.com"
+ * @email "mailto:${author}@${cfg.email}"
  * @date ${cfg.date}
  * @since ${cfg.version}
  */

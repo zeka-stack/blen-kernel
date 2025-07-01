@@ -26,24 +26,35 @@
         </resultMap>
 
     #end
-    #if(${baseColumnList})
-        ##    <!-- 通用查询结果列 -->
-        ##    <sql id="Base_Column_List">
-        ###foreach($field in ${table.fields})
-        ###if(${field.name} == ${field.propertyName})
-        ##        ${field.name},
-        ###else
-        ##        ${field.name} AS ${field.propertyName},
-        ###end
-        ###end
-        ##    </sql>
-        ##    <!-- 通用查询结果列 -->
-        ##    <sql id="Base_Column_List">
-        ###foreach($field in ${table.commonFields})
-        ##        #if(${field.name} == ${field.propertyName})${field.name}#else${field.name} AS ${field.propertyName}#end
-        ###end
-        ##        ${table.fieldNames}
-        ##    </sql>
+    <!-- 通用查询结果列 -->
+    <sql id="all_field">
+        a.id,
+#foreach($field in${table.fields})
+        a.`${field.name}`#if($foreach.count < $table.fields.size()), #end
+#end
+    </sql>
 
-    #end
+    <sql id="date_query">
+        <if test="query.startTime != null">
+            <![CDATA[
+                and a.create_time >= #{query.startTime}
+            ]]>
+        </if>
+        <if test="query.endTime != null">
+            <![CDATA[
+                and a.create_time < #{query.endTime}
+            ]]>
+        </if>
+    </sql>
+
+    <select id="page" resultType="$!{package.Entity}.dto.$!{entity}DTO"
+            parameterType="$!{package.Entity}.form.$!{entity}Query">
+        select
+        <include refid="all_field"/>
+        from $!{table.name} as a
+        <where>
+            and a.deleted = 0
+            <include refid="date_query"/>
+        </where>
+    </select>
 </mapper>

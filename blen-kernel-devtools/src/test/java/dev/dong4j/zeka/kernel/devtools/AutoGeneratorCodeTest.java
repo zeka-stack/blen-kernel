@@ -25,10 +25,12 @@ class AutoGeneratorCodeTest {
             // 设置存放自动生成的代码路径, 不填则默认当前项目下
             .withModelPath("")
             .withVersion("1.0.0")
+            .withCompany("xxxx")
+            .withEmail("yyy")
             // 设置谁作者名, 默认读取 ZEKA_NAME_SPACE 变量
             .withAuthor(SystemUtils.USER_NAME)
-            // 设置包名 (前缀默认为 dev.dong4j.zeka, 因此最终的包名为: dev.dong4j.zeka.${packageName})
-            .withPackageName("starter.example.test")
+            // 设置包名 (前缀默认为 公司项目顶层包路径, 因此最终的包名为: ${公司项目顶层包路径}.${packageName})
+            .withPackageName("example.test")
             // 忽略前缀
             .withPrefix(new String[]{""})
             // 设置根据哪张表生成代码, 可写多张表
@@ -37,21 +39,24 @@ class AutoGeneratorCodeTest {
             .withTemplate(
                 TemplatesConfig.DAO,
                 TemplatesConfig.SERVICE,
+                TemplatesConfig.ENUM,
                 TemplatesConfig.IMPL,
                 TemplatesConfig.ENTITY,
-                TemplatesConfig.VO,
                 TemplatesConfig.DTO,
-                TemplatesConfig.WRAPPER,
+                TemplatesConfig.QUERY,
+                TemplatesConfig.CONVERTER,
                 TemplatesConfig.XML,
                 TemplatesConfig.START,
-                TemplatesConfig.CONTROLLER
+                TemplatesConfig.CONTROLLER,
+
+                // 占位符而已, 避免手动删除逗号的烦恼
+                TemplatesConfig.PLACEHOLDER
             )
             // 设置需要生成的配置
             .withComponets(
-                PropertiesConfig.BOOT_CONFIG
+                // PropertiesConfig.BOOT_CONFIG
             )
-            .withModuleType(ModuleConfig.ModuleType.MULTI_MODULE)
+            .withModuleType(ModuleConfig.ModuleType.SINGLE_MODULE)
             .build();
     }
-
 }

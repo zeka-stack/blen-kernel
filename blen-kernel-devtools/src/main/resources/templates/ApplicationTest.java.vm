@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>Description: 单元测试主类 </p>
+ * <p> 单元测试主类 </p>
  *
  * @author ${author}
  * @version ${cfg.version}
- * @email "mailto:${author}@gmail.com"
+ * @email "mailto:${author}@${cfg.email}"
  * @date ${cfg.date}
  * @since ${cfg.version}
  */

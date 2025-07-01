@@ -1,0 +1,30 @@
+package ${cfg.package_enums};
+
+import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+/**
+ * <p> $!{table.comment} 枚举 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@${cfg.email}"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Getter
+@AllArgsConstructor
+public enum ${enums.enumName} implements SerializeEnum
+
+    <${enums.valueType}> {
+        #foreach($item in ${enums.enumItems})
+            /** $item */
+            $item
+        #end
+
+        /** Value */
+        private final ${enums.valueType} value ;
+        /** Desc */
+        private final String desc;
+    }

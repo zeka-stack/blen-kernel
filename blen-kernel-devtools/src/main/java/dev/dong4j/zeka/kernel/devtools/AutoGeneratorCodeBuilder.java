@@ -1,18 +1,17 @@
 package dev.dong4j.zeka.kernel.devtools;
 
-import com.baomidou.mybatisplus.generator.AutoGenerator;
 import dev.dong4j.zeka.kernel.common.constant.App;
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import dev.dong4j.zeka.kernel.common.util.SystemUtils;
-import dev.dong4j.zeka.kernel.common.util.Tools;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import dev.dong4j.zeka.kernel.devtools.core.AutoGenerator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -32,20 +31,24 @@ public final class AutoGeneratorCodeBuilder {
     private String author = App.ZEKA_NAME_SPACE;
     /** Version */
     private String version = "1.0.0";
+    private String company = "Zeka.Stack Inc.";
+    private String email = "gmail.com";
     /** Tables */
     private String[] tables;
     /** 数据表前缀 */
     private String[] prefix;
     /** 自定义实体基类 */
-    private String superEntityClass = App.BASE_PACKAGES + ".starter.common.base.BasePO";
-    /** 自定义 dao 基类 */
-    private String superMapperClass = App.BASE_PACKAGES + ".starter.common.base.BaseDao";
+    private String superBaseEntityClass = "dev.dong4j.zeka.starter.mybatis.base.BasePO";
+    private String superExtendEntityClass = "dev.dong4j.zeka.starter.mybatis.base.BaseExtendPO";
+    private String superWithTimeEntityClass = "dev.dong4j.zeka.starter.mybatis.base.BaseWithTimePO";
+    private String superWithLogicEntityClass = "dev.dong4j.zeka.starter.mybatis.base.BaseWithLogicPO";
+    private String superMapperClass = "dev.dong4j.zeka.starter.mybatis.base.BaseDao";
     /** 自定义 service 基类 */
-    private String superServiceClass = App.BASE_PACKAGES + ".starter.mybatis.service.BaseService";
+    private String superServiceClass = "dev.dong4j.zeka.starter.mybatis.service.BaseService";
     /** 自定义 serviceImpl 基类 */
-    private String superServiceImplClass = App.BASE_PACKAGES + ".starter.mybatis.service.impl.BaseServiceImpl";
+    private String superServiceImplClass = "dev.dong4j.zeka.starter.mybatis.service.impl.BaseServiceImpl";
     /** 自动以 controller 父类 */
-    private String superControllerClass = App.BASE_PACKAGES + ".starter.rest.ServletController";
+    private String superControllerClass = "dev.dong4j.zeka.starter.rest.ServletController";
     /** 需要生成的 package */
     private String packageName;
     /** Componets */
@@ -118,6 +121,18 @@ public final class AutoGeneratorCodeBuilder {
         return this;
     }
 
+    @Contract("_ -> this")
+    public AutoGeneratorCodeBuilder withCompany(String companyName) {
+        this.company = company;
+        return this;
+    }
+
+    @Contract("_ -> this")
+    public AutoGeneratorCodeBuilder withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
     /**
      * With tables auto generator code builder.
      *
@@ -153,7 +168,7 @@ public final class AutoGeneratorCodeBuilder {
      */
     @Contract("_ -> this")
     public AutoGeneratorCodeBuilder withSuperEntityClass(String superEntityClass) {
-        this.superEntityClass = superEntityClass;
+        this.superBaseEntityClass = superEntityClass;
         return this;
     }
 
@@ -289,12 +304,17 @@ public final class AutoGeneratorCodeBuilder {
         autoGeneratorCode.setUserName(properties.getProperty("spring.datasource.username"));
         autoGeneratorCode.setPassWord(properties.getProperty("spring.datasource.password"));
         autoGeneratorCode.setUrl(properties.getProperty("spring.datasource.url"));
-        autoGeneratorCode.setAuthor(Tools.isBlank(this.author) ? SystemUtils.USER_NAME : this.author);
+        autoGeneratorCode.setAuthor(StringUtils.isBlank(this.author) ? SystemUtils.USER_NAME : this.author);
         autoGeneratorCode.setVersion(this.version);
+        autoGeneratorCode.setCompany(this.company);
+        autoGeneratorCode.setEmail(this.email);
 
         autoGeneratorCode.setTables(this.tables);
         autoGeneratorCode.setPrefix(this.prefix);
-        autoGeneratorCode.setSuperEntityClass(this.superEntityClass);
+        autoGeneratorCode.setSuperBaseEntityClass(this.superBaseEntityClass);
+        autoGeneratorCode.setSuperExtendEntityClass(this.superExtendEntityClass);
+        autoGeneratorCode.setSuperWithTimeEntityClass(this.superWithTimeEntityClass);
+        autoGeneratorCode.setSuperWithLogicEntityClass(this.superWithLogicEntityClass);
         autoGeneratorCode.setSuperMapperClass(this.superMapperClass);
         autoGeneratorCode.setSuperServiceClass(this.superServiceClass);
         autoGeneratorCode.setSuperServiceImplClass(this.superServiceImplClass);
@@ -312,7 +332,7 @@ public final class AutoGeneratorCodeBuilder {
             .setPackageInfo(autoGeneratorCode.buildPackageConfig())
             .setTemplate(autoGeneratorCode.buildTemplateConfig())
             .setCfg(autoGeneratorCode.buildInjectionConfig())
-            .setTemplateEngine(new VelocityTemplateEngine())
+            .setTemplateEngine(new ZekaVelocityTemplateEngine())
             .execute();
 
         log.debug("{}", autoGenerator.getCfg().getMap().get("app_name"));

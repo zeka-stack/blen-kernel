@@ -1,0 +1,24 @@
+package ${cfg.package_converter};
+
+import ${cfg.package_form}.${entity}Form;
+import ${cfg.package_dto}.${entity}DTO;
+import ${cfg.package_po}.${entity};
+
+import dev.dong4j.zeka.kernel.common.mapstruct.ExtendConverter;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+/**
+ * <p> $!{table.comment} 实体转换器 </p>
+ *
+ * @author ${author}
+ * @version ${cfg.version}
+ * @email "mailto:${author}@${cfg.email}"
+ * @date ${cfg.date}
+ * @since ${cfg.version}
+ */
+@Mapper
+public interface ${entity}Converter extends ExtendConverter<${entity}Form, ${entity}DTO, ${entity}> {
+    /** INSTANCE */
+        ${entity}Converter INSTANCE = Mappers.getMapper(${entity}Converter.class);
+}
