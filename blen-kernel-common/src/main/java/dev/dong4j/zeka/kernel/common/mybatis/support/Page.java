@@ -4,17 +4,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import lombok.Data;
-import lombok.ToString;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.util.CollectionUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import lombok.Data;
+import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.util.CollectionUtils;
 
 /**
  * <p>Description:  </p>
@@ -433,26 +432,6 @@ public class Page<T> implements IPage<T> {
     @Override
     public List<OrderItem> orders() {
         return this.getOrders();
-    }
-
-    /**
-     * Gets orders *
-     *
-     * @return the orders
-     * @since 1.0.0
-     */
-    public List<OrderItem> getOrders() {
-        return this.orders;
-    }
-
-    /**
-     * Sets orders *
-     *
-     * @param orders orders
-     * @since 1.0.0
-     */
-    public void setOrders(List<OrderItem> orders) {
-        this.orders = orders;
     }
 
     /**
