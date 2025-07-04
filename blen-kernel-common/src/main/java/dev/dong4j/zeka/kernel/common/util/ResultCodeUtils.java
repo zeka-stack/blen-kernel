@@ -31,6 +31,7 @@ import static java.util.stream.Collectors.toMap;
 public class ResultCodeUtils {
     /** 枚举类缓存Map */
     private static final Map<String, Map<String, Field>> ENUM_FIELD_CACHE = new ConcurrentHashMap<>();
+    /** code 配置规则 */
     private static final String PATTERN = "^[A-Z]\\.[A-Z]-\\d+$";
 
     /**
@@ -128,6 +129,9 @@ public class ResultCodeUtils {
 
     /**
      * 判断 code 是否为 X.X-数字 格式（如 A.B-123）
+     *
+     * @param code 代码
+     * @return boolean
      */
     public static boolean isSpecialCodeFormat(String code) {
         if (code == null || code.isEmpty()) {
