@@ -403,6 +403,8 @@ public final class ConfigKey {
         public static final String LIMIT = "zeka-stack.mybatis.limit";
         /** MYBATIS_ENABLE_LOG */
         public static final String MYBATIS_ENABLE_LOG = "zeka-stack.mybatis.enable-log";
+        /** 附加SQL文件 */
+        public static final String APPEND_SQL_FILE = "zeka-stack.mybatis.append-sql-file";
         /** MYBATIS_ENABLE_SENSITIVE */
         public static final String MYBATIS_ENABLE_SENSITIVE = "zeka-stack.mybatis.enable-sensitive";
         /** MAPPER_LOCATIONS */

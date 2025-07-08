@@ -12,12 +12,13 @@ import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -422,17 +423,17 @@ public class ConfigKit {
     /**
      * 通过文件全路径名获取资源文件
      *
-     * @param configFileName config file name
+     * @param fileName file name
      * @return the resource
      * @since 1.0.0
      */
-    public static Resource getResource(String configFileName) {
+    public static Resource getResource(String fileName) {
         String configPath = ConfigKit.getConfigPath();
-        String fullPathFileName = configPath + configFileName;
+        String fullPathFileName = configPath + fileName;
         Resource resource;
         InputStream inputStream;
         try {
-            inputStream = new FileInputStream(fullPathFileName);
+            inputStream = Files.newInputStream(Paths.get(fullPathFileName));
             resource = new InputStreamResource(inputStream);
         } catch (IOException ex) {
             throw new PropertiesException("未找到文件: [{}]", fullPathFileName);
@@ -497,7 +498,7 @@ public class ConfigKit {
         String configPath = ConfigKit.getConfigPath();
         String filePath = configPath + fileName;
         File file = new File(filePath);
-        return new FileInputStream(file);
+        return Files.newInputStream(file.toPath());
     }
 
     /**
@@ -526,7 +527,7 @@ public class ConfigKit {
     @SneakyThrows
     public static @NotNull InputStream getIncludesStream(String fileName) {
         File file = getIncludesFile(fileName);
-        return new FileInputStream(file);
+        return Files.newInputStream(file.toPath());
     }
 
     /**

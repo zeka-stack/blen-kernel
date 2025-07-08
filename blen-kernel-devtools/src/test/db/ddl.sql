@@ -7,7 +7,7 @@ create table rule
     `match_mode`    varchar(20)  null comment '域名匹配模式',
     `name`          varchar(100) null comment '匹配的域名',
     `priority`      int          null comment '匹配优先级',
-    `enabled`       bit                   default b'1' null comment '公共枚举:EnableEnum:可用状态',
+    `enabled` bit default b'1' null comment '公共枚举:EnabledEnum:可用状态',
     `dispatch_mode` varchar(20)  null comment '分发模式, 如iphash、round-robin、random',
     `create_time`   timestamp    not null default current_timestamp comment '创建时间 (公共字段)',
     `update_time`   timestamp    not null default current_timestamp on update current_timestamp comment '最后更新时间 (公共字段)',
@@ -56,7 +56,7 @@ create table example
     `gender`      tinyint(2) unsigned   default 2 not null comment 'Q@自定义枚举:Integer:性别:WOMAN(0, "女性"),:MAN(1, "男性"),:UNKNOWN(2, "未知");',
     `hobby`       tinyint(2) unsigned   default 2 not null comment '自定义枚举:Integer:爱好:WOMAN(0, "女性"),:MAN(1, "男性"),:UNKNOWN(2, "未知");',
     `birthday`    timestamp    not null comment '生日',
-    `enabled`     bit                   default b'1' null comment '公共枚举:EnableEnum:可用状态',
+    `enabled` bit default b'1' null comment '公共枚举:EnabledEnum:可用状态',
     `create_time` timestamp    not null default current_timestamp comment '创建时间 (公共字段)',
     `update_time` timestamp    not null default current_timestamp on update current_timestamp comment '最后更新时间 (公共字段)',
     `deleted`     bigint       not null default 0 comment '通用枚举:删除状态:0: 未删除，删除就是当前数据的主键id用于代表唯一性'

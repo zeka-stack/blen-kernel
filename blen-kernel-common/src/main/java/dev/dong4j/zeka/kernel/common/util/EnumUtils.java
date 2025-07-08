@@ -1,12 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import sun.reflect.ConstructorAccessor;
-import sun.reflect.FieldAccessor;
-import sun.reflect.ReflectionFactory;
-
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -19,6 +12,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import sun.reflect.ConstructorAccessor;
+import sun.reflect.FieldAccessor;
+import sun.reflect.ReflectionFactory;
 
 /**
  * <p>Description: 枚举工具类</p>
@@ -33,7 +32,7 @@ import java.util.function.Predicate;
 @UtilityClass
 @SuppressWarnings("all")
 public class EnumUtils {
-    /** 枚举类缓存 */
+    /** 枚举类缓存(懒加载的方式) */
     private static final Map<Class<?>, Object> ENUM_MAP = new ConcurrentHashMap<>();
 
     /**

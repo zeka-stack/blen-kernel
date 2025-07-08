@@ -630,7 +630,7 @@ public class ConfigBuilder {
                             } else if (commentString.startsWith(commonEnumCommentPrefix)) {
                                 log.info("存在公共枚举字段: {}", field);
                                 field.setEnums(true);
-                                // 公共枚举:EnableEnum:可用状态
+                                // 公共枚举:EnabledEnum:可用状态
                                 final String[] split = commentString.split(":");
                                 TableField.EnumProperties properties = new TableField.EnumProperties();
                                 properties.setType(EnumType.COMMON);
