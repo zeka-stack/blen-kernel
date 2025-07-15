@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
  * 由于 jackson 在反序列化抽象类时存在多态问题, 我们使用 {@link Result#TYPE_NAME} 来标识 json 需要被反序列化的 class.
  * 比较推荐的反序列化方式是根据不同的框架来进行反序列化, 避免使用 {@link Result}:
  * {@code
- * v5: Result result = JsonUtils.parse(json, R.class);
+ * v8: Result result = JsonUtils.parse(json, R.class);
  * }*
  * </p>
  *

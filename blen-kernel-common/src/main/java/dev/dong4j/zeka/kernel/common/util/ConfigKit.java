@@ -176,7 +176,7 @@ public class ConfigKit {
      */
     @NotNull
     public static Boolean notLocalLaunch() {
-        return App.START_SHELL.equals(System.getProperty(App.START_TYPE));
+        return App.START_SHELL.equals(System.getProperty(App.START_TYPE)) || App.START_DOCKER.equals(System.getProperty(App.START_TYPE));
     }
 
     /**
@@ -462,7 +462,7 @@ public class ConfigKit {
         String configPath;
         String startType = System.getProperty(App.START_TYPE);
         // 脚本启动
-        if (StringUtils.isNotBlank(startType) && App.START_SHELL.equals(startType)) {
+        if (StringUtils.isNotBlank(startType) && (App.START_SHELL.equals(startType) || App.START_DOCKER.equals(startType))) {
             // 获取 config 路径
             configPath = System.getProperty(App.APP_CONFIG_PATH);
             // 这种情况是本地开发时设置了 -Dstart.path 参数的情况
@@ -1405,8 +1405,8 @@ public class ConfigKit {
      * @return the boolean
      * @since 1.4.0
      */
-    public static boolean isV5Framework() {
-        return BasicUtils.isV5Framework();
+    public static boolean isV8Framework() {
+        return BasicUtils.isV8Framework();
     }
 
     /**

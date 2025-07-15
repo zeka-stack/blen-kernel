@@ -23,10 +23,10 @@ public class BasicUtils {
      * @return the boolean
      * @since 1.4.0
      */
-    public static boolean isV5Framework() {
+    public static boolean isV8Framework() {
         String frameworkVersion = System.getProperty(ConfigKey.APPLICATION_FRAMEWORK_VERSION);
         return StringUtils.hasText(frameworkVersion)
-            && frameworkVersion.startsWith("V5_");
+            && frameworkVersion.startsWith("v8_");
     }
 
     /**
@@ -57,7 +57,7 @@ public class BasicUtils {
      * @since 1.4.0
      */
     private static String getVersion(String key) {
-        if (!isV5Framework()) {
+        if (!isV8Framework()) {
             return StringPool.NULL_STRING;
         }
         return System.getProperty(key, StringPool.NULL_STRING);
@@ -87,6 +87,6 @@ public class BasicUtils {
     @NotNull
     @Deprecated
     public static Boolean notLocalLaunch() {
-        return "shell".equals(System.getProperty("start.type"));
+        return ConfigKit.notLocalLaunch();
     }
 }

@@ -3,11 +3,10 @@ package dev.dong4j.zeka.kernel.auth.util;
 import dev.dong4j.zeka.kernel.auth.constant.AuthConstant;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import javax.servlet.http.HttpServletRequest;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>Description:  </p>
@@ -23,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthUtils {
 
     /**
-     * 从请求中获取token,兼容v5,v4,app,h5
+     * 从请求中获取token,兼容v8,app,h5
      *
      * @param request request
      * @return token token

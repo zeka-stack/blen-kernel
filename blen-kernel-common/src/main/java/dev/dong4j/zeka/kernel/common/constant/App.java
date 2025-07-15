@@ -44,6 +44,8 @@ public final class App {
     public static final String START_JUNIT = "junit";
     /** 本地开发时 idea 启动 */
     public static final String START_IDEA = "idea";
+    /** docker 部署 */
+    public static final String START_DOCKER = "docker";
     /** rest 服务启动完成后将 url 写入到环境变量中, 用于其他组件获取此信息 */
     public static final String START_URL = "start_url";
     /** 用于打印 bean 信息 */

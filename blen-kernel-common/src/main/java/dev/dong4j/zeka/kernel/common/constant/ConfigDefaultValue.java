@@ -49,7 +49,7 @@ public final class ConfigDefaultValue {
     public static final String BASE_PACKAGES = System.getProperty("PARENT_PACKAGE_NAME", "dev.dong4j.zeka");
     /** CONTAINER_LOCATION */
     public static final String CONTAINER_LOCATION = "/mnt/tmp";
-    /** v5 服务默认的日志主目录 */
+    /** v8 服务默认的日志主目录 */
     public static final String DEFAULT_LOGGING_LOCATION = "/mnt/syslogs/zeka.stack";
     /** 容器日志的默认目录 */
     public static final String DEFAULE_ACCESS_LOG_DIR = "container";
