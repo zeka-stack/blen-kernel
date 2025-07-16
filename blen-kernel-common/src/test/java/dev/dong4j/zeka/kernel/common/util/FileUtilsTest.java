@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.File;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 /**
  * <p>Description:  </p>
@@ -26,11 +25,14 @@ class FileUtilsTest {
      */
     @Test
     void appendPath() {
+        String path0 = FileUtils.appendPath("a", "", "c");
         String path1 = FileUtils.appendPath("a", "b", "c");
         String path2 = FileUtils.appendPath("a", "b/", "c");
         String path3 = FileUtils.appendPath("a", "/b/", "/c");
         String path4 = FileUtils.appendPath();
         String path5 = FileUtils.appendPath("/a/d/e/", "/b/", "/c");
+
+        Assertions.assertEquals("a/c", path0);
         Assertions.assertEquals("a/b/c", path1);
         Assertions.assertEquals("a/b/c", path2);
         Assertions.assertEquals("a/b/c", path3);

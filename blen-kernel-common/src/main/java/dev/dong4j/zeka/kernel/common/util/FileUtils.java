@@ -2,17 +2,6 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
-import org.springframework.util.FileSystemUtils;
-import org.springframework.util.PatternMatchUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
@@ -30,6 +19,18 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
+import org.springframework.util.FileSystemUtils;
+import org.springframework.util.PatternMatchUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>Description: 文件工具类 </p>
@@ -545,7 +546,27 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
             paths[i] = StringUtils.removePrefix(paths[i], File.separator);
         }
 
-        return String.join(File.separator, paths);
+        return join(paths);
+    }
+
+    /**
+     * 路径拼接, 如果为空字符串则不拼接路径分隔符
+     *
+     * @param elements 元素
+     * @return 细绳
+     */
+    private static String join(CharSequence... elements) {
+        CharSequence delimiter = File.separator;
+        Objects.requireNonNull(delimiter);
+        Objects.requireNonNull(elements);
+        // Number of elements not likely worth Arrays.stream overhead.
+        StringJoiner joiner = new StringJoiner(delimiter);
+        for (CharSequence cs : elements) {
+            if (StringUtils.isNotBlank(cs)) {
+                joiner.add(cs);
+            }
+        }
+        return joiner.toString();
     }
 
     /**
