@@ -284,7 +284,6 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * @return the file contents, never {@code null}
      * @since 1.0.0
      */
-    @NotNull
     public static byte[] readToByteArray(File file) {
         try (InputStream in = Files.newInputStream(file.toPath())) {
             return IoUtils.toByteArray(in);
@@ -368,7 +367,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * @since 1.0.0
      */
     public static void toFile(InputStream in, File file) {
-        try (OutputStream out = new FileOutputStream(file)) {
+        try (OutputStream out = Files.newOutputStream(file.toPath())) {
             FileUtils.copy(in, out);
         } catch (IOException e) {
             throw Exceptions.unchecked(e);
@@ -423,6 +422,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * @return {@code true} if the file or directory was deleted, otherwise {@code false}
      * @since 1.0.0
      */
+    @SuppressWarnings("UnusedReturnValue")
     @Contract("null -> false")
     public static boolean deleteQuietly(@Nullable File file) {
         if (file == null) {
@@ -583,7 +583,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
         if (start.toFile().exists()) {
             Files.walkFileTree(start, new SimpleFileVisitor<Path>() {
                 @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                public @NotNull FileVisitResult visitFile(@NotNull Path file, @NotNull BasicFileAttributes attrs) {
                     try {
                         Files.delete(file);
                     } catch (IOException ignored) {
@@ -592,7 +592,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
                 }
 
                 @Override
-                public FileVisitResult postVisitDirectory(Path dir, IOException e) {
+                public @NotNull FileVisitResult postVisitDirectory(@NotNull Path dir, IOException e) {
                     if (e == null) {
                         try {
                             Files.delete(dir);
@@ -619,7 +619,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
     public static @NotNull String toPath(String path) {
         File logFile = new File(path);
         if (!logFile.exists() && logFile.mkdirs()) {
-            log.info(String.format("创建日志目录: %s", logFile.getPath()));
+            log.info("创建日志目录: {}", logFile.getPath());
         }
         return logFile.getPath();
     }

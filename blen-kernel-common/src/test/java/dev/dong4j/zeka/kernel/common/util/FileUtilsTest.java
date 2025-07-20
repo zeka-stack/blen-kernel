@@ -59,6 +59,10 @@ class FileUtilsTest {
         Assertions.assertEquals("/a/d/e/b/c", path5);
     }
 
+    @Test
+    void test_toPath() throws Exception {
+        log.info("{}", FileUtils.toPath("./logs"));
+    }
 
     /**
      * Sample
@@ -84,4 +88,5 @@ class FileUtilsTest {
 
         return String.join(File.separator, paths);
     }
+
 }
