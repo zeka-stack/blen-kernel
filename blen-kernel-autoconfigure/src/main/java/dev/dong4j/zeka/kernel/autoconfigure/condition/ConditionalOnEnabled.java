@@ -20,5 +20,5 @@ import org.springframework.context.annotation.Conditional;
 @Conditional(OnModuleEnableCondition.class)
 public @interface ConditionalOnEnabled {
 
-    String prefix();
+    String value();
 }
