@@ -1,10 +1,6 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -16,6 +12,10 @@ import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 类加载器的实用程序类 </p>
@@ -34,7 +34,7 @@ import java.util.Objects;
 public final class LoaderUtils {
 
     /** 如果设置为 true, 则只使用本地类加载器, 如果没有设置则使用线程上下文加载器 */
-    public static final String IGNORE_TCCL_PROPERTY = "zeka-stack.ignoreTCL";
+    public static final String IGNORE_TCCL_PROPERTY = ConfigKey.PREFIX + "ignoreTCL";
     /** SECURITY_MANAGER */
     private static final SecurityManager SECURITY_MANAGER = System.getSecurityManager();
     /** ignoreTCCL */

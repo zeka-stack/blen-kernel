@@ -1,6 +1,12 @@
 package dev.dong4j.zeka.kernel.common.yml;
 
 import com.google.common.collect.Maps;
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.env.YamlPropertySourceLoader;
@@ -8,12 +14,6 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.util.DefaultPropertiesPersister;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 /**
  * <p>Description:  </p>
@@ -28,7 +28,7 @@ import java.util.Properties;
 public class YmlPropertiesPersister extends DefaultPropertiesPersister {
 
     /** Config name */
-    static final String CONFIG_NAME = "zeka-stack.consumer.config.file.name";
+    static final String CONFIG_NAME = ConfigKey.PREFIX + "consumer.config.file.name";
 
     /**
      * Load *

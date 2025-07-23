@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.context;
 
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.util.LoaderUtils;
 import dev.dong4j.zeka.kernel.common.util.LowLevelLogUtils;
 import dev.dong4j.zeka.kernel.common.util.PropertiesUtils;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ThreadContextMapFactory {
     /** THREAD_CONTEXT_KEY */
-    private static final String THREAD_CONTEXT_KEY = "zeka-stack.threadContextMap";
+    private static final String THREAD_CONTEXT_KEY = ConfigKey.PREFIX + "threadContextMap";
     /** ThreadContextMapName */
     private static String threadContextMapName;
 

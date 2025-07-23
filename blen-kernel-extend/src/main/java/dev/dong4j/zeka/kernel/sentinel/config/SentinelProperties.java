@@ -17,7 +17,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = SentinelProperties.PREFIX)
 public class SentinelProperties {
     /** PREFIX */
-    public static final String PREFIX = "zeka-stack.sentinel";
+    public static final String PREFIX = ConfigKey.PREFIX + "sentinel";
 
     /** Nacos */
     private NacosConfig nacos;

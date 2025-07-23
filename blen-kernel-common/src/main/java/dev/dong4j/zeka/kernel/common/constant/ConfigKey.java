@@ -15,34 +15,37 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 @SuppressWarnings("all")
 public final class ConfigKey {
+    /** 全局配置前缀 */
+    public static final String PREFIX = "zeka-stack.";
+
     /** PARENT_PACKAGE_NAME */
     public static final String PARENT_PACKAGE_NAME = "PARENT_PACKAGE_NAME";
     /** 框架版本 */
-    public static final String APPLICATION_FRAMEWORK_VERSION = "zeka-stack.framework.version";
+    public static final String APPLICATION_FRAMEWORK_VERSION = PREFIX + "framework.version";
     /** EXTEND_ENABLE_AUTOWIRED_IS_NULL */
-    public static final String EXTEND_ENABLE_AUTOWIRED_IS_NULL = "zeka-stack.extend.enable-autowired-is-null";
+    public static final String EXTEND_ENABLE_AUTOWIRED_IS_NULL = PREFIX + "extend.enable-autowired-is-null";
     /** EXTEND_ENABLE_RESOURCE_IS_NULL */
-    public static final String EXTEND_ENABLE_RESOURCE_IS_NULL = "zeka-stack.extend.enable-resource-is-null";
+    public static final String EXTEND_ENABLE_RESOURCE_IS_NULL = PREFIX + "extend.enable-resource-is-null";
     /** REST_ENABLE_GLOBAL_CACHE_FILTER */
-    public static final String WEB_ENABLE_GLOBAL_CACHE_FILTER = "zeka-stack.web.enable-global-cache-filter";
+    public static final String WEB_ENABLE_GLOBAL_CACHE_FILTER = PREFIX + "web.enable-global-cache-filter";
     /** REST_ENABLE_EXCEPTION_FILTER */
-    public static final String WEB_ENABLE_EXCEPTION_FILTER = "zeka-stack.web.enable-exception-filter";
+    public static final String WEB_ENABLE_EXCEPTION_FILTER = PREFIX + "web.enable-exception-filter";
     /** REST_ENABLE_REQUEST_LOG */
-    public static final String REST_ENABLE_REQUEST_LOG = "zeka-stack.rest.enable-request-log";
+    public static final String REST_ENABLE_REQUEST_LOG = PREFIX + "rest.enable-request-log";
     /** REST_ENABLE_GLOBAL_PARAMETER_FILTER */
-    public static final String REST_ENABLE_GLOBAL_PARAMETER_FILTER = "zeka-stack.rest.enable-global-parameter-filter";
+    public static final String REST_ENABLE_GLOBAL_PARAMETER_FILTER = PREFIX + "rest.enable-global-parameter-filter";
     /** XSS_ENABLE_XSS_FILTER */
-    public static final String XSS_ENABLE_XSS_FILTER = "zeka-stack.xss.enable-xss-filter";
+    public static final String XSS_ENABLE_XSS_FILTER = PREFIX + "xss.enable-xss-filter";
     /** JSON_TIME_ZONE */
-    public static final String JSON_TIME_ZONE = "zeka-stack.rest.json.time-zone";
+    public static final String JSON_TIME_ZONE = PREFIX + "rest.json.time-zone";
     /** JSON_DATE_FORMAT */
-    public static final String JSON_DATE_FORMAT = "zeka-stack.rest.json.date-formate";
+    public static final String JSON_DATE_FORMAT = PREFIX + "rest.json.date-formate";
     /** jackson null 处理配置 */
-    public static final String JSON_SERIALIZE_NULL = "zeka-stack.rest.json.default-property-inclusion";
+    public static final String JSON_SERIALIZE_NULL = PREFIX + "rest.json.default-property-inclusion";
     /** MYBATIS_ENABLE_ILLEGAL_SQL_INTERCEPTOR */
-    public static final String MYBATIS_ENABLE_ILLEGAL_SQL_INTERCEPTOR = "zeka-stack.mybatis.enable-illegal-sql-interceptor";
+    public static final String MYBATIS_ENABLE_ILLEGAL_SQL_INTERCEPTOR = PREFIX + "mybatis.enable-illegal-sql-interceptor";
     /** MYBATIS_ENABLE_SQL_EXPLAIN_INTERCEPTOR */
-    public static final String MYBATIS_ENABLE_SQL_EXPLAIN_INTERCEPTOR = "zeka-stack.mybatis.enable-sql-explain-interceptor";
+    public static final String MYBATIS_ENABLE_SQL_EXPLAIN_INTERCEPTOR = PREFIX + "mybatis.enable-sql-explain-interceptor";
     /** POM_INFO_VERSION */
     public static final String POM_INFO_VERSION = "info.version";
     /** POM_INFO_GROUPID */
@@ -50,19 +53,19 @@ public final class ConfigKey {
     /** POM_INFO_ARTIFACTID */
     public static final String POM_INFO_ARTIFACTID = "info.artifactId";
     /** SERVICE_VERSION */
-    public static final String SERVICE_VERSION = "zeka-stack.service.version";
+    public static final String SERVICE_VERSION = PREFIX + "service.version";
     /** JASYPT_ENCRYPTOR_PASSWORD */
     public static final String JASYPT_ENCRYPTOR_PASSWORD = "jasypt.encryptor.password";
     /** 是否开启 banner */
-    public static final String ENABLE_BANNER = "zeka-stack.enable-banner";
+    public static final String ENABLE_BANNER = PREFIX + "enable-banner";
     /** 应用分组 */
-    public static final String APP_GROUP = "zeka-stack.app.group";
+    public static final String APP_GROUP = PREFIX + "app.group";
     /** APP_CONFIG_GROUP */
-    public static final String APP_CONFIG_GROUP = "zeka-stack.app.config-group";
+    public static final String APP_CONFIG_GROUP = PREFIX + "app.config-group";
     /** DISCOVERY_GROUP */
-    public static final String APP_DISCOVERY_GROUP = "zeka-stack.app.discovery-group";
+    public static final String APP_DISCOVERY_GROUP = PREFIX + "app.discovery-group";
     /** Wiki 链接 */
-    public static final String WIKI = "zeka-stack.app.wiki";
+    public static final String WIKI = PREFIX + "app.wiki";
 
     /**
      * <p>Description: </p>
@@ -92,46 +95,46 @@ public final class ConfigKey {
     @UtilityClass
     public static class LogSystemConfigKey {
         /** 日志应用名 */
-        public static final String LOG_APP_NAME = "zeka-stack.logging.app-name";
+        public static final String LOG_APP_NAME = PREFIX + "logging.app-name";
         /** 是否现在 location 信息 */
-        public static final String SHOW_LOG_LOCATION = "zeka-stack.logging.enable-show-location";
+        public static final String SHOW_LOG_LOCATION = PREFIX + "logging.enable-show-location";
 
         /** 日志等级 */
-        public static final String LOG_LEVEL = "zeka-stack.logging.level";
+        public static final String LOG_LEVEL = PREFIX + "logging.level";
         /** 日志分组 */
-        public static final String LOG_GROUP = "zeka-stack.logging.group";
+        public static final String LOG_GROUP = PREFIX + "logging.group";
         /** 日志系统配置文件 */
-        public static final String LOG_CONFIG = "zeka-stack.logging.config";
+        public static final String LOG_CONFIG = PREFIX + "logging.config";
 
         /** LOG_FILE */
-        public static final String LOG_FILE = "zeka-stack.logging.file";
+        public static final String LOG_FILE = PREFIX + "logging.file";
         /** 日志文件名 */
-        public static final String LOG_FILE_NAME = "zeka-stack.logging.file.name";
+        public static final String LOG_FILE_NAME = PREFIX + "logging.file.name";
         /** 日志文件保存路径 */
-        public static final String LOG_FILE_PATH = "zeka-stack.logging.file.path";
+        public static final String LOG_FILE_PATH = PREFIX + "logging.file.path";
         /** 是否在启动应用时清理历史日志 */
-        public static final String LOG_FILE_CLEAN_HISTORY = "zeka-stack.logging.file.clean-history-on-start";
+        public static final String LOG_FILE_CLEAN_HISTORY = PREFIX + "logging.file.clean-history-on-start";
         /** 最大允许保存的日志历史 */
-        public static final String LOG_FILE_MAX_HISTORY = "zeka-stack.logging.file.max-history";
+        public static final String LOG_FILE_MAX_HISTORY = PREFIX + "logging.file.max-history";
         /** 日志文件最大容量 */
-        public static final String LOG_FILE_MAX_SIZE = "zeka-stack.logging.file.max-size";
+        public static final String LOG_FILE_MAX_SIZE = PREFIX + "logging.file.max-size";
         /** 日志文件最大数量 */
-        public static final String LOG_FILE_TOTAL_SIZE_CAP = "zeka-stack.logging.file.total-size-cap";
+        public static final String LOG_FILE_TOTAL_SIZE_CAP = PREFIX + "logging.file.total-size-cap";
 
         /** LOG_PATTERN */
-        public static final String LOG_PATTERN = "zeka-stack.logging.pattern";
+        public static final String LOG_PATTERN = PREFIX + "logging.pattern";
         /** LOG_PATTERN_CONSOLE */
-        public static final String LOG_PATTERN_CONSOLE = "zeka-stack.logging.pattern.console";
+        public static final String LOG_PATTERN_CONSOLE = PREFIX + "logging.pattern.console";
         /** LOG_PATTERN_FILE */
-        public static final String LOG_PATTERN_FILE = "zeka-stack.logging.pattern.file";
+        public static final String LOG_PATTERN_FILE = PREFIX + "logging.pattern.file";
         /** LOG_PATTERN_LEVEL */
-        public static final String LOG_PATTERN_LEVEL = "zeka-stack.logging.pattern.level";
+        public static final String LOG_PATTERN_LEVEL = PREFIX + "logging.pattern.level";
         /** LOG_PATTERN_DATEFORMAT */
-        public static final String LOG_PATTERN_DATEFORMAT = "zeka-stack.logging.pattern.dateformat";
+        public static final String LOG_PATTERN_DATEFORMAT = PREFIX + "logging.pattern.dateformat";
         /** ROLLING_FILE_NAME */
-        public static final String ROLLING_FILE_NAME = "zeka-stack.logging.pattern.rolling-file-name";
+        public static final String ROLLING_FILE_NAME = PREFIX + "logging.pattern.rolling-file-name";
         /** MARKER_PATTERN */
-        public static final String MARKER_PATTERN = "zeka-stack.logging.pattern.marker";
+        public static final String MARKER_PATTERN = PREFIX + "logging.pattern.marker";
 
         /** 日志路由 key */
         public static final String ROUTING_APPENDER_KEY = "ROUTING_APPENDER_KEY";
@@ -282,7 +285,7 @@ public final class ConfigKey {
     @UtilityClass
     public static class NacosConfigKey {
         /** 配置中心地址 */
-        public static final String CONFIG = "zeka-stack.nacos.config.";
+        public static final String CONFIG = PREFIX + "nacos.config.";
         /** CONFIG_SERVER_ADDRESS */
         public static final String CONFIG_SERVER_ADDRESS = CONFIG + "server-addr";
         /** 配置中心 namespace */
@@ -292,7 +295,7 @@ public final class ConfigKey {
         /** 配置中心 分组 */
         public static final String CONFIG_GROUP = CONFIG + "group";
         /** DISCOVERY */
-        public static final String DISCOVERY = "zeka-stack.nacos.discovery.";
+        public static final String DISCOVERY = PREFIX + "nacos.discovery.";
         /** 服务注册与发现地址 */
         public static final String DISCOVERY_SERVER_ADDR = DISCOVERY + "server-addr";
         /** 服务注册与发现 namespace */
@@ -300,9 +303,9 @@ public final class ConfigKey {
         /** 服务注册与发现 分组 */
         public static final String DISCOVERY_GROUP = DISCOVERY + "group";
         /** 是否自动创建配置 */
-        public static final String ENABLE_AUTO_CREATE_CONFIG = "zeka-stack.nacos.enable-auto-create-config";
+        public static final String ENABLE_AUTO_CREATE_CONFIG = PREFIX + "nacos.enable-auto-create-config";
         /** 是否使用 Nacos 配置 */
-        public static final String ENABLE_NACOS_CONFIG = "zeka-stack.nacos.enable-nacos-config";
+        public static final String ENABLE_NACOS_CONFIG = PREFIX + "nacos.enable-nacos-config";
 
     }
 
@@ -377,13 +380,13 @@ public final class ConfigKey {
     @UtilityClass
     public static class MongoConfigKey {
         /** ENABLE_AUTO_INCREMENT_KEY */
-        public static final String ENABLE_AUTO_INCREMENT_KEY = "zeka-stack.mongo.enable-auto-increment-key";
+        public static final String ENABLE_AUTO_INCREMENT_KEY = PREFIX + "mongo.enable-auto-increment-key";
         /** ENABLE_AUTO_CREATE_INDEX */
-        public static final String ENABLE_AUTO_CREATE_INDEX = "zeka-stack.mongo.enable-auto-create-index";
+        public static final String ENABLE_AUTO_CREATE_INDEX = PREFIX + "mongo.enable-auto-create-index";
         /** ENABLE_AUTO_CREATE_KEY */
-        public static final String ENABLE_AUTO_CREATE_KEY = "zeka-stack.mongo.enable-auto-create-key";
+        public static final String ENABLE_AUTO_CREATE_KEY = PREFIX + "mongo.enable-auto-create-key";
         /** ENABLE_AUTO_CREATE_TIME */
-        public static final String ENABLE_AUTO_CREATE_TIME = "zeka-stack.mongo.enable-auto-create-time";
+        public static final String ENABLE_AUTO_CREATE_TIME = PREFIX + "mongo.enable-auto-create-time";
     }
 
     /**
@@ -398,15 +401,15 @@ public final class ConfigKey {
     @UtilityClass
     public static class MybatisConfigKey {
         /** PAGE */
-        public static final String PAGE = "zeka-stack.mybatis.page";
+        public static final String PAGE = PREFIX + "mybatis.page";
         /** LIMIT */
-        public static final String LIMIT = "zeka-stack.mybatis.limit";
+        public static final String LIMIT = PREFIX + "mybatis.limit";
         /** MYBATIS_ENABLE_LOG */
-        public static final String MYBATIS_ENABLE_LOG = "zeka-stack.mybatis.enable-log";
+        public static final String MYBATIS_ENABLE_LOG = PREFIX + "mybatis.enable-log";
         /** 附加SQL文件 */
-        public static final String APPEND_SQL_FILE = "zeka-stack.mybatis.append-sql-file";
+        public static final String APPEND_SQL_FILE = PREFIX + "mybatis.append-sql-file";
         /** MYBATIS_ENABLE_SENSITIVE */
-        public static final String MYBATIS_ENABLE_SENSITIVE = "zeka-stack.mybatis.enable-sensitive";
+        public static final String MYBATIS_ENABLE_SENSITIVE = PREFIX + "mybatis.enable-sensitive";
         /** MAPPER_LOCATIONS */
         public static final String MAPPER_LOCATIONS = "mybatis-plus.mapper-locations";
         /** CONFIGURATION_LOG_IMPL */
@@ -511,21 +514,21 @@ public final class ConfigKey {
     @UtilityClass
     public static class FeignConfigKey {
         /** FEIGN_URL_PROFIX */
-        public static final String FEIGN_URL_PROFIX = "zeka-stack.feign.url.";
+        public static final String FEIGN_URL_PROFIX = PREFIX + "feign.url.";
         /** RIBBON_SERVICE_LIST */
-        public static final String RIBBON_SERVICE_LIST = "zeka-stack.feign.ribbon.list-of-servers";
+        public static final String RIBBON_SERVICE_LIST = PREFIX + "feign.ribbon.list-of-servers";
         /** MAX_AUTO_RETRIES */
-        public static final String MAX_AUTO_RETRIES = "zeka-stack.feign.ribbon.max-auto-retries";
+        public static final String MAX_AUTO_RETRIES = PREFIX + "feign.ribbon.max-auto-retries";
         /** MAX_AUTO_RETRIES_NEXT_SERVER */
-        public static final String MAX_AUTO_RETRIES_NEXT_SERVER = "zeka-stack.feign.ribbon.max-auto-retries-next-server";
+        public static final String MAX_AUTO_RETRIES_NEXT_SERVER = PREFIX + "feign.ribbon.max-auto-retries-next-server";
         /** OK_TO_RETRY_ON_ALL_OPERATIONS */
-        public static final String OK_TO_RETRY_ON_ALL_OPERATIONS = "zeka-stack.feign.ribbon.ok-to-retry-on-all-operations";
+        public static final String OK_TO_RETRY_ON_ALL_OPERATIONS = PREFIX + "feign.ribbon.ok-to-retry-on-all-operations";
         /** SERVER_LIST_REFRESH_INTERVAL */
-        public static final String SERVER_LIST_REFRESH_INTERVAL = "zeka-stack.feign.ribbon.server-list-refresh-interval";
+        public static final String SERVER_LIST_REFRESH_INTERVAL = PREFIX + "feign.ribbon.server-list-refresh-interval";
         /** CONNECT_TIMEOUT */
-        public static final String CONNECT_TIMEOUT = "zeka-stack.feign.ribbon.connect-timeout";
+        public static final String CONNECT_TIMEOUT = PREFIX + "feign.ribbon.connect-timeout";
         /** READ_TIMEOUT */
-        public static final String READ_TIMEOUT = "zeka-stack.feign.ribbon.read-timeout";
+        public static final String READ_TIMEOUT = PREFIX + "feign.ribbon.read-timeout";
     }
 
     /**
@@ -544,7 +547,7 @@ public final class ConfigKey {
         /** 网关地址前缀, 发起请求时将使用 zeka-stack.feign.ribbon.list-of-servers 配置的 ip 地址替换此字符串 */
         public static final String GATEWAY_PREFIX = "http://" + RibbonConfigKey.CLIENT_NAME + StringPool.SLASH;
         /** FEIGN_URL_PROFIX */
-        public static final String FEIGN_URL_PROFIX = "zeka-stack.agent.url.";
+        public static final String FEIGN_URL_PROFIX = PREFIX + "agent.url.";
 
         /**
          * RIBBON_SERVICE_LIST
@@ -552,64 +555,64 @@ public final class ConfigKey {
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_SERVICE_LIST} 替换
          */
         @Deprecated
-        public static final String RIBBON_SERVICE_LIST = "zeka-stack.agent.ribbon.list-of-servers";
+        public static final String RIBBON_SERVICE_LIST = PREFIX + "agent.ribbon.list-of-servers";
         /** GATEWAY_SERVICE_LIST */
-        public static final String GATEWAY_SERVICE_LIST = "zeka-stack.gateway.servers";
+        public static final String GATEWAY_SERVICE_LIST = PREFIX + "gateway.servers";
         /**
          * SERVER_LIST_REFRESH_INTERVAL
          *
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_SERVER_LIST_REFRESH_INTERVAL} 替换
          */
         @Deprecated
-        public static final String SERVER_LIST_REFRESH_INTERVAL = "zeka-stack.agent.ribbon.server-list-refresh-interval";
+        public static final String SERVER_LIST_REFRESH_INTERVAL = PREFIX + "agent.ribbon.server-list-refresh-interval";
         /** GATEWAY_SERVER_LIST_REFRESH_INTERVAL */
-        public static final String GATEWAY_SERVER_LIST_REFRESH_INTERVAL = "zeka-stack.gateway.server-list-refresh-interval";
+        public static final String GATEWAY_SERVER_LIST_REFRESH_INTERVAL = PREFIX + "gateway.server-list-refresh-interval";
         /**
          * CONNECT_TIMEOUT
          *
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_CONNECT_TIMEOUT} 替换
          */
         @Deprecated
-        public static final String CONNECT_TIMEOUT = "zeka-stack.agent.ribbon.connect-timeout";
+        public static final String CONNECT_TIMEOUT = PREFIX + "agent.ribbon.connect-timeout";
         /** GATEWAY_CONNECT_TIMEOUT */
-        public static final String GATEWAY_CONNECT_TIMEOUT = "zeka-stack.gateway.connect-timeout";
+        public static final String GATEWAY_CONNECT_TIMEOUT = PREFIX + "gateway.connect-timeout";
         /**
          * READ_TIMEOUT
          *
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_READ_TIMEOUT} 替换
          */
         @Deprecated
-        public static final String READ_TIMEOUT = "zeka-stack.agent.ribbon.read-timeout";
+        public static final String READ_TIMEOUT = PREFIX + "agent.ribbon.read-timeout";
         /** GATEWAY_READ_TIMEOUT */
-        public static final String GATEWAY_READ_TIMEOUT = "zeka-stack.gateway.read-timeout";
+        public static final String GATEWAY_READ_TIMEOUT = PREFIX + "gateway.read-timeout";
         /**
          * 是否开启路由转发
          *
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_REST_ENABLE_ROUTER} 替换
          */
         @Deprecated
-        public static final String REST_ENABLE_ROUTER = "zeka-stack.agent.rest.enable-router";
+        public static final String REST_ENABLE_ROUTER = PREFIX + "agent.rest.enable-router";
         /** GATEWAY_REST_ENABLE_ROUTER */
-        public static final String GATEWAY_REST_ENABLE_ROUTER = "zeka-stack.gateway.enable-router";
+        public static final String GATEWAY_REST_ENABLE_ROUTER = PREFIX + "gateway.enable-router";
         /** GATEWAY_REST_ENABLE_endpoint */
-        public static final String GATEWAY_REST_ENABLE_ENDPOINT = "zeka-stack.gateway.enable-endpoint";
+        public static final String GATEWAY_REST_ENABLE_ENDPOINT = PREFIX + "gateway.enable-endpoint";
         /**
          * request 请求最大长度限制
          *
          * @deprecated 使用 {@link AgentConfigKey#GATEWAY_REQUEST_MAX_LINE_LENGTH} 替换
          */
         @Deprecated
-        public static final String REQUEST_MAX_LINE_LENGTH = "zeka-stack.agent.rest.request-max-line-length";
+        public static final String REQUEST_MAX_LINE_LENGTH = PREFIX + "agent.rest.request-max-line-length";
         /** GATEWAY_REQUEST_MAX_LINE_LENGTH */
-        public static final String GATEWAY_REQUEST_MAX_LINE_LENGTH = "zeka-stack.gateway.request-max-line-length";
+        public static final String GATEWAY_REQUEST_MAX_LINE_LENGTH = PREFIX + "gateway.request-max-line-length";
 
 
         /** 全局重复提交检查 (如果为 false, 则不再检查每个 agent 服务是否需要检查) */
-        public static final String ENABLE_REPLY_CHECK = "zeka-stack.agent.endpoint.enable-reply-check";
+        public static final String ENABLE_REPLY_CHECK = PREFIX + "agent.endpoint.enable-reply-check";
         /** 全局签名检查 (如果为 false, 则不再检查每个 agent 服务是否需要检查) */
-        public static final String ENABLE_SIGN_CHECK = "zeka-stack.agent.endpoint.enable-sign-check";
+        public static final String ENABLE_SIGN_CHECK = PREFIX + "agent.endpoint.enable-sign-check";
         /** 启动时检查 agent service 写法是否正确 */
-        public static final String ENABLE_FAIL_FAST = "zeka-stack.agent.endpoint.enable-fail-fast";
+        public static final String ENABLE_FAIL_FAST = PREFIX + "agent.endpoint.enable-fail-fast";
     }
 
     /**
@@ -653,21 +656,21 @@ public final class ConfigKey {
     @UtilityClass
     public static class ScheduleConfigKey {
         /** ENABLE */
-        public static final String ENABLE = "zeka-stack.schedule.enable";
+        public static final String ENABLE = PREFIX + "schedule.enable";
         /** EXECUTOR_APP_NAME */
-        public static final String EXECUTOR_APP_NAME = "zeka-stack.schedule.executor.app-name";
+        public static final String EXECUTOR_APP_NAME = PREFIX + "schedule.executor.app-name";
         /** EXECUTOR_APP_IP */
-        public static final String EXECUTOR_APP_IP = "zeka-stack.schedule.executor.id";
+        public static final String EXECUTOR_APP_IP = PREFIX + "schedule.executor.id";
         /** EXECUTOR_APP_PORT */
-        public static final String EXECUTOR_APP_PORT = "zeka-stack.schedule.executor.port";
+        public static final String EXECUTOR_APP_PORT = PREFIX + "schedule.executor.port";
         /** EXECUTOR_APP_LOG_PATH */
-        public static final String EXECUTOR_APP_LOG_PATH = "zeka-stack.schedule.executor.log-path";
+        public static final String EXECUTOR_APP_LOG_PATH = PREFIX + "schedule.executor.log-path";
         /** EXECUTOR_APP_LOG_RETENTIONDAYS */
-        public static final String EXECUTOR_APP_LOG_RETENTIONDAYS = "zeka-stack.schedule.executor.log-retention-days";
+        public static final String EXECUTOR_APP_LOG_RETENTIONDAYS = PREFIX + "schedule.executor.log-retention-days";
         /** SCHEDULE_ACCESSTOKEN */
-        public static final String SCHEDULE_ACCESSTOKEN = "zeka-stack.schedule.access-token";
+        public static final String SCHEDULE_ACCESSTOKEN = PREFIX + "schedule.access-token";
         /** SCHEDULE_ADMIN_ADDRESSES */
-        public static final String SCHEDULE_ADMIN_ADDRESSES = "zeka-stack.schedule.admin-addresses";
+        public static final String SCHEDULE_ADMIN_ADDRESSES = PREFIX + "schedule.admin-addresses";
     }
 
     /**
@@ -683,9 +686,9 @@ public final class ConfigKey {
     public static class MqConfigKey {
 
         /** BOOTSTRAP_SERVERS */
-        public static final String BOOTSTRAP_SERVERS = "zeka-stack.mq.kafka.bootstrap-servers";
+        public static final String BOOTSTRAP_SERVERS = PREFIX + "mq.kafka.bootstrap-servers";
         /** NAME_SERVER_ADDRESS */
-        public static final String NAME_SERVER_ADDRESS = "zeka-stack.mq.rocketmq.name-server-address";
+        public static final String NAME_SERVER_ADDRESS = PREFIX + "mq.rocketmq.name-server-address";
     }
 
     /**
@@ -699,6 +702,6 @@ public final class ConfigKey {
      */
     public static class LogcatConfigKey {
         /** ADMIN_URL */
-        public static final String ADMIN_URL = "zeka-stack.logcat.server.url";
+        public static final String ADMIN_URL = PREFIX + "logcat.server.url";
     }
 }

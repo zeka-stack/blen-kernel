@@ -4,9 +4,7 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.config.PropertiesPropertySource;
 import dev.dong4j.zeka.kernel.common.config.PropertyFilePropertySource;
 import dev.dong4j.zeka.kernel.common.config.PropertySource;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -20,6 +18,8 @@ import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -35,9 +35,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class PropertiesUtils {
 
     /** PROPERTIES_FILE_NAME */
-    private static final String PROPERTIES_FILE_NAME = "zeka-stack.component.properties";
+    private static final String PROPERTIES_FILE_NAME = ConfigKey.PREFIX + "component.properties";
     /** SYSTEM_PROPERTIES_FILE_NAME */
-    private static final String SYSTEM_PROPERTIES_FILE_NAME = "zeka-stack.system.properties";
+    private static final String SYSTEM_PROPERTIES_FILE_NAME = ConfigKey.PREFIX + "system.properties";
     /** PROPERTIES */
     private static final PropertiesUtils PROPERTIES = new PropertiesUtils(PROPERTIES_FILE_NAME);
     /** Environment */

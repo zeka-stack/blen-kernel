@@ -387,7 +387,7 @@ public class StartUtils {
      */
     public static void setFrameworkVersion() {
         System.setProperty(ConfigKey.APPLICATION_FRAMEWORK_VERSION,
-            App.FRAMEWORK_VERSION_PREFIX + VersionBundle.message("zeka-stack.framework.version"));
+            App.FRAMEWORK_VERSION_PREFIX + VersionBundle.message(ConfigKey.PREFIX + "framework.version"));
     }
 
 }

@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.auth.context;
 
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import java.lang.reflect.Constructor;
 import lombok.Getter;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
-
-import java.lang.reflect.Constructor;
 
 /**
  * <p>Description: </p>
@@ -24,7 +24,7 @@ public class SecurityContextHolder {
     /** MODE_GLOBAL */
     public static final String MODE_GLOBAL = "MODE_GLOBAL";
     /** SYSTEM_PROPERTY */
-    public static final String SYSTEM_PROPERTY = "zeka-stack.security.strategy";
+    public static final String SYSTEM_PROPERTY = ConfigKey.PREFIX + "security.strategy";
     /** strategyName */
     private static String strategyName = System.getProperty(SYSTEM_PROPERTY);
     /** strategy */

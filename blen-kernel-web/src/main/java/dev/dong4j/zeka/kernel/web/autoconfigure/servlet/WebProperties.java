@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.web.autoconfigure.servlet;
 
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -12,12 +13,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2022.01.06 23:14
  * @since 2022.1.1
  */
-@SuppressWarnings("ConfigurationProperties")
 @Data
 @ConfigurationProperties(prefix = WebProperties.PREFIX)
 public class WebProperties {
     /** PREFIX */
-    public static final String PREFIX = "zeka-stack.web";
+    public static final String PREFIX = ConfigKey.PREFIX + "web";
 
     /** Enable global cache filter */
     private boolean enableGlobalCacheFilter = Boolean.TRUE;

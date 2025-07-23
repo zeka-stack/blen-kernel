@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.common.config;
 
-import org.jetbrains.annotations.Contract;
-
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.BiConsumer;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: 定义非 application.yml 等 spring boot 默认的配置资源类</p>
@@ -18,7 +18,7 @@ import java.util.function.BiConsumer;
 public class PropertiesPropertySource implements PropertySource {
 
     /** PREFIX */
-    private static final String PREFIX = "zeka-stack.";
+    private static final String PREFIX = ConfigKey.PREFIX;
 
     /** Properties */
     private final Properties properties;
