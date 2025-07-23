@@ -24,7 +24,7 @@ public class OnModuleEnableCondition implements Condition {
         Map<String, Object> attributes = metadata.getAnnotationAttributes(ConditionalOnEnabled.class.getName());
         String prefix = null;
         if (attributes != null) {
-            prefix = (String) attributes.get("prefix");
+            prefix = (String) attributes.get("value");
         }
         if (StringUtils.isBlank(prefix)) {
             return false;
