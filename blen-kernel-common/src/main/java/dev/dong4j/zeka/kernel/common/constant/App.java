@@ -27,7 +27,7 @@ public final class App {
     public static final String START_APPLICATION = "start_zeka_application";
     /** 依赖的 library */
     public static final String LIBRARY_NAME = "used.librarys";
-    /** server.sh 中的启动参数, 用于获取配置文件路径 */
+    /** launcher 中的启动参数, 用于获取配置文件路径 */
     public static final String APP_CONFIG_PATH = "config.path";
     /** 应用类型 {@link org.springframework.boot.WebApplicationType} */
     public static final String APP_TYPE = "app.type";
@@ -36,9 +36,9 @@ public final class App {
      * 多了 SERVICE 类型 (dev.dong4j.zeka.starter.launcher.enums.ApplicationType)
      */
     public static final String APPLICATION_TYPE = "APPLICATION_TYPE";
-    /** 启动方式, 用于区分是否通过 server.sh 脚本启动 */
+    /** 启动方式, 用于区分是否通过 launcher 脚本启动 */
     public static final String START_TYPE = "start.type";
-    /** 通过 server.sh 启动的类型, 用于区分本地开发和服务端运行 */
+    /** 通过 launcher 启动的类型, 用于区分本地开发和服务端运行 */
     public static final String START_SHELL = "shell";
     /** 单元测试启动 */
     public static final String START_JUNIT = "junit";
