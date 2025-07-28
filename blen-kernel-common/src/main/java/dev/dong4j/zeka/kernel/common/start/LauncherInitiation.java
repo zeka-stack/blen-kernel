@@ -2,14 +2,14 @@ package dev.dong4j.zeka.kernel.common.start;
 
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import java.util.Map;
+import java.util.Properties;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
-
-import java.util.Map;
-import java.util.Properties;
 
 /**
  * <p>Description: launcher 扩展 用于一些组件发现</p>
@@ -37,8 +37,8 @@ public interface LauncherInitiation extends Ordered {
                                  @NotNull Properties defaultProperties,
                                  String appName,
                                  boolean isLocalLaunch) {
-        this.advance(appName);
-        Map<String, Object> map = this.launcher(env, appName, isLocalLaunch);
+        this.before(appName);
+        Map<String, Object> map = this.setDefaultProperties(env, appName, isLocalLaunch);
         // 优先使用 192.168 网段, 避免后期因服务器存在多个网卡导致 ip 获取错误
         map.putIfAbsent("spring.cloud.inetutils.preferred-networks", "192.168.2,192.168.8");
         map.putIfAbsent("spring.cloud.inetutils.ignored-interfaces[0]", "veth*");
@@ -58,11 +58,11 @@ public interface LauncherInitiation extends Ordered {
      * @param appName app name
      * @since 1.0.0
      */
-    default void advance(String appName) {
+    default void before(String appName) {
     }
 
     /**
-     * Launcher wrapper *
+     * 在启动 Spring Boot 之前注入默认配置
      *
      * @param env           env
      * @param appName       app name
@@ -70,7 +70,17 @@ public interface LauncherInitiation extends Ordered {
      * @return the chain map
      * @since 1.7.1
      */
-    Map<String, Object> launcher(ConfigurableEnvironment env, String appName, boolean isLocalLaunch);
+    Map<String, Object> setDefaultProperties(ConfigurableEnvironment env, String appName, boolean isLocalLaunch);
+
+
+    /**
+     * 容器启动完成后注入自定义逻辑
+     *
+     * @param context     容器
+     * @param localLaunch 是否为本地启动
+     */
+    default void after(ConfigurableApplicationContext context, @NotNull Boolean localLaunch) {
+    }
 
     /**
      * 获取排列顺序
