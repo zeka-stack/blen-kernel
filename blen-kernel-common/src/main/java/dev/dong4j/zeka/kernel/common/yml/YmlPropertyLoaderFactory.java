@@ -1,6 +1,14 @@
 package dev.dong4j.zeka.kernel.common.yml;
 
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Properties;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -13,14 +21,6 @@ import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.lang.Nullable;
 import org.springframework.util.PropertiesPersister;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.stream.Stream;
 
 /**
  * <p>Description: </p>
@@ -119,7 +119,7 @@ public class YmlPropertyLoaderFactory extends DefaultPropertySourceFactory {
      */
     @NotNull
     public static Resource getResource(String fullPathFileName) throws Exception {
-        InputStream inputStream = new FileInputStream(fullPathFileName);
+        InputStream inputStream = Files.newInputStream(Paths.get(fullPathFileName));
         return new InputStreamResource(inputStream);
     }
 
