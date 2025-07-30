@@ -91,8 +91,12 @@ public class ConfigKit {
     public static final String YAML_FILE_EXTENSION = "yml";
     /** spring cloud 启动配置文件名 */
     public static final String CLOUD_CONFIG_FILE_NAME = "bootstrap.yml";
+    /** spring boot 启动配置文件名前缀 */
+    public static final String BOOT_CONFIG_FILE_PREFIX = "application";
     /** spring boot 启动配置文件名 */
     public static final String BOOT_CONFIG_FILE_NAME = "application.yml";
+    /** spring boot 配置文件名 */
+    public static final String BOOT_ENV_CONFIG_FILE_NAME = "application-{}.yml";
     /** properties 类型的配置文件 */
     public static final String PROPERTIES_FILE_EXTENSION = "properties";
     /** SYSTEM_ENVIRONMENT_NAME */

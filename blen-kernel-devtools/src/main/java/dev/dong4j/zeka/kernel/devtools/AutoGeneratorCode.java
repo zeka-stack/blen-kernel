@@ -7,6 +7,7 @@ import dev.dong4j.zeka.kernel.common.constant.App;
 import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
+import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.DateUtils;
 import dev.dong4j.zeka.kernel.common.util.JsonUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
@@ -625,7 +626,7 @@ public class AutoGeneratorCode {
                 log.info("生成 spring boot 配置文件");
                 focList.add(buildFileOutConfig(TEMPLATE_BOOT_YML,
                     this.modelPath + RESOURCE_ROOT_PATH,
-                    "application.yml",
+                    ConfigKit.BOOT_CONFIG_FILE_NAME,
                     false));
             }
 

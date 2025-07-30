@@ -5,8 +5,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.stereotype.Component;
 
 /**
  * 1: 自定义注解，用于标记可动态刷新的配置类，支持与 SpringCloud 的 @RefreshScope 兼容。
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Component;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Component
 public @interface RefreshScope {
-    @AliasFor(annotation = Component.class)
     String value() default "";
 }
