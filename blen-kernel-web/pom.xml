@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blen-kernel-web</artifactId>
+    <name>Blen Kernel Web</name>
 
     <dependencies>
         <dependency>

@@ -10,5 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blen-kernel-tracer</artifactId>
+    <name>Blen Kernel Tracer</name>
 
 </project>
