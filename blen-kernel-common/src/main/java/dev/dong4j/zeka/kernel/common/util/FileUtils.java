@@ -627,7 +627,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
     /**
      * 默认为true
      *
-     * @author L.cm
+     * @author dong4j
      * @version 1.2.3
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:26
