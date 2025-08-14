@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import jakarta.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 
 /**
  * <p>Description:  </p>

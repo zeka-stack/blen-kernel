@@ -7,7 +7,7 @@ import dev.dong4j.zeka.starter.rest.annotation.RestControllerWrapper;
 import dev.dong4j.zeka.kernel.common.api.BaseCodes;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
 import dev.dong4j.zeka.kernel.validation.group.UpdateGroup;
-import javax.validation.groups.Default;
+import jakarta.validation.groups.Default;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

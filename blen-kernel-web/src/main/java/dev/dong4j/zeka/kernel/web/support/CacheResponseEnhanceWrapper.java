@@ -1,13 +1,12 @@
 package dev.dong4j.zeka.kernel.web.support;
 
 import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponseWrapper;
+import java.io.IOException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.util.ContentCachingResponseWrapper;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponseWrapper;
-import java.io.IOException;
 
 /**
  * <p>Description: </p>

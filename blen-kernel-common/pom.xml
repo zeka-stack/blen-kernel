@@ -12,6 +12,10 @@
     <artifactId>blen-kernel-common</artifactId>
     <name>Blen Kernel Common</name>
 
+    <properties>
+        <commons-beanutils.version>1.10.0</commons-beanutils.version>
+    </properties>
+
     <dependencies>
         <!--mapStruct依赖-->
         <dependency>
@@ -37,14 +41,18 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
         <dependency>
             <groupId>io.undertow</groupId>
@@ -106,7 +114,7 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.4</version>
+            <version>${commons-beanutils.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

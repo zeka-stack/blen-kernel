@@ -5,10 +5,9 @@ import dev.dong4j.zeka.kernel.common.annotation.ModelSerial;
 import dev.dong4j.zeka.kernel.common.annotation.SystemLevel;
 import dev.dong4j.zeka.kernel.common.api.IResultCode;
 import dev.dong4j.zeka.kernel.common.exception.ServletCodeBundle;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>Description: </p>

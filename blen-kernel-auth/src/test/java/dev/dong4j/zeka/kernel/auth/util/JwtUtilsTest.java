@@ -16,19 +16,19 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-import org.springframework.security.jwt.Jwt;
-
+import io.jsonwebtoken.security.Keys;
 import java.io.IOException;
+import java.io.Serial;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -288,15 +288,14 @@ class JwtUtilsTest {
     void testGetJwt() throws IOException {
         // Setup
         String authentication = AuthConstant.BEARER + this.token;
-        Jwt expectedResult = JwtUtils.getJwt(this.token);
-        String claims = expectedResult.getClaims();
-        String clientId = this.objectMapper.readTree(claims).get("client_id").asText();
+        Claims claims = JwtUtils.getUnsignedClaims(this.token);
+        String clientId = claims.get("client_id", String.class);
 
         // Run the test
-        Jwt result = JwtUtils.getJwt(authentication);
+        String result = JwtUtils.getJwtToken(authentication);
 
         // Verify the results
-        assertEquals(expectedResult, result);
+        assertEquals(clientId, result);
     }
 
     /**
@@ -309,8 +308,7 @@ class JwtUtilsTest {
         assertThrows(IllegalArgumentException.class,
             () -> {
                 String authentication = "token";
-                Jwt expectedResult = JwtUtils.getJwt(authentication);
-                assertNull(expectedResult);
+                assertNull(JwtUtils.getJwtToken(authentication));
             });
 
     }
@@ -325,8 +323,7 @@ class JwtUtilsTest {
         assertThrows(IllegalArgumentException.class,
             () -> {
                 String authentication = AuthConstant.BEARER + "token";
-                Jwt expectedResult = JwtUtils.getJwt(authentication);
-                assertNull(expectedResult);
+                assertNull(JwtUtils.getJwtToken(authentication));
             });
 
     }
@@ -571,15 +568,14 @@ class JwtUtilsTest {
      */
     @Test
     void test11() {
-        String token = Jwts.builder()
-            .setClaims(new HashMap<String, Object>(2) {
+        String token = Jwts.builder().claims(new HashMap<>(2) {
+                @Serial
                 private static final long serialVersionUID = 8694287116841334617L;
 
                 {
                     this.put("", "");
                 }
-            })
-            .signWith(SignatureAlgorithm.HS256, "1234567890")
+            }).signWith(Keys.hmacShaKeyFor("1234567890".getBytes(StandardCharsets.UTF_8)))
             .compact();
 
         JwtUtils.isExpiration(token);
@@ -587,7 +583,7 @@ class JwtUtilsTest {
 
     @Test
     void test_12() {
-        log.info("{}", JwtUtils.getJwt("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
+        log.info("{}", JwtUtils.getJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
             ".eyJ1c2VyX25hbWUiOiJkb25nNGoiLCJzY29wZSI6WyJhbGwiXSwicm9sZXMiOlt7ImlkIjoxLCJyb2xlTmFtZSI6bnVsbH1dLCJjbGllbnRfdHlwZSI6IntcInZhbHVlXCI6MyxcImRlc2NcIjpcIuWkmuenn-aIt-WtkOW6lOeUqC3kuJrliqHns7vnu59cIn0iLCJleHAiOjE1OTQwNjY3MTgsInVzZXIiOiJ7XCJpZFwiOjEsXCJ1c2VybmFtZVwiOlwiZG9uZzRqXCIsXCJtb2JpbGVcIjpcIjE4NjI4MzYyOTA2XCIsXCJlbWFpbFwiOlwiYXJyYXlkc2pAMTYzLmNvbVwiLFwidXNlclR5cGVcIjp7XCJ2YWx1ZVwiOjIsXCJkZXNjXCI6XCLlubPlj7DnlKjmiLct6am-6am25ZGYXCJ9LFwidGVuYW50SWRcIjowfSIsImFwcF9pZCI6MywiYXV0aG9yaXRpZXMiOltudWxsXSwianRpIjoiMjYwYWU0NmItYWE3OC00ZGViLWFiYzctMThiOTVjYzYwOTkyIiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.kMtTwE7Qm3EnIPvoxU_dRO4sXtmc920PCD2LZXVLm7o"));
     }
 }

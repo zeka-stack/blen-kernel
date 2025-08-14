@@ -19,6 +19,19 @@ import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerDeserializer;
 import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerSerializer;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
@@ -33,20 +46,6 @@ import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.TimeZone;
 
 /**
  * <p>Description: Jackson工具类
@@ -676,7 +675,7 @@ public class JsonUtils {
     }
 
     /**
-     * 将直接数组转换为指定类型时, 根据实体内的 {@link javax.validation.constraints} 注解进行参数验证.
+     * 将直接数组转换为指定类型时, 根据实体内的 {@link jakarta.validation.constraints} 注解进行参数验证.
      *
      * @param <T>       parameter
      * @param content   content

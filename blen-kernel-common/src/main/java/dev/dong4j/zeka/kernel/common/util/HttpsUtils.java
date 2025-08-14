@@ -1,13 +1,12 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.ssl.DisableValidationTrustManager;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description:  </p>

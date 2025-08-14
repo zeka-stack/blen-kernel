@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
-import org.jetbrains.annotations.Contract;
-
-import javax.annotation.concurrent.Immutable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.concurrent.Immutable;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: DNS 缓存</p>

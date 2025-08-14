@@ -1,15 +1,14 @@
 package integration.vo;
 
 import dev.dong4j.zeka.kernel.common.base.BaseVO;
+import jakarta.validation.constraints.NotEmpty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 /**
  * <p>Description: </p>

@@ -18,8 +18,8 @@ import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import dev.dong4j.zeka.kernel.common.util.WebUtils;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.ConversionNotSupportedException;
@@ -253,7 +253,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     }
 
     /**
-     * 处理 @Valid (javax.validation [api], hibernate-validator [impl]) 验证异常
+     * 处理 @Valid (jakarta.validation [api], hibernate-validator [impl]) 验证异常
      *
      * @param e the e
      * @return the result
@@ -310,8 +310,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     public Result<?> handleError(Throwable e, HttpServletRequest request) {
         String hyperlink = buildErrorLink();
 
-        if (e instanceof ServiceInternalException) {
-            ServiceInternalException exception = (ServiceInternalException) e;
+        if (e instanceof ServiceInternalException exception) {
             if (exception.isRpc()) {
                 hyperlink = hyperlink + "\n\t--> " + StringUtils.format(hyperLink,
                     exception.getEnv(),

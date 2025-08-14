@@ -2,13 +2,14 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
+import jakarta.validation.constraints.NotBlank;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.validation.constraints.NotBlank;
-import java.util.Map;
 
 /**
  * <p>Description:  </p>
@@ -31,7 +32,7 @@ class VehicleNumberTest extends AuthContextConfiguration {
     void test_1() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm1.builder().plateNo("").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -52,8 +53,9 @@ class VehicleNumberTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm1 {
+    private static class TestForm1 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @VehicleNumber
@@ -69,7 +71,7 @@ class VehicleNumberTest extends AuthContextConfiguration {
     void test_2() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm2.builder().plateNo("").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -90,8 +92,9 @@ class VehicleNumberTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm2 {
+    private static class TestForm2 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @VehicleNumber
@@ -108,7 +111,7 @@ class VehicleNumberTest extends AuthContextConfiguration {
     void test_3() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().plateNo("xxxxxx").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -127,7 +130,7 @@ class VehicleNumberTest extends AuthContextConfiguration {
     void test_4() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().plateNo("冀A-7239K").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -148,8 +151,9 @@ class VehicleNumberTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm3 {
+    private static class TestForm3 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @VehicleNumber

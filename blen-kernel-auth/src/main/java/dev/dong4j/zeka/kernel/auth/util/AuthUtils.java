@@ -3,7 +3,7 @@ package dev.dong4j.zeka.kernel.auth.util;
 import dev.dong4j.zeka.kernel.auth.constant.AuthConstant;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

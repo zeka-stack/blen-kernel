@@ -2,9 +2,9 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
+import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Map;
-import javax.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

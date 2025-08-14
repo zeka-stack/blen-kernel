@@ -1,14 +1,13 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.concurrent.Immutable;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import javax.annotation.concurrent.Immutable;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: DNS 缓存实体 </p>

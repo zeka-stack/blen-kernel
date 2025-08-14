@@ -1,9 +1,8 @@
 package integration.validation;
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.jetbrains.annotations.NotNull;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 /**
  * <p>Description: </p>

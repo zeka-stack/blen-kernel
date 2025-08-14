@@ -105,17 +105,22 @@
         <maven.javadoc.skip>false</maven.javadoc.skip>
 
         <spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
-        <jjwt.version>0.9.1</jjwt.version>
-        <swagger.version>1.5.22</swagger.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <commons-text.version>1.8</commons-text.version>
-        <reflections.version>0.9.11</reflections.version>
-        <javassist.version>3.25.0-GA</javassist.version>
+        <jjwt.version>0.12.6</jjwt.version>
+        <swagger.version>1.6.14</swagger.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <commons-text.version>1.13.0</commons-text.version>
+        <reflections.version>0.10.2</reflections.version>
+        <javassist.version>3.30.2-GA</javassist.version>
         <findbugs-jsr305.version>3.0.2</findbugs-jsr305.version>
-        <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
+        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
 
-        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
-        <velocity.version>2.2</velocity.version>
+        <mybatis-plus-generator.version>3.5.9</mybatis-plus-generator.version>
+        <velocity.version>2.4.1</velocity.version>
+
+        <!-- 第三方依赖版本管理 -->
+        <guava.version>33.2.0-jre</guava.version>
+        <httpclient.version>4.5.14</httpclient.version>
+
     </properties>
 
     <dependencyManagement>
@@ -163,6 +168,19 @@
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity.version}</version>
             </dependency>
+
+            <!-- 第三方依赖版本管理 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -2,18 +2,17 @@ package dev.dong4j.zeka.kernel.spi.compiler.support;
 
 
 import dev.dong4j.zeka.kernel.spi.utils.SpiClassUtils;
-
-import javax.tools.DiagnosticCollector;
-import javax.tools.FileObject;
-import javax.tools.ForwardingJavaFileManager;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileManager;
-import javax.tools.JavaFileObject;
-import javax.tools.JavaFileObject.Kind;
-import javax.tools.SimpleJavaFileObject;
-import javax.tools.StandardJavaFileManager;
-import javax.tools.StandardLocation;
-import javax.tools.ToolProvider;
+import jakarta.tools.DiagnosticCollector;
+import jakarta.tools.FileObject;
+import jakarta.tools.ForwardingJavaFileManager;
+import jakarta.tools.JavaCompiler;
+import jakarta.tools.JavaFileManager;
+import jakarta.tools.JavaFileObject;
+import jakarta.tools.JavaFileObject.Kind;
+import jakarta.tools.SimpleJavaFileObject;
+import jakarta.tools.StandardJavaFileManager;
+import jakarta.tools.StandardLocation;
+import jakarta.tools.ToolProvider;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;

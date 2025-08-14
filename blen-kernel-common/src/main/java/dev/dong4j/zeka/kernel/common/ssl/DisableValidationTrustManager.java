@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.ssl;
 
-import javax.net.ssl.X509TrustManager;
 import java.security.cert.X509Certificate;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * <p>Description: 不进行证书校验 </p>

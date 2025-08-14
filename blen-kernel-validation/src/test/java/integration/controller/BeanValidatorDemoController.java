@@ -3,12 +3,11 @@ package integration.controller;
 import dev.dong4j.zeka.kernel.common.api.R;
 import dev.dong4j.zeka.kernel.common.api.Result;
 import integration.request.RequestForm;
+import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 /**
  * <p>Description: </p>
@@ -59,7 +58,7 @@ public class BeanValidatorDemoController {
      * @since 1.0.0
      */
     @GetMapping(value = "bean/2")
-    public Result<Void> validate2(@javax.validation.constraints.NotNull RequestForm request) {
+    public Result<Void> validate2(@validation.constraints.NotNull RequestForm request) {
         System.out.println(request.getName());
         return R.succeed();
     }

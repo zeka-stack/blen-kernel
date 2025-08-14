@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.test;
 
+import jakarta.servlet.Filter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import javax.servlet.Filter;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.test.autoconfigure.filter.StandardAnnotationCustomizableTypeExcludeFilter;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

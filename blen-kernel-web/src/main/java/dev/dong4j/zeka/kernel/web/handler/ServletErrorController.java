@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
 import dev.dong4j.zeka.kernel.common.exception.BaseException;
 import io.swagger.annotations.Api;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
 import org.jetbrains.annotations.Contract;
@@ -17,11 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * <p>Description: 更改 html 请求异常为 ajax </p>

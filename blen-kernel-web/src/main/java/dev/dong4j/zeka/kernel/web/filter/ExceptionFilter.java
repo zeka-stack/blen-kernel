@@ -2,18 +2,17 @@ package dev.dong4j.zeka.kernel.web.filter;
 
 import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
 import dev.dong4j.zeka.kernel.web.handler.ServletErrorController;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import java.io.IOException;
-import java.util.Objects;
 
 /**
  * <p>Description: 由于在 Filter 中抛出的异常无法被 controller 处理, 为了将异常结果返回到 controller 层, 这里将异常信息保存到 Request,

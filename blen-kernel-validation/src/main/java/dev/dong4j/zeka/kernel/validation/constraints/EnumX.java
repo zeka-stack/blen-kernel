@@ -3,12 +3,10 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
 import dev.dong4j.zeka.kernel.common.exception.ServiceInternalException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import lombok.extern.slf4j.Slf4j;
-
-import javax.validation.Constraint;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -17,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.extern.slf4j.Slf4j;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -51,7 +50,7 @@ public @interface EnumX {
      * @return the string
      * @since 2022.1.1
      */
-    String message() default "{javax.validation.constraints.EnumX.message}";
+    String message() default "{validation.constraints.EnumX.message}";
 
     /**
      * Method

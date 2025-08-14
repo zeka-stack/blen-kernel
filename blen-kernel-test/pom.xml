@@ -13,7 +13,7 @@
     <name>Blen Kernel Test</name>
 
     <properties>
-        <jmh.version>1.27</jmh.version>
+        <jmh.version>1.37</jmh.version>
     </properties>
 
     <dependencies>
@@ -54,8 +54,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

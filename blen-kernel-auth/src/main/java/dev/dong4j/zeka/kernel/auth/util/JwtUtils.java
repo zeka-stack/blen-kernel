@@ -17,25 +17,22 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+import jakarta.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springframework.security.jwt.Jwt;
-import org.springframework.security.jwt.JwtHelper;
 import org.springframework.util.StringUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * <p>Description: </p>
@@ -67,22 +64,50 @@ public class JwtUtils {
     }
 
     /**
-     * 从认证信息中提取 jwt token 对象
+     * 从认证信息中提取 jwt token 字符串（无需验证签名）
      *
      * @param authentication 认证信息  Authorization: bearer header.payload.signature
-     * @return Jwt 对象
+     * @return token 字符串
      * @since 1.0.0
      */
     @Contract("null -> fail")
-    public static @NotNull Jwt getJwt(String authentication) {
+    public static @NotNull String getJwtToken(String authentication) {
         if (authentication == null || authentication.isEmpty()) {
             throw new IllegalArgumentException("提取认证信息失败, 认证信息不存在");
         }
         if (!authentication.startsWith(AuthConstant.BEARER)) {
-            return JwtHelper.decode(Objects.requireNonNull(authentication));
+            return Objects.requireNonNull(authentication);
         }
         String token = getToken(authentication);
-        return JwtHelper.decode(Objects.requireNonNull(token));
+        return Objects.requireNonNull(token);
+    }
+
+    /**
+     * 解析 JWT token 获取 claims（无需验证签名）
+     *
+     * @param token JWT token
+     * @return Claims 对象
+     * @since 1.0.0
+     */
+    @SneakyThrows
+    public static Claims getUnsignedClaims(String token) {
+        // 分割 JWT token
+        String[] chunks = token.split("\\.");
+        if (chunks.length != 3) {
+            throw new IllegalArgumentException("Invalid JWT token format");
+        }
+
+        // 解码 payload (claims)
+        String payload = chunks[1];
+        byte[] decodedPayload = java.util.Base64.getUrlDecoder().decode(payload);
+        String claimsJson = new String(decodedPayload, StandardCharsets.UTF_8);
+
+        // 使用 Jackson 解析为 Map，然后创建 Claims
+        @SuppressWarnings("unchecked")
+        Map<String, Object> claimsMap = MAPPER.readValue(claimsJson, Map.class);
+        final Claims build = Jwts.claims().build();
+        build.putAll(claimsMap);
+        return build;
     }
 
     /**
@@ -130,10 +155,12 @@ public class JwtUtils {
         MalformedJwtException,
         SignatureException,
         IllegalArgumentException {
+
         Jws<Claims> jws = Jwts.parser()
-            .setSigningKey(key.getBytes(StandardCharsets.UTF_8))
-            .parseClaimsJws(token);
-        return jws.getBody();
+            .verifyWith(Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8)))
+            .build()
+            .parseSignedClaims(token);
+        return jws.getPayload();
     }
 
 
@@ -146,6 +173,7 @@ public class JwtUtils {
      * @date 2020.09.12 17:54
      * @since 1.6.0
      */
+    @SuppressWarnings({"LoggingSimilarMessage", "DuplicatedCode"})
     @UtilityClass
     public static class PlayGround {
         /**
@@ -175,7 +203,8 @@ public class JwtUtils {
         @Nullable
         public static String getUsername(String token) {
             try {
-                return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.USER_NAME).asText();
+                Claims claims = getUnsignedClaims(token);
+                return (String) claims.get(ZekaClaims.USER_NAME);
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -192,7 +221,8 @@ public class JwtUtils {
         @Nullable
         public static String getSysAppId(String token) {
             try {
-                return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.SYSTEM_APP_ID).asText();
+                Claims claims = getUnsignedClaims(token);
+                return (String) claims.get(ZekaClaims.SYSTEM_APP_ID);
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -231,8 +261,9 @@ public class JwtUtils {
                 return null;
             }
             try {
-                return MAPPER.readValue(MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.USER).asText(),
-                    AuthorizationUser.class);
+                Claims claims = getUnsignedClaims(token);
+                String userJson = (String) claims.get(ZekaClaims.USER);
+                return MAPPER.readValue(userJson, AuthorizationUser.class);
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -271,9 +302,10 @@ public class JwtUtils {
                 return null;
             }
             try {
-                return MAPPER.convertValue(MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.ROLES),
-                    new TypeReference<List<AuthorizationRole>>() {
-                    });
+                Claims claims = getUnsignedClaims(token);
+                Object roles = claims.get(ZekaClaims.ROLES);
+                return MAPPER.convertValue(roles, new TypeReference<List<AuthorizationRole>>() {
+                });
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -310,7 +342,8 @@ public class JwtUtils {
                 return null;
             }
             try {
-                return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.CLIENT_ID).asText();
+                Claims claims = getUnsignedClaims(token);
+                return (String) claims.get(ZekaClaims.CLIENT_ID);
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -347,7 +380,8 @@ public class JwtUtils {
                 return null;
             }
             try {
-                return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.TENANT_APP_ID).asLong();
+                Claims claims = getUnsignedClaims(token);
+                return ((Number) claims.get(ZekaClaims.TENANT_APP_ID)).longValue();
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -385,9 +419,10 @@ public class JwtUtils {
                 return null;
             }
             try {
-                return MAPPER.convertValue(MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.AUTHORITIES),
-                    new TypeReference<List<String>>() {
-                    });
+                Claims claims = getUnsignedClaims(token);
+                Object authorities = claims.get(ZekaClaims.AUTHORITIES);
+                return MAPPER.convertValue(authorities, new TypeReference<List<String>>() {
+                });
             } catch (Exception e) {
                 log.error(ERROR_MESSAGE, e.getMessage(), token);
             }
@@ -445,7 +480,8 @@ public class JwtUtils {
             return null;
         }
         try {
-            return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.CLIENT_TYPE).asText();
+            Claims claims = getUnsignedClaims(token);
+            return (String) claims.get(ZekaClaims.CLIENT_TYPE);
         } catch (Exception e) {
             log.error(ERROR_MESSAGE, e.getMessage(), token);
         }
@@ -484,9 +520,10 @@ public class JwtUtils {
             return null;
         }
         try {
-            return MAPPER.convertValue(MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.SCOPE),
-                new TypeReference<List<String>>() {
-                });
+            Claims claims = getUnsignedClaims(token);
+            Object scope = claims.get(ZekaClaims.SCOPE);
+            return MAPPER.convertValue(scope, new TypeReference<List<String>>() {
+            });
         } catch (Exception e) {
             log.error(ERROR_MESSAGE, e.getMessage(), token);
         }
@@ -524,9 +561,9 @@ public class JwtUtils {
             return null;
         }
         try {
-            return MAPPER.convertValue(MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.EXP).asLong() * 1000L,
-                new TypeReference<Date>() {
-                });
+            Claims claims = getUnsignedClaims(token);
+            long exp = ((Number) claims.get(ZekaClaims.EXP)).longValue();
+            return new Date(exp * 1000L);
         } catch (Exception e) {
             log.error(ERROR_MESSAGE, e.getMessage(), token);
         }
@@ -563,7 +600,8 @@ public class JwtUtils {
             return null;
         }
         try {
-            return MAPPER.readTree(getJwt(token).getClaims()).get(ZekaClaims.JTI).asText();
+            Claims claims = getUnsignedClaims(token);
+            return (String) claims.get(ZekaClaims.JTI);
         } catch (Exception e) {
             log.error(ERROR_MESSAGE, e.getMessage(), token);
         }
@@ -614,9 +652,9 @@ public class JwtUtils {
     public static String generateToken(Map<String, Object> claims, byte[] signKey, Date expiration) {
 
         return Jwts.builder()
-            .setClaims(claims)
-            .setExpiration(expiration)
-            .signWith(SignatureAlgorithm.HS256, signKey)
+            .claims(claims)
+            .expiration(expiration)
+            .signWith(Keys.hmacShaKeyFor(signKey))
             .compact();
     }
 
@@ -643,8 +681,8 @@ public class JwtUtils {
     public static String generateToken(Map<String, Object> claims, byte[] signKey) {
 
         return Jwts.builder()
-            .setClaims(claims)
-            .signWith(SignatureAlgorithm.HS256, signKey)
+            .claims(claims)
+            .signWith(Keys.hmacShaKeyFor(signKey))
             .compact();
     }
 

@@ -2,6 +2,7 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.support.IMultiOutputStream;
 import dev.dong4j.zeka.kernel.common.support.ImagePosition;
+import jakarta.imageio.ImageIO;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import javax.imageio.ImageIO;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;

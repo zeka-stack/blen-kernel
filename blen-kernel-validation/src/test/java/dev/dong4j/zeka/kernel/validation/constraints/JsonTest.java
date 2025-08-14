@@ -3,13 +3,12 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
+import jakarta.validation.constraints.NotBlank;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import javax.validation.constraints.NotBlank;
-import java.util.Map;
 
 /**
  * <p>Description:  </p>
