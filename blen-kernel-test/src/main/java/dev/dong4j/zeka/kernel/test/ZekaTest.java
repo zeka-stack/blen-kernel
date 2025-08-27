@@ -62,7 +62,7 @@ public @interface ZekaTest {
      * 请使用 classes 属性指定此类, 请见 dev.dong4j.zeka.kernel.test.ZekaTest.classes 说明
      * 1. 如果启动类使用 @SpringBootApplication 注解, 可不配置 classes 属性;
      * 2. 如果测试主类和应用主类不在相同的 package 下, 则必须指定 classes;
-     * 3. 如果未使用 @SpringBootApplication 注解, 则必须指定 classes, 可以是任何被 @Configuration 标识的类;
+     * 3. 如果未使用 @SpringBootApplication 注解, 则必须指定 classes, 可以是任何被 @AutoConfiguration 标识的类;
      *
      * @return the class [ ]
      * @since 1.0.0

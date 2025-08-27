@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
+import java.io.Serial;
+
 /**
  * <p>Description: </p>
  *
@@ -11,6 +13,7 @@ package dev.dong4j.zeka.kernel.common.dns;
  */
 public class DnsCacheManipulatorException extends RuntimeException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -7843069964883320844L;
 
     /**

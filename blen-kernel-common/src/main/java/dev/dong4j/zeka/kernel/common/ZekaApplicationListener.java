@@ -4,10 +4,15 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.exception.StarterException;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
+import java.time.Duration;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.boot.ConfigurableBootstrapContext;
+import org.springframework.boot.SpringApplicationRunListener;
 import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.event.ApplicationFailedEvent;
@@ -26,9 +31,6 @@ import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.context.event.GenericApplicationListener;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.env.ConfigurableEnvironment;
-
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>Description: 抽象所有事件处理器的公共代码 </p>
@@ -85,7 +87,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
 
     /**
      * 应用启动时事件处理器
-     * {@link org.springframework.boot.SpringApplicationRunListener#starting()}
+     * {@link SpringApplicationRunListener#starting(ConfigurableBootstrapContext)}
      * 在 {@link org.springframework.boot.SpringApplication#run(String...)} 中被调用
      *
      * @param event the event
@@ -97,7 +99,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
 
     /**
      * 所有环境配置准备完成后被调用, 且在 {@link ApplicationContext} 被创建之前执行
-     * {@link org.springframework.boot.SpringApplicationRunListener#environmentPrepared(ConfigurableEnvironment)}
+     * {@link SpringApplicationRunListener#environmentPrepared(ConfigurableBootstrapContext, ConfigurableEnvironment)}
      *
      * @param event the event
      * @since 1.0.0
@@ -129,7 +131,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
     /**
      * {@link ApplicationContext} 的所有 bean 处理器处理完成后执行,
      * 这发生在 {@link org.springframework.boot.CommandLineRunner} 和 {@link org.springframework.boot.ApplicationRunner} 之前
-     * {@link org.springframework.boot.SpringApplicationRunListener#started(ConfigurableApplicationContext)}
+     * {@link SpringApplicationRunListener#started(ConfigurableApplicationContext, Duration)}
      * refresh --> {@link org.springframework.context.support.AbstractApplicationContext#refresh()}
      *
      * @param event the event
@@ -142,7 +144,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
      * 当所有的 {@link org.springframework.boot.CommandLineRunner}, {@link org.springframework.boot.ApplicationRunner}
      * 和 {@link org.springframework.context.support.AbstractApplicationContext#refresh()} 执行完成之后,
      * 且在 {@link org.springframework.boot.SpringApplication#run(String...)} 执行完成之前调用
-     * {@link org.springframework.boot.SpringApplicationRunListener#running(ConfigurableApplicationContext)}
+     * {@link SpringApplicationRunListener#ready(ConfigurableApplicationContext, Duration)}
      *
      * @param event the event
      * @since 1.0.0
@@ -210,7 +212,6 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
      * @param event the event
      * @since 1.0.0
      */
-    @SuppressWarnings("JavadocReference")
     default void onContextClosedEvent(ContextClosedEvent event) {
     }
 

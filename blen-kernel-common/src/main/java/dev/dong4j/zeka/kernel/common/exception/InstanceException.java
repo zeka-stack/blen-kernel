@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
+import java.io.Serial;
+
 /**
  * <p>Description: </p>
  *
@@ -11,6 +13,7 @@ package dev.dong4j.zeka.kernel.common.exception;
  */
 public class InstanceException extends BaseException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -5426025146601282119L;
 
     /**

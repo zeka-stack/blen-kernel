@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: 分页数据基类 </p>
@@ -26,6 +26,7 @@ import java.io.Serializable;
 public abstract class BasePage<T extends AbstractBaseEntity<?>> implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 5982670181085815965L;
     /** Pagination */
     private IPage<T> pagination;
@@ -42,6 +43,7 @@ public abstract class BasePage<T extends AbstractBaseEntity<?>> implements Seria
     @Deprecated
     public static <T extends AbstractBaseEntity<?>> @NotNull BasePage<T> build(IPage<T> pagination) {
         BasePage<T> basePage = new BasePage<T>() {
+            @Serial
             private static final long serialVersionUID = -6820396419783198219L;
         };
 

@@ -5,6 +5,7 @@ import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
 import io.swagger.annotations.ApiModel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -169,6 +170,7 @@ class PhoneTest extends AuthContextConfiguration {
     @ApiModel(value = "LoginForm", description = "统一登录实体")
     private static class LoginForm implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -2343233251882358359L;
         /** 用户名 */
         @NotBlank(message = "用户名不能为空")

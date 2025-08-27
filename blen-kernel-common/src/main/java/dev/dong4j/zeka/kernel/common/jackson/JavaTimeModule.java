@@ -9,7 +9,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import dev.dong4j.zeka.kernel.common.util.DateTimeUtils;
-
+import java.io.Serial;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -26,6 +26,7 @@ import java.time.LocalTime;
 public class JavaTimeModule extends SimpleModule {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -8312156928465504942L;
 
     /**

@@ -19,6 +19,8 @@ public final class ConfigDefaultValue {
     public static final String DEFAULT_PROPERTY_INCLUSION_VALUE = "non_null";
     /** DEFAULT_ENCRYPTOR_PASSWORD */
     public static final String DEFAULT_ENCRYPTOR_PASSWORD = "06020986-3127-40be-9134-90fd033896a1";
+    /** DEFAULT_TIME_ZONE */
+    public static final String TIME_ZONE = "GMT+8";
     /** Wiki */
     public static final String WIKI = "https://zeka.dong4j.dev";
     /** DEFAULT_TIME_ZONE */

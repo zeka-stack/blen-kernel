@@ -6,11 +6,11 @@ import dev.dong4j.zeka.kernel.common.support.ChainMap;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
 import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import java.io.Serial;
 import java.util.Collections;
 import java.util.Map;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 将标准返回的字段全部放在了 {@link Result} </p>
@@ -27,6 +27,7 @@ import java.util.Map;
 @SuppressWarnings({"PMD.ClassNamingShouldBeCamelRule"})
 public final class R<T> extends Result<T> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 3077918845714343375L;
 
     /**

@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.event;
 
+import java.io.Serial;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.context.ApplicationEvent;
 public abstract class BaseEvent<T> extends ApplicationEvent {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 8827571122622596500L;
 
     /** Source */

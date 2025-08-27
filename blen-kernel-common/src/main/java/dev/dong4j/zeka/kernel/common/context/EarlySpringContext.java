@@ -1,6 +1,9 @@
 package dev.dong4j.zeka.kernel.common.context;
 
 import dev.dong4j.zeka.processor.annotation.AutoContextInitializer;
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -11,10 +14,6 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.lang.annotation.Annotation;
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>Description: 以静态变量保存 Spring ApplicationContext, 可在任何代码任何地方任何时候取出 ApplicaitonContext. </p>
@@ -54,6 +53,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * @param context the context
      * @since 1.6.0
      */
+    @SuppressWarnings("LombokSetterMayBeUsed")
     public static void setApplicationContext(ConfigurableApplicationContext context) {
         applicationContext = context;
     }

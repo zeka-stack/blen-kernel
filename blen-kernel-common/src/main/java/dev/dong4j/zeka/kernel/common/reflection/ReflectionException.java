@@ -1,6 +1,7 @@
 package dev.dong4j.zeka.kernel.common.reflection;
 
 import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import java.io.Serial;
 
 /**
  * <p>Description: </p>
@@ -14,6 +15,7 @@ import dev.dong4j.zeka.kernel.common.exception.BaseException;
 public class ReflectionException extends BaseException {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 7642570221267566591L;
 
     /**

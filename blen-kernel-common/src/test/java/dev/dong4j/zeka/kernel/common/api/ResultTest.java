@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.api;
 
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,7 +81,7 @@ class ResultTest {
      */
     @Test
     void test_void_1() {
-        log.info("{}", JsonUtils.toJson(R.succeed()));
+        log.info("{}", Jsons.toJson(R.succeed()));
     }
 
     /**
@@ -92,7 +92,7 @@ class ResultTest {
     @Test
     void test_void_2() {
         Result<Void> result = R.succeed();
-        log.info("{}", JsonUtils.toJson(result));
+        log.info("{}", Jsons.toJson(result));
     }
 
 }

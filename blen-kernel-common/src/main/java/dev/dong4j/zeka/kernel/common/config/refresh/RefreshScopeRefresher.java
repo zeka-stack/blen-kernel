@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.config.refresh;
 
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -84,7 +84,7 @@ public class RefreshScopeRefresher {
                 Bindable.ofInstance(bean)
             );
 
-            log.debug("刷新后的配置类: {}", JsonUtils.toJson(bean, true));
+            log.debug("刷新后的配置类: {}", Jsons.toJson(bean, true));
         }
     }
 

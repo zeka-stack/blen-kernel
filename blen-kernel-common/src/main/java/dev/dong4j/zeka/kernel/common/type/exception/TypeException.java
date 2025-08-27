@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.type.exception;
 
+import java.io.Serial;
+
 /**
  * <p>Description: </p>
  *
@@ -11,6 +13,7 @@ package dev.dong4j.zeka.kernel.common.type.exception;
  */
 public class TypeException extends RuntimeException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -2841591264003682971L;
 
     /**

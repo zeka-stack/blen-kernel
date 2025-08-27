@@ -1,13 +1,12 @@
 package dev.dong4j.zeka.kernel.autoconfigure.task;
 
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.util.concurrent.ListenableFuture;
-
+import java.io.Serial;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * <p>Description: 输出任务总数, 已完成数, 活跃线程数, 队列大小 </p>
@@ -22,6 +21,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -8027792824672301579L;
 
     /**
@@ -93,30 +93,4 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
         return super.submit(task);
     }
 
-    /**
-     * Submit listenable
-     *
-     * @param task task
-     * @return the listenable future
-     * @since 1.7.0
-     */
-    @Override
-    public @NotNull ListenableFuture<?> submitListenable(@NotNull Runnable task) {
-        this.showThreadPoolInfo("1. do submitListenable");
-        return super.submitListenable(task);
-    }
-
-    /**
-     * Submit listenable
-     *
-     * @param <T>  parameter
-     * @param task task
-     * @return the listenable future
-     * @since 1.7.0
-     */
-    @Override
-    public <T> @NotNull ListenableFuture<T> submitListenable(@NotNull Callable<T> task) {
-        this.showThreadPoolInfo("2. do submitListenable");
-        return super.submitListenable(task);
-    }
 }

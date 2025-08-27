@@ -3,6 +3,7 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
 import jakarta.validation.constraints.NotBlank;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.Builder;
@@ -58,6 +59,7 @@ class EnumXTest extends AuthContextConfiguration {
     @Builder
     private static class TestForm1 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
@@ -104,6 +106,7 @@ class EnumXTest extends AuthContextConfiguration {
     @Builder
     private static class TestForm2 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Plate no */
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
@@ -208,6 +211,7 @@ class EnumXTest extends AuthContextConfiguration {
     @Data
     @Builder
     private static class TestForm3 implements Serializable {
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         @EnumX(value = Test3Status.class, message = "可选值: value:1/2/3, name:XXXX/YYYY/ZZZZ")
         private Test3Status state;

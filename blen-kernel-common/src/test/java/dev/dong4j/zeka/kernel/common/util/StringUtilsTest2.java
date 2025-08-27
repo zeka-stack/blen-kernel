@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import org.junit.jupiter.api.Test;
-
+import java.io.Serial;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -224,6 +224,7 @@ class StringUtilsTest2 {
     @Test
     void testFormat2() throws Exception {
         String result = StringUtils.format("{a}:{b}", new HashMap<String, String>(2) {
+            @Serial
             private static final long serialVersionUID = -4478024216127456469L;
 
             {

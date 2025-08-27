@@ -3,7 +3,6 @@ package dev.dong4j.zeka.kernel.common.util;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +14,6 @@ import java.util.function.Predicate;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import sun.reflect.ConstructorAccessor;
-import sun.reflect.FieldAccessor;
-import sun.reflect.ReflectionFactory;
 
 /**
  * <p>Description: 枚举工具类</p>
@@ -100,7 +96,8 @@ public class EnumUtils {
      */
     public static class DynamicEnum {
         /** reflectionFactory */
-        private static final ReflectionFactory REFLECTION_FACTORY = ReflectionFactory.getReflectionFactory();
+        private static final jdk.internal.reflect.ReflectionFactory REFLECTION_FACTORY =
+            jdk.internal.reflect.ReflectionFactory.getReflectionFactory();
 
         /**
          * 动态添加枚举值
@@ -194,7 +191,8 @@ public class EnumUtils {
          * @throws NoSuchMethodException no such method exception
          * @since 1.7.0
          */
-        private static ConstructorAccessor getConstructorAccessor(Class<?> enumClass, Class<?>[] additionalParameterTypes)
+        private static jdk.internal.reflect.ConstructorAccessor getConstructorAccessor(Class<?> enumClass,
+                                                                                       Class<?>[] additionalParameterTypes)
             throws NoSuchMethodException {
             Class<?>[] parameterTypes = new Class[additionalParameterTypes.length + 2];
             parameterTypes[0] = String.class;
@@ -217,16 +215,11 @@ public class EnumUtils {
             IllegalAccessException {
 
             field.setAccessible(true);
-            // 修改 final 字段
-            Field modifiersField = Field.class.getDeclaredField("modifiers");
-            modifiersField.setAccessible(true);
-            int modifiers = modifiersField.getInt(field);
 
-            // blank out the final bit in the modifiers int
-            modifiers &= ~Modifier.FINAL;
-            modifiersField.setInt(field, modifiers);
-
-            FieldAccessor fieldAccessor = REFLECTION_FACTORY.newFieldAccessor(field, false);
+            // JDK 17 中不再支持直接修改 modifiers 字段
+            // 使用 VarHandle 或者直接通过 FieldAccessor 设置值
+            jdk.internal.reflect.FieldAccessor fieldAccessor =
+                REFLECTION_FACTORY.newFieldAccessor(field, false);
             fieldAccessor.set(target, value);
         }
 
@@ -262,7 +255,5 @@ public class EnumUtils {
                 }
             }
         }
-
     }
-
 }

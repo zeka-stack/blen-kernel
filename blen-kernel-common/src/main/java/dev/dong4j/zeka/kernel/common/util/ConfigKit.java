@@ -14,6 +14,7 @@ import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -334,6 +335,7 @@ public class ConfigKit {
         environment.getPropertySources()
             .addLast(new MapPropertySource("local.profile.active",
                 new HashMap<String, Object>(2) {
+                    @Serial
                     private static final long serialVersionUID = 7174510826497115206L;
 
                     {
@@ -372,7 +374,7 @@ public class ConfigKit {
      * @since 1.0.0
      */
     @NotNull
-    @SuppressWarnings("java:S1452")
+    @SuppressWarnings({"java:S1452", "D"})
     public static PropertySource<?> getPropertySource(@NotNull String configFileName) {
         String configPath = ConfigKit.getConfigPath();
         String propertiesPath = configPath + configFileName;
@@ -1300,8 +1302,7 @@ public class ConfigKit {
         Map<String, Object> properties = new LinkedHashMap<>();
         Map<String, PropertySource<?>> map = doGetPropertySources(environment);
         for (PropertySource<?> source : map.values()) {
-            if (source instanceof EnumerablePropertySource) {
-                EnumerablePropertySource<?> propertySource = (EnumerablePropertySource<?>) source;
+            if (source instanceof EnumerablePropertySource<?> propertySource) {
                 String[] propertyNames = propertySource.getPropertyNames();
                 if (ObjectUtils.isEmpty(propertyNames)) {
                     continue;

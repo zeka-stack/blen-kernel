@@ -1,11 +1,11 @@
 package dev.dong4j.zeka.kernel.notify;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 /**
  * <p>Description:  </p>
@@ -22,6 +22,7 @@ import java.io.Serializable;
 @SuppressWarnings("all")
 public abstract class AbstractMessage<ID extends Serializable> implements Message<ID> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -1021368546633555716L;
     /** Message id */
     @Getter

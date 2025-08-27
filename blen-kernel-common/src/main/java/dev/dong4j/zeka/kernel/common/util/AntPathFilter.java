@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
-
-import java.io.File;
-import java.io.FileFilter;
-import java.io.Serializable;
 
 /**
  * <p>Description: spring AntPath 规则文件过滤 </p>
@@ -21,6 +21,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 public class AntPathFilter implements FileFilter, Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 812598009067554612L;
     /** PATH_MATCHER */
     private static final PathMatcher PATH_MATCHER = new AntPathMatcher();

@@ -4,7 +4,6 @@ import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,29 +34,15 @@ public final class LoaderUtils {
 
     /** 如果设置为 true, 则只使用本地类加载器, 如果没有设置则使用线程上下文加载器 */
     public static final String IGNORE_TCCL_PROPERTY = ConfigKey.PREFIX + "ignoreTCL";
-    /** SECURITY_MANAGER */
-    private static final SecurityManager SECURITY_MANAGER = System.getSecurityManager();
     /** ignoreTCCL */
     private static Boolean ignoreTCCL;
-    /** GET_CLASS_LOADER_DISABLED */
-    private static final boolean GET_CLASS_LOADER_DISABLED;
+    /**
+     * GET_CLASS_LOADER_DISABLED
+     * JDK 17+ 默认允许获取 ClassLoader，无需安全检查
+     */
+    private static final boolean GET_CLASS_LOADER_DISABLED = false;
     /** TCCL_GETTER */
     private static final PrivilegedAction<ClassLoader> TCCL_GETTER = new ThreadContextClassLoaderGetter();
-
-    static {
-        if (SECURITY_MANAGER != null) {
-            boolean getClassLoaderDisabled;
-            try {
-                SECURITY_MANAGER.checkPermission(new RuntimePermission("getClassLoader"));
-                getClassLoaderDisabled = false;
-            } catch (SecurityException ignored) {
-                getClassLoaderDisabled = true;
-            }
-            GET_CLASS_LOADER_DISABLED = getClassLoaderDisabled;
-        } else {
-            GET_CLASS_LOADER_DISABLED = false;
-        }
-    }
 
     /**
      * 获取当前线程类加载器.
@@ -70,11 +55,11 @@ public final class LoaderUtils {
      */
     public static ClassLoader getThreadContextClassLoader() {
         if (GET_CLASS_LOADER_DISABLED) {
-            // we can at least get this class's ClassLoader regardless of security context
-            // however, if this is null, there's really no option left at this point
+            // 如果禁止获取 TCCL，就返回当前类的 ClassLoader
             return LoaderUtils.class.getClassLoader();
         }
-        return SECURITY_MANAGER == null ? TCCL_GETTER.run() : AccessController.doPrivileged(TCCL_GETTER);
+        // 直接运行 PrivilegedAction，不再使用 AccessController
+        return TCCL_GETTER.run();
     }
 
     /**
@@ -189,8 +174,11 @@ public final class LoaderUtils {
         try {
             return clazz.getConstructor().newInstance();
         } catch (NoSuchMethodException ignored) {
-            // FIXME: looking at the code for Class.newInstance(), this seems to do the same thing as above
-            return clazz.newInstance();
+            try {
+                return clazz.getDeclaredConstructor().newInstance();
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -284,7 +272,7 @@ public final class LoaderUtils {
         Collection<UrlResource> urlResources = findUrlResources(resource);
         Collection<URL> resources = new LinkedHashSet<>(urlResources.size());
         for (UrlResource urlResource : urlResources) {
-            resources.add(urlResource.getUrl());
+            resources.add(urlResource.url());
         }
         return resources;
     }
@@ -323,18 +311,15 @@ public final class LoaderUtils {
     /**
      * {@link URL} and {@link ClassLoader} pair.
      *
+     * @param classLoader Class loader
+     * @param url         Url
      * @author dong4j
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
      * @since 1.5.0
      */
-    static class UrlResource {
-        /** Class loader */
-        private final ClassLoader classLoader;
-        /** Url */
-        private final URL url;
-
+        record UrlResource(ClassLoader classLoader, URL url) {
         /**
          * Url resource
          *
@@ -343,65 +328,33 @@ public final class LoaderUtils {
          * @since 1.5.0
          */
         @Contract(pure = true)
-        UrlResource(ClassLoader classLoader, URL url) {
-            this.classLoader = classLoader;
-            this.url = url;
+        UrlResource {
         }
 
-        /**
-         * Gets class loader *
-         *
-         * @return the class loader
-         * @since 1.5.0
-         */
-        public ClassLoader getClassLoader() {
-            return this.classLoader;
-        }
+            /**
+             * Equals
+             *
+             * @param o o
+             * @return the boolean
+             * @since 1.5.0
+             */
+            @Contract(value = "null -> false", pure = true)
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) {
+                    return true;
+                }
+                if (o == null || this.getClass() != o.getClass()) {
+                    return false;
+                }
 
-        /**
-         * Gets url *
-         *
-         * @return the url
-         * @since 1.5.0
-         */
-        public URL getUrl() {
-            return this.url;
-        }
+                UrlResource that = (UrlResource) o;
 
-        /**
-         * Equals
-         *
-         * @param o o
-         * @return the boolean
-         * @since 1.5.0
-         */
-        @Contract(value = "null -> false", pure = true)
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || this.getClass() != o.getClass()) {
-                return false;
+                if (!Objects.equals(this.classLoader, that.classLoader)) {
+                    return false;
+                }
+                return Objects.equals(this.url, that.url);
             }
 
-            UrlResource that = (UrlResource) o;
-
-            if (!Objects.equals(this.classLoader, that.classLoader)) {
-                return false;
-            }
-            return Objects.equals(this.url, that.url);
-        }
-
-        /**
-         * Hash code
-         *
-         * @return the int
-         * @since 1.5.0
-         */
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(this.classLoader) + Objects.hashCode(this.url);
-        }
     }
 }

@@ -1,8 +1,7 @@
 package dev.dong4j.zeka.kernel.common.support;
 
-import org.jetbrains.annotations.Contract;
-
 import java.util.Locale;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: </p>
@@ -43,7 +42,6 @@ public final class SystemInfoRt {
      * @since 1.4.0
      */
     @Contract(pure = true)
-    @SuppressWarnings("JavaReflectionMemberAccess")
     private static boolean isModularJava() {
         try {
             Class.class.getMethod("getModule");

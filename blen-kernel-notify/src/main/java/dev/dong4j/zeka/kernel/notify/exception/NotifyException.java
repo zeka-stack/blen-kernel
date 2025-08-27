@@ -1,6 +1,7 @@
 package dev.dong4j.zeka.kernel.notify.exception;
 
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import java.io.Serial;
 
 /**
  * <p>Description: 通知接口异常 </p>
@@ -14,6 +15,7 @@ import dev.dong4j.zeka.kernel.common.exception.BasicException;
 public class NotifyException extends BasicException {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 2614645628866480060L;
 
     /**

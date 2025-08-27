@@ -1,14 +1,14 @@
 package dev.dong4j.zeka.kernel.auth.entity;
 
 import dev.dong4j.zeka.kernel.auth.constant.AuthConstant;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <p>Description: JWT 包含的数据</p>
@@ -25,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ZekaClaims implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -5514158284074959646L;
     /** USER */
     public static final String USER = "user";

@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.event;
 
+import java.io.Serial;
 import java.util.Map;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Map;
  */
 public class SqlExecuteTimeoutEvent extends BaseEvent<Map<String, Object>> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 5423843143989945987L;
 
     /**

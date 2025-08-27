@@ -13,11 +13,7 @@ import dev.dong4j.zeka.kernel.common.event.ExceptionEvent;
 import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.EnumUtils;
-import dev.dong4j.zeka.kernel.common.util.Exceptions;
-import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
-import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import dev.dong4j.zeka.kernel.common.util.WebUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +28,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingRequestHeaderException;
@@ -44,8 +39,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.context.request.async.AsyncRequestTimeoutException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
-import org.springframework.web.multipart.support.MultipartResolutionDelegate;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * <p>Description:  </p>
@@ -72,16 +67,16 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       e
      * @param request request
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
-    private Result<?> buildResult(BasicException e, @NotNull HttpServletRequest request) {
+    private Result<?> buildResult(LowestException e, @NotNull HttpServletRequest request) {
         if (ZekaEnv.PROD.equals(ConfigKit.getEnv())) {
-            return R.failed(e.getCode(), e.getMessage());
+            return R.failed(e.getResultCode().getCode(), e.getMessage());
         }
 
-        Result<Object> failed = R.failed(e.getCode(), e.getMessage());
-        failed.setExtend(this.buildExceptionData(buildErrorLink(), e, request));
+        Result<Object> failed = R.failed(e.getResultCode().getCode(), e.getMessage());
+        failed.setExtend(buildExceptionData(buildErrorLink(), e, request));
         return failed;
     }
 
@@ -92,26 +87,12 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param throwable throwable
      * @param request   request
      * @return the exception info
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     @SuppressWarnings("checkstyle:Regexp")
-    private ExceptionInfo buildExceptionData(String hyperlink, @NotNull Throwable throwable, @NotNull HttpServletRequest request) {
-        ExceptionInfo exceptionEntity = new ExceptionInfo();
-        exceptionEntity.setPath(request.getRequestURI());
-        // 判断是否为文件上传类型请求（multipart/form-data）
-        if (!MultipartResolutionDelegate.isMultipartRequest(request)) {
-            exceptionEntity.setParams(WebUtils.getRequestParamString(request));
-        }
-        exceptionEntity.setMethod(request.getMethod());
-        exceptionEntity.setRemoteAddr(request.getRemoteAddr());
-        exceptionEntity.setHeaders(WebUtils.getHeader(request));
-        exceptionEntity.setExceptionClass(throwable.getClass().getName());
-        exceptionEntity.setTraceId(Trace.context().get());
-        exceptionEntity.setErrorMessage(throwable.getMessage());
-        exceptionEntity.setHyperlink(StringPool.NEWLINE + hyperlink);
-        exceptionEntity.setStackTrace(Exceptions.getStackTraceAsString(throwable));
-        return exceptionEntity;
+    public static ExceptionInfo buildExceptionData(String hyperlink, @NotNull Throwable throwable, @NotNull HttpServletRequest request) {
+        return ExceptionInfo.builder().build().create(hyperlink, throwable, request);
     }
 
     /**
@@ -120,14 +101,27 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
-        BasicException.class
+        LowestException.class
     })
-    public Result<?> handleBasicException(@NotNull BasicException e, @NotNull HttpServletRequest request) {
+    public Result<?> handleBasicException(@NotNull LowestException e, @NotNull HttpServletRequest request) {
         log.warn("{} path: {}", e.getMessage(), request.getRequestURI());
         return this.buildResult(e, request);
+    }
+
+    /**
+     * Handle basic exception
+     *
+     * @return the result
+     * @since 2024.2.0
+     */
+    @ExceptionHandler(value = {
+        NoResourceFoundException.class
+    })
+    public Result<?> handleNoResourceFoundException() {
+        return R.failed(BaseCodes.DATA_ERROR);
     }
 
     /**
@@ -137,11 +131,10 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         NoHandlerFoundException.class,
-        HttpRequestMethodNotSupportedException.class,
         HttpMediaTypeNotSupportedException.class,
         HttpMediaTypeNotAcceptableException.class,
         MissingPathVariableException.class,
@@ -162,8 +155,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
         if (ConfigKit.isProd()) {
             log.error(e.getMessage(), e);
             // 当为生产环境,不适合把具体的异常信息展示给用户,比如 404.
-            String code = ResultCodeUtils.generateCode(BaseCodes.SERVER_ERROR);
-            return R.failed(code, BaseCodes.SERVER_ERROR.getMessage());
+            return R.failed(BaseCodes.SERVER_ERROR, BaseCodes.SERVER_ERROR.getMessage());
         }
 
         ExceptionInfo exceptionEntity = this.buildExceptionData(buildErrorLink(), e, request);
@@ -184,14 +176,14 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
             if (servletExceptionEnum == ServletCodeEnum.INNER_ERROR) {
                 log.error(e.getMessage(), e);
             }
-            final Result<Object> result = R.failed(ResultCodeUtils.generateCode(servletExceptionEnum),
+            final Result<Object> result = R.failed(servletExceptionEnum,
                 StringUtils.format(servletExceptionEnum.getMessage(), message));
             result.setExtend(exceptionEntity);
             return result;
         } catch (IllegalArgumentException ignored) {
         }
 
-        final Result<Object> failed = R.failed(ResultCodeUtils.generateCode(BaseCodes.FAILURE), e.getMessage());
+        final Result<Object> failed = R.failed(BaseCodes.FAILURE, e.getMessage());
         failed.setExtend(exceptionEntity);
         return failed;
     }
@@ -201,7 +193,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e 异常
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         BindException.class,
@@ -216,7 +208,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param bindingResult 绑定结果
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     private Result<Void> wrapperBindingResult(@NotNull BindingResult bindingResult) {
@@ -234,7 +226,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
 
         }
         log.warn("参数绑定校验异常: {} params: {}", warnMessage.substring(2), bindingResult.getTarget());
-        return R.failed(ResultCodeUtils.generateCode(BaseCodes.PARAM_VERIFY_ERROR), message);
+        return R.failed(BaseCodes.PARAM_VERIFY_ERROR, message);
     }
 
     /**
@@ -242,7 +234,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e 异常
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         MethodArgumentNotValidException.class
@@ -253,18 +245,18 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     }
 
     /**
-     * 处理 @Valid (jakarta.validation [api], hibernate-validator [impl]) 验证异常
+     * 处理 @Valid (javax.validation [api], hibernate-validator [impl]) 验证异常
      *
      * @param e the e
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         ConstraintViolationException.class
     })
     public Result<Void> handleValidException(@NotNull ConstraintViolationException e) {
         log.warn("参数校验失败: [{}]", e.getMessage());
-        return R.failed(ResultCodeUtils.generateCode(BaseCodes.PARAM_VERIFY_ERROR), e.getMessage());
+        return R.failed(BaseCodes.PARAM_VERIFY_ERROR, e.getMessage());
     }
 
     /**
@@ -272,14 +264,14 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e e
      * @return the result
-     * @since 1.5.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         RestClientException.class
     })
     public Result<Void> handleResourceAccessException(@NotNull RestClientException e) {
         log.error("Agent Service 不可用", e);
-        return R.failed(ResultCodeUtils.generateCode(BaseCodes.AGENT_DISABLE_EXCEPTION), BaseCodes.AGENT_DISABLE_EXCEPTION.getMessage());
+        return R.failed(BaseCodes.AGENT_DISABLE_EXCEPTION, BaseCodes.AGENT_DISABLE_EXCEPTION.getMessage());
     }
 
     /**
@@ -288,7 +280,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(value = {
         Exception.class
@@ -303,11 +295,23 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       the e
      * @param request request
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<?> handleError(Throwable e, HttpServletRequest request) {
+        return lastHandle(e, request);
+    }
+
+    /**
+     * 兜底处理
+     *
+     * @param e       e
+     * @param request request
+     * @return the result
+     * @since 2024.2.0
+     */
+    public static @NotNull Result<?> lastHandle(Throwable e, HttpServletRequest request) {
         String hyperlink = buildErrorLink();
 
         if (e instanceof ServiceInternalException exception) {
@@ -328,11 +332,11 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
 
         if (ConfigKit.isProd()) {
             // 当为生产环境,不适合把具体的异常信息展示给用户,比如数据库异常信息.
-            return R.failed(ResultCodeUtils.generateCode(BaseCodes.SERVER_ERROR), message);
+            return R.failed(BaseCodes.SERVER_ERROR, message);
         }
 
-        Result<Object> failed = R.failed(ResultCodeUtils.generateCode(BaseCodes.SERVER_INNER_ERROR), e.getMessage());
-        failed.setExtend(this.buildExceptionData(hyperlink, e, request));
+        Result<?> failed = R.failed(BaseCodes.SERVER_INNER_ERROR, e.getMessage());
+        failed.setExtend(buildExceptionData(hyperlink, e, request));
 
         request.setAttribute(BasicConstant.REQUEST_EXCEPTION_INFO_ATTR, e);
         return failed;
@@ -350,5 +354,26 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
             Trace.context().get());
     }
 
+    /**
+     * Result
+     *
+     * @param e       e
+     * @param req     req
+     * @param message message
+     * @return the result
+     * @since 2024.2.0
+     */
+    public static @NotNull Result<?> result(@NotNull Exception e, HttpServletRequest req, String message) {
+        final Result<?> failed = R.failed(BaseCodes.FAILURE, message);
+        if (ConfigKit.isProd()) {
+            log.error(e.getMessage(), e);
+            // 当为生产环境,不适合把具体的异常信息展示给用户,比如 404.
+            return failed;
+        }
+
+        ExceptionInfo exceptionEntity = GlobalExceptionHandler.buildExceptionData(GlobalExceptionHandler.buildErrorLink(), e, req);
+        failed.setExtend(exceptionEntity);
+        return failed;
+    }
 
 }

@@ -5,15 +5,9 @@ import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.DateUtils;
 import dev.dong4j.zeka.kernel.common.util.HostUtils;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.common.util.JustOnceLogger;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.core.io.Resource;
-
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -24,6 +18,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Pattern;
+import javax.annotation.Nullable;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.core.io.Resource;
 
 /**
  * <p>Description: DNS 工具类 </p>
@@ -173,9 +172,9 @@ public final class DnsCacheManipulator {
         if (CollectionUtils.isNotEmpty(existsRecords)) {
             JustOnceLogger.printOnce(DnsCacheManipulator.class.getName(),
                 StringUtils.format("hosts 已存在相同记录, 优先使用 hosts 配置: \n{}\n原始配置: \n{}\n待加载配置: \n{}",
-                    JsonUtils.toJson(existsRecords, true),
-                    JsonUtils.toJson(properties, true),
-                    JsonUtils.toJson(cacheProperties, true)));
+                    Jsons.toJson(existsRecords, true),
+                    Jsons.toJson(properties, true),
+                    Jsons.toJson(cacheProperties, true)));
         }
 
         return cacheProperties;

@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.base;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: 服务层的数据交换实体, 只能存在于服务层 </p>
@@ -27,6 +27,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public abstract class BaseDTO<T extends Serializable> extends AbstractBaseEntity<T> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 4484918372546552703L;
 
 }

@@ -10,7 +10,7 @@ import dev.dong4j.zeka.kernel.auth.entity.AuthorizationUser;
 import dev.dong4j.zeka.kernel.auth.entity.ZekaClaims;
 import dev.dong4j.zeka.kernel.auth.enums.UserType;
 import dev.dong4j.zeka.kernel.common.util.BeanUtils;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Slf4j
 class JwtUtilsTest {
     /** Object mapper */
-    private final ObjectMapper objectMapper = JsonUtils.getCopyMapper();
+    private final ObjectMapper objectMapper = Jsons.getCopyMapper();
     /** Key */
     private final String key = "";
     /** Token */
@@ -104,7 +104,7 @@ class JwtUtilsTest {
     @Test
     void test4() {
         Claims claims = JwtUtils.getClaims("1234567890", this.token);
-        log.info("{}", JsonUtils.toJson(claims, true));
+        log.info("{}", Jsons.toJson(claims, true));
         ObjectMapper objectMapper = new ObjectMapper();
         AuthorizationUser user = objectMapper.convertValue(claims.get("user"), AuthorizationUser.class);
         log.info("{}", user);
@@ -558,7 +558,7 @@ class JwtUtilsTest {
     @Test
     void test() {
 
-        log.info("{}", JsonUtils.toJson(new Date()));
+        log.info("{}", Jsons.toJson(new Date()));
     }
 
     /**

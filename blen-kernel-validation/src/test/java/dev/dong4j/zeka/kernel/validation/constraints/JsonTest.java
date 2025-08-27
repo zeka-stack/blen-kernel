@@ -4,6 +4,8 @@ import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
 import jakarta.validation.constraints.NotBlank;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
@@ -33,8 +35,9 @@ class JsonTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm1 {
+    private static class TestForm1 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Json */
         @Json
@@ -50,7 +53,7 @@ class JsonTest extends AuthContextConfiguration {
     void test_1() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm1.builder().json("").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -69,7 +72,7 @@ class JsonTest extends AuthContextConfiguration {
     void test_2() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm2.builder().json("").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -90,8 +93,9 @@ class JsonTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm2 {
+    private static class TestForm2 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Json */
         @Json
@@ -108,7 +112,7 @@ class JsonTest extends AuthContextConfiguration {
     void test_3() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().json("xxx").build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -127,7 +131,7 @@ class JsonTest extends AuthContextConfiguration {
     void test_4() {
         try {
             Map<String, String> validateobject = BeanValidator.validateobject(TestForm3.builder().json(StringPool.EMPTY_JSON).build());
-            if (validateobject != null && validateobject.size() > 0) {
+            if (validateobject != null && !validateobject.isEmpty()) {
                 for (Map.Entry<String, String> entry : validateobject.entrySet()) {
                     log.error("[{}]->[{}]", entry.getKey(), entry.getValue());
                 }
@@ -148,8 +152,9 @@ class JsonTest extends AuthContextConfiguration {
      */
     @Data
     @Builder
-    private static class TestForm3 {
+    private static class TestForm3 implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -5274383672719713886L;
         /** Json */
         @Json

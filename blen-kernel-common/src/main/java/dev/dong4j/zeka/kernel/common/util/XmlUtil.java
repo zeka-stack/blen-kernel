@@ -1,18 +1,18 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
-import jakarta.xml.namespace.QName;
-import jakarta.xml.parsers.DocumentBuilder;
-import jakarta.xml.parsers.DocumentBuilderFactory;
-import jakarta.xml.parsers.ParserConfigurationException;
-import jakarta.xml.xpath.XPath;
-import jakarta.xml.xpath.XPathConstants;
-import jakarta.xml.xpath.XPathExpressionException;
-import jakarta.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Map;
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
@@ -25,7 +25,7 @@ import org.xml.sax.SAXException;
 
 /**
  * <p>Description: xpath解析xml</p>
- * http://www.w3school.com.cn/xpath/index.asp
+ * <a href="http://www.w3school.com.cn/xpath/index.asp">...</a>
  *
  * @author dong4j
  * @version 1.2.3

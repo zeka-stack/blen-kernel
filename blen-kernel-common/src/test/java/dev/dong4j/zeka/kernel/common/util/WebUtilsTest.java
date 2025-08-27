@@ -1,6 +1,7 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.io.Serial;
 import java.util.HashMap;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -278,6 +279,7 @@ class WebUtilsTest {
     @Test
     void getUrlParamsByMap() {
         String str = UrlUtils.buildUrlParamsByMap(new HashMap<String, String>() {
+            @Serial
             private static final long serialVersionUID = -867566855248845416L;
 
             {

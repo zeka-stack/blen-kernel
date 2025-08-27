@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.event;
 
+import java.io.Serial;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import java.util.Set;
  */
 public class AgentRegisteredEvent extends BaseEvent<Map<String, Set<String>>> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -61402775341122728L;
 
     /**

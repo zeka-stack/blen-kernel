@@ -2,13 +2,12 @@ package dev.dong4j.zeka.kernel.common.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>Description: 合并 command 和 query 接口 </p>
@@ -24,7 +23,7 @@ import java.util.Map;
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements ICrudDelegate<DTO> {
-    /** Repository service */
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected S service;
 

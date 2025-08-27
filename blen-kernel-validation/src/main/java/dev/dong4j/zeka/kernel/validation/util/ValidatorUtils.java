@@ -3,7 +3,7 @@ package dev.dong4j.zeka.kernel.validation.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.ValidationException;
@@ -36,7 +36,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
     /** validator */
     private static Validator validator;
     /** MAPPER */
-    private static final ObjectMapper MAPPER = JsonUtils.getCopyMapper();
+    private static final ObjectMapper MAPPER = Jsons.getCopyMapper();
     /** applicationContext */
     private static ConfigurableApplicationContext applicationContext = null;
 

@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.event;
 
+import java.io.Serial;
+
 /**
  * <p>Description: agent service 处理失败事件 </p>
  *
@@ -11,6 +13,7 @@ package dev.dong4j.zeka.kernel.common.event;
  */
 public class AgentInvokeErrorEvent extends BaseEvent<Object> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3522445460251460111L;
 
     /**

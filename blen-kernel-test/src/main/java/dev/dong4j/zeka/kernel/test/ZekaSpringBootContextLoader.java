@@ -16,7 +16,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -165,7 +164,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      * @since 1.0.0
      */
     @Override
-    public ApplicationContext loadContext(@NotNull MergedContextConfiguration config) {
+    public @NotNull ApplicationContext loadContext(@NotNull MergedContextConfiguration config) {
         // 各个模块通过 SPI 加载的默认配置
         ConfigurableEnvironment configurableEnvironment = this.getEnvironment();
         Properties defaultProperties = setUpTestClass(configurableEnvironment);
@@ -191,7 +190,8 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
             new DefaultResourceLoader(this.getClass().getClassLoader());
 
         // 优先解析 TestPropertySource.value/locations
-        addPropertiesFilesToEnvironment(this.environment, resourceLoader, config.getPropertySourceLocations());
+        // Spring Boot 3 中 getPropertySourceLocations() 已被废弃，使用 getPropertySourceProperties() 替代
+        // addPropertiesFilesToEnvironment(this.environment, resourceLoader, config.getPropertySourceLocations());
         // 再解析 TestPropertySource.properties
         addInlinedPropertiesToEnvironment(this.environment, this.getInlinedProperties(config));
 
@@ -247,7 +247,8 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
                        List<ApplicationContextInitializer<?>> initializers) {
             WebMergedContextConfiguration webConfiguration = (WebMergedContextConfiguration) configuration;
             this.addMockServletContext(initializers, webConfiguration);
-            application.setApplicationContextClass(WEB_CONTEXT_CLASS);
+            // Spring Boot 3 中 setApplicationContextClass 方法已被移除
+            // application.setApplicationContextClass(WEB_CONTEXT_CLASS);
         }
 
         /**
@@ -286,7 +287,8 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
          * @since 1.5.0
          */
         void configure(@NotNull SpringApplication application) {
-            application.setApplicationContextClass(WEB_CONTEXT_CLASS);
+            // Spring Boot 3 中 setApplicationContextClass 方法已被移除
+            // application.setApplicationContextClass(WEB_CONTEXT_CLASS);
         }
 
     }
@@ -385,7 +387,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
         List<LauncherInitiation> launcherList = new ArrayList<>();
         ServiceLoader.load(LauncherInitiation.class).forEach(launcherList::add);
         launcherList.stream().sorted(Comparator.comparing(LauncherInitiation::getOrder))
-            .collect(Collectors.toList())
+            .toList()
             .forEach(launcherService -> launcherService.launcherWrapper(environment,
                 defaultProperties,
                 appName,

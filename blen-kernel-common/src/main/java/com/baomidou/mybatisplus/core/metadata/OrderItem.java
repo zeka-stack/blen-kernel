@@ -1,13 +1,13 @@
 package com.baomidou.mybatisplus.core.metadata;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 排序元素载体
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class OrderItem implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
     /** 需要进行排序的字段 */
     private String column;

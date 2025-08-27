@@ -1,9 +1,5 @@
 package dev.dong4j.zeka.kernel.common.reflection;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.GenericArrayType;
@@ -13,6 +9,9 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Arrays;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: </p>
@@ -205,8 +204,7 @@ public final class TypeParameterResolver {
         Class<?> clazz;
         if (srcType instanceof Class) {
             clazz = (Class<?>) srcType;
-        } else if (srcType instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) srcType;
+        } else if (srcType instanceof ParameterizedType parameterizedType) {
             clazz = (Class<?>) parameterizedType.getRawType();
         } else {
             throw new IllegalArgumentException("The 2nd arg must be Class or ParameterizedType, but was: " + srcType.getClass());
@@ -247,13 +245,13 @@ public final class TypeParameterResolver {
      * @return the type
      * @since 1.0.0
      */
+    @SuppressWarnings("D")
     private static @Nullable Type scanSuperTypes(TypeVariable<?> typeVar,
                                                  Type srcType,
                                                  Class<?> declaringClass,
                                                  Class<?> clazz,
                                                  Type superclass) {
-        if (superclass instanceof ParameterizedType) {
-            ParameterizedType parentAsType = (ParameterizedType) superclass;
+        if (superclass instanceof ParameterizedType parentAsType) {
             Class<?> parentAsClass = (Class<?>) parentAsType.getRawType();
             TypeVariable<?>[] parentTypeVars = parentAsClass.getTypeParameters();
             if (srcType instanceof ParameterizedType) {
@@ -349,7 +347,7 @@ public final class TypeParameterResolver {
          * @since 1.0.0
          */
         @Override
-        public Type[] getActualTypeArguments() {
+        public Type @NotNull [] getActualTypeArguments() {
             return this.actualTypeArguments;
         }
 
@@ -360,7 +358,7 @@ public final class TypeParameterResolver {
          * @since 1.0.0
          */
         @Override
-        public Type getRawType() {
+        public @NotNull Type getRawType() {
             return this.rawType;
         }
 
@@ -429,7 +427,7 @@ public final class TypeParameterResolver {
          * @since 1.0.0
          */
         @Override
-        public Type[] getUpperBounds() {
+        public Type @NotNull [] getUpperBounds() {
             return this.upperBounds;
         }
 
@@ -440,7 +438,7 @@ public final class TypeParameterResolver {
          * @since 1.0.0
          */
         @Override
-        public Type[] getLowerBounds() {
+        public Type @NotNull [] getLowerBounds() {
             return this.lowerBounds;
         }
     }
@@ -477,7 +475,7 @@ public final class TypeParameterResolver {
          * @since 1.0.0
          */
         @Override
-        public Type getGenericComponentType() {
+        public @NotNull Type getGenericComponentType() {
             return this.genericComponentType;
         }
     }

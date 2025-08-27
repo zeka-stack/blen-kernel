@@ -13,6 +13,15 @@ import dev.dong4j.zeka.kernel.common.type.ConsumerObjectTypeAdapter;
 import dev.dong4j.zeka.kernel.common.type.GsonEnumTypeAdapter;
 import dev.dong4j.zeka.kernel.common.type.TypeBuilder;
 import dev.dong4j.zeka.kernel.common.type.TypeToken;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -24,20 +33,10 @@ import org.reflections.util.ConfigurationBuilder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 /**
  * <p>Description: GSON 封装, 简化 json 操作 </p>
  * List, Map 时间格式统一为 DEFAULT_TIMEFORMAT
- * 此工具类只适合简单的 json 操作, 如果是复杂且严格的 json 推荐使用 {@link JsonUtils}
+ * 此工具类只适合简单的 json 操作, 如果是复杂且严格的 json 推荐使用 {@link Jsons}
  *
  * @author dong4j
  * @version 1.2.3
@@ -333,7 +332,7 @@ public final class GsonUtils {
             threadCalls.put(type, call);
 
             // 如果是 Object 类型, 则使用自定义的 ConsumerObjectTypeAdapter
-            if (gson.getAdapter(type) instanceof com.google.gson.internal.bind.ObjectTypeAdapter) {
+            if (type != null && gson.getAdapter(type) instanceof com.google.gson.internal.bind.ObjectTypeAdapter) {
                 TypeAdapter<T> typeAdapter = ConsumerObjectTypeAdapter.FACTORY.create(gson, type);
                 typeTokenCache.put(type, typeAdapter);
                 return typeAdapter;

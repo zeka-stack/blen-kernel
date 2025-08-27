@@ -1,11 +1,11 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import jakarta.crypto.Mac;
-import jakarta.crypto.SecretKey;
-import jakarta.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

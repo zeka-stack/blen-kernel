@@ -70,7 +70,7 @@ public final class ThreadContextMapFactory {
             try {
                 Class<?> clazz = cl.loadClass(threadContextMapName);
                 if (ThreadContextMap.class.isAssignableFrom(clazz)) {
-                    result = (ThreadContextMap) clazz.newInstance();
+                    result = (ThreadContextMap) clazz.getDeclaredConstructor().newInstance();
                 }
             } catch (ClassNotFoundException cnfe) {
                 LowLevelLogUtils.log("Unable to locate configured ThreadContextMap " + threadContextMapName);

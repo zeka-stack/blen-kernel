@@ -3,8 +3,6 @@ package dev.dong4j.zeka.kernel.common.serialize;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
-
 import java.io.IOException;
 
 /**
@@ -21,7 +19,7 @@ public class StringTrimmerSerializer extends JsonSerializer<String> {
     /**
      * Serialize
      *
-     * @param s                  s
+     * @param value              value
      * @param jsonGenerator      json generator
      * @param serializerProvider serializer provider
      * @throws IOException io exception
@@ -29,7 +27,7 @@ public class StringTrimmerSerializer extends JsonSerializer<String> {
      */
     @Override
     @SuppressWarnings("java:S3252")
-    public void serialize(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        jsonGenerator.writeString(StringUtils.trimWhitespace(s));
+    public void serialize(String value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeString(value.strip());
     }
 }

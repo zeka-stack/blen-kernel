@@ -1,7 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import jakarta.net.ssl.HostnameVerifier;
-import jakarta.net.ssl.SSLContext;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.security.KeyManagementException;
@@ -12,18 +10,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
+import javax.net.ssl.SSLContext;
 import lombok.experimental.UtilityClass;
-import org.apache.http.config.Registry;
-import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
-import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.ConnectionKeepAliveStrategy;
+import org.apache.hc.client5.http.impl.DefaultHttpRequestRetryStrategy;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.ssl.DefaultClientTlsStrategy;
+import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
+import org.apache.hc.client5.http.ssl.TrustAllStrategy;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.apache.hc.core5.util.TimeValue;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -192,7 +190,7 @@ public class HttpClientUtils {
             URI uri = new URI(url);
             String responseStr = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, String.class).getBody();
 
-            return JsonUtils.parse(responseStr, responseType);
+            return Jsons.parse(responseStr, responseType);
         } catch (Exception e) {
             throw new Exception("网络异常或请求错误.", e);
         }
@@ -211,7 +209,6 @@ public class HttpClientUtils {
         clientHttpRequestFactory.setConnectTimeout(CONNECTION_TIME_OUT);
         clientHttpRequestFactory.setReadTimeout(READ_TIME_OUT);
         clientHttpRequestFactory.setConnectionRequestTimeout(CONNECTION_REQUEST_TIME_OUT);
-        clientHttpRequestFactory.setBufferRequestBody(false);
 
         RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
         restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
@@ -237,26 +234,31 @@ public class HttpClientUtils {
      */
     public static CloseableHttpClient acceptsUntrustedCertsHttpClient()
         throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-        SSLContext sslContext = HttpsUtils.getSslContext();
 
-        httpClientBuilder.setSSLContext(sslContext);
-        HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
-        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-        Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-            .register("http", PlainConnectionSocketFactory.getSocketFactory())
-            .register("https", sslSocketFactory)
+        // 创建信任所有证书的 SSLContext
+        SSLContext sslContext = SSLContextBuilder.create()
+            .loadTrustMaterial(TrustAllStrategy.INSTANCE)
             .build();
 
-        PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-        connMgr.setMaxTotal(MAX_CONNECTION_TOTAL);
-        connMgr.setDefaultMaxPerRoute(ROUTE_MAX_COUNT);
+        // 构建支持 TLS 的策略（替代 SSLConnectionSocketFactory）
+        var tlsStrategy = new DefaultClientTlsStrategy(sslContext, NoopHostnameVerifier.INSTANCE);
 
-        httpClientBuilder.setConnectionManager(connMgr);
-        httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(RETRY_COUNT, true));
-        httpClientBuilder.setKeepAliveStrategy(new DefaultConnectionKeepAliveStrategy());
+        // 连接管理器
+        var connManager = PoolingHttpClientConnectionManagerBuilder.create()
+            .setTlsSocketStrategy(tlsStrategy)
+            .setMaxConnTotal(MAX_CONNECTION_TOTAL)
+            .setMaxConnPerRoute(ROUTE_MAX_COUNT)
+            .build();
 
-        return httpClientBuilder.build();
+        // KeepAlive 策略（默认可用）
+        ConnectionKeepAliveStrategy keepAliveStrategy = (response, context) -> TimeValue.ofDays(30_000); // 30 秒
+
+        // 构建 HttpClient
+        return HttpClients.custom()
+            .setConnectionManager(connManager)
+            .setRetryStrategy(new DefaultHttpRequestRetryStrategy(RETRY_COUNT, TimeValue.ofSeconds(3)))
+            .setKeepAliveStrategy(keepAliveStrategy)
+            .build();
     }
 
     /**

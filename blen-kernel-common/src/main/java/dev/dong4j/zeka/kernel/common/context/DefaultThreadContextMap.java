@@ -3,14 +3,13 @@ package dev.dong4j.zeka.kernel.common.context;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import dev.dong4j.zeka.kernel.common.util.PropertiesUtils;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiConsumer;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 实际的ThreadContext映射.
@@ -51,11 +50,11 @@ public class DefaultThreadContextMap implements ThreadContextMap {
     static @NotNull
     ThreadLocal<Map<String, String>> createThreadLocalMap(boolean isMapEnabled) {
         if (inheritableMap) {
-            return new TransmittableThreadLocal<Map<String, String>>() {
+            return new TransmittableThreadLocal<>() {
                 @Override
                 protected Map<String, String> childValue(Map<String, String> parentValue) {
                     return parentValue != null && isMapEnabled
-                        ? Collections.unmodifiableMap(new HashMap<>(parentValue))
+                        ? Map.copyOf(parentValue)
                         : null;
                 }
             };
@@ -291,7 +290,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
     @Override
     public boolean isEmpty() {
         Map<String, String> map = this.localMap.get();
-        return map == null || map.size() == 0;
+        return map == null || map.isEmpty();
     }
 
     /**
@@ -349,16 +348,14 @@ public class DefaultThreadContextMap implements ThreadContextMap {
         if (obj == null) {
             return false;
         }
-        if (obj instanceof DefaultThreadContextMap) {
-            DefaultThreadContextMap other = (DefaultThreadContextMap) obj;
+        if (obj instanceof DefaultThreadContextMap other) {
             if (this.useMap != other.useMap) {
                 return false;
             }
         }
-        if (!(obj instanceof ThreadContextMap)) {
+        if (!(obj instanceof ThreadContextMap other)) {
             return false;
         }
-        ThreadContextMap other = (ThreadContextMap) obj;
         Map<String, String> map = this.localMap.get();
         Map<String, String> otherMap = other.getImmutableMapOrNull();
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +32,7 @@ import org.springframework.util.CollectionUtils;
 public class Page<T> implements IPage<T> {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -7759805099824817556L;
     /** 查询数据列表 */
     private List<T> records = Collections.emptyList();

@@ -1,9 +1,9 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import jakarta.crypto.Cipher;
-import jakarta.crypto.spec.IvParameterSpec;
-import jakarta.crypto.spec.SecretKeySpec;
 import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

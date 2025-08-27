@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
@@ -639,6 +640,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
          */
         public static final TrueFilter TRUE = new TrueFilter();
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -6420452043795072619L;
 
         /**

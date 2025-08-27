@@ -5,11 +5,10 @@ import dev.dong4j.zeka.kernel.common.reflection.DefaultMetaObject;
 import dev.dong4j.zeka.kernel.common.reflection.MetaObject;
 import dev.dong4j.zeka.kernel.common.reflection.factory.ObjectFactory;
 import dev.dong4j.zeka.kernel.common.reflection.property.PropertyTokenizer;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -20,6 +19,7 @@ import java.util.Map;
  * @date 2020.04.12 11:52
  * @since 1.0.0
  */
+@SuppressWarnings("DuplicatedCode")
 public class MapWrapper extends BaseWrapper {
 
     /** Map */

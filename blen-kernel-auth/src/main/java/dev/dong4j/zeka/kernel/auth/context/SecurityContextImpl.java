@@ -1,6 +1,7 @@
 package dev.dong4j.zeka.kernel.auth.context;
 
 import dev.dong4j.zeka.kernel.auth.CurrentUser;
+import java.io.Serial;
 
 /**
  * <p>Description: </p>
@@ -13,6 +14,7 @@ import dev.dong4j.zeka.kernel.auth.CurrentUser;
  */
 public class SecurityContextImpl implements SecurityContext {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -2828643112455883285L;
 
     /** Authentication */
@@ -46,8 +48,7 @@ public class SecurityContextImpl implements SecurityContext {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof SecurityContextImpl) {
-            SecurityContextImpl test = (SecurityContextImpl) obj;
+        if (obj instanceof SecurityContextImpl test) {
 
             if ((this.getAuthentication() == null) && (test.getAuthentication() == null)) {
                 return true;

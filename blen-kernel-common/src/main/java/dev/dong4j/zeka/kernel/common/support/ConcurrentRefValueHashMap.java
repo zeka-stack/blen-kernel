@@ -1,9 +1,6 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -75,6 +74,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @return the boolean
      * @since 1.4.0
      */
+    @SuppressWarnings("UnusedReturnValue")
     boolean processQueue() {
         boolean processed = false;
 
@@ -318,7 +318,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
         for (K key : keys) {
             V value = this.get(key);
             if (value != null) {
-                entries.add(new Entry<K, V>() {
+                entries.add(new Entry<>() {
                     @Override
                     public String toString() {
                         return "(" + this.getKey() + " : " + this.getValue() + ")";
@@ -362,7 +362,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
         for (Object item : items) {
             result.append(item).append(separator);
         }
-        if (result.length() > 0) {
+        if (!result.isEmpty()) {
             result.setLength(result.length() - separator.length());
         }
         return result.toString();

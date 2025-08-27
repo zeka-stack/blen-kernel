@@ -1,11 +1,11 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import java.io.PrintStream;
+import java.io.Serial;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.PrintStream;
 
 /**
  * <p>Description: 服务内部错误异常, 会输出堆栈信息, traceId, 当前应用名和 ip </p>
@@ -19,6 +19,7 @@ import java.io.PrintStream;
 @Slf4j
 public class ServiceInternalException extends RuntimeException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3466744408568354601L;
 
     /** 应用名 */

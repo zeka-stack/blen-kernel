@@ -1,11 +1,8 @@
 package dev.dong4j.zeka.kernel.spi.utils;
 
 
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.spi.UnsafeStringWriter;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +13,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.COMMA_SEPARATOR;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.COMMA_SPLIT_PATTERN;
@@ -781,7 +780,7 @@ public final class SpiStringUtils {
                 buf.append(arg);
             } else {
                 try {
-                    buf.append(JsonUtils.toJson(arg));
+                    buf.append(Jsons.toJson(arg));
                 } catch (Exception e) {
                     log.warn(e.getMessage(), e);
                     buf.append(arg);

@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
+import java.io.Serial;
+
 /**
  * <p>Description: </p>
  *
@@ -11,6 +13,7 @@ package dev.dong4j.zeka.kernel.common.exception;
  */
 public class AssertionFailedException extends ServiceInternalException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 7198353389256089258L;
     /** DEFAULT_MESSAGE */
     private static final String DEFAULT_MESSAGE = "服务内部错误: ";

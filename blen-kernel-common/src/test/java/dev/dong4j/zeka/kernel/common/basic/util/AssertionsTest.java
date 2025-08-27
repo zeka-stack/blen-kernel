@@ -2,12 +2,12 @@ package dev.dong4j.zeka.kernel.common.basic.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>Description:  </p>
@@ -203,6 +203,7 @@ class AssertionsTest {
     }
 
     public static class ConsumerException extends BasicException {
+        @Serial
         private static final long serialVersionUID = 3168856664507650214L;
 
         public ConsumerException() {

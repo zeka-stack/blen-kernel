@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.auth.entity;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.Contract;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * <p>Description: 认证用户角色实体 </p>
@@ -24,6 +24,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class AuthorizationRole implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1980476454419541600L;
 
     /** Id */

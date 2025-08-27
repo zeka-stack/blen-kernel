@@ -1,8 +1,11 @@
 package dev.dong4j.zeka.kernel.web.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.dong4j.zeka.kernel.common.api.Result;
 import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
+import dev.dong4j.zeka.kernel.web.exception.ServletGlobalExceptionHandler;
 import io.swagger.annotations.Api;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
@@ -31,11 +35,14 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  * @date 2019.12.02 01:40
  * @since 1.0.0
  */
+@Slf4j
 @Api(value = "Filter 异常处理")
 public class ServletErrorController extends BasicErrorController {
     /** Object mapper */
     @Resource
     private ObjectMapper objectMapper;
+    /** Global exception handler */
+    private final ServletGlobalExceptionHandler globalExceptionHandler;
 
     /**
      * Servlet error controller
@@ -44,9 +51,13 @@ public class ServletErrorController extends BasicErrorController {
      * @param errorProperties error properties
      * @since 1.0.0
      */
-    public ServletErrorController(ErrorAttributes errorAttributes, ErrorProperties errorProperties) {
+    public ServletErrorController(ErrorAttributes errorAttributes,
+                                  ErrorProperties errorProperties,
+                                  ServletGlobalExceptionHandler servletGlobalExceptionHandler) {
         super(errorAttributes, errorProperties);
+        globalExceptionHandler = servletGlobalExceptionHandler;
     }
+
 
     /**
      * Error response entity
@@ -58,10 +69,9 @@ public class ServletErrorController extends BasicErrorController {
     @Override
     @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
-        this.checkException(request);
-        Map<String, Object> body = this.getErrorAttributes(request, this.isIncludeStackTrace(request, MediaType.ALL));
-        ResponseData data = this.processBody(request, body);
-        return new ResponseEntity<>(data.getBody(), data.getStatus());
+        final Exception exception = this.checkException(request);
+        final Result<?> result = globalExceptionHandler.handleError(exception, request);
+        return new ResponseEntity<>(Jsons.toMap(result, String.class, Object.class), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**
@@ -74,15 +84,13 @@ public class ServletErrorController extends BasicErrorController {
      */
     @Override
     public ModelAndView errorHtml(HttpServletRequest request, @NotNull HttpServletResponse response) {
-        this.checkException(request);
-
-        Map<String, Object> body = this.getErrorAttributes(request, this.isIncludeStackTrace(request, MediaType.ALL));
-        ResponseData data = this.processBody(request, body);
-        response.setStatus(data.getStatus().value());
+        final Exception exception = this.checkException(request);
+        final Result<?> result = globalExceptionHandler.handleError(exception, request);
+        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         MappingJackson2JsonView view = new MappingJackson2JsonView();
         view.setObjectMapper(this.objectMapper);
         view.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        return new ModelAndView(view, data.getBody());
+        return new ModelAndView(view, Jsons.toMap(result, String.class, Object.class));
     }
 
     /**
@@ -91,10 +99,13 @@ public class ServletErrorController extends BasicErrorController {
      * @param request request
      * @since 1.7.0
      */
-    private void checkException(HttpServletRequest request) {
-        Object attribute = request.getAttribute(BasicConstant.REQUEST_EXCEPTION_INFO_ATTR);
-        if (attribute instanceof BaseException) {
-            throw (BaseException) attribute;
+    private Exception checkException(HttpServletRequest request) {
+        Exception exception = (Exception) request.getAttribute(BasicConstant.REQUEST_EXCEPTION_INFO_ATTR);
+        if (exception instanceof LowestException lowestException) {
+            throw lowestException;
+        } else {
+            log.error("Filter 异常兜底处理, 请在业务系统中处理自定义 Filter 异常", exception);
+            return exception;
         }
     }
 

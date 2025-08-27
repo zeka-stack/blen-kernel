@@ -9,7 +9,7 @@ import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.DateUtils;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import dev.dong4j.zeka.kernel.devtools.core.InjectionConfig;
@@ -208,7 +208,7 @@ public class AutoGeneratorCode {
             .setXmlName("%sMapper")
             // 生成后是否打开目录
             .setOpen(false);
-        log.info("GlobalConfig = {}", JsonUtils.toJson(globalConfig, true));
+        log.info("GlobalConfig = {}", Jsons.toJson(globalConfig, true));
         return globalConfig;
     }
 
@@ -297,7 +297,7 @@ public class AutoGeneratorCode {
             // 实体是否为构建者模型 (默认 false)
             .setChainModel(false);
 
-        log.info("strategyConfig = {}", JsonUtils.toJson(strategyConfig, true));
+        log.info("strategyConfig = {}", Jsons.toJson(strategyConfig, true));
         return strategyConfig;
     }
 
@@ -322,7 +322,7 @@ public class AutoGeneratorCode {
             .setParent(ROOT_PACKAGE + this.packageName)
             .setMapper("dao");
 
-        log.info("packageConfig = {}", JsonUtils.toJson(this.packageConfig, true));
+        log.info("packageConfig = {}", Jsons.toJson(this.packageConfig, true));
         return this.packageConfig;
     }
 
@@ -447,7 +447,7 @@ public class AutoGeneratorCode {
             log.info("开启自定义 enum 生成");
         }
 
-        log.info("templateConfig = {}", JsonUtils.toJson(templateConfig, true));
+        log.info("templateConfig = {}", Jsons.toJson(templateConfig, true));
         return templateConfig;
     }
 

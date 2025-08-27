@@ -4,14 +4,14 @@ import com.google.common.collect.Lists;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import dev.dong4j.zeka.kernel.common.util.Tools;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p>Description: 字符串切分器</p>
@@ -101,14 +101,14 @@ public class StrSpliter {
      */
     @SuppressWarnings(value = {"checkstyle:ReturnCount", "checkstyle:ParameterNumber"})
     public static List<String> split(String str, String separator, int limit, boolean isTrim, boolean ignoreEmpty, boolean ignoreCase) {
-        if (StringUtils.isEmpty(str)) {
+        if (ObjectUtils.isEmpty(str)) {
             return Lists.newArrayListWithCapacity(0);
         }
         if (limit == 1) {
             return addToList(Lists.newArrayListWithCapacity(1), str, isTrim, ignoreEmpty);
         }
 
-        if (StringUtils.isEmpty(separator)) {
+        if (ObjectUtils.isEmpty(separator)) {
             return split(str, limit);
         } else if (separator.length() == 1) {
             return split(str, separator.charAt(0), limit, isTrim, ignoreEmpty, ignoreCase);
@@ -148,7 +148,6 @@ public class StrSpliter {
      */
     @Contract("_, _, _, _ -> param1")
     private static List<String> addToList(List<String> list, String part, boolean isTrim, boolean ignoreEmpty) {
-        part = part;
         if (isTrim) {
             part = part.trim();
         }
@@ -168,7 +167,7 @@ public class StrSpliter {
      * @since 1.0.0
      */
     public static List<String> split(String str, int limit) {
-        if (StringUtils.isEmpty(str)) {
+        if (ObjectUtils.isEmpty(str)) {
             return Lists.newArrayListWithCapacity(0);
         }
         if (limit == 1) {
@@ -204,7 +203,7 @@ public class StrSpliter {
      */
     @SuppressWarnings("checkstyle:ParameterNumber")
     public static List<String> split(String str, char separator, int limit, boolean isTrim, boolean ignoreEmpty, boolean ignoreCase) {
-        if (StringUtils.isEmpty(str)) {
+        if (ObjectUtils.isEmpty(str)) {
             return Lists.newArrayListWithCapacity(0);
         }
         if (limit == 1) {
@@ -456,7 +455,7 @@ public class StrSpliter {
      */
     @SuppressWarnings("checkstyle:ReturnCount")
     public static List<String> split(String str, Pattern separatorPattern, int limit, boolean isTrim, boolean ignoreEmpty) {
-        if (StringUtils.isEmpty(str)) {
+        if (ObjectUtils.isEmpty(str)) {
             return Lists.newArrayListWithCapacity(0);
         }
         if (limit == 1) {

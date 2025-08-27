@@ -7,8 +7,6 @@ import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
 import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
 import java.io.File;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -359,13 +357,9 @@ public class StartUtils {
      * @return the class loader
      * @since 1.0.0
      */
-    @SuppressWarnings("java:S1905")
     private static ClassLoader getClassLoader(Class<?> clazz) {
-        if (System.getSecurityManager() == null) {
-            return clazz.getClassLoader();
-        } else {
-            return AccessController.doPrivileged((PrivilegedAction<ClassLoader>) clazz::getClassLoader);
-        }
+        // 直接返回类加载器即可，不再使用 AccessController
+        return clazz.getClassLoader();
     }
 
     /**

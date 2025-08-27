@@ -1,15 +1,14 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import dev.dong4j.zeka.kernel.common.util.Exceptions;
+import java.util.Objects;
+import java.util.function.Function;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-import java.util.function.Function;
-
 /**
  * <p>Description: Lambda 受检异常 </p>
- * https://segmentfault.com/a/1190000007832130
+ * <a href="https://segmentfault.com/a/1190000007832130">...</a>
  *
  * @author dong4j
  * @version 1.2.3

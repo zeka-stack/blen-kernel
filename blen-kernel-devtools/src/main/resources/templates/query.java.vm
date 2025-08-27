@@ -5,6 +5,7 @@ package ${cfg.package_form};
     #end
 import dev.dong4j.zeka.kernel.common.base.BaseQuery;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serial;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,6 +33,7 @@ import lombok.experimental.SuperBuilder;
 @Schema(name = "$!{table.comment}-查询")
 public class ${entity}Query extends BaseQuery<Long> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     ## ----------  BEGIN 字段循环遍历  ----------

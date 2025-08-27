@@ -1,8 +1,8 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import org.jetbrains.annotations.Contract;
-
+import java.io.Serial;
 import java.util.Random;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description:
@@ -19,6 +19,7 @@ import java.util.Random;
 public final class JvmRandom extends Random {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
     /** SHARED_RANDOM */
     private static final Random SHARED_RANDOM = new Random();
@@ -96,38 +97,6 @@ public final class JvmRandom extends Random {
     @Override
     public long nextLong() {
         return nextLong(Long.MAX_VALUE);
-    }
-
-    /**
-     * <p>Returns a pseudorandom, uniformly distributed long value between <code>0</code> (inclusive) and the specified
-     * value (exclusive), from the Math.random() sequence.</p>
-     *
-     * @param n the specified exclusive max-value
-     * @return the random long
-     * @throws IllegalArgumentException when <code>n &lt;= 0</code>
-     * @since 1.0.0
-     */
-    public static long nextLong(long n) {
-        if (n <= 0) {
-            throw new IllegalArgumentException(
-                "Upper bound for nextInt must be positive"
-            );
-        }
-        // Code adapted from Harmony Random#nextInt(int)
-        // n is power of 2
-        if ((n & -n) == n) {
-            // dropping lower order bits improves behaviour for low values of n
-            return next63bits() >> 63 - bitsRequired(n - 1);
-        }
-        // Not a power of two
-        long val;
-        long bits;
-        // reject some values to improve distribution
-        do {
-            bits = next63bits();
-            val = bits % n;
-        } while (bits - val + (n - 1) < 0);
-        return val;
     }
 
     /**

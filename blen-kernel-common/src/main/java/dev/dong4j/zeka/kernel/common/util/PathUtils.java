@@ -1,11 +1,11 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.File;
+import java.net.URL;
+import java.util.Objects;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.springframework.lang.Nullable;
-
-import java.io.File;
-import java.net.URL;
 
 /**
  * <p>Description: 用来获取各种目录 </p>
@@ -39,10 +39,10 @@ public class PathUtils {
     @Nullable
     public static String getJarPath() {
         try {
-            URL url = PathUtils.class.getResource("/").toURI().toURL();
+            URL url = Objects.requireNonNull(PathUtils.class.getResource("/")).toURI().toURL();
             return PathUtils.toFilePath(url);
         } catch (Exception e) {
-            String path = PathUtils.class.getResource("").getPath();
+            String path = Objects.requireNonNull(PathUtils.class.getResource("")).getPath();
             return new File(path).getParentFile().getParentFile().getAbsolutePath();
         }
     }

@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.function.Supplier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: Holder of a value that is computed lazy. </p>
@@ -19,6 +19,7 @@ import java.util.function.Supplier;
 public final class Lazy<T> implements Supplier<T>, Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -7146199805533234594L;
     /** Supplier */
     private transient volatile Supplier<? extends T> supplier;

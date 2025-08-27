@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.common.event;
 
+import java.io.Serial;
+
 /**
  * <p>Description: 异常事件 </p>
  *
@@ -10,6 +12,7 @@ package dev.dong4j.zeka.kernel.common.event;
  * @since 1.6.0
  */
 public class ExceptionEvent extends BaseEvent<Throwable> {
+    @Serial
     private static final long serialVersionUID = 4718546244082863537L;
 
     /**

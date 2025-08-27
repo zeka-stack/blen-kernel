@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.io.Serial;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +26,7 @@ import lombok.EqualsAndHashCode;
 public class UserVO extends BaseVO<Long> {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1063735110827253744L;
     /** Name */
     @NotBlank(message = "名称为必填项")

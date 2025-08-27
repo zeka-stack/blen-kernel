@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.auth;
 
-import lombok.Builder;
-import lombok.Data;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Builder;
+import lombok.Data;
 
 /**
  * <p>Description:  </p>
@@ -20,6 +20,7 @@ import java.util.Date;
 public class JwtTokenInfo implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3233750396963053550L;
 
     /** User id */

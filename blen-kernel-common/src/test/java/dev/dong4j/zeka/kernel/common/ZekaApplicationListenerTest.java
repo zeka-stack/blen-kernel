@@ -1,18 +1,18 @@
 package dev.dong4j.zeka.kernel.common;
 
 import dev.dong4j.zeka.kernel.common.util.Tools;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationEvent;
-
+import java.io.Serial;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationEvent;
 
 /**
  * <p>Description: </p>
@@ -154,6 +154,7 @@ class ZekaApplicationListenerTest {
      */
     private static class Event1 extends ApplicationEvent {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = 5111317759302076143L;
 
         /**
@@ -178,6 +179,7 @@ class ZekaApplicationListenerTest {
      */
     private static class Event2 extends ApplicationEvent {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -4890598272340926170L;
 
         /**

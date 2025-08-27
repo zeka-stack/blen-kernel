@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.base;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: controller 入参, 必须使用 validation 相关注解对字段进行标识, 只能在视图层 </p>
@@ -27,6 +27,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public abstract class BaseForm<T extends Serializable> extends AbstractBaseEntity<T> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3550589993340031894L;
 
 }

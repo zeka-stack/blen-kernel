@@ -1,9 +1,9 @@
 package dev.dong4j.zeka.kernel.common.basic.util;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Data;
 import org.jetbrains.annotations.Contract;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: </p>
@@ -18,6 +18,7 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /** Id */

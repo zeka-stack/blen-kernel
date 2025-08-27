@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.test.mock;
 
+import java.io.Serial;
+
 /**
  * <p>Description: </p>
  *
@@ -12,6 +14,7 @@ package dev.dong4j.zeka.kernel.test.mock;
 public class MockException extends RuntimeException {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -2061772849386866982L;
 
     /**

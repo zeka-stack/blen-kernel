@@ -1,11 +1,11 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: 开发环境时输出更多的异常信息 </p>
@@ -22,6 +22,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class ExceptionInfo implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -5072425562316472427L;
     /** 请求路径 */
     private String path;

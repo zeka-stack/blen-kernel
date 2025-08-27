@@ -1,12 +1,12 @@
 package dev.dong4j.zeka.kernel.common.base;
 
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 /**
  * <p>Description:  </p>
@@ -24,6 +24,7 @@ import java.io.Serializable;
 @Accessors(fluent = true, chain = true)
 public abstract class Super implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 3552360700930105551L;
     /** Name */
     protected String name;

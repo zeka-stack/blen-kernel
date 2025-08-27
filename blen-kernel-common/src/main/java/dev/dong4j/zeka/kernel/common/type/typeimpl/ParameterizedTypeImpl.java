@@ -1,12 +1,12 @@
 package dev.dong4j.zeka.kernel.common.type.typeimpl;
 
 import dev.dong4j.zeka.kernel.common.type.exception.TypeException;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -62,7 +62,7 @@ public class ParameterizedTypeImpl implements ParameterizedType {
      * @since 1.0.0
      */
     @Override
-    public Type[] getActualTypeArguments() {
+    public Type @NotNull [] getActualTypeArguments() {
         return this.args;
     }
 
@@ -73,7 +73,7 @@ public class ParameterizedTypeImpl implements ParameterizedType {
      * @since 1.0.0
      */
     @Override
-    public Type getRawType() {
+    public @NotNull Type getRawType() {
         return this.raw;
     }
 
@@ -137,6 +137,7 @@ public class ParameterizedTypeImpl implements ParameterizedType {
      * @return the string
      * @since 1.0.0
      */
+    @SuppressWarnings("D")
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -148,8 +149,7 @@ public class ParameterizedTypeImpl implements ParameterizedType {
                     sb.append(", ");
                 }
                 Type type = this.args[i];
-                if (type instanceof Class) {
-                    Class<?> clazz = (Class<?>) type;
+                if (type instanceof Class<?> clazz) {
 
                     if (clazz.isArray()) {
                         int count = 0;

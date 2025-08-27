@@ -3,8 +3,6 @@ package dev.dong4j.zeka.kernel.common.serialize;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
-
 import java.io.IOException;
 
 /**
@@ -30,7 +28,7 @@ public class StringTrimmerDeserializer extends JsonDeserializer<String> {
     @Override
     @SuppressWarnings("java:S3252")
     public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-        return StringUtils.trimWhitespace(jsonParser.getValueAsString());
+        return jsonParser.getValueAsString().strip();
     }
 
 }

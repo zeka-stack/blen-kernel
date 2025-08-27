@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 @Immutable
 public final class DnsCacheEntry implements Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -7476648934387757732L;
 
     /** Host */

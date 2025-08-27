@@ -2,27 +2,26 @@ package dev.dong4j.zeka.kernel.autoconfigure.task;
 
 import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
 import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
 import org.springframework.boot.autoconfigure.task.TaskExecutionProperties.Shutdown;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.task.TaskExecutorBuilder;
-import org.springframework.boot.task.TaskExecutorCustomizer;
+import org.springframework.boot.task.ThreadPoolTaskExecutorBuilder;
+import org.springframework.boot.task.ThreadPoolTaskExecutorCustomizer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.task.TaskDecorator;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for {@link TaskExecutor}.
@@ -35,7 +34,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Slf4j
 @ConditionalOnClass(ThreadPoolTaskExecutor.class)
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @EnableConfigurationProperties(TaskExecutionProperties.class)
 public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfiguration {
 
@@ -50,26 +49,28 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      */
     @Bean
     @Primary
-    public TaskExecutorBuilder taskExecutorBuilder(@NotNull TaskExecutionProperties properties,
-                                                   @NotNull ObjectProvider<TaskExecutorCustomizer> taskExecutorCustomizers,
-                                                   @NotNull ObjectProvider<TaskDecorator> taskDecorator) {
+    public ThreadPoolTaskExecutorBuilder taskExecutorBuilder(@NotNull TaskExecutionProperties properties,
+                                                             @NotNull ObjectProvider<ThreadPoolTaskExecutorCustomizer> taskExecutorCustomizers,
+                                                             @NotNull ObjectProvider<TaskDecorator> taskDecorator) {
         TaskExecutionProperties.Pool pool = properties.getPool();
-        TaskExecutorBuilder builder = new TaskExecutorBuilder();
+        ThreadPoolTaskExecutorBuilder builder = new ThreadPoolTaskExecutorBuilder();
+
         // 配置队列大小
-        builder = builder.queueCapacity(pool.getQueueCapacity());
+        builder.queueCapacity(pool.getQueueCapacity());
         // 配置核心线程数
-        builder = builder.corePoolSize(pool.getCoreSize());
+        builder.corePoolSize(pool.getCoreSize());
         // 配置最大线程数
-        builder = builder.maxPoolSize(pool.getMaxSize());
-        builder = builder.allowCoreThreadTimeOut(pool.isAllowCoreThreadTimeout());
-        builder = builder.keepAlive(pool.getKeepAlive());
+        builder.maxPoolSize(pool.getMaxSize());
+        builder.allowCoreThreadTimeOut(pool.isAllowCoreThreadTimeout());
+        builder.keepAlive(pool.getKeepAlive());
+
         Shutdown shutdown = properties.getShutdown();
-        builder = builder.awaitTermination(shutdown.isAwaitTermination());
-        builder = builder.awaitTerminationPeriod(shutdown.getAwaitTerminationPeriod());
+        builder.awaitTermination(shutdown.isAwaitTermination());
+        builder.awaitTerminationPeriod(shutdown.getAwaitTerminationPeriod());
         // 配置线程池中的线程的名称前缀
-        builder = builder.threadNamePrefix(properties.getThreadNamePrefix());
-        builder = builder.customizers(taskExecutorCustomizers.orderedStream()::iterator);
-        builder = builder.taskDecorator(taskDecorator.getIfUnique());
+        builder.threadNamePrefix(properties.getThreadNamePrefix());
+        builder.customizers(taskExecutorCustomizers.orderedStream()::iterator);
+        builder.taskDecorator(taskDecorator.getIfUnique());
 
         return builder;
     }
@@ -84,8 +85,8 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
     @Lazy
     @Primary
     @Bean(name = BasicConstant.BOOST_EXECUTOR)
-    public ThreadPoolTaskExecutor boostExecutor(@NotNull TaskExecutorBuilder builder) {
-        return builder.build(VisiableThreadPoolTaskExecutor.class);
+    public ThreadPoolTaskExecutor boostExecutor(@NotNull ThreadPoolTaskExecutorBuilder builder) {
+        return builder.build();
     }
 
     /**
@@ -119,7 +120,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      * @since 1.7.0
      */
     @Bean
-    public TaskExecutorCustomizer consumerTaskExecutorCustomizer() {
+    public ThreadPoolTaskExecutorCustomizer consumerTaskExecutorCustomizer() {
         // 当 pool 已经达到 max size 的时候, 如何处理新任务: CALLER_RUNS: 不在新线程中执行任务, 而是由调用者所在的线程来执行
         return taskExecutor -> taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
     }

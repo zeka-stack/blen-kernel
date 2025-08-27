@@ -6,8 +6,7 @@ import dev.dong4j.zeka.kernel.spi.constants.RemotingConstants;
 import dev.dong4j.zeka.kernel.spi.utils.CollectionUtils;
 import dev.dong4j.zeka.kernel.spi.utils.NetUtils;
 import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
-import org.apache.commons.lang3.ArrayUtils;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
@@ -23,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.lang3.ArrayUtils;
 
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.ANYHOST_KEY;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.ANYHOST_VALUE;
@@ -52,6 +52,7 @@ import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.VERSION_KEY;
 public class URL implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -1985165475234910535L;
 
     /** Protocol */

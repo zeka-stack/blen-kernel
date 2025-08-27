@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.ssl;
 
-import jakarta.net.ssl.HostnameVerifier;
-import jakarta.net.ssl.SSLSession;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 /**
  * <p>Description: 信任所有 host name </p>

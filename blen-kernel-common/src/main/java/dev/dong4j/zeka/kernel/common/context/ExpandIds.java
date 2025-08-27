@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.common.context;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 扩展出来的tenantId clientId </p>
@@ -18,6 +18,7 @@ import java.util.Optional;
 public class ExpandIds implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -1449027854558101307L;
 
     /**

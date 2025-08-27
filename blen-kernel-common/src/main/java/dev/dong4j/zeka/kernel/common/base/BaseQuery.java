@@ -2,6 +2,7 @@ package dev.dong4j.zeka.kernel.common.base;
 
 import dev.dong4j.zeka.kernel.common.enums.DeletedEnum;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Builder;
@@ -31,6 +32,7 @@ import lombok.experimental.SuperBuilder;
 @SuppressWarnings("java:S1845")
 public abstract class BaseQuery<T extends Serializable> extends BaseForm<T> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3550589993340031894L;
 
     /** PAGE */

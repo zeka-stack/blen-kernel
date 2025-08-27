@@ -2,15 +2,14 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.enums.RandomType;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: </p>
@@ -733,6 +732,7 @@ public class RandomUtils {
      * @return the random collection
      * @since 1.0.0
      */
+    @SuppressWarnings("D")
     static @NotNull Collection<Integer> getRandomCollection(int min, int max, int n) {
         Set<Integer> res = new HashSet<>();
         int mx = max;

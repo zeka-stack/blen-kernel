@@ -3,14 +3,13 @@ package dev.dong4j.zeka.kernel.common.bundle;
 import dev.dong4j.zeka.kernel.common.support.OrdinalFormat;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.support.SystemInfoRt;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 国际化配置文件绑定基类</p>
@@ -171,8 +170,8 @@ public abstract class BundleBase {
      * @return the string
      * @since 1.4.0
      */
+    @SuppressWarnings("D")
     @Contract("null -> null")
-    @SuppressWarnings("java:S3776")
     public static String replaceMnemonicAmpersand(@Nullable String value) {
         if (value == null || value.indexOf('&') < 0) {
             return value;

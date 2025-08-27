@@ -2,8 +2,7 @@ package dev.dong4j.zeka.kernel.common.reflection.factory;
 
 import dev.dong4j.zeka.kernel.common.reflection.ReflectionException;
 import dev.dong4j.zeka.kernel.common.reflection.Reflector;
-import org.jetbrains.annotations.NotNull;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -8855120656740914948L;
 
     /**

@@ -2,13 +2,6 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.time.DateUtils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -26,6 +19,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DateUtils;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: </p>
@@ -1603,7 +1602,7 @@ public class DataTypeUtils {
             if (isDate(targetObject) && !isNumber(targetObject)) {
                 // 这里需要既是日期,又不是数字才进行转换,存在例如数据2011.11|2011这种既是数字又是时间的数据中抉择的问题,那么此处偏向与认为这是一个数字,不转换为日期显示
                 Date d = Object2Date.convert(targetObject);
-                SimpleDateFormat formatter = new SimpleDateFormat(JsonUtils.PATTERN_DATETIME);
+                SimpleDateFormat formatter = new SimpleDateFormat(Jsons.PATTERN_DATETIME);
                 ret = formatter.format(d);
             }
 
@@ -1642,7 +1641,7 @@ public class DataTypeUtils {
                     return (Date) targetObject;
                 } else if (targetObject instanceof String) {
                     try {
-                        return DateUtils.parseDate((String) targetObject, JsonUtils.PATTERN_DATETIME);
+                        return DateUtils.parseDate((String) targetObject, Jsons.PATTERN_DATETIME);
                     } catch (Exception ignored) {
                     }
                 }

@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.validation.constraints;
 
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -90,7 +90,7 @@ public @interface Json {
             if (!StringUtils.hasText(value)) {
                 return true;
             }
-            return JsonUtils.isJson(value);
+            return Jsons.isJson(value);
         }
     }
 

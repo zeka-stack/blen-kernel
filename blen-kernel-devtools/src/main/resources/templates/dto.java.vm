@@ -5,6 +5,7 @@ package ${cfg.package_dto};
     #end
 import dev.dong4j.zeka.kernel.common.base.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serial;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,6 +33,7 @@ import lombok.experimental.SuperBuilder;
 @Schema(name = "$!{table.comment}-数传传输对象")
 public class ${entity}DTO extends BaseDTO<Long> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     #foreach($field in ${table.fields})

@@ -2,6 +2,7 @@ package integration.vo;
 
 import dev.dong4j.zeka.kernel.common.base.BaseVO;
 import jakarta.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ import lombok.experimental.SuperBuilder;
 public class RoleVO extends BaseVO<Long> {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1746952410946351778L;
     /** Role */
     private String role;

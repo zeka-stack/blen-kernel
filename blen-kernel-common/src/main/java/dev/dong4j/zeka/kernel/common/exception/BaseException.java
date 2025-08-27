@@ -4,6 +4,7 @@ import dev.dong4j.zeka.kernel.common.api.BaseCodes;
 import dev.dong4j.zeka.kernel.common.api.IResultCode;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
+import java.io.Serial;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 public class BaseException extends BasicException {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /** 返回码 */
@@ -60,6 +62,7 @@ public class BaseException extends BasicException {
     public BaseException(int code, String msg) {
         super(msg);
         this.resultCode = new IResultCode() {
+            @Serial
             private static final long serialVersionUID = 2590640370242410124L;
 
             @Override
@@ -77,6 +80,7 @@ public class BaseException extends BasicException {
     public BaseException(String code, String msg) {
         super(code, msg);
         this.resultCode = new IResultCode() {
+            @Serial
             private static final long serialVersionUID = 2590640370242410124L;
 
             /**
@@ -169,6 +173,7 @@ public class BaseException extends BasicException {
     public BaseException(int code, String msg, Throwable cause) {
         super(msg, cause);
         this.resultCode = new IResultCode() {
+            @Serial
             private static final long serialVersionUID = 2590640370242410124L;
 
             @Override

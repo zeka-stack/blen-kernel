@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.start;
 
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import java.util.Map;
 import java.util.Properties;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +46,7 @@ public interface LauncherInitiation extends Ordered {
         map.putIfAbsent("spring.cloud.inetutils.ignored-interfaces[2]", "docker*");
 
         if (ConfigKit.isDebugModel()) {
-            LOG.debug("{} 组件默认配置:\n{}", this.getName(), JsonUtils.toJson(map, true));
+            LOG.debug("{} 组件默认配置:\n{}", this.getName(), Jsons.toJson(map, true));
         }
 
         defaultProperties.putAll(map);

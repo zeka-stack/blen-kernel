@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.Serial;
 import java.util.LinkedHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -19,6 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -5167631809472116969L;
     /** DEFAULT_LOAD_FACTOR */
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;

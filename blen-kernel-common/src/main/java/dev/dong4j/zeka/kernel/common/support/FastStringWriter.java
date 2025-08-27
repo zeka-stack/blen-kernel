@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import dev.dong4j.zeka.kernel.common.util.StringPool;
+import java.io.Writer;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
-
-import java.io.Writer;
 
 /**
  * <p>Description: 借助 StringBuilder 提供快读的字符串写出, 相比 jdk 的 StringWriter 非线程安全, 速度更快.  </p>
@@ -17,6 +17,7 @@ import java.io.Writer;
  */
 public class FastStringWriter extends Writer {
     /** Builder */
+    @Getter
     private final StringBuilder builder;
 
     /**
@@ -52,16 +53,6 @@ public class FastStringWriter extends Writer {
     }
 
     /**
-     * Gets the underlying StringBuilder.
-     *
-     * @return StringBuilder builder
-     * @since 1.0.0
-     */
-    public StringBuilder getBuilder() {
-        return this.builder;
-    }
-
-    /**
      * To string string
      *
      * @return the string
@@ -92,7 +83,7 @@ public class FastStringWriter extends Writer {
      * @since 1.0.0
      */
     @Override
-    public void write(char[] cbuilder, int off, int len) {
+    public void write(char @NotNull [] cbuilder, int off, int len) {
         if ((off < 0) || (off > cbuilder.length)
             || (len < 0) || ((off + len) > cbuilder.length) || ((off + len) < 0)) {
             throw new IndexOutOfBoundsException();
@@ -109,7 +100,7 @@ public class FastStringWriter extends Writer {
      * @since 1.0.0
      */
     @Override
-    public void write(String str) {
+    public void write(@NotNull String str) {
         this.builder.append(str);
     }
 

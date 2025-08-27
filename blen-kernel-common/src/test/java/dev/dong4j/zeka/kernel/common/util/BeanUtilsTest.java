@@ -1,5 +1,9 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,9 +12,6 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>Description:  </p>
@@ -33,6 +34,7 @@ class BeanUtilsTest {
     void test_1() {
         A a = BeanUtils.newInstance(A.class);
         a.setItems(new ArrayList<A.B>() {
+            @Serial
             private static final long serialVersionUID = 7635515497616076074L;
 
             {
@@ -56,6 +58,7 @@ class BeanUtilsTest {
 
 
         a.setItems(new ArrayList<A.B>() {
+            @Serial
             private static final long serialVersionUID = 7635515497616076074L;
 
             {
@@ -115,8 +118,9 @@ class BeanUtilsTest {
         @AllArgsConstructor
         @Accessors(chain = true)
         @ToString(callSuper = true)
-        static class B {
+        static class B implements Serializable {
             /** serialVersionUID */
+            @Serial
             private static final long serialVersionUID = 1564103911360804698L;
             /** 正北方向夹角 */
             private String agl;
@@ -154,8 +158,9 @@ class BeanUtilsTest {
         @AllArgsConstructor
         @Accessors(chain = true)
         @ToString(callSuper = true)
-        static class D {
+        static class D implements Serializable {
             /** serialVersionUID */
+            @Serial
             private static final long serialVersionUID = 1564103911360804698L;
             /** 正北方向夹角 */
             private String agl;

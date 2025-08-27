@@ -3,6 +3,7 @@ package dev.dong4j.zeka.kernel.common.exception;
 import dev.dong4j.zeka.kernel.common.context.Trace;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import java.io.PrintStream;
+import java.io.Serial;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @SuppressWarnings("java:S1165")
 public class BasicException extends RuntimeException {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 3076052230646484392L;
     /** 异常消息参数 */
     protected transient Object[] args;

@@ -9,6 +9,7 @@ import dev.dong4j.zeka.kernel.common.base.BaseForm;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.io.Serial;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,6 +37,7 @@ import lombok.experimental.SuperBuilder;
 @Schema(name = "$!{table.comment}-新增与更新")
 public class ${entity}Form extends BaseForm<Long> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     #foreach($field in ${table.fields})

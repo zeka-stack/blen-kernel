@@ -10,20 +10,20 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-
+import dev.dong4j.zeka.kernel.common.util.Jsons;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>Description:  </p>
@@ -35,7 +35,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 @Slf4j
-class JsonUtilsDateTest {
+class JsonsDateTest {
 
     /**
      * Test date 1
@@ -46,7 +46,7 @@ class JsonUtilsDateTest {
     void test_date_1() {
 
 
-        log.info("{}", JsonUtils.toJson(Demo.builder().date(new Date()).build()));
+        log.info("{}", Jsons.toJson(Demo.builder().date(new Date()).build()));
     }
 
     /**
@@ -56,7 +56,7 @@ class JsonUtilsDateTest {
      */
     @Test
     void test_date_2() {
-        Demo parse = JsonUtils.parse("{\"date\":\"2020-04-10 15:06:33\"}", Demo.class);
+        Demo parse = Jsons.parse("{\"date\":\"2020-04-10 15:06:33\"}", Demo.class);
         log.info("{}", parse);
     }
 
@@ -68,7 +68,7 @@ class JsonUtilsDateTest {
      */
     @Test
     void test_local_datetime_1() {
-        log.info("{}", JsonUtils.toJson(Demo.builder().localDateTime(LocalDateTime.now()).build()));
+        log.info("{}", Jsons.toJson(Demo.builder().localDateTime(LocalDateTime.now()).build()));
     }
 
     /**
@@ -80,7 +80,7 @@ class JsonUtilsDateTest {
     void test_local_datetime_2() {
         String json = "{\"date\":null,\"localDateTime\":\"2020-04-10T15:09:42.097\"}";
 
-        log.info("{}", JsonUtils.parse(json, Demo.class));
+        log.info("{}", Jsons.parse(json, Demo.class));
     }
 
     /**
@@ -90,9 +90,9 @@ class JsonUtilsDateTest {
      */
     @Test
     void test_local_datetime_3() {
-        ObjectMapper mapper = JsonUtils.getCopyMapper();
+        ObjectMapper mapper = Jsons.getCopyMapper();
         mapper.registerModule(new JavaTimeModule());
-        log.info("{}", JsonUtils.toJson(mapper, Demo.builder().localDateTime(LocalDateTime.now()).build()));
+        log.info("{}", Jsons.toJson(mapper, Demo.builder().localDateTime(LocalDateTime.now()).build()));
     }
 
     /**
@@ -104,9 +104,9 @@ class JsonUtilsDateTest {
     void test_local_datetime_4() {
         String json = "{\"date\":null,\"localDateTime\":\"2020-04-10 15:12:43\"}";
 
-        ObjectMapper mapper = JsonUtils.getCopyMapper();
+        ObjectMapper mapper = Jsons.getCopyMapper();
         mapper.registerModule(new JavaTimeModule());
-        log.info("{}", JsonUtils.parse(mapper, json, Demo.class));
+        log.info("{}", Jsons.parse(mapper, json, Demo.class));
     }
 
     /**
@@ -118,7 +118,7 @@ class JsonUtilsDateTest {
     void test_local_datetime_5() {
         String json = "{\"date\":null,\"localDateTime\":\"2020-04-10T15:09:42.097\"}";
 
-        log.info("{}", JsonUtils.parse(json, Demo.class));
+        log.info("{}", Jsons.parse(json, Demo.class));
     }
 
 
@@ -150,6 +150,7 @@ class JsonUtilsDateTest {
          */
         static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern(PATTERN_TIME);
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -8312156928465504942L;
 
         /**
@@ -184,6 +185,7 @@ class JsonUtilsDateTest {
     @AllArgsConstructor
     private static class Demo implements Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = -4584878817888466245L;
         /** Date */
         private Date date;

@@ -12,17 +12,16 @@ import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.Map;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springframework.util.StringUtils;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.Map;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p>Description: 使用 jackson 作为前端到后端参数反序列化时, 默认是按照索引值处理</p>
@@ -63,7 +62,7 @@ public class EntityEnumDeserializer<T extends SerializeEnum<?>> extends JsonDese
      */
     @Override
     public T deserialize(@NotNull JsonParser jsonParser, DeserializationContext ctx) throws IOException {
-        if (StringUtils.isEmpty(jsonParser.getText())) {
+        if (ObjectUtils.isEmpty(jsonParser.getText())) {
             return null;
         }
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);

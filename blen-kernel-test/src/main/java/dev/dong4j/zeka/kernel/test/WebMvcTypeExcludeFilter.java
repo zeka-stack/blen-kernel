@@ -32,7 +32,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizableTypeExcludeFilter<WebMvcTest> {
     /** 空控制器数组常量 */
-    private static final Class<?>[] NO_CONTROLLERS = new Class[0];
+    private static final Class<?>[] NO_CONTROLLERS = new Class<?>[0];
     /** 可选包含的类名数组 */
     private static final String[] OPTIONAL_INCLUDES = new String[]{"org.springframework.security.config.annotation.web.WebSecurityConfigurer"};
     /** 默认包含的组件集合 */
@@ -50,7 +50,7 @@ public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizabl
     WebMvcTypeExcludeFilter(Class<?> testClass) {
         super(testClass);
         // 从注解中获取controllers属性值
-        this.controllers = (Class[]) this.getAnnotation().getValue("controllers", Class[].class).orElse(NO_CONTROLLERS);
+        this.controllers = (Class<?>[]) this.getAnnotation().getValue("controllers", Class[].class).orElse(NO_CONTROLLERS);
     }
 
     /**
@@ -69,13 +69,13 @@ public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizabl
      * @return 组件包含集合
      */
     protected Set<Class<?>> getComponentIncludes() {
-        return new LinkedHashSet(Arrays.asList(this.controllers));
+        return new LinkedHashSet<>(Arrays.asList(this.controllers));
     }
 
     // 静态初始化块
     static {
         // 初始化默认包含的组件集合
-        Set<Class<?>> includes = new LinkedHashSet();
+        Set<Class<?>> includes = new LinkedHashSet<>();
         includes.add(ControllerAdvice.class);
         includes.add(JsonComponent.class);
         includes.add(WebMvcConfigurer.class);
@@ -100,7 +100,7 @@ public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizabl
 
         // 设置不可修改的组件集合
         DEFAULT_INCLUDES = Collections.unmodifiableSet(includes);
-        includes = new LinkedHashSet(DEFAULT_INCLUDES);
+        includes = new LinkedHashSet<>(DEFAULT_INCLUDES);
         includes.add(Controller.class);
         includes.add(RestController.class);
         DEFAULT_INCLUDES_AND_CONTROLLER = Collections.unmodifiableSet(includes);

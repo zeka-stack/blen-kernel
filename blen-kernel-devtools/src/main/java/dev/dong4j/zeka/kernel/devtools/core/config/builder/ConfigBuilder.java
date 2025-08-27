@@ -19,8 +19,9 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import dev.dong4j.zeka.kernel.common.util.CharPool;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
+import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.devtools.core.InjectionConfig;
 import dev.dong4j.zeka.kernel.devtools.core.config.ConstVal;
 import dev.dong4j.zeka.kernel.devtools.core.config.DataSourceConfig;
@@ -704,7 +705,7 @@ public class ConfigBuilder {
         if (!StringUtils.endsWith(parentDir, File.separator)) {
             parentDir += File.separator;
         }
-        packageName = packageName.replaceAll("\\.", StringPool.BACK_SLASH + File.separator);
+        packageName = packageName.replaceAll("\\.", CharPool.BACK_SLASH + File.separator);
         return parentDir + packageName;
     }
 

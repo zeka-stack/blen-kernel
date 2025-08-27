@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import dev.dong4j.zeka.kernel.common.api.R;
 import dev.dong4j.zeka.kernel.common.api.Result;
 import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
 
 /**
  * <p>Description: </p>
@@ -27,7 +26,7 @@ import java.math.BigDecimal;
  * @since 1.0.0
  */
 @Slf4j
-class JsonUtilsTest {
+class JsonsTest {
     /**
      * Test
      *
@@ -35,7 +34,7 @@ class JsonUtilsTest {
      */
     @Test
     void test() {
-        log.info("{}", JsonUtils.toJson(null));
+        log.info("{}", Jsons.toJson(null));
     }
 
     /**
@@ -47,13 +46,13 @@ class JsonUtilsTest {
     void test_1() {
         Result<?> result = R.succeed();
 
-        log.info("{}", JsonUtils.toJson(result));
-        log.info("{}", JsonUtils.toJson(result, true));
+        log.info("{}", Jsons.toJson(result));
+        log.info("{}", Jsons.toJson(result, true));
 
         String json = "{\"code\":2000,\"success\":true,\"data\":null,\"message\":\"处理成功\",\"traceId\":\"\"}";
 
-        log.info("{}", JsonUtils.toJson(json));
-        log.info("{}", JsonUtils.toJson(json, true));
+        log.info("{}", Jsons.toJson(json));
+        log.info("{}", Jsons.toJson(json, true));
 
     }
 
@@ -65,9 +64,9 @@ class JsonUtilsTest {
     @Test
     void test_2() {
         String json = "{}";
-        log.info("{}", JsonUtils.parse(json, User.class));
+        log.info("{}", Jsons.parse(json, User.class));
 
-        log.info("{}", JsonUtils.toJson(User.builder().username("xxxx").bigDecimal(null).build()));
+        log.info("{}", Jsons.toJson(User.builder().username("xxxx").bigDecimal(null).build()));
         log.info("{}", new Gson().toJson(User.builder().username("xxxx").bigDecimal(null).build()));
     }
 
@@ -85,7 +84,7 @@ class JsonUtilsTest {
             "\t\"message\": \"xxxx\",\n" +
             "\t\"data\": \"\"\n" +
             "}";
-        log.info("{}", JsonUtils.parse(JsonUtils.readTree(json).path("data").toString(), User.class));
+        log.info("{}", Jsons.parse(Jsons.readTree(json).path("data").toString(), User.class));
     }
 
     /**
@@ -101,7 +100,7 @@ class JsonUtilsTest {
             "\t\"message\": \"xxxx\",\n" +
             "\t\"data\": {}\n" +
             "}";
-        log.info("{}", JsonUtils.parse(JsonUtils.readTree(json).path("data").toString(), Void.class));
+        log.info("{}", Jsons.parse(Jsons.readTree(json).path("data").toString(), Void.class));
     }
 
     /**
@@ -250,7 +249,7 @@ class JsonUtilsTest {
      */
     @Test
     void test_trim() {
-        log.info("{}", JsonUtils.toJson(User.builder().username("  xxxx  ").bigDecimal(null).build()));
+        log.info("{}", Jsons.toJson(User.builder().username("  xxxx  ").bigDecimal(null).build()));
     }
 
     /**
@@ -278,11 +277,11 @@ class JsonUtilsTest {
      */
     private static <T> T convertor2(String str, TypeReference<T> clz) {
         log.debug("[{}]", str);
-        if (JsonUtils.readTree(str).path(R.SUCCESS).asBoolean()) {
-            return JsonUtils.parse(JsonUtils.readTree(str).path(R.DATA).toString(), clz);
+        if (Jsons.readTree(str).path(R.SUCCESS).asBoolean()) {
+            return Jsons.parse(Jsons.readTree(str).path(R.DATA).toString(), clz);
         } else {
             // 只要 code != 2000, 则全部抛出异常 unchecked 异常
-            throw new BaseException(JsonUtils.readTree(str).path(R.CODE).asInt(), JsonUtils.readTree(str).path(R.MESSAGE).asText());
+            throw new BaseException(Jsons.readTree(str).path(R.CODE).asInt(), Jsons.readTree(str).path(R.MESSAGE).asText());
         }
     }
 
@@ -311,22 +310,22 @@ class JsonUtilsTest {
      */
     @Test
     void test_bigdecimal1() {
-        ObjectMapper mapper = JsonUtils.getInstance();
+        ObjectMapper mapper = Jsons.getInstance();
         mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 
         Bean1 bean1 = new Bean1("haha1", new BigDecimal("1.00"));
         Bean2 bean2 = new Bean2("haha2", new BigDecimal("2.00"));
 
-        String bs1 = JsonUtils.toJson(bean1);
-        String bs2 = JsonUtils.toJson(bean2);
+        String bs1 = Jsons.toJson(bean1);
+        String bs2 = Jsons.toJson(bean2);
 
         log.info("{}", bs1);
         log.info("{}", bs2);
 
-        Bean1 b1 = JsonUtils.parse(bs1, Bean1.class);
+        Bean1 b1 = Jsons.parse(bs1, Bean1.class);
         log.info("{}", b1);
 
-        Bean2 b2 = JsonUtils.parse(bs2, Bean2.class);
+        Bean2 b2 = Jsons.parse(bs2, Bean2.class);
         log.info("{}", b2);
 
         Assertions.assertEquals(bean1.getP2(), b1.getP2());
@@ -338,22 +337,22 @@ class JsonUtilsTest {
      */
     @Test
     void test_bigdecimal2() {
-        ObjectMapper mapper = JsonUtils.getCopyMapper();
+        ObjectMapper mapper = Jsons.getCopyMapper();
         mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 
         Bean1 bean1 = new Bean1("haha1", new BigDecimal("1.00"));
         Bean2 bean2 = new Bean2("haha2", new BigDecimal("2.00"));
 
-        String bs1 = JsonUtils.toJson(mapper, bean1);
-        String bs2 = JsonUtils.toJson(mapper, bean2);
+        String bs1 = Jsons.toJson(mapper, bean1);
+        String bs2 = Jsons.toJson(mapper, bean2);
 
         log.info("{}", bs1);
         log.info("{}", bs2);
 
-        Bean1 b1 = JsonUtils.parse(mapper, bs1, Bean1.class);
+        Bean1 b1 = Jsons.parse(mapper, bs1, Bean1.class);
         log.info("{}", b1);
 
-        Bean2 b2 = JsonUtils.parse(mapper, bs2, Bean2.class);
+        Bean2 b2 = Jsons.parse(mapper, bs2, Bean2.class);
         log.info("{}", b2);
 
         Assertions.assertEquals(bean1.getP2(), b1.getP2());
@@ -367,7 +366,7 @@ class JsonUtilsTest {
             "\"userName\":\"jun.li-n@msxf.com\",\"realName\":\"张安\",\"mobilePhone\":\"13212345167\"}]}";
 
 
-        log.info("{}", JsonUtils.readTree(xx).path("orgUsers").toString());
+        log.info("{}", Jsons.readTree(xx).path("orgUsers").toString());
     }
 
     @Test

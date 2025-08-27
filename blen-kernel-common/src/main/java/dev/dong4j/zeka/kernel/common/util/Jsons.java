@@ -1,19 +1,23 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.json.PackageVersion;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.type.CollectionLikeType;
 import com.fasterxml.jackson.databind.type.MapType;
+import dev.dong4j.zeka.ZekaStack;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
@@ -39,19 +43,15 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
-import org.reflections.util.ClasspathHelper;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
-import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 /**
  * <p>Description: Jackson工具类
  * 系统中使用到 {@link ObjectMapper} 的地方定将用此类进行初始化, 提供 2 种方式:
- * 1. {@link JsonUtils#getInstance()};
- * 2. {@link JsonUtils#getCopyMapper()};
+ * 1. {@link Jsons#getInstance()};
+ * 2. {@link Jsons#getCopyMapper()};
  * 第一种方式将返回一个单例对象, 请确保在使用 {@link ObjectMapper} 的过程中不会修改 {@link ObjectMapper} 的配置, 如果需要定制化 {@link ObjectMapper},
  * 可使用第二种方式, 此方式将每次返回一个新的 {@link ObjectMapper} 对象.
  * 此类每个工具方法都进行过重载, 如果需要使用自定义 {@link ObjectMapper} 对 json 处理, 请调用具有 {@link ObjectMapper} 参数的工具方法.
@@ -66,7 +66,7 @@ import org.springframework.util.ObjectUtils;
 @Slf4j
 @UtilityClass
 @SuppressWarnings("checkstyle:MethodLimit")
-public class JsonUtils {
+public class Jsons {
     /** PATTERN_DATETIME */
     public static final String PATTERN_DATETIME = System.getProperty(ConfigKey.JSON_DATE_FORMAT, ConfigDefaultValue.DEFAULT_DATE_FORMAT);
     /** Empty array */
@@ -85,7 +85,7 @@ public class JsonUtils {
     }
 
     /**
-     * 获取单例对象, 这里只提供全局的基础配置, 让整个应用配置保持一致, 如果需要其他配置, 请使用 {@link JsonUtils#getCopyMapper()}.
+     * 获取单例对象, 这里只提供全局的基础配置, 让整个应用配置保持一致, 如果需要其他配置, 请使用 {@link Jsons#getCopyMapper()}.
      *
      * @return the instance
      * @since 1.0.0
@@ -246,7 +246,7 @@ public class JsonUtils {
         }
         // 如果是 string, 先转为 object 再转为 json, 避免转义字符
         if (object instanceof String) {
-            String str = StringUtils.trimWhitespace((String) object);
+            String str = ((String) object).strip();
             if (isJson(mapper, str)) {
                 object = parse(str, Object.class);
             } else {
@@ -351,7 +351,7 @@ public class JsonUtils {
      */
     @NotNull
     public static JsonNode readTree(@NotNull ObjectMapper mapper, InputStream in) {
-        Assert.notNull(in, "inputstream 不能为空");
+        Assertions.notNull(in, "inputstream 不能为空");
         try {
             return mapper.readTree(in);
         } catch (IOException e) {
@@ -381,7 +381,7 @@ public class JsonUtils {
      */
     @NotNull
     public static JsonNode readTree(@NotNull ObjectMapper mapper, byte[] content) {
-        Assert.notNull(content, "byte[] 不能为空");
+        Assertions.notNull(content, "byte[] 不能为空");
         try {
             return mapper.readTree(content);
         } catch (IOException e) {
@@ -411,7 +411,7 @@ public class JsonUtils {
      */
     @NotNull
     public static JsonNode readTree(@NotNull ObjectMapper mapper, JsonParser jsonParser) {
-        Assert.notNull(jsonParser, "jsonParser 不能为空");
+        Assertions.notNull(jsonParser, "jsonParser 不能为空");
         try {
             return mapper.readTree(jsonParser);
         } catch (IOException e) {
@@ -480,7 +480,7 @@ public class JsonUtils {
         if (Void.class.getTypeName().equals(valueType.getTypeName())) {
             return null;
         }
-        Assert.notNull(content, MESSAGE);
+        Assertions.notNull(content, MESSAGE);
         try {
             return mapper.readValue(content, valueType);
         } catch (IOException e) {
@@ -512,7 +512,7 @@ public class JsonUtils {
      * @since 1.0.0
      */
     public static <T> T parse(@NotNull ObjectMapper mapper, InputStream in, Class<T> valueType) {
-        Assert.notNull(in, MESSAGE);
+        Assertions.notNull(in, MESSAGE);
         try {
             return mapper.readValue(in, valueType);
         } catch (IOException e) {
@@ -546,7 +546,7 @@ public class JsonUtils {
      */
     @NotNull
     public static <T> T parse(@NotNull ObjectMapper mapper, byte[] content, TypeReference<T> typeReference) {
-        Assert.notNull(content, MESSAGE);
+        Assertions.notNull(content, MESSAGE);
         try {
             return mapper.readValue(content, typeReference);
         } catch (IOException e) {
@@ -613,7 +613,7 @@ public class JsonUtils {
     @SuppressWarnings("unchecked")
     public static <T> T parse(@NotNull ObjectMapper mapper, String jsonString, Object typeReference) {
         Assertions.notBlank(jsonString, MESSAGE);
-        Assert.notNull(typeReference, "必须指定转换类型");
+        Assertions.notNull(typeReference, "必须指定转换类型");
         try {
             if (typeReference instanceof TypeReference) {
                 return mapper.readValue(jsonString, (TypeReference<T>) typeReference);
@@ -666,7 +666,7 @@ public class JsonUtils {
      * @since 1.0.0
      */
     public static <T> T parse(@NotNull ObjectMapper mapper, InputStream in, TypeReference<T> typeReference) {
-        Assert.notNull(in, MESSAGE);
+        Assertions.notNull(in, MESSAGE);
         try {
             return mapper.readValue(in, typeReference);
         } catch (IOException e) {
@@ -889,6 +889,44 @@ public class JsonUtils {
     }
 
     /**
+     * To map
+     *
+     * @param <K>        parameter
+     * @param <V>        parameter
+     * @param content    content
+     * @param keyClass   key class
+     * @param valueClass value class
+     * @return the map
+     * @since 2024.2.0
+     */
+    @NotNull
+    public static <K, V> Map<K, V> toMap(Object content, Class<?> keyClass, Class<?> valueClass) {
+        return toMap(getInstance(), content, keyClass, valueClass);
+    }
+
+    /**
+     * To map
+     *
+     * @param <K>        parameter
+     * @param <V>        parameter
+     * @param mapper     mapper
+     * @param content    content
+     * @param keyClass   key class
+     * @param valueClass value class
+     * @return the map
+     * @since 2024.2.0
+     */
+    public static <K, V> Map<K, V> toMap(@NotNull ObjectMapper mapper, Object content, Class<?> keyClass, Class<?> valueClass) {
+        if (ObjectUtil.isEmpty(content)) {
+            return Collections.emptyMap();
+        }
+        try {
+            return mapper.readValue(toJson(content), getMapType(keyClass, valueClass));
+        } catch (IOException e) {
+            throw Exceptions.unchecked(e);
+        }
+    }
+    /**
      * 读取集合
      *
      * @param <K>        泛型
@@ -1047,21 +1085,23 @@ public class JsonUtils {
         private static final Locale CHINA = Locale.CHINA;
 
         static {
-            ObjectMapper objectMapper = new ObjectMapper();
+            JsonMapper.Builder builder = JsonMapper.builder();
+            // 允许 json 字符串包含非引号控制字符 (值小于32的ASCII字符, 包含制表符和换行符)
+            builder.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS, true);
+            // 可解析反斜杠引用的所有字符, 默认: false, 不可解析
+            builder.configure(JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
+            ObjectMapper objectMapper = builder.build();
+
             objectMapper.setLocale(CHINA);
             // 序列化时, 日期的统一格式 (JVM 参数优先)
             objectMapper.setDateFormat(new SimpleDateFormat(PATTERN_DATETIME, CHINA));
             // 去掉默认的时间戳格式
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             // 设置为中国上海时区
-            String zone = System.getProperty(ConfigKey.JSON_TIME_ZONE, ConfigDefaultValue.DEFAULT_TIME_ZONE);
+            String zone = System.getProperty(ConfigKey.JSON_TIME_ZONE, ConfigDefaultValue.TIME_ZONE);
             objectMapper.setTimeZone(TimeZone.getTimeZone(zone));
             // 单引号
             objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-            // 可解析反斜杠引用的所有字符, 默认: false, 不可解析
-            objectMapper.configure(JsonParser.Feature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, true);
-            // 允许 json 字符串包含非引号控制字符 (值小于32的ASCII字符, 包含制表符和换行符)
-            objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
             // 忽略 json 字符串中不识别的属性
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             // 设置 Jackson 序列化时只包含不为空的字段 objectMapper.setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
@@ -1100,12 +1140,14 @@ public class JsonUtils {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
 
-            ConfigurationBuilder config = new ConfigurationBuilder();
-            config.filterInputsBy(new FilterBuilder().includePackage(ConfigDefaultValue.BASE_PACKAGES));
-            config.addUrls(ClasspathHelper.forPackage(ConfigDefaultValue.BASE_PACKAGES));
-            config.setScanners(new TypeAnnotationsScanner(), new SubTypesScanner(false));
-            config.setExpandSuperTypes(false);
-            Reflections reflections = new Reflections(config);
+            // 扫描框架包和业务包
+            ConfigurationBuilder build = ConfigurationBuilder.build(ZekaStack.class.getPackageName(),
+                ConfigDefaultValue.BASE_PACKAGES,
+                Scanners.SubTypes,
+                Scanners.TypesAnnotated);
+
+            build.setExpandSuperTypes(false);
+            Reflections reflections = new Reflections(build);
 
             // 扫描 JsonTypeName 注解, 注册所有子类
             Set<Class<?>> subTypes = reflections.getTypesAnnotatedWith(JsonTypeName.class);

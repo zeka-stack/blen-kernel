@@ -11,7 +11,7 @@ import dev.dong4j.zeka.kernel.auth.entity.ZekaClaims;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
 import dev.dong4j.zeka.kernel.common.enums.serialize.EntityEnumDeserializer;
 import dev.dong4j.zeka.kernel.common.enums.serialize.EntityEnumSerializer;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -54,7 +54,7 @@ public class JwtUtils {
     private static final String ERROR_MESSAGE = "解析 token 失败: {}, token = [{}]";
 
     static {
-        MAPPER = JsonUtils.getCopyMapper();
+        MAPPER = Jsons.getCopyMapper();
         SimpleModule simpleModule = new SimpleModule("EntityEnum-Converter", PackageVersion.VERSION);
         // 设置枚举序列化/反序列化处理器
         simpleModule.addDeserializer(SerializeEnum.class, new EntityEnumDeserializer<>());

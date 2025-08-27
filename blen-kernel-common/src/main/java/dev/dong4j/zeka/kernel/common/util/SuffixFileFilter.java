@@ -1,12 +1,12 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.Serial;
+import java.io.Serializable;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.Assert;
-
-import java.io.File;
-import java.io.FileFilter;
-import java.io.Serializable;
 
 /**
  * <p>Description: 文件后缀过滤器 </p>
@@ -20,6 +20,7 @@ import java.io.Serializable;
 public class SuffixFileFilter implements FileFilter, Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3389157631240246157L;
 
     /** Suffixes */

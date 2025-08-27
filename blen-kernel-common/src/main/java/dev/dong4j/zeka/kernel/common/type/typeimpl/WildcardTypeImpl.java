@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.type.typeimpl;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.Arrays;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -29,7 +28,7 @@ public class WildcardTypeImpl implements WildcardType {
      * @param upper upper
      * @since 1.0.0
      */
-    public WildcardTypeImpl(Class[] lower, Class[] upper) {
+    public WildcardTypeImpl(Class<?>[] lower, Class<?>[] upper) {
         this.lower = lower != null ? lower : new Class[0];
         this.upper = upper != null ? upper : new Class[0];
 
@@ -56,9 +55,9 @@ public class WildcardTypeImpl implements WildcardType {
      * @param args args
      * @since 1.0.0
      */
-    private void checkArgs(@NotNull Class[] args) {
+    private void checkArgs(@NotNull Class<?>[] args) {
         for (int i = 1; i < args.length; i++) {
-            Class clazz = args[i];
+            Class<?> clazz = args[i];
             if (!clazz.isInterface()) {
                 throw new IllegalArgumentException(clazz.getName() + " not a interface!");
             }
@@ -72,7 +71,7 @@ public class WildcardTypeImpl implements WildcardType {
      * @since 1.0.0
      */
     @Override
-    public Type[] getUpperBounds() {
+    public Type @NotNull [] getUpperBounds() {
         return this.upper;
     }
 
@@ -83,7 +82,7 @@ public class WildcardTypeImpl implements WildcardType {
      * @since 1.0.0
      */
     @Override
-    public Type[] getLowerBounds() {
+    public Type @NotNull [] getLowerBounds() {
         return this.lower;
     }
 
@@ -150,7 +149,7 @@ public class WildcardTypeImpl implements WildcardType {
      * @since 1.0.0
      */
     @NotNull
-    private String getTypeString(String prefix, @NotNull Class[] type) {
+    private String getTypeString(String prefix, @NotNull Class<?>[] type) {
         StringBuilder sb = new StringBuilder();
         sb.append(prefix);
 

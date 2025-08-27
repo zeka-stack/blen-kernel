@@ -1,9 +1,9 @@
 package dev.dong4j.zeka.kernel.notify.entity;
 
-import lombok.Data;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
  * <p>Description:  </p>
@@ -18,6 +18,7 @@ import java.util.Date;
 public class OperateLog implements Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -4589076318641916315L;
     /** Username */
     private String username;

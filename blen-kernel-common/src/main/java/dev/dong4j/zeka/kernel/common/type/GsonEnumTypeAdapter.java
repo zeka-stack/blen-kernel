@@ -10,13 +10,12 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Type;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -71,7 +70,7 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
         if (type instanceof Class) {
             // 处理为 json 对象的情况
             if (jsonElement instanceof JsonObject) {
-                return JsonUtils.parse(jsonElement.toString(), type);
+                return Jsons.parse(jsonElement.toString(), type);
             }
             String key;
             if (((JsonPrimitive) jsonElement).isString()) {
@@ -86,8 +85,8 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
             }
 
             // 处理时 json 字符串的情况
-            if (JsonUtils.isJson(key)) {
-                return JsonUtils.parse(key, type);
+            if (Jsons.isJson(key)) {
+                return Jsons.parse(key, type);
             }
 
             E result = this.enumMap.get(key);
@@ -113,6 +112,6 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
      */
     @Override
     public JsonElement serialize(E e, Type type, JsonSerializationContext jsonSerializationContext) {
-        return new JsonPrimitive(JsonUtils.toJson(e));
+        return new JsonPrimitive(Jsons.toJson(e));
     }
 }

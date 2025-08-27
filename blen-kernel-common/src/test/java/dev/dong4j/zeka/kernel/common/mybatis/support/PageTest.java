@@ -2,7 +2,7 @@ package dev.dong4j.zeka.kernel.common.mybatis.support;
 
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import dev.dong4j.zeka.kernel.common.api.R;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ class PageTest {
             .setCurrent(2)
             .addOrder(OrderItem.asc("id"))
             .addOrder(OrderItem.desc("createTime"));
-        log.info("{}", JsonUtils.toJson(R.succeed(page), true));
+        log.info("{}", Jsons.toJson(R.succeed(page), true));
     }
 
 }

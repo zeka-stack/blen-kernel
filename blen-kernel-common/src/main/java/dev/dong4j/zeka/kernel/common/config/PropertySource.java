@@ -1,9 +1,6 @@
 package dev.dong4j.zeka.kernel.common.config;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Unmodifiable;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 /**
  * <p>Description:  </p>
@@ -61,6 +61,7 @@ public interface PropertySource {
      */
     class Comparator implements java.util.Comparator<PropertySource>, Serializable {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = 1L;
 
         /**

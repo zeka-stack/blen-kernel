@@ -2,17 +2,6 @@ package dev.dong4j.zeka.kernel.spi.compiler.support;
 
 
 import dev.dong4j.zeka.kernel.spi.utils.SpiClassUtils;
-import jakarta.tools.DiagnosticCollector;
-import jakarta.tools.FileObject;
-import jakarta.tools.ForwardingJavaFileManager;
-import jakarta.tools.JavaCompiler;
-import jakarta.tools.JavaFileManager;
-import jakarta.tools.JavaFileObject;
-import jakarta.tools.JavaFileObject.Kind;
-import jakarta.tools.SimpleJavaFileObject;
-import jakarta.tools.StandardJavaFileManager;
-import jakarta.tools.StandardLocation;
-import jakarta.tools.ToolProvider;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,8 +11,6 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,6 +20,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.tools.DiagnosticCollector;
+import javax.tools.FileObject;
+import javax.tools.ForwardingJavaFileManager;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileManager;
+import javax.tools.JavaFileObject;
+import javax.tools.JavaFileObject.Kind;
+import javax.tools.SimpleJavaFileObject;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.StandardLocation;
+import javax.tools.ToolProvider;
 
 /**
  * <p>Description: </p>
@@ -87,12 +85,7 @@ public class JdkCompiler extends AbstractCompiler {
                 throw new IllegalStateException(e.getMessage(), e);
             }
         }
-        classLoader = AccessController.doPrivileged(new PrivilegedAction<ClassLoaderImpl>() {
-            @Override
-            public ClassLoaderImpl run() {
-                return new ClassLoaderImpl(loader);
-            }
-        });
+        classLoader = new ClassLoaderImpl(loader);
         javaFileManager = new JavaFileManagerImpl(manager, classLoader);
     }
 

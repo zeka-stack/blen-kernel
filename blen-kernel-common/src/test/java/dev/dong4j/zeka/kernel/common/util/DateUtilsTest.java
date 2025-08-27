@@ -1,9 +1,8 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.Date;
 
 /**
  * <p>Description: </p>
@@ -68,6 +67,6 @@ class DateUtilsTest {
 
     @Test
     void test_5() {
-        log.info("{}", JsonUtils.toJson(DateUtils.plusDays(new Date(), -7)));
+        log.info("{}", Jsons.toJson(DateUtils.plusDays(new Date(), -7)));
     }
 }

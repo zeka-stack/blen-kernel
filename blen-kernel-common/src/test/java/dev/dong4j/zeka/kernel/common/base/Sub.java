@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.base;
 
+import java.io.Serial;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,7 @@ import lombok.experimental.SuperBuilder;
 public class Sub extends Super {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 9159605210799491401L;
     /** Nick name */
     private String nickName;

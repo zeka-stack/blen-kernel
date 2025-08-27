@@ -8,17 +8,17 @@ import dev.dong4j.zeka.kernel.auth.enums.UserType;
 import dev.dong4j.zeka.kernel.auth.util.JwtUtils;
 import dev.dong4j.zeka.kernel.common.exception.BasicException;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>Description: 认证用户实体</p>
@@ -36,6 +36,7 @@ import java.util.UUID;
 @JsonTypeName(value = "authorizationUser")
 public class AuthorizationUser implements CurrentUser, Serializable {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -4911273233539916137L;
     /** USER_NAME */
     public static final String USER_NAME = "username";

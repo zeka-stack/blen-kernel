@@ -1,14 +1,14 @@
 package dev.dong4j.zeka.kernel.common.base;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 /**
  * <p>Description: </p>
@@ -28,6 +28,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 public abstract class AbstractBaseEntity<T extends Serializable> implements IBaseEntity<T> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -3550589993340031894L;
 
     /** 实体 Id */

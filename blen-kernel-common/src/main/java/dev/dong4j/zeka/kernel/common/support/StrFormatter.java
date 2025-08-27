@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.support;
 
 import dev.dong4j.zeka.kernel.common.util.CharPool;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
+import java.text.MessageFormat;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.StringUtils;
-
-import java.text.MessageFormat;
 
 /**
  * <p>Description: 字符串格式化 </p>
@@ -35,7 +34,7 @@ public class StrFormatter {
      * @return 结果 string
      * @since 1.0.0
      */
-    @SuppressWarnings("checkstyle:ReturnCount")
+    @SuppressWarnings({"checkstyle:ReturnCount", "D"})
     public static String format(String strPattern, Object... argArray) {
         boolean isEmpty = argArray == null || argArray.length == 0;
         if (!StringUtils.hasText(strPattern) || isEmpty) {

@@ -7,10 +7,6 @@ import dev.dong4j.zeka.kernel.common.reflection.invoker.Invoker;
 import dev.dong4j.zeka.kernel.common.reflection.invoker.MethodInvoker;
 import dev.dong4j.zeka.kernel.common.reflection.invoker.SetFieldInvoker;
 import dev.dong4j.zeka.kernel.common.reflection.property.PropertyNamer;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -28,6 +24,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import lombok.Getter;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This class represents a cached set of class definition information that
@@ -39,9 +39,11 @@ import java.util.Map.Entry;
  * @date 2020.04.12 11:54
  * @since 1.0.0
  */
+@SuppressWarnings("DuplicatedCode")
 public class Reflector {
 
-    /** Type */
+    /** Gets the name of the class the instance provides information for. */
+    @Getter
     private final Class<?> type;
     /** Readable property names */
     private final String[] readablePropertyNames;
@@ -88,16 +90,20 @@ public class Reflector {
      * @return If can control member accessible, it return {@literal true}
      * @since 3.5.0
      */
+    @SuppressWarnings("removal")
     public static boolean canControlMemberAccessible() {
+        // 在 JDK 17+ 中，SecurityManager 已被弃用
+        // 如果没有设置 SecurityManager，直接返回 true
+        // 否则尝试检查权限（为了向后兼容）
         try {
             SecurityManager securityManager = System.getSecurityManager();
-            if (null != securityManager) {
+            if (securityManager != null) {
                 securityManager.checkPermission(new ReflectPermission("suppressAccessChecks"));
             }
+            return true;
         } catch (SecurityException e) {
             return false;
         }
-        return true;
     }
 
     /**
@@ -132,7 +138,7 @@ public class Reflector {
      * @param conflictingGetters conflicting getters
      * @since 1.0.0
      */
-    @SuppressWarnings("checkstyle:EmptyBlock")
+    @SuppressWarnings({"checkstyle:EmptyBlock", "D"})
     private void resolveGetterConflicts(@NotNull Map<String, List<Method>> conflictingGetters) {
         for (Entry<String, List<Method>> entry : conflictingGetters.entrySet()) {
             Method winner = null;
@@ -454,16 +460,6 @@ public class Reflector {
             sb.append(i == 0 ? ':' : ',').append(parameters[i].getName());
         }
         return sb.toString();
-    }
-
-    /**
-     * Gets the name of the class the instance provides information for.
-     *
-     * @return The class name
-     * @since 1.0.0
-     */
-    public Class<?> getType() {
-        return this.type;
     }
 
     /**

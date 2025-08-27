@@ -1,13 +1,13 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import dev.dong4j.zeka.kernel.common.util.Tools;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.LinkedCaseInsensitiveMap;
-
+import java.io.Serial;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
 /**
  * <p>Description: 链式 map (linkedmap) key 必须为 string </p>
@@ -21,6 +21,7 @@ import java.util.Date;
 @SuppressWarnings("all")
 public final class ChainMap extends LinkedCaseInsensitiveMap<Object> {
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = 3992810369797036508L;
 
     /**

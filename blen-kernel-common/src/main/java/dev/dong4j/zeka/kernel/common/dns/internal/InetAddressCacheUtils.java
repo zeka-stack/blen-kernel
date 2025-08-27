@@ -6,11 +6,10 @@ import dev.dong4j.zeka.kernel.common.dns.DnsCacheManipulator;
 import dev.dong4j.zeka.kernel.common.dns.DnsCacheManipulatorException;
 import dev.dong4j.zeka.kernel.common.enums.ZekaEnv;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.common.util.JustOnceLogger;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import jakarta.annotation.Nullable;
-import jakarta.annotation.concurrent.GuardedBy;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -21,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.concurrent.GuardedBy;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -62,7 +62,7 @@ public final class InetAddressCacheUtils {
         String message = "加载自定义 DNS 配置: ";
         try {
             DnsCacheManipulator.loadDnsCacheConfig();
-            log.info("{}", JsonUtils.toJson(DnsCacheManipulator.listDnsCache(), true));
+            log.info("{}", Jsons.toJson(DnsCacheManipulator.listDnsCache(), true));
         } catch (DnsCacheManipulatorException e) {
             message = "加载默认 DNS 配置: ";
 
@@ -78,7 +78,7 @@ public final class InetAddressCacheUtils {
             JustOnceLogger.printOnce(InetAddressCacheUtils.class.getName(),
                 StringUtils.format(message,
                     profile,
-                    JsonUtils.toJson(DnsCacheManipulator.listDnsCache(), true)));
+                    Jsons.toJson(DnsCacheManipulator.listDnsCache(), true)));
         }
     }
 

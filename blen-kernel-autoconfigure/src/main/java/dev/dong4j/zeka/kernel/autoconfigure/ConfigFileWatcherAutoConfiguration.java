@@ -7,12 +7,12 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 public class ConfigFileWatcherAutoConfiguration {
 
     /**
@@ -22,6 +22,7 @@ public class ConfigFileWatcherAutoConfiguration {
      * @param customizersProvider 定制器提供商
      * @return 聪明初始化单例
      */
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Bean
     @ConditionalOnMissingBean(ConfigFileWatcherRunner.class)
     public SmartInitializingSingleton configFileWatcherSmartInit(ConfigFileWatcherRunner runner,

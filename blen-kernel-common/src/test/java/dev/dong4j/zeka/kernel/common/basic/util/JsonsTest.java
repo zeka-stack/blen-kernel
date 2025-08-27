@@ -6,13 +6,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import dev.dong4j.zeka.kernel.common.util.JsonUtils;
-import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.api.Test;
-
+import dev.dong4j.zeka.kernel.common.util.Jsons;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -27,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @date 2020.02.19 02:37
  * @since 1.0.0
  */
-public class JsonUtilsTest {
+public class JsonsTest {
     /** userString */
     private static final String userString =
         "{\"id\":null,\"username\":\"admin\",\"password\":\"admin\"}";
@@ -141,8 +140,8 @@ public class JsonUtilsTest {
             "        }\n" +
             "    }\n" +
             "}_____xxxxx";
-        System.out.println(JsonUtils.toJson(str));
-        assertFalse(JsonUtils.isJson(str));
+        System.out.println(Jsons.toJson(str));
+        assertFalse(Jsons.isJson(str));
     }
 
     /**
@@ -166,8 +165,8 @@ public class JsonUtilsTest {
             "        }____xxxxx\n" +
             "    }\n" +
             "}";
-        System.out.println(JsonUtils.toJson(str));
-        assertTrue(JsonUtils.isJson(str));
+        System.out.println(Jsons.toJson(str));
+        assertTrue(Jsons.isJson(str));
     }
 
     /**
@@ -188,9 +187,9 @@ public class JsonUtilsTest {
         jsonMap.put("kkkkkkkkk2", "kkkkkkkkkkkk");
         jsonMap1.put("jmap2", jsonMap2);
         jsonMap.put("key5", jsonMap1);
-        String json = JsonUtils.toJson(jsonMap);
+        String json = Jsons.toJson(jsonMap);
         System.out.println(json);
-        assertTrue(JsonUtils.isJson(json));
+        assertTrue(Jsons.isJson(json));
     }
 
     /**

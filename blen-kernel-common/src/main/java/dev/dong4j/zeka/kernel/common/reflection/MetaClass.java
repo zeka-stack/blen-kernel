@@ -4,15 +4,14 @@ import dev.dong4j.zeka.kernel.common.reflection.invoker.GetFieldInvoker;
 import dev.dong4j.zeka.kernel.common.reflection.invoker.Invoker;
 import dev.dong4j.zeka.kernel.common.reflection.invoker.MethodInvoker;
 import dev.dong4j.zeka.kernel.common.reflection.property.PropertyTokenizer;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: </p>
@@ -76,7 +75,7 @@ public final class MetaClass {
      */
     public String findProperty(String name) {
         StringBuilder prop = this.buildProperty(name, new StringBuilder());
-        return prop.length() > 0 ? prop.toString() : null;
+        return !prop.isEmpty() ? prop.toString() : null;
     }
 
     /**
@@ -172,7 +171,7 @@ public final class MetaClass {
             Type returnType = this.getGenericGetterType(prop.getName());
             if (returnType instanceof ParameterizedType) {
                 Type[] actualTypeArguments = ((ParameterizedType) returnType).getActualTypeArguments();
-                if (actualTypeArguments != null && actualTypeArguments.length == 1) {
+                if (actualTypeArguments.length == 1) {
                     returnType = actualTypeArguments[0];
                     if (returnType instanceof Class) {
                         type = (Class<?>) returnType;

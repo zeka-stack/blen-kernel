@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.spi.utils;
 
+import java.io.Serial;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Serializable {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -8672117787651310382L;
 
     /** PRESENT */

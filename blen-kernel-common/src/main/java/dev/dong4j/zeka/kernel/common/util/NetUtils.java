@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p>Description: INet 相关工具 </p>
@@ -101,14 +101,14 @@ public class NetUtils extends INetUtils {
      * @return ip string
      * @since 1.0.0
      */
-    @SuppressWarnings("PMD.UndefineMagicConstantRule")
+    @SuppressWarnings({"PMD.UndefineMagicConstantRule", "D"})
     public static String ip(@NotNull HttpServletRequest request) {
         String ipAddress;
         ipAddress = request.getHeader("x-forwarded-for");
-        if (StringUtils.isEmpty(ipAddress)) {
+        if (ObjectUtils.isEmpty(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");
         }
-        if (StringUtils.isEmpty(ipAddress)) {
+        if (ObjectUtils.isEmpty(ipAddress)) {
             ipAddress = request.getRemoteAddr();
             if (LOCAL_HOST.equals(ipAddress)) {
                 // 根据网卡取本机配置的IP
@@ -126,7 +126,7 @@ public class NetUtils extends INetUtils {
                 ipAddress = ipAddress.substring(0, ipAddress.indexOf(StringPool.COMMA));
             }
         }
-        if (StringUtils.isEmpty(ipAddress)) {
+        if (ObjectUtils.isEmpty(ipAddress)) {
             return "NONE";
         }
         return ipAddress;

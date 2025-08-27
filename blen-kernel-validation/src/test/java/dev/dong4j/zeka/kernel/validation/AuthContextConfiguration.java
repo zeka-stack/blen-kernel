@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.validation;
 
 import dev.dong4j.zeka.kernel.test.ZekaTest;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 
 /**
  * <p>Description: </p>
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019.12.25 01:22
  * @since 1.0.0
  */
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @ZekaTest(classes = AuthContextConfiguration.class)
 public class AuthContextConfiguration {
 }

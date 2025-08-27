@@ -14,6 +14,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import dev.dong4j.zeka.kernel.common.util.Charsets;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.Collections;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.http.HttpOutputMessage;
@@ -24,12 +28,6 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.util.TypeUtils;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * <p>Description: 分读写的 json 消息 处理器 </p>
@@ -107,27 +105,6 @@ public abstract class AbstractReadWriteJackson2HttpMessageConverter extends Abst
     }
 
     /**
-     * Can write boolean
-     *
-     * @param clazz     clazz
-     * @param mediaType media type
-     * @return the boolean
-     * @since 1.0.0
-     */
-    @Override
-    public boolean canWrite(@NotNull Class<?> clazz, @Nullable MediaType mediaType) {
-        if (!this.canWrite(mediaType)) {
-            return false;
-        }
-        AtomicReference<Throwable> causeRef = new AtomicReference<>();
-        if (this.objectMapper.canSerialize(clazz, causeRef)) {
-            return true;
-        }
-        this.logWarningIfNecessary(clazz, causeRef.get());
-        return false;
-    }
-
-    /**
      * 最终的序列化逻辑
      *
      * @param object        object
@@ -153,8 +130,7 @@ public abstract class AbstractReadWriteJackson2HttpMessageConverter extends Abst
             FilterProvider filters = null;
             JavaType javaType = null;
 
-            if (object instanceof MappingJacksonValue) {
-                MappingJacksonValue container = (MappingJacksonValue) object;
+            if (object instanceof MappingJacksonValue container) {
                 value = container.getValue();
                 serializationView = container.getSerializationView();
                 filters = container.getFilters();

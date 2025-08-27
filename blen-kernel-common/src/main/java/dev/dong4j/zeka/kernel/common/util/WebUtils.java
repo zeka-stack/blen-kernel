@@ -191,7 +191,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
         response.setCharacterEncoding(StringPool.UTF_8);
         response.setContentType(contentType);
         try (PrintWriter out = response.getWriter()) {
-            out.append(JsonUtils.toJson(result));
+            out.append(Jsons.toJson(result));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
@@ -287,7 +287,6 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      *
      * @param request request
      * @return String request str
-     * @throws IOException IOException
      * @since 1.0.0
      */
     public static String getRequestStr(@NotNull HttpServletRequest request) {
@@ -306,7 +305,6 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      * @param request request
      * @param buffer  buffer
      * @return String request str
-     * @throws IOException IOException
      * @since 1.0.0
      */
     @SneakyThrows
@@ -331,7 +329,6 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      *
      * @param request request
      * @return byte[] byte [ ]
-     * @throws IOException IOException
      * @since 1.0.0
      */
     @SneakyThrows
@@ -394,7 +391,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      */
     @SuppressWarnings(value = {"PMD.UndefineMagicConstantRule", "checkstyle:ReturnCount"})
     public static boolean isIpAddr(String addr) {
-        if (StringUtils.isEmpty(addr)) {
+        if (ObjectUtils.isEmpty(addr)) {
             return false;
         }
         String[] ips = StringUtils.split(addr, StringPool.DOT);
@@ -421,6 +418,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      * @return boolean boolean
      * @since 1.0.0
      */
+    @SuppressWarnings("D")
     public static boolean isRobot(@NotNull HttpServletRequest req) {
         String ua = req.getHeader("user-agent");
         if (StringUtils.isBlank(ua)) {
@@ -723,6 +721,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      * @return the map
      * @since 1.0.0
      */
+    @SuppressWarnings("D")
     public static @NotNull Map<String, Object> buildQueryParamsMap(@NotNull HttpServletRequest request) {
         ContentCachingRequestWrapper cachingRequestWrapper = new ContentCachingRequestWrapper(request);
         Map<String, Object> params = Maps.newHashMap();
@@ -744,7 +743,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
                             tmpbuff.append(value.trim()).append(",");
                         }
                     }
-                    if (tmpbuff.length() > 0) {
+                    if (!tmpbuff.isEmpty()) {
                         tmpbuff.deleteCharAt(tmpbuff.length() - 1);
                         params.put(name, tmpbuff.toString());
                     }

@@ -1,9 +1,6 @@
 package dev.dong4j.zeka.kernel.common.support;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.StringUtils;
-
+import java.io.Serial;
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.Format;
@@ -11,6 +8,9 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.Locale;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>Description: 占位符替换 </p>
@@ -101,6 +101,7 @@ public class OrdinalFormat {
      */
     private static class EnglishOrdinalFormat extends NumberFormat {
         /** serialVersionUID */
+        @Serial
         private static final long serialVersionUID = 6915075795861536376L;
 
         /**

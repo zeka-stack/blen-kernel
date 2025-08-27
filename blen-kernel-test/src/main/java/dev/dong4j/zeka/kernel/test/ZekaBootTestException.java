@@ -1,5 +1,7 @@
 package dev.dong4j.zeka.kernel.test;
 
+import java.io.Serial;
+
 /**
  * <p>Description: test 异常 </p>
  *
@@ -12,6 +14,7 @@ package dev.dong4j.zeka.kernel.test;
 class ZekaBootTestException extends RuntimeException {
 
     /** serialVersionUID */
+    @Serial
     private static final long serialVersionUID = -286968533868184170L;
 
     /**

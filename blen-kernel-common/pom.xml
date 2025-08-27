@@ -100,11 +100,12 @@
             <version>${commons-text.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <scope>provided</scope>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
         </dependency>
+
         <!--region 本模块内测试使用 -->
         <dependency>
             <groupId>cn.hutool</groupId>
