@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.common.assertion;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.function.CheckedCallable;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
-
 import java.util.Collection;
 import java.util.Map;
 
@@ -27,9 +26,9 @@ public interface IAssert {
      *
      * @param args args
      * @return the base exception
-     * @since 1.7.0
+     * @since 2024.1.1
      */
-    BaseException newException(Object... args);
+    LowestException newException(Object... args);
 
     /**
      * New exception
@@ -37,16 +36,16 @@ public interface IAssert {
      * @param t    t
      * @param args args
      * @return the base exception
-     * @since 1.7.0
+     * @since 2024.1.1
      */
-    BaseException newException(Throwable t, Object... args);
+    LowestException newException(Throwable t, Object... args);
 
     /**
      * Not blank
      *
      * @param str  str
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notBlank(String str, Object... args) {
         Assertions.notBlank(str, () -> this.newException(args));
@@ -57,7 +56,7 @@ public interface IAssert {
      *
      * @param arrays arrays
      * @param args   args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notEmpty(Object[] arrays, Object... args) {
         Assertions.notEmpty(arrays, () -> this.newException(args));
@@ -68,7 +67,7 @@ public interface IAssert {
      *
      * @param c    c
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notEmpty(Collection<?> c, Object... args) {
         Assertions.notEmpty(c, () -> this.newException(args));
@@ -79,7 +78,7 @@ public interface IAssert {
      *
      * @param map  map
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notEmpty(Map<?, ?> map, Object... args) {
         Assertions.notEmpty(map, () -> this.newException(args));
@@ -90,7 +89,7 @@ public interface IAssert {
      *
      * @param expression expression
      * @param args       args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void isFalse(boolean expression, Object... args) {
         Assertions.isFalse(expression, () -> this.newException(args));
@@ -101,7 +100,7 @@ public interface IAssert {
      *
      * @param expression expression
      * @param args       args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void isTrue(boolean expression, Object... args) {
         Assertions.isTrue(expression, () -> this.newException(args));
@@ -112,7 +111,7 @@ public interface IAssert {
      *
      * @param obj  obj
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void isNull(Object obj, Object... args) {
         Assertions.isNull(obj, () -> this.newException(args));
@@ -123,7 +122,7 @@ public interface IAssert {
      *
      * @param obj  obj
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notNull(Object obj, Object... args) {
         Assertions.notNull(obj, () -> this.newException(args));
@@ -134,7 +133,7 @@ public interface IAssert {
      *
      * @param obj      obj
      * @param runnable runnable
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notNull(Object obj, CheckedRunnable runnable) {
         Assertions.notNull(obj, this::newException, runnable);
@@ -146,7 +145,7 @@ public interface IAssert {
      * @param o1   o 1
      * @param o2   o 2
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void equals(Object o1, Object o2, Object... args) {
         Assertions.equals(o1, o2, () -> this.newException(args));
@@ -158,7 +157,7 @@ public interface IAssert {
      * @param o1   o 1
      * @param o2   o 2
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void notEquals(Object o1, Object o2, Object... args) {
         Assertions.notEquals(o1, o2, () -> this.newException(args));
@@ -169,7 +168,7 @@ public interface IAssert {
      *
      * @param runnable runnable
      * @param args     args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void wrapper(CheckedRunnable runnable, Object... args) {
         try {
@@ -186,7 +185,7 @@ public interface IAssert {
      * @param callable callable
      * @param args     args
      * @return the t
-     * @since 1.8.0
+     * @since 2024.1.1
      */
     default <T> T wrapper(CheckedCallable<T> callable, Object... args) {
         try {
@@ -201,7 +200,7 @@ public interface IAssert {
      * Fail
      *
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void fail(Object... args) {
         this.fail(this.newException(args));
@@ -212,7 +211,7 @@ public interface IAssert {
      *
      * @param t    t
      * @param args args
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     default void fail(Throwable t, Object... args) {
         Assertions.fail(() -> this.newException(t, args));

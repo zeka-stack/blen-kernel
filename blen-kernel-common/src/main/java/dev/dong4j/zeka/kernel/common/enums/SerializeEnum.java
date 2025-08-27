@@ -6,7 +6,7 @@ import com.google.common.collect.Sets;
 import dev.dong4j.zeka.kernel.common.annotation.SerializeValue;
 import dev.dong4j.zeka.kernel.common.enums.serialize.EntityEnumDeserializer;
 import dev.dong4j.zeka.kernel.common.enums.serialize.EntityEnumSerializer;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.EnumUtils;
 import java.io.Serializable;
@@ -95,7 +95,7 @@ public interface SerializeEnum<T extends Serializable> {
         String errorMessage = StrFormatter.format("枚举类型转换错误: 没有找到对应枚举. value = {}, SerializeEnum = {}",
             value,
             clazz);
-        return EnumUtils.of(clazz, e -> e.getValue().equals(value)).orElseThrow(() -> new BasicException(errorMessage));
+        return EnumUtils.of(clazz, e -> e.getValue().equals(value)).orElseThrow(() -> new LowestException(errorMessage));
     }
 
     /**
@@ -117,7 +117,7 @@ public interface SerializeEnum<T extends Serializable> {
             result = (T) getForName.get();
         } else {
             LOG.debug("无法通过 name 找到枚举, 尝试使用枚举下标查找, name: {}", value);
-            throw new BasicException(StrFormatter.format("未找到匹配的枚举: [{}]", value));
+            throw new LowestException(StrFormatter.format("未找到匹配的枚举: [{}]", value));
         }
         return result;
     }
@@ -139,11 +139,11 @@ public interface SerializeEnum<T extends Serializable> {
         try {
             index = Integer.parseInt(value);
         } catch (Exception e) {
-            throw new BasicException(StrFormatter.format("通过枚举下标查找枚举出错: [{}] 无法转换为下标", value));
+            throw new LowestException(StrFormatter.format("通过枚举下标查找枚举出错: [{}] 无法转换为下标", value));
         }
         // 使用下标匹配
         Optional<? extends Enum<?>> getForOrdinal = EnumUtils.of(clz, e -> e.ordinal() == index);
-        return (T) getForOrdinal.orElseThrow(() -> new BasicException("无法将 [{}] 转换为 [{}]", value, clz));
+        return (T) getForOrdinal.orElseThrow(() -> new LowestException("无法将 [{}] 转换为 [{}]", value, clz));
     }
 
     /**

@@ -6,7 +6,7 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.auth.CurrentUser;
 import dev.dong4j.zeka.kernel.auth.enums.UserType;
 import dev.dong4j.zeka.kernel.auth.util.JwtUtils;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import java.io.Serial;
 import java.io.Serializable;
@@ -61,7 +61,7 @@ public class AuthorizationUser implements CurrentUser, Serializable {
                 .email(StringPool.NULL_STRING)
                 .build()));
         } catch (JsonProcessingException e) {
-            throw new BasicException("to json error", e);
+            throw new LowestException("to json error", e);
         }
         List<AuthorizationRole> authorizationRoles = Collections.singletonList(AuthorizationRole
             .builder()

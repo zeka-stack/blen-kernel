@@ -1,13 +1,12 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>Description: 限制方法执行次数 </p>
@@ -37,7 +36,7 @@ public class MethodLimit {
     public static boolean execute(@NotNull Class<?> clz, int executeCount) {
         synchronized (LOCK) {
             if (executeCount < 0) {
-                throw new BaseException("执行次数不能小于 0");
+                throw new LowestException("执行次数不能小于 0");
             }
 
             AtomicInteger executedCount = LIMIT_COUNT.get(clz.getName());

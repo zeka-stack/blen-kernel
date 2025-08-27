@@ -106,7 +106,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     @ExceptionHandler(value = {
         LowestException.class
     })
-    public Result<?> handleBasicException(@NotNull LowestException e, @NotNull HttpServletRequest request) {
+    public Result<?> handleLowestException(@NotNull LowestException e, @NotNull HttpServletRequest request) {
         log.warn("{} path: {}", e.getMessage(), request.getRequestURI());
         return this.buildResult(e, request);
     }

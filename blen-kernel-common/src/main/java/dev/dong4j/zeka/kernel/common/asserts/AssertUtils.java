@@ -1,16 +1,15 @@
 package dev.dong4j.zeka.kernel.common.asserts;
 
 import dev.dong4j.zeka.kernel.common.exception.AssertionFailedException;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
+import java.util.function.Supplier;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
-
-import java.util.function.Supplier;
 
 /**
  * <p>Description:  </p>
@@ -101,7 +100,7 @@ class AssertUtils {
         if (defaultMessage) {
             result = result + ("Object 类型 [" + className + "] 不是: " + type);
         }
-        throw new BasicException(result);
+        throw new LowestException(result);
     }
 
     /**
@@ -126,7 +125,7 @@ class AssertUtils {
         if (defaultMessage) {
             result = result + (subType + " 不是 " + superType + "的子类");
         }
-        throw new BasicException(result);
+        throw new LowestException(result);
     }
 
     /**

@@ -2,7 +2,7 @@ package dev.dong4j.zeka.kernel.common.assertion;
 
 import cn.hutool.core.thread.ThreadUtil;
 import dev.dong4j.zeka.kernel.common.api.BaseCodes;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +52,7 @@ class IAssertTest {
      */
     @Test
     void test_3() {
-        Assertions.assertThrows(BaseException.class, () -> BaseCodes.AGENT_DISABLE_EXCEPTION.notEquals(User1.builder()
+        Assertions.assertThrows(LowestException.class, () -> BaseCodes.AGENT_DISABLE_EXCEPTION.notEquals(User1.builder()
                 .password("aa")
                 .username("dong4j")
                 .build(),
@@ -81,19 +81,19 @@ class IAssertTest {
 
     @Test
     void notNull() {
-        BaseException baseException1 = Assertions.assertThrows(BaseException.class,
+        LowestException lowestException1 = Assertions.assertThrows(LowestException.class,
             () -> BaseCodes.AGENT_DISABLE_EXCEPTION.notNull(null));
-        Assertions.assertEquals(BaseCodes.AGENT_DISABLE_EXCEPTION.getMessage(), baseException1.getMessage());
+        Assertions.assertEquals(BaseCodes.AGENT_DISABLE_EXCEPTION.getMessage(), lowestException1.getMessage());
 
-        BaseException baseException2 = Assertions.assertThrows(BaseException.class,
+        LowestException lowestException2 = Assertions.assertThrows(LowestException.class,
             () -> BaseCodes.AGENT_INVOKE_EXCEPTION.notNull(null, "占位符替换"));
 
-        Assertions.assertEquals("Rest Client 调用失败: [占位符替换]", baseException2.getMessage());
+        Assertions.assertEquals("Rest Client 调用失败: [占位符替换]", lowestException2.getMessage());
 
-        BaseException baseException3 = Assertions.assertThrows(BaseException.class,
+        LowestException lowestException3 = Assertions.assertThrows(LowestException.class,
             () -> BaseCodes.AGENT_INVOKE_EXCEPTION.notNull(null));
 
-        Assertions.assertEquals("Rest Client 调用失败: [{}]", baseException3.getMessage());
+        Assertions.assertEquals("Rest Client 调用失败: [{}]", lowestException3.getMessage());
 
     }
 

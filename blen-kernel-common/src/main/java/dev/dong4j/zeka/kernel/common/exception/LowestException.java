@@ -2,8 +2,9 @@ package dev.dong4j.zeka.kernel.common.exception;
 
 import dev.dong4j.zeka.kernel.common.api.BaseCodes;
 import dev.dong4j.zeka.kernel.common.api.IResultCode;
+import dev.dong4j.zeka.kernel.common.context.Trace;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
+import java.io.PrintStream;
 import java.io.Serial;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -13,14 +14,14 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 基础异常类,所有自定义异常类都需要继承本类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
- * @date 2019.11.26 23:45
- * @since 1.0.0
+ * @date 2023.11.11 23:45
+ * @since 2024.1.1
  */
 @Slf4j
 @Getter
-public class BaseException extends BasicException {
+public class LowestException extends RuntimeException {
 
     /** serialVersionUID */
     @Serial
@@ -30,15 +31,19 @@ public class BaseException extends BasicException {
     protected IResultCode resultCode;
     /** 异常消息参数 */
     protected Object[] args;
+    /** Trace id */
+    @Getter
+    protected String traceId;
 
     /**
      * Instantiates a new Base exception.
      *
      * @since 1.0.0
      */
-    public BaseException() {
+    public LowestException() {
         super(BaseCodes.FAILURE.getMessage());
         this.resultCode = BaseCodes.FAILURE;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -47,9 +52,10 @@ public class BaseException extends BasicException {
      * @param msg the msg
      * @since 1.0.0
      */
-    public BaseException(String msg) {
+    public LowestException(String msg) {
         super(msg);
         this.resultCode = BaseCodes.FAILURE;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -59,8 +65,9 @@ public class BaseException extends BasicException {
      * @param msg  the msg
      * @since 1.0.0
      */
-    public BaseException(int code, String msg) {
+    public LowestException(int code, String msg) {
         super(msg);
+        this.traceId = Trace.context().get();
         this.resultCode = new IResultCode() {
             @Serial
             private static final long serialVersionUID = 2590640370242410124L;
@@ -73,33 +80,6 @@ public class BaseException extends BasicException {
             @Override
             public Integer getCode() {
                 return code;
-            }
-        };
-    }
-
-    public BaseException(String code, String msg) {
-        super(code, msg);
-        this.resultCode = new IResultCode() {
-            @Serial
-            private static final long serialVersionUID = 2590640370242410124L;
-
-            /**
-             * Gets message *
-             *
-             * @return the message
-             * @since 1.6.0
-             */
-            @Override
-            public String getMessage() {
-                return msg;
-            }
-
-            @Override
-            public Integer getCode() {
-                if (ResultCodeUtils.isSpecialCodeFormat(code)) {
-                    return ResultCodeUtils.convert(code);
-                }
-                return 5000;
             }
         };
     }
@@ -111,9 +91,10 @@ public class BaseException extends BasicException {
      * @param args args
      * @since 1.0.0
      */
-    public BaseException(String msg, Object... args) {
-        super(msg, args);
+    public LowestException(String msg, Object... args) {
+        super(StrFormatter.mergeFormat(msg, args));
         this.resultCode = BaseCodes.FAILURE;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -122,9 +103,10 @@ public class BaseException extends BasicException {
      * @param cause cause
      * @since 1.0.0
      */
-    public BaseException(Throwable cause) {
+    public LowestException(Throwable cause) {
         super(cause);
         this.resultCode = BaseCodes.FAILURE;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -134,9 +116,10 @@ public class BaseException extends BasicException {
      * @param cause cause
      * @since 1.0.0
      */
-    public BaseException(String msg, Throwable cause) {
+    public LowestException(String msg, Throwable cause) {
         super(msg, cause);
         this.resultCode = BaseCodes.FAILURE;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -145,9 +128,10 @@ public class BaseException extends BasicException {
      * @param resultCode the response enum
      * @since 1.0.0
      */
-    public BaseException(@NotNull IResultCode resultCode) {
+    public LowestException(@NotNull IResultCode resultCode) {
         super(resultCode.getMessage());
         this.resultCode = resultCode;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -157,9 +141,10 @@ public class BaseException extends BasicException {
      * @param cause      cause
      * @since 1.0.0
      */
-    public BaseException(@NotNull IResultCode resultCode, Throwable cause) {
+    public LowestException(@NotNull IResultCode resultCode, Throwable cause) {
         super(resultCode.getMessage(), cause);
         this.resultCode = resultCode;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -170,8 +155,9 @@ public class BaseException extends BasicException {
      * @param cause cause
      * @since 1.0.0
      */
-    public BaseException(int code, String msg, Throwable cause) {
+    public LowestException(int code, String msg, Throwable cause) {
         super(msg, cause);
+        this.traceId = Trace.context().get();
         this.resultCode = new IResultCode() {
             @Serial
             private static final long serialVersionUID = 2590640370242410124L;
@@ -185,7 +171,6 @@ public class BaseException extends BasicException {
             public Integer getCode() {
                 return code;
             }
-
         };
     }
 
@@ -197,10 +182,11 @@ public class BaseException extends BasicException {
      * @param msg        msg        替换占位符后的消息
      * @since 1.0.0
      */
-    public BaseException(IResultCode resultCode, Object[] args, String msg) {
+    public LowestException(IResultCode resultCode, Object[] args, String msg) {
         super(StrFormatter.mergeFormat(msg, args));
         this.resultCode = resultCode;
         this.args = args;
+        this.traceId = Trace.context().get();
     }
 
     /**
@@ -212,21 +198,33 @@ public class BaseException extends BasicException {
      * @param cause      the cause
      * @since 1.0.0
      */
-    public BaseException(IResultCode resultCode, Object[] args, String msg, Throwable cause) {
+    public LowestException(IResultCode resultCode, Object[] args, String msg, Throwable cause) {
         super(StrFormatter.mergeFormat(msg, args), cause);
         this.resultCode = resultCode;
         this.args = args;
+        this.traceId = Trace.context().get();
     }
 
     /**
-     * Get code
+     * 重写打印异常堆栈, 转为日志输出.
      *
-     * @return the string
+     * @since 1.0.0
+     */
+    @Override
+    public void printStackTrace() {
+        log.error("", this);
+    }
+
+    /**
+     * Prints this throwable and its backtrace to the specified print stream.
+     *
+     * @param s {@code PrintStream} to use for output
      * @since 1.6.0
      */
     @Override
-    public String getCode() {
-        return ResultCodeUtils.generateCode(this.resultCode);
+    public void printStackTrace(PrintStream s) {
+        log.error("", this);
     }
+
 
 }

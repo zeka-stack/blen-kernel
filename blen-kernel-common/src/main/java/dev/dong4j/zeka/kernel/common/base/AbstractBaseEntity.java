@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.base;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -32,7 +32,7 @@ public abstract class AbstractBaseEntity<T extends Serializable> implements IBas
     private static final long serialVersionUID = -3550589993340031894L;
 
     /** 实体 Id */
-    @ApiModelProperty(value = "实体 ID", notes = "新增时可不填,修改时必填")
+    @Schema(description = "实体ID 新增时可不填,修改时必填")
     private T id;
 
     /**

@@ -11,7 +11,7 @@ import java.io.Serial;
  * @date 2020.01.26 20:42
  * @since 1.0.0
  */
-public class PropertiesException extends BaseException {
+public class PropertiesException extends LowestException {
     /** serialVersionUID */
     @Serial
     private static final long serialVersionUID = -6498727260647427447L;

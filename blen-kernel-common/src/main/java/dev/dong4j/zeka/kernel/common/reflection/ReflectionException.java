@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.reflection;
 
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.io.Serial;
 
 /**
@@ -12,7 +12,7 @@ import java.io.Serial;
  * @date 2020.04.12 11:54
  * @since 1.0.0
  */
-public class ReflectionException extends BaseException {
+public class ReflectionException extends LowestException {
 
     /** serialVersionUID */
     @Serial

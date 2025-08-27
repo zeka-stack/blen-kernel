@@ -12,7 +12,7 @@ import java.io.Serial;
  * @date 2020.01.02 14:59
  * @since 1.0.0
  */
-public class StarterException extends BaseException {
+public class StarterException extends LowestException {
     /** serialVersionUID */
     @Serial
     private static final long serialVersionUID = 4076461843028836262L;

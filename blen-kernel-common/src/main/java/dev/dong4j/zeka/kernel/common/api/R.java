@@ -1,10 +1,8 @@
 package dev.dong4j.zeka.kernel.common.api;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import dev.dong4j.zeka.kernel.common.context.Trace;
 import dev.dong4j.zeka.kernel.common.support.ChainMap;
 import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
-import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import java.io.Serial;
 import java.util.Collections;
@@ -23,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
  * @see Result
  * @since 1.0.0
  */
-@JsonTypeName(value = Result.TYPE_NAME)
 @SuppressWarnings({"PMD.ClassNamingShouldBeCamelRule"})
 public final class R<T> extends Result<T> {
     /** serialVersionUID */
@@ -36,10 +33,10 @@ public final class R<T> extends Result<T> {
      * @param code    code
      * @param message message
      * @param data    data
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
-    private R(String code, String message, T data) {
+    private R(Integer code, String message, T data) {
         super(code, message, data, Trace.context().get());
     }
 
@@ -48,7 +45,7 @@ public final class R<T> extends Result<T> {
      *
      * @param <T> parameter
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
     @NotNull
@@ -63,7 +60,7 @@ public final class R<T> extends Result<T> {
      * @param <T>  parameter
      * @param data data
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
     @NotNull
@@ -79,11 +76,11 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
     @NotNull
-    public static <T> Result<T> succeed(String code, String msg, T data) {
+    public static <T> Result<T> succeed(Integer code, String msg, T data) {
         return build(code, msg, data);
     }
 
@@ -92,7 +89,7 @@ public final class R<T> extends Result<T> {
      *
      * @param <T> parameter
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
     @NotNull
@@ -106,7 +103,7 @@ public final class R<T> extends Result<T> {
      * @param <T> parameter
      * @param msg msg
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
     @NotNull
@@ -121,12 +118,12 @@ public final class R<T> extends Result<T> {
      * @param code code
      * @param msg  msg
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     @Contract(pure = true)
     @SuppressWarnings("unchecked")
-    public static <T> Result<T> failed(String code, String msg) {
+    public static <T> Result<T> failed(Integer code, String msg) {
         return failed(code, msg, (T) Collections.emptyMap());
     }
 
@@ -136,11 +133,11 @@ public final class R<T> extends Result<T> {
      * @param <T>        parameter
      * @param resultCode result code
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static <T> Result<T> failed(@NotNull IResultCode resultCode) {
-        return failed(ResultCodeUtils.generateCode(resultCode), resultCode.getMessage());
+        return failed(resultCode.getCode(), resultCode.getMessage());
     }
 
     /**
@@ -150,11 +147,11 @@ public final class R<T> extends Result<T> {
      * @param resultCode result code
      * @param msg        msg
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static <T> Result<T> failed(@NotNull IResultCode resultCode, String msg) {
-        return failed(ResultCodeUtils.generateCode(resultCode), StringUtils.format(resultCode.getMessage(), msg));
+        return failed(resultCode.getCode(), StringUtils.format(resultCode.getMessage(), msg));
     }
 
     /**
@@ -165,12 +162,12 @@ public final class R<T> extends Result<T> {
      * @param msg        msg
      * @param data       data
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     @Contract(value = "_, _, _ -> new", pure = true)
     public static <T> Result<T> failed(@NotNull IResultCode resultCode, String msg, T data) {
-        return failed(ResultCodeUtils.generateCode(resultCode), StringUtils.format(resultCode.getMessage(), msg), data);
+        return failed(resultCode.getCode(), StringUtils.format(resultCode.getMessage(), msg), data);
     }
 
     /**
@@ -181,11 +178,11 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     @Contract(value = "_, _, _ -> new", pure = true)
-    public static <T> Result<T> failed(String code, String msg, T data) {
+    public static <T> Result<T> failed(Integer code, String msg, T data) {
         return build(code, msg, data);
     }
 
@@ -196,12 +193,12 @@ public final class R<T> extends Result<T> {
      * @param code code
      * @param msg  msg
      * @return the result
-     * @since 1.7.0
+     * @since 2024.1.1
      */
     @Contract("_, _ -> new")
     @NotNull
     @SuppressWarnings("unchecked")
-    public static <T> Result<T> build(String code, String msg) {
+    public static <T> Result<T> build(Integer code, String msg) {
         return build(code, msg, (T) Collections.emptyMap());
     }
 
@@ -213,11 +210,11 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(value = "_, _, _ -> new", pure = true)
     @NotNull
-    public static <T> Result<T> build(String code, String msg, T data) {
+    public static <T> Result<T> build(Integer code, String msg, T data) {
         return new R<>(code, msg, data);
     }
 
@@ -227,7 +224,7 @@ public final class R<T> extends Result<T> {
      * @param <T>        parameter
      * @param expression expression
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract("_ -> !null")
     public static <T> Result<T> status(boolean expression) {
@@ -241,7 +238,7 @@ public final class R<T> extends Result<T> {
      * @param expression expression
      * @param resultCode result code
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract("_, _ -> !null")
     public static <T> Result<T> status(boolean expression, @NotNull IResultCode resultCode) {
@@ -255,7 +252,7 @@ public final class R<T> extends Result<T> {
      * @param expression expression
      * @param message    message
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract("_, _ -> !null")
     public static <T> Result<T> status(boolean expression, String message) {
@@ -267,7 +264,7 @@ public final class R<T> extends Result<T> {
      *
      * @param args 键值对一一对应
      * @return the result
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static Result<Map<String, Object>> values(@NotNull Object... args) {
@@ -280,11 +277,11 @@ public final class R<T> extends Result<T> {
      * @param <T>  parameter
      * @param data data
      * @return the map
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static <T> Map<String, Object> map(T data) {
-        return map(ResultCodeUtils.generateCode(BaseCodes.SUCCESS),
+        return map(Result.SUCCESS_CODE,
             true,
             data,
             BaseCodes.SUCCESS.getMessage(),
@@ -301,10 +298,10 @@ public final class R<T> extends Result<T> {
      * @param message message
      * @param traceId trace id
      * @return the map
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
-    public static <T> Map<String, Object> map(String code,
+    public static <T> Map<String, Object> map(Integer code,
                                               boolean success,
                                               T data,
                                               String message,
@@ -324,11 +321,11 @@ public final class R<T> extends Result<T> {
      *
      * @param resultCode result code
      * @return the map
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static Map<String, Object> failMap(@NotNull IResultCode resultCode) {
-        return map(ResultCodeUtils.generateCode(resultCode), false, null, resultCode.getMessage(), Trace.context().get());
+        return map(resultCode.getCode(), false, null, resultCode.getMessage(), Trace.context().get());
     }
 
     /**
@@ -338,11 +335,11 @@ public final class R<T> extends Result<T> {
      * @param resultCode result code
      * @param data       data
      * @return the map
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @NotNull
     public static <T> Map<String, Object> map(@NotNull IResultCode resultCode, T data) {
-        return map(ResultCodeUtils.generateCode(resultCode),
+        return map(resultCode.getCode(),
             BaseCodes.SUCCESS.getCode().equals(resultCode.getCode()),
             data, resultCode.getMessage(), Trace.context().get());
     }

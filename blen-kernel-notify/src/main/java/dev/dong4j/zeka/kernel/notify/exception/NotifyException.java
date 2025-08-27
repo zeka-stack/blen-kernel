@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.notify.exception;
 
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.io.Serial;
 
 /**
@@ -12,7 +12,7 @@ import java.io.Serial;
  * @date 2020.05.07 21:43
  * @since 1.0.0
  */
-public class NotifyException extends BasicException {
+public class NotifyException extends LowestException {
 
     /** serialVersionUID */
     @Serial

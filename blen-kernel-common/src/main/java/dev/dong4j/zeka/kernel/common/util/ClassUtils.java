@@ -1,6 +1,14 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -12,15 +20,6 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.SynthesizingMethodParameter;
 import org.springframework.util.Assert;
 import org.springframework.web.method.HandlerMethod;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>Description: 类工具类 </p>
@@ -132,7 +131,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
         Type[] types = clazz.getGenericInterfaces();
         Type targetType = Arrays.stream(types).filter(type -> type.toString().contains(interfaceClass.getName())).findAny().orElse(null);
         if (targetType == null) {
-            throw new BasicException("[{}] 未实现 [{}] 接口", clazz, interfaceClass);
+            throw new LowestException("[{}] 未实现 [{}] 接口", clazz, interfaceClass);
         }
         ParameterizedType parameterizedType = (ParameterizedType) targetType;
         Type type = parameterizedType.getActualTypeArguments()[index];
@@ -172,7 +171,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
             return checkType(t, index);
         } else {
             String className = type == null ? "null" : type.getClass().getName();
-            throw new BasicException("Expected a Class, ParameterizedType" + ", but <" + type + "> is of type " + className);
+            throw new LowestException("Expected a Class, ParameterizedType" + ", but <" + type + "> is of type " + className);
         }
     }
 
@@ -245,7 +244,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
             constructor.setAccessible(true);
             return constructor.newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new BasicException("实例化对象时出现错误,请尝试给 %s 添加无参的构造方法", e, clazz.getName());
+            throw new LowestException("实例化对象时出现错误,请尝试给 %s 添加无参的构造方法", e, clazz.getName());
         }
     }
 
@@ -260,7 +259,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
         try {
             return Class.forName(name);
         } catch (ClassNotFoundException e) {
-            throw new BasicException("找不到指定的class！请仅在明确确定会有 class 的时候, 调用该方法", e);
+            throw new LowestException("找不到指定的class！请仅在明确确定会有 class 的时候, 调用该方法", e);
         }
     }
 

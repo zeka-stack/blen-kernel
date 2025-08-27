@@ -1,11 +1,17 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
+import dev.dong4j.zeka.kernel.common.context.Trace;
+import dev.dong4j.zeka.kernel.common.util.Exceptions;
+import dev.dong4j.zeka.kernel.common.util.StringPool;
+import dev.dong4j.zeka.kernel.common.util.WebUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 开发环境时输出更多的异常信息 </p>
@@ -44,5 +50,29 @@ public class ExceptionInfo implements Serializable {
     private String stackTrace;
     /** 日志系统链接 */
     private String hyperlink;
+
+    /**
+     * Build exception data
+     *
+     * @param hyperlink hyperlink
+     * @param throwable throwable
+     * @param request   request
+     * @return the exception info
+     * @since 2024.2.0
+     */
+    public ExceptionInfo create(String hyperlink, @NotNull Throwable throwable, @NotNull HttpServletRequest request) {
+        ExceptionInfo exceptionEntity = new ExceptionInfo();
+        exceptionEntity.setPath(request.getRequestURI());
+        exceptionEntity.setParams(WebUtils.getRequestParamString(request));
+        exceptionEntity.setMethod(request.getMethod());
+        exceptionEntity.setRemoteAddr(request.getRemoteAddr());
+        exceptionEntity.setHeaders(WebUtils.getHeader(request));
+        exceptionEntity.setExceptionClass(throwable.getClass().getName());
+        exceptionEntity.setTraceId(Trace.context().get());
+        exceptionEntity.setErrorMessage(throwable.getMessage());
+        exceptionEntity.setHyperlink(StringPool.NEWLINE + hyperlink);
+        exceptionEntity.setStackTrace(Exceptions.getStackTraceAsString(throwable));
+        return exceptionEntity;
+    }
 
 }

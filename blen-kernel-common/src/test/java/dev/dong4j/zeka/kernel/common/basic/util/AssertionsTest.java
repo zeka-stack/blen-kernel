@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.basic.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,10 +24,10 @@ class AssertionsTest {
 
     @Test
     void notBlank() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notBlank(""));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notBlank("    "));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notBlank(null));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notBlank("", "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notBlank(""));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notBlank("    "));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notBlank(null));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notBlank("", "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.notBlank("", () -> new ConsumerException(
             "自定义消息")));
 
@@ -36,8 +36,8 @@ class AssertionsTest {
 
     @Test
     void notNull() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notNull(null));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notNull(null, "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notNull(null));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notNull(null, "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.notNull(null,
             () -> new ConsumerException(
                 "自定义消息")));
@@ -48,8 +48,8 @@ class AssertionsTest {
 
     @Test
     void isNull() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isNull(new Object()));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isNull(new Object(), "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isNull(new Object()));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isNull(new Object(), "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.isNull(new Object(),
             () -> new ConsumerException(
                 "自定义消息")));
@@ -59,8 +59,8 @@ class AssertionsTest {
 
     @Test
     void isTrue() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isTrue(false));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isTrue(false, "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isTrue(false));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isTrue(false, "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.isTrue(false,
             () -> new ConsumerException(
                 "自定义消息")));
@@ -70,8 +70,8 @@ class AssertionsTest {
 
     @Test
     void isFalse() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isFalse(true));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.isFalse(true, "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isFalse(true));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.isFalse(true, "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.isFalse(true,
             () -> new ConsumerException(
                 "自定义消息")));
@@ -81,8 +81,8 @@ class AssertionsTest {
 
     @Test
     void doesNotContain() {
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.doesNotContain("abc", "b"));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.doesNotContain("abc", "b", "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.doesNotContain("abc", "b"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.doesNotContain("abc", "b", "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.doesNotContain("abc", "b",
             () -> new ConsumerException("自定义消息")));
 
@@ -93,8 +93,8 @@ class AssertionsTest {
     @Test
     void notEmpty_map() {
         Map<String, String> map = null;
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notEmpty(map));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notEmpty(map, "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notEmpty(map));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notEmpty(map, "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.notEmpty(map,
             () -> new ConsumerException(
                 "自定义消息")));
@@ -106,8 +106,8 @@ class AssertionsTest {
     @Test
     void notEmpty_collection() {
         Collection<String> collection = null;
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notEmpty(collection));
-        org.junit.jupiter.api.Assertions.assertThrows(BasicException.class, () -> Assertions.notEmpty(collection, "自定义消息"));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notEmpty(collection));
+        org.junit.jupiter.api.Assertions.assertThrows(LowestException.class, () -> Assertions.notEmpty(collection, "自定义消息"));
         org.junit.jupiter.api.Assertions.assertThrows(ConsumerException.class, () -> Assertions.notEmpty(collection,
             () -> new ConsumerException(
                 "自定义消息")));
@@ -202,7 +202,7 @@ class AssertionsTest {
     void testFail1() {
     }
 
-    public static class ConsumerException extends BasicException {
+    public static class ConsumerException extends LowestException {
         @Serial
         private static final long serialVersionUID = 3168856664507650214L;
 

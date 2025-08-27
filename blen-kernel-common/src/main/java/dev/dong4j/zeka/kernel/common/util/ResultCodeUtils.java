@@ -124,7 +124,7 @@ public class ResultCodeUtils {
      */
     public @NotNull Integer convert(Result<?> result) {
         Assertions.notNull(result, "result 不能为 空");
-        return convert(result.getCode());
+        return result.getCode();
     }
 
     /**

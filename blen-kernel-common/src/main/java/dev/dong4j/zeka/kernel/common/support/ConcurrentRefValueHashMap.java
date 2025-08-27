@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.support;
 
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -181,7 +181,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
     @Contract(pure = true)
     @Override
     public boolean containsKey(@NotNull Object key) {
-        throw new BasicException("containsKey() makes no sense for weak/soft map because GC can clear the value any moment now");
+        throw new LowestException("containsKey() makes no sense for weak/soft map because GC can clear the value any moment now");
     }
 
     /**
@@ -194,7 +194,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
     @Contract(pure = true)
     @Override
     public boolean containsValue(@NotNull Object value) {
-        throw new BasicException("containsValue() makes no sense for weak/soft map because GC can clear the key any moment now");
+        throw new LowestException("containsValue() makes no sense for weak/soft map because GC can clear the key any moment now");
     }
 
     /**

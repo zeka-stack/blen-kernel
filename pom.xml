@@ -106,7 +106,7 @@
 
         <spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
         <jjwt.version>0.12.6</jjwt.version>
-        <swagger.version>1.6.14</swagger.version>
+        <swagger.version>2.2.9</swagger.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <commons-text.version>1.13.0</commons-text.version>
         <reflections.version>0.10.2</reflections.version>

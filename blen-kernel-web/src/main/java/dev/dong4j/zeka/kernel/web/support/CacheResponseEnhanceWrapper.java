@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.web.support;
 
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponseWrapper;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public class CacheResponseEnhanceWrapper extends HttpServletResponseWrapper {
         try {
             this.response.copyBodyToResponse();
         } catch (IOException e) {
-            throw new BaseException("缓存 Response 失败", e);
+            throw new LowestException("缓存 Response 失败", e);
         }
     }
 }

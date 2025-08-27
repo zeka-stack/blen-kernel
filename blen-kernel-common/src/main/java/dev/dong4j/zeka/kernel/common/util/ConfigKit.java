@@ -7,7 +7,7 @@ import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.enums.ZekaEnv;
 import dev.dong4j.zeka.kernel.common.env.DefaultEnvironment;
 import dev.dong4j.zeka.kernel.common.env.ZekaEnvironment;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
@@ -403,10 +403,10 @@ public class ConfigKit {
             try {
                 return DEFAULT_PROPERTY_SOURCE_FACTORY.createPropertySource("", new EncodedResource(resource, StandardCharsets.UTF_8));
             } catch (IOException e) {
-                throw new BaseException("未找到文件: [{}]", configFileName);
+                throw new LowestException("未找到文件: [{}]", configFileName);
             }
         } else {
-            throw new BaseException("不支持的配置文件类型: [{}]", configFileName);
+            throw new LowestException("不支持的配置文件类型: [{}]", configFileName);
         }
     }
 
@@ -422,7 +422,7 @@ public class ConfigKit {
         try {
             return YmlPropertyLoaderFactory.createPropertySource(resource);
         } catch (Exception e) {
-            throw new BaseException(e);
+            throw new LowestException(e);
         }
     }
 

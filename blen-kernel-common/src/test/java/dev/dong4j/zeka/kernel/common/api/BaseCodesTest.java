@@ -1,8 +1,7 @@
 package dev.dong4j.zeka.kernel.common.api;
 
 import dev.dong4j.zeka.kernel.common.CoreBundle;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
-import dev.dong4j.zeka.kernel.common.util.ResultCodeUtils;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,12 +31,10 @@ class BaseCodesTest {
         Assertions.assertEquals("服务不可用", BaseCodes.SERVICE_INVOKE_ERROR.getMessage());
         Assertions.assertEquals("服务不可用", CoreBundle.message("code.service.invoke.error", "xxxx"));
 
-        BaseException baseException = Assertions.assertThrows(BaseException.class, () -> {
+        LowestException lowestException = Assertions.assertThrows(LowestException.class, () -> {
             BaseCodes.SERVICE_INVOKE_ERROR.notNull(null, "加入参数");
         });
 
-        log.info("{}", ResultCodeUtils.generateCode(baseException.getResultCode()));
-
-        Assertions.assertEquals("服务不可用", baseException.getMessage());
+        Assertions.assertEquals("服务不可用", lowestException.getMessage());
     }
 }

@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.base;
 
 import dev.dong4j.zeka.kernel.common.enums.DeletedEnum;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
@@ -50,26 +50,26 @@ public abstract class BaseQuery<T extends Serializable> extends BaseForm<T> {
 
     /** 当前页 */
     @Builder.Default
-    @ApiModelProperty(value = "当前页, 默认 1")
+    @Schema(description = "当前页, 默认 1")
     protected Integer page = 1;
     /** 每页的数量 */
     @Builder.Default
-    @ApiModelProperty(value = "每页的数量, 默认 10")
+    @Schema(description = "每页的数量, 默认 10")
     protected Integer limit = 10;
     /** 正序排序字段 */
-    @ApiModelProperty(value = "正序排序字段")
+    @Schema(description = "正序排序字段")
     protected String ascs;
     /** 倒序排序字段 */
-    @ApiModelProperty(value = "倒序排序字段")
+    @Schema(description = "倒序排序字段")
     protected String descs;
     /** Start time */
-    @ApiModelProperty(value = "待查询记录的开始时间. 格式: [yyyy-MM-dd HH:mm:ss]")
+    @Schema(description = "待查询记录的开始时间. 格式: [yyyy-MM-dd HH:mm:ss]")
     protected Date startTime;
     /** End time */
-    @ApiModelProperty(value = "待查询记录的结束时间. 格式: [yyyy-MM-dd HH:mm:ss]")
+    @Schema(description = "待查询记录的结束时间. 格式: [yyyy-MM-dd HH:mm:ss]")
     protected Date endTime;
     /** Deleted */
     @Builder.Default
-    @ApiModelProperty(value = "是否被删除, 默认未删除")
+    @Schema(description = "是否被删除, 默认未删除")
     protected DeletedEnum deleted = DeletedEnum.N;
 }

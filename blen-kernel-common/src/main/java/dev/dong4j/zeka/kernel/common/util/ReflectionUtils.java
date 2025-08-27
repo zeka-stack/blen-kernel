@@ -2,7 +2,7 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import cn.hutool.core.util.StrUtil;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -296,11 +296,11 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
             Method method = cls.getMethod(guessGetterName(fieldMaps.get(str), str));
             return method.invoke(entity);
         } catch (NoSuchMethodException e) {
-            throw new BaseException("Error: NoSuchMethod in %s.  Cause:", e, cls.getSimpleName());
+            throw new LowestException("Error: NoSuchMethod in %s.  Cause:", e, cls.getSimpleName());
         } catch (IllegalAccessException e) {
-            throw new BaseException("Error: Cannot execute a private method. in %s.  Cause:", e, cls.getSimpleName());
+            throw new LowestException("Error: Cannot execute a private method. in %s.  Cause:", e, cls.getSimpleName());
         } catch (InvocationTargetException e) {
-            throw new BaseException("Error: InvocationTargetException on getMethodValue.  Cause:" + e);
+            throw new LowestException("Error: InvocationTargetException on getMethodValue.  Cause:" + e);
         }
     }
 
@@ -469,7 +469,7 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
         try {
             return cls.getDeclaredMethod(guessGetterName(field, field.getName()));
         } catch (NoSuchMethodException e) {
-            throw new BaseException("Error: NoSuchMethod in %s.  Cause:", e, cls.getName());
+            throw new LowestException("Error: NoSuchMethod in %s.  Cause:", e, cls.getName());
         }
     }
 

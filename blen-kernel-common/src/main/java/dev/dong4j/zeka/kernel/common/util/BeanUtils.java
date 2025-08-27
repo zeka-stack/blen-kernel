@@ -2,9 +2,16 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.convert.CustomConverter;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.support.BaseBeanCopier;
 import dev.dong4j.zeka.kernel.common.support.BeanProperty;
+import java.beans.PropertyDescriptor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -14,14 +21,6 @@ import org.springframework.cglib.beans.BeanMap;
 import org.springframework.cglib.core.CodeGenerationException;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
-
-import java.beans.PropertyDescriptor;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * <p>Description: 实体工具类 </p>
@@ -50,7 +49,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
             Class<?> clazz = Class.forName(clazzStr);
             return newInstance(clazz);
         } catch (ClassNotFoundException e) {
-            throw new BaseException(e);
+            throw new LowestException(e);
         }
     }
 

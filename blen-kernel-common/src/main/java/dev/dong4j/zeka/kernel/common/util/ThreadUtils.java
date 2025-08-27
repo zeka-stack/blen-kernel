@@ -3,16 +3,8 @@ package dev.dong4j.zeka.kernel.common.util;
 import cn.hutool.core.thread.ConcurrencyTester;
 import cn.hutool.core.thread.ThreadUtil;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Callable;
@@ -27,6 +19,13 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 多线程工具类 </p>
@@ -141,9 +140,8 @@ public class ThreadUtils {
             try {
                 runnable.run();
             } catch (Throwable throwable) {
-                if (throwable instanceof BasicException) {
-                    BasicException exception = (BasicException) throwable;
-                    log.error("线程池执行异常: <{}>: {}:{}", exception.getTraceId(), exception.getCode(), exception.getMessage());
+                if (throwable instanceof LowestException exception) {
+                    log.error("线程池执行异常: <{}>: {}:{}", exception.getTraceId(), exception.getResultCode().getCode(), exception.getMessage());
                     return;
                 }
                 log.error("", throwable);
@@ -194,8 +192,8 @@ public class ThreadUtils {
                     countDownLatch.await();
                     runnable.run();
                 } catch (Throwable throwable) {
-                    if (throwable instanceof BasicException) {
-                        throw (BasicException) throwable;
+                    if (throwable instanceof LowestException) {
+                        throw (LowestException) throwable;
                     }
                     log.error("", throwable);
                 }
@@ -213,8 +211,8 @@ public class ThreadUtils {
         try {
             callback.run();
         } catch (Throwable throwable) {
-            if (throwable instanceof BasicException) {
-                throw (BasicException) throwable;
+            if (throwable instanceof LowestException) {
+                throw (LowestException) throwable;
             }
             log.error(throwable.getMessage(), throwable);
         }

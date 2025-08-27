@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import java.io.IOException;
@@ -145,7 +145,7 @@ public class EntityEnumDeserializer<T extends SerializeEnum<?>> extends JsonDese
                 // 不可能是 binary, 因为只能是可序列化的值
             case MISSING:
             default:
-                throw new BasicException(StrFormatter.format("不支持的枚举转换: {}", node.toString()));
+                throw new LowestException(StrFormatter.format("不支持的枚举转换: {}", node.toString()));
         }
         return value;
     }

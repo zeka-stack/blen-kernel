@@ -16,7 +16,7 @@
 package dev.dong4j.zeka.kernel.devtools.core.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.devtools.core.config.converts.MySqlTypeConvert;
 import dev.dong4j.zeka.kernel.devtools.core.config.converts.TypeConverts;
 import dev.dong4j.zeka.kernel.devtools.core.config.querys.DbQueryRegistry;
@@ -106,7 +106,7 @@ public class DataSourceConfig {
         if (null == this.dbType) {
             this.dbType = this.getDbType(this.url.toLowerCase());
             if (null == this.dbType) {
-                throw new BaseException("Unknown type of database!");
+                throw new LowestException("Unknown type of database!");
             }
         }
 

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import dev.dong4j.zeka.kernel.common.api.R;
 import dev.dong4j.zeka.kernel.common.api.Result;
-import dev.dong4j.zeka.kernel.common.exception.BaseException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -281,7 +281,7 @@ class JsonsTest {
             return Jsons.parse(Jsons.readTree(str).path(R.DATA).toString(), clz);
         } else {
             // 只要 code != 2000, 则全部抛出异常 unchecked 异常
-            throw new BaseException(Jsons.readTree(str).path(R.CODE).asInt(), Jsons.readTree(str).path(R.MESSAGE).asText());
+            throw new LowestException(Jsons.readTree(str).path(R.CODE).asInt(), Jsons.readTree(str).path(R.MESSAGE).asText());
         }
     }
 

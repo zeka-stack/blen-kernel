@@ -1,15 +1,14 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.support.FastStringWriter;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 异常处理工具类 </p>
@@ -52,8 +51,8 @@ public class Exceptions extends ExceptionUtil {
             runtimeException = new IllegalArgumentException(e);
         } else if (e instanceof InvocationTargetException) {
             runtimeException = new RuntimeException(((InvocationTargetException) e).getTargetException());
-        } else if (e instanceof BasicException) {
-            runtimeException = (BasicException) e;
+        } else if (e instanceof LowestException) {
+            runtimeException = (LowestException) e;
         } else if (e instanceof RuntimeException) {
             runtimeException = (RuntimeException) e;
         } else {

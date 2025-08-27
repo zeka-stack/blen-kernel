@@ -6,7 +6,7 @@ import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
 import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.util.Jsons;
 import dev.dong4j.zeka.kernel.web.exception.ServletGlobalExceptionHandler;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,7 +36,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  * @since 1.0.0
  */
 @Slf4j
-@Api(value = "Filter 异常处理")
+@Tag(name = "Filter 异常处理")
 public class ServletErrorController extends BasicErrorController {
     /** Object mapper */
     @Resource

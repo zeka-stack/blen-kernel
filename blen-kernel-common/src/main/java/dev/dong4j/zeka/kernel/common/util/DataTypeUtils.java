@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import dev.dong4j.zeka.kernel.common.exception.BasicException;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -152,10 +152,10 @@ public class DataTypeUtils {
             } else if (Collection.class.isAssignableFrom(destClazz)) {
                 return (T) toCollection(destClazz, srcObj);
             } else {
-                throw new BasicException("指定的数据类型 [{}] 暂不支持,无法转换", destClazz);
+                throw new LowestException("指定的数据类型 [{}] 暂不支持,无法转换", destClazz);
             }
             if (null == ret) {
-                throw new BasicException("[{}] 无法转换为 [{}] Data: [{}]",
+                throw new LowestException("[{}] 无法转换为 [{}] Data: [{}]",
                     srcObj.getClass(),
                     destClazz.getName(),
                     srcObj);
@@ -185,13 +185,13 @@ public class DataTypeUtils {
             } else if (Queue.class.isAssignableFrom(destClazz)) {
                 coll = new LinkedList<>();
             } else {
-                throw new BasicException("暂不支持向集合类型 {} 转换", destClazz);
+                throw new LowestException("暂不支持向集合类型 {} 转换", destClazz);
             }
         } else {
             try {
                 coll = (Collection<Object>) destClazz.newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
-                throw new BasicException("无法对类型 {} 进行实例化", destClazz);
+                throw new LowestException("无法对类型 {} 进行实例化", destClazz);
             }
         }
         Class<?> objClazz = srcObj.getClass();
@@ -965,7 +965,7 @@ public class DataTypeUtils {
      * @date 2019.12.24 15:55
      * @since 1.0.0
      */
-    static final class DataTypeException extends BasicException {
+    static final class DataTypeException extends LowestException {
 
         /** serialVersionUID */
         private static final long serialVersionUID = 4654330042965245163L;
@@ -1571,7 +1571,7 @@ public class DataTypeUtils {
                     } catch (Exception ignored) {
                     }
                 }
-            } catch (BasicException ignored) {
+            } catch (LowestException ignored) {
             }
             throw new DataTypeException(
                 StrFormatter.format("无法把数据类型为 {} 的数据 {} 转换到枚举类型 {}", targetObject.getClass().getName(), targetObject, clazz));
@@ -1650,7 +1650,7 @@ public class DataTypeUtils {
             if (isNumber(targetObject)) {
                 try {
                     return new Date(DataTypeUtils.convert(Long.class, targetObject));
-                } catch (BasicException ignored) {
+                } catch (LowestException ignored) {
                 }
             }
 

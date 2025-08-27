@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import dev.dong4j.zeka.kernel.common.bundle.BasicBundle;
-import dev.dong4j.zeka.kernel.common.util.StringPool;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import io.swagger.annotations.ApiModelProperty;
+import dev.dong4j.zeka.kernel.common.CoreBundle;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,35 +60,35 @@ public abstract class Result<T> implements Serializable {
     public static final String TRACE_ID = "traceId";
     /** EXTEND */
     public static final String EXTEND = "extend";
-    /** 反序列化时处理多态问题的标识 */
-    public static final String TYPE_NAME = "R";
     /** 请求成功代码 */
-    public static final String SUCCESS_CODE = "2000";
+    public static final Integer SUCCESS_CODE = 2000;
     /** 请求成功消息 */
-    public static final String SUCCESS_MESSAGE = BasicBundle.message("success.message");
+    public static final String SUCCESS_MESSAGE = CoreBundle.message("success.message");
     /** 默认的失败代码 */
-    public static final String FAILURE_CODE = "4000";
+    public static final Integer FAILURE_CODE = 4000;
     /** 默认的失败消息 */
-    public static final String FAILURE_MESSAGE = BasicBundle.message("failure.message");
+    public static final String FAILURE_MESSAGE = CoreBundle.message("failure.message");
 
     /** 请求响应状态码 */
-    @ApiModelProperty(value = "状态码", required = true, example = "2000")
-    protected String code;
+    @Schema(description = "状态码", example = "2000")
+    protected Integer code;
     /** 请求响应成功标识 */
-    @ApiModelProperty(value = "请求成功的状态", required = true, example = "true")
+    @Schema(description = "请求成功的状态", example = "true")
     protected boolean success;
     /** 请求响应的数据 */
-    @ApiModelProperty(value = "承载的数据", required = true)
+    @Schema(description = "承载的数据")
     protected T data;
     /** 请求响应的消息 */
-    @ApiModelProperty(value = "返回的消息", required = true, example = "操作成功")
+    @Schema(description = "返回的消息", example = "操作成功")
     protected String message = "";
     /** 请求响应的溯源标识 */
-    @ApiModelProperty(value = "溯源标识(业务无需关心此字段)", required = true, example = "1484501823002316800")
+    @Schema(description = "溯源标识(业务无需关心此字段)", example = "1484501823002316800")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     protected String traceId;
     /** 扩展字段 */
-    @ApiModelProperty(value = "扩展字段(业务无需关心此字段, 非生产环境的异常信息会写入到此字段)", required = true, example = "N/A")
-    protected Object extend = StringPool.NULL_STRING;
+    @Schema(description = "扩展字段(业务无需关心此字段, 非生产环境的异常信息会写入到此字段)", example = "N/A")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Object extend;
 
     /**
      * Result
@@ -98,27 +97,22 @@ public abstract class Result<T> implements Serializable {
      * @param message message
      * @param data    data
      * @param traceId trace id
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract(pure = true)
-    protected Result(@NotNull String code, String message, T data, String traceId) {
+    protected Result(@NotNull Integer code, String message, T data, String traceId) {
         this.code = code;
-        if (!SUCCESS_CODE.equals(code) && !code.contains(StringPool.DASH) && !code.contains(StringPool.DOT)) {
-            this.code = "S.F-" + code;
-        }
         this.data = data;
         this.message = message;
         this.success = (SUCCESS_CODE.equals(code));
-        this.traceId = StringUtils.isBlank(traceId)
-            ? StringPool.NULL_STRING
-            : traceId;
+        this.traceId = traceId;
     }
 
     /**
      * Is ok boolean
      *
      * @return the boolean
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @JsonIgnore
     public boolean isOk() {
@@ -130,7 +124,7 @@ public abstract class Result<T> implements Serializable {
      *
      * @param result result
      * @return the boolean
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract("null -> false")
     public static boolean isOk(@Nullable Result<?> result) {
@@ -141,7 +135,7 @@ public abstract class Result<T> implements Serializable {
      * Is fail boolean
      *
      * @return the boolean
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @JsonIgnore
     public boolean isFail() {
@@ -153,7 +147,7 @@ public abstract class Result<T> implements Serializable {
      *
      * @param result result
      * @return the boolean
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Contract("null -> true")
     public static boolean isFail(@Nullable Result<?> result) {
