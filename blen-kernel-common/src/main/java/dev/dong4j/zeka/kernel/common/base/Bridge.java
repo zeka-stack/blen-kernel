@@ -3,12 +3,11 @@ package dev.dong4j.zeka.kernel.common.base;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.dong4j.zeka.kernel.common.api.BaseCodes;
 import dev.dong4j.zeka.kernel.common.assertion.IAssert;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 由于返回类型不同和范型问题, 需要使用此类做桥接. 使用抽象类，避免后期添加顶层接口影响业务代码 </p>
@@ -280,7 +279,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @return int int
      * @since 2.1.0
      */
-    public int counts(@NotNull IAssert assertions) {
+    public long counts(@NotNull IAssert assertions) {
         return assertions.wrapper(() -> service.counts());
     }
 

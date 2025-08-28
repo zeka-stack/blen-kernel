@@ -1,13 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.Data;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.SystemUtils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -30,6 +22,13 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import lombok.Data;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.SystemUtils;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: </p>
@@ -112,7 +111,9 @@ abstract class INetUtils {
         }
         for (int i = port; i < MAX_PORT; i++) {
             try (ServerSocket ss = new ServerSocket(i)) {
-                return i;
+                int available = i;
+                // 资源会在 try 块结束时自动关闭
+                return available;
             } catch (IOException ignore) {
             }
         }
@@ -569,14 +570,14 @@ abstract class INetUtils {
         boolean interfaceSet = false;
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
         while (interfaces.hasMoreElements()) {
-            NetworkInterface i = interfaces.nextElement();
-            Enumeration<InetAddress> addresses = i.getInetAddresses();
+            NetworkInterface ni = interfaces.nextElement();
+            Enumeration<InetAddress> addresses = ni.getInetAddresses();
             while (addresses.hasMoreElements()) {
                 InetAddress address = addresses.nextElement();
                 if (preferIpv6 && address instanceof Inet6Address) {
                     try {
                         if (address.isReachable(100)) {
-                            multicastSocket.setInterface(address);
+                            multicastSocket.setNetworkInterface(ni); // ✅ 新写法
                             interfaceSet = true;
                             break;
                         }
@@ -585,7 +586,7 @@ abstract class INetUtils {
                 } else if (!preferIpv6 && address instanceof Inet4Address) {
                     try {
                         if (address.isReachable(100)) {
-                            multicastSocket.setInterface(address);
+                            multicastSocket.setNetworkInterface(ni); // ✅ 新写法
                             interfaceSet = true;
                             break;
                         }

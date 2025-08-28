@@ -2,7 +2,7 @@ package dev.dong4j.zeka.kernel.validation.constraints;
 
 import dev.dong4j.zeka.kernel.validation.AuthContextConfiguration;
 import dev.dong4j.zeka.kernel.validation.util.BeanValidator;
-import io.swagger.annotations.ApiModel;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.io.Serial;
@@ -167,7 +167,7 @@ class PhoneTest extends AuthContextConfiguration {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @ApiModel(value = "LoginForm", description = "统一登录实体")
+    @Tag(name = "LoginForm", description = "统一登录实体")
     private static class LoginForm implements Serializable {
         /** serialVersionUID */
         @Serial

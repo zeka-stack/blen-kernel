@@ -5,12 +5,11 @@ import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.base.BaseDTO;
 import dev.dong4j.zeka.kernel.common.base.BaseQuery;
 import dev.dong4j.zeka.kernel.common.base.IRepositoryService;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>Description: 查询类接口, 使用 {@link IRepositoryService} 桥接到 DAO 层 </p>
@@ -26,7 +25,7 @@ import java.util.List;
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> implements IQueryDelegateService<DTO> {
-    /** Repository service */
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected S service;
 
@@ -38,7 +37,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @since 1.8.0
      */
     @Override
-    public int counts() {
+    public long counts() {
         return this.service.counts();
     }
 

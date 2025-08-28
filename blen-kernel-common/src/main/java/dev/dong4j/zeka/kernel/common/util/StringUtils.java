@@ -2,13 +2,7 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import cn.hutool.core.text.StrSplitter;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import org.apache.commons.text.StringSubstitutor;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.util.HtmlUtils;
-
+import dev.dong4j.zeka.kernel.common.support.StrSpliter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.text.MessageFormat;
@@ -21,6 +15,12 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.apache.commons.text.StringSubstitutor;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.util.HtmlUtils;
 
 /**
  * <p>Description: 继承自Spring util的工具类</p>
@@ -37,6 +37,12 @@ public class StringUtils extends org.springframework.util.StringUtils {
     public static final int INDEX_NOT_FOUND = -1;
     /** 特殊字符正则,sql特殊字符和空白符 */
     public static final Pattern SPECIAL_CHARS_REGEX = Pattern.compile("[`'\"|/,;()-+*%#·•�　\\s]");
+    /**
+     * 字符串去除空白内容
+     *
+     * <ul> <li>'"<>&*+=#-; sql注入黑名单</li> <li>\n 回车</li> <li>\t 水平制表符</li> <li>\s 空格</li> <li>\r 换行</li> </ul>
+     */
+    private static final Pattern REPLACE_BLANK = Pattern.compile("'|\"|\\<|\\>|&|\\*|\\+|=|#|-|;|\\s*|\t|\r|\n");
     /** BLANK_SYMBOL */
     public static final String BLANK_SYMBOL = "\\s*|\t|\r|\n";
     /** 随机字符串因子 */
@@ -676,6 +682,16 @@ public class StringUtils extends org.springframework.util.StringUtils {
             return subSuf(str2, prefix.length());
         }
         return str2;
+    }
+
+    /**
+     * 覆写 {@link org.springframework.util.StringUtils#isEmpty(Object)} 过期方法, 避免编译警告
+     *
+     * @param str str
+     * @return boolean
+     */
+    public static boolean isEmpty(CharSequence str) {
+        return hasLength(str);
     }
 
     /**
@@ -1827,6 +1843,22 @@ public class StringUtils extends org.springframework.util.StringUtils {
         StringSubstitutor strSubstitutor = new StringSubstitutor(parameter, prefix, suffix);
         strSubstitutor.setEnableSubstitutionInVariables(enableSubstitutionInVariables);
         return strSubstitutor.replace(source);
+    }
+
+    /**
+     * 字符串去除空白内容：
+     * <ul>
+     *     <li>\n 回车</li>
+     *     <li>\t 水平制表符</li>
+     *     <li>\s 空格</li>
+     *     <li>\r 换行</li>
+     * </ul>
+     *
+     * @param str 字符串
+     */
+    public static String replaceAllBlank(String str) {
+        Matcher matcher = REPLACE_BLANK.matcher(str);
+        return matcher.replaceAll("");
     }
 
 }

@@ -4,11 +4,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.dong4j.zeka.kernel.common.base.BaseDTO;
 import dev.dong4j.zeka.kernel.common.base.BaseQuery;
 import dev.dong4j.zeka.kernel.common.base.IRepositoryService;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>命令类接口, 使用 {@link IRepositoryService} 桥接到 DAO 层. </p>
@@ -31,7 +30,7 @@ public interface IQueryDelegateService<DTO> {
      * @return the int
      * @since 1.8.0
      */
-    int counts();
+    long counts();
 
     /**
      * 计数

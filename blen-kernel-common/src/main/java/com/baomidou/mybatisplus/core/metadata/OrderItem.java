@@ -1,5 +1,6 @@
 package com.baomidou.mybatisplus.core.metadata;
 
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -22,70 +23,56 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItem implements Serializable {
-    /** serialVersionUID */
     @Serial
     private static final long serialVersionUID = 1L;
-    /** 需要进行排序的字段 */
+
+    /**
+     * 需要进行排序的字段
+     */
     private String column;
     /**
      * 是否正序排列，默认 true
      */
     private boolean asc = true;
 
-    /**
-     * Asc
-     *
-     * @param column column
-     * @return the order item
-     * @since 2.1.0
-     */
     public static OrderItem asc(String column) {
         return build(column, true);
     }
 
-    /**
-     * Desc
-     *
-     * @param column column
-     * @return the order item
-     * @since 2.1.0
-     */
     public static OrderItem desc(String column) {
         return build(column, false);
     }
 
-    /**
-     * Ascs
-     *
-     * @param columns columns
-     * @return the list
-     * @since 2.1.0
-     */
     public static List<OrderItem> ascs(String... columns) {
         return Arrays.stream(columns).map(OrderItem::asc).collect(Collectors.toList());
     }
 
-    /**
-     * Descs
-     *
-     * @param columns columns
-     * @return the list
-     * @since 2.1.0
-     */
     public static List<OrderItem> descs(String... columns) {
         return Arrays.stream(columns).map(OrderItem::desc).collect(Collectors.toList());
     }
 
-    /**
-     * Build
-     *
-     * @param column column
-     * @param asc    asc
-     * @return the order item
-     * @since 2.1.0
-     */
     private static OrderItem build(String column, boolean asc) {
-        return new OrderItem(column, asc);
+        return new OrderItem().setColumn(column).setAsc(asc);
     }
+
+    public OrderItem setColumn(String column) {
+        this.column = StringUtils.replaceAllBlank(column);
+        return this;
+    }
+
+    public OrderItem setAsc(boolean asc) {
+        this.asc = asc;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+            "column='" + column + '\'' +
+            ", asc=" + asc +
+            '}';
+    }
+
 }
+
 

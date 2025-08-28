@@ -258,7 +258,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * @since 1.8.0
      */
     @Override
-    public int counts() {
+    public long counts() {
         return this.service.counts();
     }
 
