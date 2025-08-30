@@ -2,13 +2,16 @@ package dev.dong4j.zeka.kernel.web.exception;
 
 import dev.dong4j.zeka.kernel.common.api.Result;
 import dev.dong4j.zeka.kernel.common.exception.GlobalExceptionHandler;
+import jakarta.servlet.Servlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * <p>Description: servlet 全局异常处理器 </p>
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE + 1000)
+@ConditionalOnClass(value = {Servlet.class, DispatcherServlet.class})
 public class ServletGlobalExceptionHandler extends GlobalExceptionHandler {
 
 

@@ -42,7 +42,7 @@ public class ServletErrorController extends BasicErrorController {
     @Resource
     private ObjectMapper objectMapper;
     /** Global exception handler */
-    private final ServletGlobalExceptionHandler globalExceptionHandler;
+    private final ServletGlobalExceptionHandler servletGlobalExceptionHandler;
 
     /**
      * Servlet error controller
@@ -55,7 +55,7 @@ public class ServletErrorController extends BasicErrorController {
                                   ErrorProperties errorProperties,
                                   ServletGlobalExceptionHandler servletGlobalExceptionHandler) {
         super(errorAttributes, errorProperties);
-        globalExceptionHandler = servletGlobalExceptionHandler;
+        this.servletGlobalExceptionHandler = servletGlobalExceptionHandler;
     }
 
 
@@ -70,7 +70,7 @@ public class ServletErrorController extends BasicErrorController {
     @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
         final Exception exception = this.checkException(request);
-        final Result<?> result = globalExceptionHandler.handleError(exception, request);
+        final Result<?> result = servletGlobalExceptionHandler.handleError(exception, request);
         return new ResponseEntity<>(Jsons.toMap(result, String.class, Object.class), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -85,7 +85,7 @@ public class ServletErrorController extends BasicErrorController {
     @Override
     public ModelAndView errorHtml(HttpServletRequest request, @NotNull HttpServletResponse response) {
         final Exception exception = this.checkException(request);
-        final Result<?> result = globalExceptionHandler.handleError(exception, request);
+        final Result<?> result = servletGlobalExceptionHandler.handleError(exception, request);
         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         MappingJackson2JsonView view = new MappingJackson2JsonView();
         view.setObjectMapper(this.objectMapper);
