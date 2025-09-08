@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.jackson;
+package dev.dong4j.zeka.kernel.web.jackson;
 
 import com.fasterxml.jackson.core.json.PackageVersion;
 import com.fasterxml.jackson.databind.module.SimpleModule;

@@ -16,25 +16,50 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 线程安全的 Map 工厂类</p>
+ * 线程安全的工厂式Map实现，支持懒加载和自动创建值
+ * <p>
+ * 该类实现了一个具有工厂能力的并发Map，当访问不存在的键时
+ * 会自动调用抽象方法create()来创建对应的值，实现了懒加载模式
+ * <p>
+ * 主要特性：
+ * - 线程安全的并发访问，基于ConcurrentHashMap实现
+ * - 懒加载模式，只在需要时才创建对象
+ * - 支持null值的安全处理，内部使用哨兵对象代替null
+ * - 提供多种创建方式：函数式、弱引用、自定义工厂
+ * - 完整的Map接口实现，支持所有标准Map操作
+ * - 高性能的缓存机制，避免重复创建相同对象
+ * <p>
+ * 使用场景：
+ * - 需要懒加载创建昂贵对象的缓存
+ * - 需要线程安全的单例模式实现
+ * - 需要按需创建对象的工厂模式
+ * - 需要支持null值的缓存场景
+ * <p>
+ * 设计模式：
+ * - 抽象工厂模式：抽象出create方法，由子类实现具体创建逻辑
+ * - 装饰器模式：对ConcurrentHashMap进行包装，添加懒加载能力
+ * - 代理模式：通过内部委托实现Map的所有操作
  *
- * @param <K> parameter
- * @param <V> parameter
+ * @param <K> Map的键类型
+ * @param <V> Map的值类型
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
- * @date 2020.05.19 10:04
+ * @date 2019.12.26 21:43
  * @since 1.0.0
  */
 @SuppressWarnings("checkstyle:ModifierOrder")
 public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> {
-    /** NULL */
+    /** null值的哨兵对象，用于代替真正的null值实现安全存储 */
     private static final Object NULL = sentinel("ObjectUtils.NULL");
-    /** My map */
+    /** 内部的并发Map实现，存储实际的键值对 */
     private final ConcurrentMap<K, V> myMap = this.createMap();
 
     /**
-     * Concurrent factory map
+     * 私有构造函数，防止直接实例化
+     * <p>
+     * 该类被设计为抽象类，需要通过子类或静态工厂方法创建实例
+     * 私有构造函数确保了设计的安全性和一致性
      *
      * @since 1.0.0
      */
@@ -43,10 +68,13 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
     }
 
     /**
-     * Sentinel
+     * 创建哨兵对象，用于代替特殊值
+     * <p>
+     * 哨兵对象是一个特殊的标识对象，用于在不能使用null的场景中代替null值
+     * 每个哨兵对象都有独特的名称标识，便于调试和日志记录
      *
-     * @param name name
-     * @return the object
+     * @param name 哨兵对象的名称标识
+     * @return 新的哨兵对象实例
      * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
@@ -56,12 +84,22 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
     }
 
     /**
-     * Create map
+     * 创建基于函数式的工厂Map
+     * <p>
+     * 这是最常用的创建方式，通过传入一个函数来定义如何根据键创建值
+     * 当访问不存在的键时，会自动调用该函数来生成对应的值
+     * <p>
+     * 使用示例：
+     * <pre>{@code
+     * ConcurrentMap<String, List<String>> map = ConcurrentFactoryMap.createMap(
+     *     key -> new ArrayList<>()
+     * );
+     * }</pre>
      *
-     * @param <T>          parameter
-     * @param <V>          parameter
-     * @param computeValue compute value
-     * @return the concurrent map
+     * @param <T>          键类型
+     * @param <V>          值类型  
+     * @param computeValue 用于根据键计算值的函数
+     * @return 创建的工厂Map实例
      * @since 1.0.0
      */
     @Contract("_ -> new")

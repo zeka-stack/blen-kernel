@@ -26,36 +26,57 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>Description: 以静态变量保存 Spring ApplicationContext, 可在任何代码任何地方任何时候取出 ApplicaitonContext. </p>
- * 与 {@link EarlySpringContext} 的区别在于获取的 ApplicationContext 是否执行了 {@link ConfigurableApplicationContext#refresh()}:
- * 未执行前不能发送事件, {@link ConfigurableApplicationContext#isActive()} 为 false, 当调用 ConfigurableApplicationContext 获取 bean 时将通过
- * {org.springframework.context.support.AbstractApplicationContext#assertBeanFactoryActive()} 判断是否可用;
- * {@link ApplicationContextAware} 则是在执行 {@link ConfigurableApplicationContext#refresh()} 之后,
- * 在 {org.springframework.context.support.ApplicationContextAwareProcessor} 被调用.
+ * Spring上下文静态访问工具类，提供全局ApplicationContext的静态访问能力
+ * <p>
+ * 该类通过静态变量保存Spring ApplicationContext，使得在任何代码位置都能够获取到Spring容器
+ * 与{@link EarlySpringContext}的区别在于获取的ApplicationContext是否执行了{@link ConfigurableApplicationContext#refresh()}：
+ * <p>
+ * <b>主要特性：</b>
+ * - 在{@link ConfigurableApplicationContext#refresh()}之后初始化，容器已完全激活
+ * - 可以正常发送事件，{@link ConfigurableApplicationContext#isActive()}为true
+ * - 支持回调机制，在初始化前注册的回调会在初始化后执行
+ * - 提供Bean获取、事件发布、调试信息等丰富功能
+ * - 线程安全的单例模式，支持并发访问
+ * <p>
+ * <b>初始化时机：</b>
+ * 通过{@link ApplicationContextAware}接口在{@link ConfigurableApplicationContext#refresh()}之后，
+ * 在{org.springframework.context.support.ApplicationContextAwareProcessor}中被调用
+ * <p>
+ * <b>使用场景：</b>
+ * - 需要在非管理Bean中获取Spring容器中的Bean
+ * - 需要发布自定义事件的场景
+ * - 需要获取所有实现类或带特定注解的Bean
+ * - 在静态方法中需要访问Spring容器的情况
  *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
- * @date 2019.11.27 15:55
+ * @date 2019.12.26 21:43
  * @see AbstractApplicationContext#prepareBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
+ * @see EarlySpringContext
  * @since 1.0.0
  */
 @Slf4j
 @Component
 @SuppressWarnings("all")
 public class SpringContext implements ApplicationContextAware, DisposableBean {
-    /** CALL_BACKS */
+    /** 回调函数列表，用于存储在ApplicationContext初始化前注册的回调 */
     private static final List<ContextCallback> CALL_BACKS = new ArrayList<>();
-    /** allowAddCallback */
+    /** 是否允许添加回调的标志，初始化后将设置为false */
     private static boolean allowAddCallback = true;
-    /** applicationContext */
+    /** Spring应用上下文，静态保存以便全局访问 */
     private static ApplicationContext applicationContext = null;
 
     /**
-     * Sets application context *
+     * 设置Spring应用上下文（ApplicationContextAware接口实现）
+     * <p>
+     * 该方法会在Spring容器初始化过程中被自动调用，用于注入ApplicationContext
+     * 初始化完成后会执行所有的回调函数，并禁止后续回调的注册
+     * <p>
+     * 注意：如果多次调用该方法（在Spring Cloud环境中可能发生），会记录警告日志
      *
-     * @param applicationContext application context
-     * @throws BeansException beans exception
+     * @param applicationContext Spring应用上下文
+     * @throws BeansException 如果设置过程中出现Bean相关错误
      * @since 1.0.0
      */
     @Override
@@ -75,10 +96,19 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
     }
 
     /**
-     * 针对 某些初始化方法, SpringContext 未初始化时 提交回调方法.
-     * 在 SpringContext 初始化后, 进行回调使用, 比如在一些静态方法中实现某段逻辑, 当 spring 执行 {@link SpringContext#setApplicationContext} 将被调用
+     * 添加上下文初始化回调函数
+     * <p>
+     * 针对某些初始化方法，在SpringContext未初始化时可以提交回调方法
+     * 在SpringContext初始化后，会自动执行这些回调函数
+     * <p>
+     * 使用场景：
+     * - 在静态方法中需要使用Spring容器，但容器可能还未初始化
+     * - 需要在Spring容器初始化后立即执行的逻辑
+     * - 解决初始化顺序问题导致的依赖注入失败
+     * <p>
+     * 注意：该方法使用synchronized保证线程安全
      *
-     * @param callBack 回调函数
+     * @param callBack 要添加的回调函数
      * @since 1.0.0
      */
     public static synchronized void addCallBacks(ContextCallback callBack) {

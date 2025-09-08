@@ -14,7 +14,60 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p>Description: 字符串切分器</p>
+ * 字符串切分器，提供强大而灵活的字符串分割功能
+ * <p>
+ * 该工具类提供了比JDK原生String.split()更加丰富和灵活的字符串分割功能
+ * 支持多种分隔符类型、大小写处理、空格处理和数量限制等高级特性
+ * <p>
+ * 主要特性：
+ * - 多种分隔符支持：字符、字符串、正则表达式、空白符
+ * - 大小写控制：支持忽略或敏感大小写的分割
+ * - 空格处理：可以选择是否移除分割后元素的前后空格
+ * - 空串过滤：支持忽略或保留空字符串元素
+ * - 数量限制：可以限制分割结果的最大元素数量
+ * - 路径分割：专门针对Unix风格路径的分割优化
+ * - 按长度分割：支持按固定字符数将字符串分段
+ * <p>
+ * 使用场景：
+ * - CSV/TSV文件的解析，需要精确控制分割行为
+ * - 配置文件的参数解析，支持多种分隔符
+ * - URL和路径的解析，需要处理特殊字符
+ * - 数据库查询结果的处理，处理字段分割
+ * - 文本挖掘和日志分析，提取结构化信息
+ * - 内容管理系统的标签和关键词处理
+ * <p>
+ * 性能优势：
+ * - 相比JDK原生方法有更高的性能和灵活性
+ * - 优化的内存分配策略，减少不必要的对象创建
+ * - 支持早期返回优化，特殊情况下直接返回结果
+ * - 针对常用场景的专项优化，如路径分割等
+ * <p>
+ * 使用示例：
+ * <pre>{@code
+ * // 基本字符串分割
+ * List<String> result = StrSpliter.split("a,b,c", ',', true, true);
+ * // 结果: ["a", "b", "c"]
+ *
+ * // 路径分割
+ * List<String> parts = StrSpliter.splitPath("/usr/local/bin");
+ * // 结果: ["usr", "local", "bin"]
+ *
+ * // 限制分割数量
+ * List<String> limited = StrSpliter.split("a.b.c.d", '.', 2, true, true);
+ * // 结果: ["a", "b.c.d"]
+ *
+ * // 大小写不敏感分割
+ * List<String> ignoreCase = StrSpliter.splitIgnoreCase("A;b;C", ';', true, true);
+ *
+ * // 按长度分割
+ * String[] chunks = StrSpliter.splitByLength("123456789", 3);
+ * // 结果: ["123", "456", "789"]
+ * }</pre>
+ * <p>
+ * 注意事项：
+ * - 该工具类的所有方法都是线程安全的
+ * - 空字符串和null值会被安全处理，返回空集合
+ * - 限制数量参数为-1表示不限制，0表示使用默认行为
  *
  * @author dong4j
  * @version 1.0.0

@@ -7,7 +7,57 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Description: </p>
+ * Servlet异常类型错误码枚举，统一定义Web层各种异常的错误码和状态码
+ * <p>
+ * 该枚举定义了Spring MVC中常见的Servlet层异常的错误码映射
+ * 为全局异常处理器提供统一的错误响应格式，提高API的一致性
+ * <p>
+ * 主要特性：
+ * - 完整覆盖：包含Spring MVC中常见的所有Web层异常类型
+ * - 错误码映射：为每个异常提供自定义的业务错误码
+ * - HTTP状态码：包含对应的标准HTTP状态码
+ * - 国际化支持：错误消息支持多语言
+ * - 异常类名：提供异常类名方便调试和日志记录
+ * <p>
+ * 包含的异常类型：
+ * <b>4xx 客户端错误：</b>
+ * - 参数验证异常：MethodArgumentNotValidException、BindException
+ * - 参数类型异常：MethodArgumentTypeMismatchException、TypeMismatchException
+ * - 参数缺失异常：MissingServletRequestParameterException、MissingPathVariableException
+ * - 请求体异常：HttpMessageNotReadableException、MissingServletRequestPartException
+ * - 路由异常：NoHandlerFoundException、NoSuchRequestHandlingMethodException
+ * - 方法不支持：HttpRequestMethodNotSupportedException
+ * - 媒体类型异常：HttpMediaTypeNotSupportedException、HttpMediaTypeNotAcceptableException
+ * <p>
+ * <b>5xx 服务器错误：</b>
+ * - 转换异常：ConversionNotSupportedException
+ * - 消息写入异常：HttpMessageNotWritableException
+ * - 异步请求超时：AsyncRequestTimeoutException
+ * - 内部错误：InnerErrorException
+ * <p>
+ * 使用场景：
+ * - 全局异常处理器中的错误码映射
+ * - API响应格式的统一化处理
+ * - 日志记录和监控系统的错误分类
+ * - 前后端错误码的统一约定
+ * <p>
+ * 使用示例：
+ * <pre>{@code
+ * @RestControllerAdvice
+ * public class GlobalExceptionHandler {
+ *
+ *     @ExceptionHandler(MethodArgumentNotValidException.class)
+ *     public Result<Void> handleValidationException(MethodArgumentNotValidException ex) {
+ *         ServletCodeEnum errorCode = ServletCodeEnum.METHOD_ARGUMENT_NOT_VALID;
+ *         return Result.failure(errorCode.getCode(), errorCode.getMessage());
+ *     }
+ * }
+ * }</pre>
+ * <p>
+ * 错误码格式说明：
+ * - 错误码：4位数字，前2位表示HTTP状态码类别，后2位表示具体错误
+ * - HTTP状态码：标准的HTTP状态码，用于设置响应状态
+ * - 错误消息：支持国际化，可以根据语言返回不同消息
  *
  * @author dong4j
  * @version 1.0.0

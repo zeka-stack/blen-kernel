@@ -21,9 +21,72 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * <p>Description: 可序列化为 json 的枚举接口 </p>
+ * 可序列化为JSON的枚举接口，提供统一的枚举序列化和反序列化能力
+ * <p>
+ * 该接口为枚举类型提供了统一的JSON序列化和反序列化支持
+ * 通过自定义的序列化器和反序列化器，实现枚举值的精确控制
+ * <p>
+ * 主要特性：
+ * - 自定义序列化：使用getValue()方法返回的值进行序列化
+ * - 智能反序列化：支持多种反序列化策略（值、名称、下标）
+ * - 类型安全：通过泛型参数保证类型安全
+ * - 错误处理：提供详细的错误信息和异常处理
+ * - 注解支持：支持@SerializeValue注解自定义序列化字段
+ * <p>
+ * 序列化机制：
+ * 1. 序列化时优先使用getValue()方法返回的值
+ * 2. 支持@SerializeValue注解指定自定义序列化字段
+ * 3. 使用EntityEnumSerializer实现自定义序列化逻辑
+ * <p>
+ * 反序列化机制：
+ * 1. 首先尝试通过getValue()返回值进行匹配
+ * 2. 如果失败，则使用枚举名称（name()）进行匹配
+ * 3. 最后使用枚举下标（ordinal()）进行匹配（已废弃）
+ * 4. 使用EntityEnumDeserializer实现自定义反序列化逻辑
+ * <p>
+ * 使用场景：
+ * - API接口中的枚举参数和返回值，需要精确控制JSON格式
+ * - 数据库存储的枚举值，需要与JSON表示保持一致
+ * - 前后端数据交互中的枚举类型，需要统一的表示方式
+ * - 微服务间的数据传输，需要保证枚举值的一致性
+ * - 配置文件中的枚举配置，需要可读性和稳定性
+ * <p>
+ * 使用示例：
+ * <pre>{@code
+ * public enum Status implements SerializeEnum<Integer> {
+ *     ACTIVE(1, "激活"),
+ *     INACTIVE(0, "未激活");
  *
- * @param <T> the type parameter
+ *     private final Integer value;
+ *     private final String desc;
+ *
+ *     Status(Integer value, String desc) {
+ *         this.value = value;
+ *         this.desc = desc;
+ *     }
+ *
+ *     @Override
+ *     public Integer getValue() {
+ *         return value;
+ *     }
+ *
+ *     @Override
+ *     public String getDesc() {
+ *         return desc;
+ *     }
+ * }
+ *
+ * // JSON序列化结果：{"status": 1} 而不是 {"status": "ACTIVE"}
+ * // 反序列化支持：1 -> ACTIVE, "ACTIVE" -> ACTIVE
+ * }</pre>
+ * <p>
+ * 注意事项：
+ * - 枚举类必须实现该接口才能使用自定义序列化功能
+ * - getValue()方法返回的值必须实现Serializable接口
+ * - 不同枚举值的getValue()返回值必须唯一，否则反序列化可能不准确
+ * - 建议不使用枚举下标进行反序列化，因为下标容易变化
+ *
+ * @param <T> 枚举值的类型，必须实现Serializable接口
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"

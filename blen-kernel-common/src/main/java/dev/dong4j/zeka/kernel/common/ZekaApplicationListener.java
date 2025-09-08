@@ -34,16 +34,73 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * Zeka应用程序生命周期事件监听器接口
+ * <p>
+ * 该接口抽象了所有Spring Boot应用程序事件处理器的公共代码
+ * 提供统一的事件处理机制，解决Spring Cloud环境下多上下文重复执行的问题
+ * <p>
+ * 主要特性：
+ * - 完整的生命周期支持：覆盖从应用启动到关闭的所有阶段
+ * - Spring Cloud兼容：解决多上下文环境下的事件重复执行问题
+ * - 执行次数统计：提供精确的执行次数控制和统计
+ * - 事件类型过滤：只处理指定类型的事件，提高性能
+ * - 灵活的执行策略：支持首次、末次、指定次数执行
+ * <p>
+ * 支持的事件类型：
+ * <b>应用启动相关事件：</b>
+ * - {@link ApplicationStartingEvent}: 应用开始启动
+ * - {@link ApplicationEnvironmentPreparedEvent}: 环境配置准备完成
+ * - {@link ApplicationContextInitializedEvent}: 上下文初始化完成
+ * - {@link ApplicationPreparedEvent}: 应用准备完成
+ * - {@link ApplicationStartedEvent}: 应用启动完成
+ * - {@link ApplicationReadyEvent}: 应用就绪完成
+ * - {@link ApplicationFailedEvent}: 应用启动失败
+ * <p>
+ * <b>上下文生命周期事件：</b>
+ * - {@link ContextRefreshedEvent}: 上下文刷新完成
+ * - {@link ContextStartedEvent}: 上下文启动完成
+ * - {@link ContextStoppedEvent}: 上下文停止完成
+ * - {@link ContextClosedEvent}: 上下文关闭完成
+ * <p>
+ * <b>Web服务器事件：</b>
+ * - {@link WebServerInitializedEvent}: Web服务器初始化完成
+ * <p>
+ * 使用场景：
+ * - 应用启动时的初始化操作，如缓存预热、连接池初始化
+ * - 配置加载和验证，特别是Spring Cloud环境下的配置处理
+ * - 微服务注册和发现，在适当时机执行服务注册
+ * - 数据库连接和缓存系统的生命周期管理
+ * - 应用性能监控和指标采集的初始化
+ * - 业务事件的发布和处理的初始化
+ * <p>
+ * Spring Cloud多上下文问题：
+ * 由于Spring Cloud会通过{@code RestartListener}再次发布部分事件，
+ * 导致自定义事件被重复处理。该接口提供了Runner工具类
+ * 来解决这个问题，支持精确控制执行次数。
+ * <p>
+ * 使用示例：
+ * <pre>{@code
+ * @Component
+ * public class MyApplicationListener implements ZekaApplicationListener {
  *
- * 抽象所有Spring Boot应用程序事件处理器的公共代码，提供统一的事件处理机制
- * 以下事件全部由EventPublishingRunListener发布，每个实现类都必须重写后的方法的执行次数
- * 由于Spring Boot和Spring Cloud的原因，会存在多个上下文，因此会执行多次自定义事件处理逻辑
+ *     @Override
+ *     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
+ *         String key = key(event, this.getClass());
+ *         // 只在第一次执行
+ *         Runner.executeAtFirst(key, () -> {
+ *             // 初始化逻辑
+ *             initializeApplication();
+ *         });
+ *     }
  *
- * 支持的事件类型包括：
- * - 应用启动相关事件（Starting、EnvironmentPrepared、ContextInitialized等）
- * - 应用运行时事件（Started、Ready、Failed等）
- * - 上下文生命周期事件（Refreshed、Started、Stopped、Closed等）
- * - Web服务器事件（WebServerInitialized等）
+ *     @Override
+ *     public void onApplicationFailedEvent(ApplicationFailedEvent event) {
+ *         // 每次失败都执行
+ *         Runner.execute(() -> {
+ *             cleanupResources();
+ *         });
+ *     }
+ * }
+ * }</pre>
  *
  * @author dong4j
  * @version 1.0.0
@@ -54,12 +111,18 @@ import org.springframework.core.env.ConfigurableEnvironment;
 public interface ZekaApplicationListener extends GenericApplicationListener {
 
     /**
-     * spring cloud 会通过 {org.springframework.cloud.context.restart.RestartListener} 再次发布
-     * ApplicationPreparedEvent, ContextRefreshedEvent, ContextClosedEvent 这 3 个事件, 导致自定义事件被重复处理.
-     * Spring Cloud 的引导上下文核心代码可见 {org.springframework.cloud.bootstrap.BootstrapApplicationListener},
-     * 其中会再次调用 SpringApplicationBuilder.run() 方法执行
+     * 主事件分发器，根据事件类型调用相应的处理方法
+     * <p>
+     * 该方法会自动识别事件类型并调用对应的处理方法
+     * 支持Spring Boot全生命周期的所有事件类型
+     * <p>
+     * 注意：Spring Cloud会通过RestartListener再次发布部分事件：
+     * - ApplicationPreparedEvent
+     * - ContextRefreshedEvent
+     * - ContextClosedEvent
+     * 导致自定义事件被重复处理，需要使用Runner工具类进行控制
      *
-     * @param event the event
+     * @param event 应用事件实例
      * @since 1.0.0
      */
     @Override
@@ -95,10 +158,21 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
 
     /**
      * 应用启动时事件处理器
+     * <p>
+     * 在{@link org.springframework.boot.SpringApplication#run(String...)}中被调用
+     * 该事件在应用程序开始启动时触发，是最早的事件
+     * 在此阶段，环境配置和上下文都还未创建
+     * <p>
+     * 适用场景：
+     * - 应用启动时的早期初始化操作
+     * - 系统环境检查和验证
+     * - JVM参数设置和优化
+     * - 第三方库的早期初始化
+     * <p>
+     * 对应的SpringApplicationRunListener方法：
      * {@link SpringApplicationRunListener#starting(ConfigurableBootstrapContext)}
-     * 在 {@link org.springframework.boot.SpringApplication#run(String...)} 中被调用
      *
-     * @param event the event
+     * @param event 应用启动事件，包含应用实例和启动参数
      * @since 1.0.0
      */
     default void onApplicationStartingEvent(ApplicationStartingEvent event) {
@@ -106,10 +180,21 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
     }
 
     /**
-     * 所有环境配置准备完成后被调用, 且在 {@link ApplicationContext} 被创建之前执行
+     * 所有环境配置准备完成后被调用，且在ApplicationContext被创建之前执行
+     * <p>
+     * 该事件在环境配置（Environment）准备完成后触发
+     * 此时可以访问完整的环境配置，但上下文还未创建
+     * <p>
+     * 适用场景：
+     * - 基于配置的初始化操作
+     * - 环境参数的验证和调整
+     * - 条件化的组件初始化
+     * - 在Spring Cloud中处理bootstrap配置
+     * <p>
+     * 对应的SpringApplicationRunListener方法：
      * {@link SpringApplicationRunListener#environmentPrepared(ConfigurableBootstrapContext, ConfigurableEnvironment)}
      *
-     * @param event the event
+     * @param event 环境准备事件，包含配置好的环境信息
      * @since 1.0.0
      */
     default void onApplicationEnvironmentPreparedEvent(ApplicationEnvironmentPreparedEvent event) {
@@ -149,12 +234,23 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
     }
 
     /**
-     * 当所有的 {@link org.springframework.boot.CommandLineRunner}, {@link org.springframework.boot.ApplicationRunner}
-     * 和 {@link org.springframework.context.support.AbstractApplicationContext#refresh()} 执行完成之后,
-     * 且在 {@link org.springframework.boot.SpringApplication#run(String...)} 执行完成之前调用
+     * 应用就绪完成事件处理器（应用启动的最后一个阶段）
+     * <p>
+     * 当所有的CommandLineRunner、ApplicationRunner和ApplicationContext的refresh()
+     * 执行完成之后，且在SpringApplication.run()执行完成之前调用
+     * 该事件表示应用已经完全准备好，可以对外提供服务
+     * <p>
+     * 适用场景：
+     * - 应用启动成功的通知和日志记录
+     * - 性能监控和健康检查的启动
+     * - 微服务注册中心的服务注册
+     * - 缓存预热和数据预加载
+     * - 定时任务和后台服务的启动
+     * <p>
+     * 对应的SpringApplicationRunListener方法：
      * {@link SpringApplicationRunListener#ready(ConfigurableApplicationContext, Duration)}
      *
-     * @param event the event
+     * @param event 应用就绪事件，表示应用已经完全准备好
      * @since 1.0.0
      */
     default void onApplicationReadyEvent(ApplicationReadyEvent event) {

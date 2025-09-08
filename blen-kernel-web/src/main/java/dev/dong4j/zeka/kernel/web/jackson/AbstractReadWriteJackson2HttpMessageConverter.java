@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.jackson;
+package dev.dong4j.zeka.kernel.web.jackson;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
