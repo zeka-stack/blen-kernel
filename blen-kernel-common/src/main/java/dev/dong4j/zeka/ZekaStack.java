@@ -7,7 +7,7 @@ package dev.dong4j.zeka;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2025.08.14 23:11
- * @since x.x.x
+ * @since 1.0.0
  */
 public class ZekaStack {
 }

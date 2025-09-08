@@ -13,14 +13,14 @@ import org.springframework.test.context.MergedContextConfiguration;
 /**
  * <p>Description: </p>
  *
- * @param args Args
+ * @param args 存储 args 参数
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.11.20 19:25
  * @since 1.0.0
  */
-record SpringBootTestArgs(String[] args) implements ContextCustomizer {
+public record SpringBootTestArgs(String[] args) implements ContextCustomizer {
     /** NO_ARGS */
     private static final String[] NO_ARGS = new String[0];
 
@@ -30,11 +30,21 @@ record SpringBootTestArgs(String[] args) implements ContextCustomizer {
      * @param args test class
      * @since 1.0.0
      */
-    SpringBootTestArgs(Class<?> args) {
-        this.args = MergedAnnotations.from(args,
+    public SpringBootTestArgs(String[] args) {
+        this.args = args != null ? Arrays.copyOf(args, args.length) : NO_ARGS;
+    }
+
+    /**
+     * Spring boot test args
+     *
+     * @param clazz test class
+     * @since 1.0.0
+     */
+    public SpringBootTestArgs(Class<?> clazz) {
+        this(MergedAnnotations.from(clazz,
                 MergedAnnotations.SearchStrategy.TYPE_HIERARCHY)
             .get(SpringBootTest.class)
-            .getValue("args", String[].class).orElse(NO_ARGS);
+            .getValue("args", String[].class).orElse(NO_ARGS));
     }
 
     /**
@@ -56,7 +66,7 @@ record SpringBootTestArgs(String[] args) implements ContextCustomizer {
      */
     @Override
     public String[] args() {
-        return this.args;
+        return this.args != null ? Arrays.copyOf(this.args, this.args.length) : NO_ARGS;
     }
 
     /**

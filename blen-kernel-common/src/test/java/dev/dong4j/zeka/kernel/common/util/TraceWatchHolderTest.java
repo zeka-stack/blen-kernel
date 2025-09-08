@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.basic.util;
+package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.support.TraceWatch;
 import dev.dong4j.zeka.kernel.common.support.TraceWatchHolder;

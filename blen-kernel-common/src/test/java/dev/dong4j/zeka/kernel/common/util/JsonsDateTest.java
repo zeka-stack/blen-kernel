@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.basic.util;
+package dev.dong4j.zeka.kernel.common.util;
 
 import com.fasterxml.jackson.core.json.PackageVersion;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +10,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import dev.dong4j.zeka.kernel.common.util.Jsons;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -12,7 +12,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.03 18:37
- * @since x.x.x
+ * @since 1.0.0
  */
 public enum EnumType {
 

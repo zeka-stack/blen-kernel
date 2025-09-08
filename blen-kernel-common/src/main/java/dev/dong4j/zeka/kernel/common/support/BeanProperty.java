@@ -1,7 +1,5 @@
 package dev.dong4j.zeka.kernel.common.support;
 
-import lombok.AllArgsConstructor;
-
 /**
  * <p>Description: Bean属性 </p>
  *
@@ -13,6 +11,5 @@ import lombok.AllArgsConstructor;
  * @date 2020.01.27 18:10
  * @since 1.0.0
  */
-@AllArgsConstructor
 public record BeanProperty(String name, Class<?> type) {
 }

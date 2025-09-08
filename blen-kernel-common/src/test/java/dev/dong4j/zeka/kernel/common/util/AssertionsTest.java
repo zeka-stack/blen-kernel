@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.basic.util;
+package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.exception.LowestException;

@@ -1,7 +1,5 @@
-package dev.dong4j.zeka.kernel.common.basic.util;
+package dev.dong4j.zeka.kernel.common.util;
 
-import dev.dong4j.zeka.kernel.common.util.GsonUtils;
-import dev.dong4j.zeka.kernel.common.util.HostUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
