@@ -32,7 +32,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 @ConditionalOnClass(value = {Servlet.class, DispatcherServlet.class})
 public class ServletGlobalExceptionHandler extends GlobalExceptionHandler {
 
-
     /**
      * 处理非法参数异常
      *

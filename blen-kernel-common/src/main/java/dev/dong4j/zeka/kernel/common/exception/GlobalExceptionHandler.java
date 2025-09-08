@@ -300,7 +300,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<?> handleError(Throwable e, HttpServletRequest request) {
-        return lastHandle(e, request);
+        return backstopHandle(e, request);
     }
 
     /**
@@ -311,7 +311,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @return the result
      * @since 1.0.0
      */
-    public static @NotNull Result<?> lastHandle(Throwable e, HttpServletRequest request) {
+    public static @NotNull Result<?> backstopHandle(Throwable e, HttpServletRequest request) {
         String hyperlink = buildErrorLink();
 
         if (e instanceof ServiceInternalException exception) {
