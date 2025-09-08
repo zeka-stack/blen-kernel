@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * <a href="https://segmentfault.com/a/1190000007832130">...</a>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:52
  * @since 1.0.0
@@ -46,7 +46,7 @@ public class Try {
      * @param <T> the type parameter
      * @param <R> the type parameter
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 14:52
      * @since 1.0.0

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Contract;
  * <p>Description: 默认的实体元数据包装对象, 使用 {@link DefaultMetaObject#forObject} 生成 {@link MetaObject}</p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 11:30
  * @since 1.0.0

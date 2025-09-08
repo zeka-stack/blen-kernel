@@ -11,7 +11,7 @@ import java.util.function.BiConsumer;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:27
- * @since 1.4.0
+ * @since 1.0.0
  */
 public interface ReadOnlyStringMap extends Serializable {
 
@@ -19,7 +19,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * 返回包含此数据结构快照的非空可变映射
      *
      * @return the map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     Map<String, String> toMap();
 
@@ -28,7 +28,7 @@ public interface ReadOnlyStringMap extends Serializable {
      *
      * @param key key
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     boolean containsKey(String key);
 
@@ -39,7 +39,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * @param <V>    parameter
      * @param action action
      * @throws java.util.ConcurrentModificationException 执行 {@link BiConsumer#accept} 时抛出异常
-     * @since 1.5.0
+     * @since 1.0.0
      */
     <V> void forEach(BiConsumer<String, ? super V> action);
 
@@ -53,7 +53,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * @param action action
      * @param state  state
      * @throws java.util.ConcurrentModificationException 从 TriConsumer的 accept 方法中添加或删除元素可能会导致抛出此异常
-     * @since 1.5.0
+     * @since 1.0.0
      */
     <V, S> void forEach(TriConsumer<String, ? super V, S> action, S state);
 
@@ -63,7 +63,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * @param <V> parameter
      * @param key the key whose value to return.
      * @return the value for the specified key or {@code null}.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     <V> V getValue(String key);
 
@@ -71,7 +71,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * 如果此集合为空 (大小为零) , 则返回true; 否则返回false.
      *
      * @return {@code true} if this collection is empty (size is zero).
-     * @since 1.5.0
+     * @since 1.0.0
      */
     boolean isEmpty();
 
@@ -79,7 +79,7 @@ public interface ReadOnlyStringMap extends Serializable {
      * 返回此集合中的键值对数.
      *
      * @return the number of key-value pairs in this collection.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     int size();
 }

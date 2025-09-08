@@ -1,9 +1,5 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -11,6 +7,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.System.currentTimeMillis;
 import static java.lang.Thread.sleep;
@@ -28,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:53
- * @since 1.5.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 class DnsCacheManipulatorTest {
@@ -54,7 +53,7 @@ class DnsCacheManipulatorTest {
      * Before class
      * / https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @BeforeAll
     static void beforeClass() {
@@ -68,7 +67,7 @@ class DnsCacheManipulatorTest {
     /**
      * Before
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @BeforeEach
     void before() {
@@ -81,7 +80,7 @@ class DnsCacheManipulatorTest {
      * Test load dns cache config
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_loadDnsCacheConfig() throws Exception {
@@ -94,7 +93,7 @@ class DnsCacheManipulatorTest {
      * Test load dns cache config from d option
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_loadDnsCacheConfig_from_D_Option() throws Exception {
@@ -110,7 +109,7 @@ class DnsCacheManipulatorTest {
      * Test load dns cache config from my config
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_loadDnsCacheConfig_fromMyConfig() throws Exception {
@@ -123,7 +122,7 @@ class DnsCacheManipulatorTest {
      * Test set multi ip
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setMultiIp() throws Exception {
@@ -141,7 +140,7 @@ class DnsCacheManipulatorTest {
      * Test config not found
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_configNotFound() throws Exception {
@@ -157,7 +156,7 @@ class DnsCacheManipulatorTest {
      * Test set dns cache get all dns cache
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setDnsCache_getAllDnsCache() throws Exception {
@@ -176,7 +175,7 @@ class DnsCacheManipulatorTest {
      * Test can set existed domain can expire then re lookup back
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_canSetExistedDomain_canExpire_thenReLookupBack() throws Exception {
@@ -198,7 +197,7 @@ class DnsCacheManipulatorTest {
      * @param domain domain
      * @return the all host addresses
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static Set<String> getAllHostAddresses(String domain) throws Exception {
         InetAddress[] allByName = InetAddress.getAllByName(domain);
@@ -213,7 +212,7 @@ class DnsCacheManipulatorTest {
      * Test set not existed domain remove then re lookup and not existed
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setNotExistedDomain_RemoveThenReLookupAndNotExisted() throws Exception {
@@ -244,7 +243,7 @@ class DnsCacheManipulatorTest {
     /**
      * Assert domain not existed
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static void assertDomainNotExisted() {
         try {
@@ -260,7 +259,7 @@ class DnsCacheManipulatorTest {
      * Test set not existed domain can expire then re lookup and not existed
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setNotExistedDomain_canExpire_thenReLookupAndNotExisted() throws Exception {
@@ -291,7 +290,7 @@ class DnsCacheManipulatorTest {
      * Test multi ips in config file
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_multi_ips_in_config_file() throws Exception {
@@ -315,7 +314,7 @@ class DnsCacheManipulatorTest {
      * Test null safe for get dns cache
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_nullSafeForGetDnsCache() throws Exception {
@@ -327,7 +326,7 @@ class DnsCacheManipulatorTest {
      * Test set dns cache policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setDnsCachePolicy() throws Exception {
@@ -366,7 +365,7 @@ class DnsCacheManipulatorTest {
      * Test set negative dns cache policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_setNegativeDnsCachePolicy() throws Exception {
@@ -415,7 +414,7 @@ class DnsCacheManipulatorTest {
      * @param actual actual
      * @param start  start
      * @param end    end
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static void assertBetween(long actual, long start, long end) {
         boolean ok = (start <= actual) && (actual <= end);

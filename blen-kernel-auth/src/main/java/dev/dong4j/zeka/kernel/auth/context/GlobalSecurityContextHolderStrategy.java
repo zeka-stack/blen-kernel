@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.15 01:41
- * @since 1.6.0
+ * @since 1.0.0
  */
 final class GlobalSecurityContextHolderStrategy implements SecurityContextHolderStrategy {
     /** contextHolder */
@@ -18,7 +18,7 @@ final class GlobalSecurityContextHolderStrategy implements SecurityContextHolder
     /**
      * Clear context
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void clearContext() {
@@ -29,7 +29,7 @@ final class GlobalSecurityContextHolderStrategy implements SecurityContextHolder
      * Gets context *
      *
      * @return the context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public SecurityContext getContext() {
@@ -44,7 +44,7 @@ final class GlobalSecurityContextHolderStrategy implements SecurityContextHolder
      * Sets context *
      *
      * @param context context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void setContext(SecurityContext context) {
@@ -56,7 +56,7 @@ final class GlobalSecurityContextHolderStrategy implements SecurityContextHolder
      * Create empty context
      *
      * @return the security context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public SecurityContext createEmptyContext() {

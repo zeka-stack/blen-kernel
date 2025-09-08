@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.02.28 01:53
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S119")
 public interface IQueryDelegateService<DTO> {
@@ -28,7 +28,7 @@ public interface IQueryDelegateService<DTO> {
      * 查询总记录数
      *
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     long counts();
 
@@ -39,7 +39,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <Q>   parameter
      * @param query query
      * @return the int
-     * @since 2.1.0
+     * @since 1.0.0
      */
     <Q extends BaseQuery<? extends Serializable>> int counts(@NotNull Q query);
 
@@ -50,7 +50,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <I> parameter
      * @param id  id
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <I extends Serializable> DTO find(@NotNull I id);
 
@@ -60,7 +60,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <Q>   parameter
      * @param query 查询
      * @return {@link DTO}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     <Q extends BaseQuery<? extends Serializable>> DTO find(@NotNull Q query);
 
@@ -71,7 +71,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <I> parameter
      * @param ids 主键ID列表
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <I extends Serializable> List<DTO> find(Collection<I> ids);
 
@@ -80,7 +80,7 @@ public interface IQueryDelegateService<DTO> {
      * 查询所有的 DTO 数据
      *
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     List<DTO> find();
 
@@ -92,7 +92,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <Q>   parameter
      * @param query 查询参数
      * @return the page
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> IPage<D> page(@NotNull Q query);
 
@@ -104,7 +104,7 @@ public interface IQueryDelegateService<DTO> {
      * @param <Q>   parameter
      * @param query 查询参数
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> List<D> list(@NotNull Q query);
 }

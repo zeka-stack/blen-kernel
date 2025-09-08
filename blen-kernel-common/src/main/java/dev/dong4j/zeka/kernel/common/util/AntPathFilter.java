@@ -13,7 +13,7 @@ import org.springframework.util.PathMatcher;
  * <p>Description: spring AntPath 规则文件过滤 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:40
  * @since 1.0.0

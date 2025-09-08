@@ -9,13 +9,13 @@ import dev.dong4j.zeka.kernel.common.ApplicationInitializedListener;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 14:36
- * @since 1.4.0
+ * @since 1.0.0
  */
 public class LanguageBundleListener implements ApplicationInitializedListener {
     /**
      * Components initialized
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void componentsInitialized() {

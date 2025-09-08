@@ -4,10 +4,22 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * <p>Description: 自动生成配置文件相关配置, 使用 @Accessors(chain = true) 生成链式调用方法 </p>
+ * 属性配置类，用于配置代码生成器生成相关组件的配置文件
+ * <p>
+ * 该类定义了各种中间件和框架组件的配置开关
+ * 支持Email、WebSocket、ActiveMQ、Redis、MyBatis、Dubbo等组件的配置生成
+ * 同时支持Spring Boot和Spring Cloud的配置文件生成
+ * <p>
+ * 主要功能：
+ * - 支持多种中间件的配置生成
+ * - 支持Spring Boot/Cloud配置文件
+ * - 支持微服务相关组件配置
+ * - 提供链式调用API
+ * <p>
+ * 使用@Accessors(chain = true)生成链式调用方法，方便配置使用
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:09
  * @since 1.0.0
@@ -15,53 +27,53 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class PropertiesConfig {
-    /** EMAIL */
+    /** Email组件配置常量 */
     public static final String EMAIL = "email";
-    /** WEBSOCKET */
+    /** WebSocket组件配置常量 */
     public static final String WEBSOCKET = "websocket";
-    /** WEBSERVICE */
+    /** WebService组件配置常量 */
     public static final String WEBSERVICE = "webservice";
-    /** ACTIVEMQ */
+    /** ActiveMQ消息中间件配置常量 */
     public static final String ACTIVEMQ = "activemq";
-    /** ROCKTEMQ */
+    /** RocketMQ消息中间件配置常量 */
     public static final String ROCKTEMQ = "rocktemq";
-    /** REDIS */
+    /** Redis缓存中间件配置常量 */
     public static final String REDIS = "redis";
-    /** MYBATIS */
+    /** MyBatis持久层框架配置常量 */
     public static final String MYBATIS = "mybatis";
-    /** ADMIN */
+    /** Spring Boot Admin监控组件配置常量 */
     public static final String ADMIN = "admin";
-    /** REST */
+    /** REST API相关配置常量 */
     public static final String REST = "rest";
-    /** DUBBO */
+    /** Dubbo微服务框架配置常量 */
     public static final String DUBBO = "dubbo";
-    /** BOOT_CONFIG */
+    /** Spring Boot配置文件常量 */
     public static final String BOOT_CONFIG = "boot";
-    /** CLOUD_CONFIG */
+    /** Spring Cloud配置文件常量 */
     public static final String CLOUD_CONFIG = "cloud";
 
-    /** Email */
+    /** 是否生成Email相关配置 */
     private boolean email = false;
-    /** Websocket */
+    /** 是否生成WebSocket相关配置 */
     private boolean websocket = false;
-    /** Webservice */
+    /** 是否生成WebService相关配置 */
     private boolean webservice = false;
-    /** Activemq */
+    /** 是否生成ActiveMQ相关配置 */
     private boolean activemq = false;
-    /** Rocktemq */
+    /** 是否生成RocketMQ相关配置 */
     private boolean rocktemq = false;
-    /** Redis */
+    /** 是否生成Redis相关配置 */
     private boolean redis = false;
-    /** Mybatis */
+    /** 是否生成MyBatis相关配置 */
     private boolean mybatis = false;
-    /** Admin */
+    /** 是否生成Spring Boot Admin相关配置 */
     private boolean admin = false;
-    /** Rest */
+    /** 是否生成REST API相关配置 */
     private boolean rest = false;
-    /** Dubbo */
+    /** 是否生成Dubbo相关配置 */
     private boolean dubbo = false;
-    /** Boot config */
+    /** 是否生成Spring Boot配置文件 */
     private boolean bootConfig = false;
-    /** Cloud config */
+    /** 是否生成Spring Cloud配置文件 */
     private boolean cloudConfig = false;
 }

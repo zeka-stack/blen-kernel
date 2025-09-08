@@ -3,14 +3,13 @@ package dev.dong4j.zeka.kernel.common.reflection.wrapper;
 import dev.dong4j.zeka.kernel.common.reflection.MetaObject;
 import dev.dong4j.zeka.kernel.common.reflection.factory.ObjectFactory;
 import dev.dong4j.zeka.kernel.common.reflection.property.PropertyTokenizer;
-
 import java.util.List;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 11:54
  * @since 1.0.0

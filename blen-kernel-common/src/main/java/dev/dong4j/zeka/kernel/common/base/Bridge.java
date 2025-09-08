@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.10.14 20:23
- * @since 2.0.0
+ * @since 1.0.0
  */
 public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
     /** 服务 */
@@ -27,7 +27,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * 桥
      *
      * @param service 服务
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public Bridge(ICrudDelegate<D> service) {
         this.service = service;
@@ -40,7 +40,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param d          d
      * @param assertions 断言
      * @return {@link I}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> I create(@NotNull D d, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(d, "新增数据实体不能为 null");
@@ -53,7 +53,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param ds         ds
      * @param assertions 断言
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createBatch(Collection<D> ds, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds, "批量新增的数据不能为空");
@@ -66,7 +66,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param dtos       dtos
      * @param batchSize  batch size
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createBatch(Collection<D> dtos, int batchSize, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(dtos, "批量新增的数据不能为空");
@@ -81,7 +81,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param d          d
      * @param assertions assertions
      * @return {@link I}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> I createIgnore(@NotNull D d, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(d, "批量新增的数据不能为空");
@@ -94,7 +94,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param ds         ds
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createIgnoreBatch(Collection<D> ds, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -107,7 +107,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param ds         ds
      * @param batchSize  批量大小
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createIgnoreBatch(Collection<D> ds, int batchSize, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -122,7 +122,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param d          d
      * @param assertions assertions
      * @return {@link I}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> I createReplace(@NotNull D d, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(d, "新增实体不能为 null");
@@ -135,7 +135,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param ds         ds
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createReplaceBatch(Collection<D> ds, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -148,7 +148,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param ds         ds
      * @param batchSize  批量大小
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createReplaceBatch(Collection<D> ds, int batchSize, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -163,7 +163,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param d          d
      * @param assertions assertions
      * @return {@link I}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> I createOrUpdate(@NotNull D d, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(d);
@@ -175,7 +175,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param ds         ds
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createOrUpdateBatch(Collection<D> ds, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -188,7 +188,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param ds         ds
      * @param batchSize  批量大小
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void createOrUpdateBatch(Collection<D> ds, int batchSize, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -201,7 +201,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param d          实体
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void update(@NotNull D d, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(d);
@@ -213,7 +213,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param ds         ds
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void updateBatch(Collection<D> ds, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -226,7 +226,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param ds         ds
      * @param batchSize  批量大小
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void updateBatch(Collection<D> ds, int batchSize, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ds);
@@ -240,7 +240,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param <I>        parameter
      * @param id         id
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> void delete(@NotNull I id, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(id);
@@ -253,7 +253,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param <I>        parameter
      * @param ids        id
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> void delete(Collection<I> ids, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ids);
@@ -265,7 +265,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param columnMap  列映射
      * @param assertions assertions
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void delete(@NotNull Map<String, Object> columnMap, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(columnMap);
@@ -277,7 +277,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param assertions assertions
      * @return int int
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public long counts(@NotNull IAssert assertions) {
         return assertions.wrapper(() -> service.counts());
@@ -290,7 +290,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param query      查询
      * @param assertions assertions
      * @return int int
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <E extends BaseQuery<? extends Serializable>> int counts(@NotNull E query, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(query);
@@ -304,7 +304,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param id         id
      * @param assertions assertions
      * @return {@link D}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> D find(@NotNull I id, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(id);
@@ -318,7 +318,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param query      查询
      * @param assertions assertions
      * @return {@link D}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <E extends BaseQuery<? extends Serializable>> D find(@NotNull E query, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notNull(query);
@@ -332,7 +332,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param ids        id
      * @param assertions assertions
      * @return {@link List}<{@link D}>
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <I extends Serializable> List<D> find(Collection<I> ids, @NotNull IAssert assertions) {
         BaseCodes.PARAM_VERIFY_ERROR.notEmpty(ids);
@@ -344,7 +344,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      *
      * @param assertions assertions
      * @return {@link List}<{@link D}>
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public List<D> find(@NotNull IAssert assertions) {
         return assertions.wrapper(() -> service.find());
@@ -358,7 +358,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param query      查询
      * @param assertions assertions
      * @return {@link IPage}<{@link D1}>
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <D1 extends BaseDTO<? extends Serializable>,
         E extends BaseQuery<? extends Serializable>> IPage<D1> page(@NotNull E query, @NotNull IAssert assertions) {
@@ -374,7 +374,7 @@ public abstract class Bridge<D extends BaseDTO<? extends Serializable>> {
      * @param query      查询
      * @param assertions assertions
      * @return {@link List}<{@link D1}>
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public <D1 extends BaseDTO<? extends Serializable>,
         E extends BaseQuery<? extends Serializable>> List<D1> list(@NotNull E query, @NotNull IAssert assertions) {

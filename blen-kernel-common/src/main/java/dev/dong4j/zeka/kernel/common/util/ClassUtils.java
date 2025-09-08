@@ -22,10 +22,21 @@ import org.springframework.util.Assert;
 import org.springframework.web.method.HandlerMethod;
 
 /**
- * <p>Description: 类工具类 </p>
+ * 类工具类，扩展了Spring ClassUtils的功能
+ *
+ * 提供了丰富的Java类和反射操作功能，包括注解处理、泛型解析、代理检测等
+ * 结合Spring的反射工具和注解工具，提供更强大的类操作能力
+ *
+ * 主要功能：
+ * - 方法参数信息获取（支持构造器和普通方法）
+ * - 注解获取和解析（支持组合注解和Spring的注解合并）
+ * - 泛型类型解析（接口泛型和父类泛型）
+ * - 代理对象检测（CGLIB、Javassist等）
+ * - 类型判断和检查工具
+ * - 对象实例化和类加载操作
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.30 22:37
  * @since 1.0.0

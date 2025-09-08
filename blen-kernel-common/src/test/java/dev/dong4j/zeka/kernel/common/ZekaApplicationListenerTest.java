@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationEvent;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:37
  * @since 1.0.0
@@ -107,7 +107,7 @@ class ZekaApplicationListenerTest {
     /**
      * Execute once
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private void executeOnce() {
         String key = Event1.class.getName() + ":" + this.getClass().getName();
@@ -126,7 +126,7 @@ class ZekaApplicationListenerTest {
     /**
      * Execute at last
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private void executeAtLast() {
         String key = Event1.class.getName() + ":" + this.getClass().getName();
@@ -147,7 +147,7 @@ class ZekaApplicationListenerTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:37
      * @since 1.0.0
@@ -172,7 +172,7 @@ class ZekaApplicationListenerTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:37
      * @since 1.0.0

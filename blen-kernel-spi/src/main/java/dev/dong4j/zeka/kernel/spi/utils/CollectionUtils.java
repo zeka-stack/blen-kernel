@@ -12,10 +12,10 @@ import java.util.Map;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public final class CollectionUtils {
@@ -45,7 +45,7 @@ public final class CollectionUtils {
     /**
      * Collection utils
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private CollectionUtils() {
     }
@@ -56,7 +56,7 @@ public final class CollectionUtils {
      * @param <T>  parameter
      * @param list list
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static <T> List<T> sort(List<T> list) {
@@ -71,7 +71,7 @@ public final class CollectionUtils {
      *
      * @param list list
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static List<String> sortSimpleName(List<String> list) {
         if (list != null && list.size() > 0) {
@@ -86,7 +86,7 @@ public final class CollectionUtils {
      * @param list      list
      * @param separator separator
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, Map<String, String>> splitAll(Map<String, List<String>> list, String separator) {
         if (list == null) {
@@ -105,7 +105,7 @@ public final class CollectionUtils {
      * @param map       map
      * @param separator separator
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, List<String>> joinAll(Map<String, Map<String, String>> map, String separator) {
         if (map == null) {
@@ -124,7 +124,7 @@ public final class CollectionUtils {
      * @param list      list
      * @param separator separator
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, String> split(List<String> list, String separator) {
         if (list == null) {
@@ -151,7 +151,7 @@ public final class CollectionUtils {
      * @param map       map
      * @param separator separator
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static List<String> join(Map<String, String> map, String separator) {
         if (map == null) {
@@ -179,7 +179,7 @@ public final class CollectionUtils {
      * @param list      list
      * @param separator separator
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String join(List<String> list, String separator) {
         StringBuilder sb = new StringBuilder();
@@ -198,7 +198,7 @@ public final class CollectionUtils {
      * @param map1 map 1
      * @param map2 map 2
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean mapEquals(Map<?, ?> map1, Map<?, ?> map2) {
         if (map1 == null && map2 == null) {
@@ -227,7 +227,7 @@ public final class CollectionUtils {
      * @param obj1 obj 1
      * @param obj2 obj 2
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static boolean objectEquals(Object obj1, Object obj2) {
         if (obj1 == null && obj2 == null) {
@@ -244,7 +244,7 @@ public final class CollectionUtils {
      *
      * @param pairs pairs
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, String> toStringMap(String... pairs) {
         Map<String, String> parameters = new HashMap<>();
@@ -266,7 +266,7 @@ public final class CollectionUtils {
      * @param <V>   parameter
      * @param pairs pairs
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> toMap(Object... pairs) {
@@ -290,7 +290,7 @@ public final class CollectionUtils {
      *
      * @param collection collection
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
@@ -301,7 +301,7 @@ public final class CollectionUtils {
      *
      * @param collection collection
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNotEmpty(Collection<?> collection) {
         return !isEmpty(collection);
@@ -312,7 +312,7 @@ public final class CollectionUtils {
      *
      * @param map map
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isEmptyMap(Map map) {
         return map == null || map.size() == 0;
@@ -323,7 +323,7 @@ public final class CollectionUtils {
      *
      * @param map map
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNotEmptyMap(Map map) {
         return !isEmptyMap(map);

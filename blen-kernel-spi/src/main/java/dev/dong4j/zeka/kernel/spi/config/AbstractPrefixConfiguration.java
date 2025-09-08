@@ -7,10 +7,10 @@ import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("PMD.UndefineMagicConstantRule")
 public abstract class AbstractPrefixConfiguration implements Configuration {
@@ -24,7 +24,7 @@ public abstract class AbstractPrefixConfiguration implements Configuration {
      *
      * @param prefix prefix
      * @param id     id
-     * @since 1.8.0
+     * @since 1.0.0
      */
     protected AbstractPrefixConfiguration(String prefix, String id) {
         if (SpiStringUtils.isNotEmpty(prefix) && !prefix.endsWith(".")) {
@@ -41,7 +41,7 @@ public abstract class AbstractPrefixConfiguration implements Configuration {
      * @param key          key
      * @param defaultValue default value
      * @return the property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public Object getProperty(String key, Object defaultValue) {

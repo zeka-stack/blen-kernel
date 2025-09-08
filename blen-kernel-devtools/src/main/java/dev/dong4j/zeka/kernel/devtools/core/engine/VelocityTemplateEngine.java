@@ -34,7 +34,7 @@ public class VelocityTemplateEngine extends AbstractTemplateEngine {
      *
      * @param configBuilder config builder
      * @return the velocity template engine
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public VelocityTemplateEngine init(ConfigBuilder configBuilder) {
@@ -58,7 +58,7 @@ public class VelocityTemplateEngine extends AbstractTemplateEngine {
      * @param templatePath template path
      * @param outputFile   output file
      * @throws Exception exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public void writer(Map<String, Object> objectMap, String templatePath, String outputFile) throws Exception {
@@ -77,7 +77,7 @@ public class VelocityTemplateEngine extends AbstractTemplateEngine {
      *
      * @param filePath file path
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String templateFilePath(String filePath) {

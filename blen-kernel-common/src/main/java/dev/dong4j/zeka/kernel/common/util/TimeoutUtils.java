@@ -1,10 +1,6 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.exception.TimeoutUtilsExecuteException;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -13,6 +9,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: 简单超时工具类</p>
@@ -21,7 +20,7 @@ import java.util.concurrent.TimeoutException;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.02 23:10
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 @UtilityClass
@@ -38,7 +37,7 @@ public final class TimeoutUtils {
      * @param timeout timeout
      * @return the t
      * @throws TimeoutUtilsExecuteException timeout utils execute exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("null, _ -> null")
     public static <T> T process(Callable<T> task, long timeout) throws Exception {
@@ -54,7 +53,7 @@ public final class TimeoutUtils {
      * @param unit    unit
      * @return the t
      * @throws TimeoutUtilsExecuteException timeout utils execute exception
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @Contract("null, _, _ -> null")
     public static <T> T process(Callable<T> task, long timeout, TimeUnit unit) throws Exception {
@@ -72,7 +71,7 @@ public final class TimeoutUtils {
      * @param unit            unit
      * @return the t
      * @throws TimeoutUtilsExecuteException timeout utils execute exception
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @Contract("_, null, _, _ -> null")
     public static <T> T process(ExecutorService executorService,

@@ -9,7 +9,7 @@ import java.io.Serial;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.02.08 11:04
- * @since 1.8.0
+ * @since 1.0.0
  */
 public class AgentInvokeErrorEvent extends BaseEvent<Object> {
     /** serialVersionUID */
@@ -20,7 +20,7 @@ public class AgentInvokeErrorEvent extends BaseEvent<Object> {
      * Instantiates a new Base event.
      *
      * @param source the source
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public AgentInvokeErrorEvent(Object source) {
         super(source);

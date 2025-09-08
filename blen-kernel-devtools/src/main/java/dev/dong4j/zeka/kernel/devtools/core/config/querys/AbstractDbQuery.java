@@ -37,7 +37,7 @@ public abstract class AbstractDbQuery implements IDbQuery {
      * @param results results
      * @return the boolean
      * @throws SQLException sql exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public boolean isKeyIdentity(ResultSet results) throws SQLException {
@@ -49,7 +49,7 @@ public abstract class AbstractDbQuery implements IDbQuery {
      * Field custom
      *
      * @return the string [ ]
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String[] fieldCustom() {

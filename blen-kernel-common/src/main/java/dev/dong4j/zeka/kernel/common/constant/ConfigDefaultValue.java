@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
  * <p>Description: 常用的配置默认值</p>
  *
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
  * @date 2020.02.04 16:03
  * @since 1.0.0

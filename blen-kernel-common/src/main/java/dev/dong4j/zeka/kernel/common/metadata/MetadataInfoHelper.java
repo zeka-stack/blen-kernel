@@ -2,17 +2,16 @@ package dev.dong4j.zeka.kernel.common.metadata;
 
 import dev.dong4j.zeka.kernel.common.util.ClassUtils;
 import dev.dong4j.zeka.kernel.common.util.ReflectionUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import static java.util.stream.Collectors.toList;
 
@@ -20,7 +19,7 @@ import static java.util.stream.Collectors.toList;
  * 实体类反射表辅助类
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 14:04
  * @since 1.0.0

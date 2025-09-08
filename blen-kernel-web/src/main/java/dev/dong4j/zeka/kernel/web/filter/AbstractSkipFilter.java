@@ -17,10 +17,13 @@ import org.springframework.util.PathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * <p>Description: 能够配置需要跳过的 url 的抽象 filter, 子类
+ * 可配置跳过URL的抽象过滤器基类
+ * 提供灵活的URL匹配机制，支持包含和排除模式的配置
+ * 子类可以继承此类来实现需要URL路径过滤的各种功能
+ * 使用Ant风格的路径匹配器，支持通配符和路径参数
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.26 15:48
  * @since 1.0.0
@@ -29,21 +32,21 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public abstract class AbstractSkipFilter extends OncePerRequestFilter {
-    /** Path matcher */
+    /** 路径匹配器，使用Ant风格的路径匹配规则 */
     protected PathMatcher pathMatcher = new AntPathMatcher();
-    /** 需要执行过滤器逻辑的 url */
+    /** 需要执行过滤器逻辑的URL模式数组 */
     @Nullable
     protected String[] includePatterns;
-    /** 不需要执行过滤器逻辑的 url */
+    /** 不需要执行过滤器逻辑的URL模式数组 */
     @Nullable
     protected String[] excludePatterns;
-    /** 业务自定义需要忽略的 url, 最终会写入到 {@link AbstractSkipFilter#includePatterns} */
+    /** 业务自定义需要忽略的URL，最终会合并到excludePatterns中 */
     protected String skipUrl;
 
     /**
      * Abstract skip filter
      *
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public AbstractSkipFilter() {
         init();
@@ -53,7 +56,7 @@ public abstract class AbstractSkipFilter extends OncePerRequestFilter {
      * Abstract skip filter
      *
      * @param skipUrl skip url
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public AbstractSkipFilter(String skipUrl) {
         this.skipUrl = skipUrl;
@@ -63,7 +66,7 @@ public abstract class AbstractSkipFilter extends OncePerRequestFilter {
     /**
      * Init
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @PostConstruct
     public void init() {
@@ -73,7 +76,7 @@ public abstract class AbstractSkipFilter extends OncePerRequestFilter {
     /**
      * Merge
      *
-     * @since 2.1.0
+     * @since 1.0.0
      */
     private void merge() {
         if (this.includePatterns == null) {
@@ -93,7 +96,7 @@ public abstract class AbstractSkipFilter extends OncePerRequestFilter {
      *
      * @param request request
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     protected boolean shouldNotFilter(@NotNull HttpServletRequest request) {

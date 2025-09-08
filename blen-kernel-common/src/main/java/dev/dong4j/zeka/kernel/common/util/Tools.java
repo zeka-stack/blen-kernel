@@ -54,7 +54,7 @@ import org.springframework.web.method.HandlerMethod;
  * <p>Description: 工具包集合,只做简单的调用,不删除原有工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:13
  * @since 1.0.0
@@ -2846,7 +2846,7 @@ public class Tools {
      *
      * @param count    count
      * @param consumer consumer
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SneakyThrows
     public static void repeat(int count, CheckedConsumer<Integer> consumer) {

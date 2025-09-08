@@ -41,10 +41,24 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: </p>
+ * 自动代码生成器核心配置类，提供MyBatis-Plus代码生成的完整配置和执行功能
+ * <p>
+ * 该类封装了代码生成器的所有配置项，包括数据源配置、全局配置、策略配置、包配置等
+ * 支持生成Entity、Mapper、Service、Controller等各层代码，以及相关的配置文件
+ * <p>
+ * 主要功能：
+ * - 数据库表结构扫描和代码生成
+ * - 支持多种数据库类型（MySQL、PostgreSQL等）
+ * - 自定义模板和生成策略
+ * - 支持单模块和多模块项目结构
+ * - 生成Spring Boot应用的完整项目结构
+ * <p>
+ * 使用示例：
+ * {@code AutoGeneratorCode generator = new AutoGeneratorCode();}
+ * {@code generator.setModelPath("/path/to/project").setAuthor("developer");}
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:45
  * @since 1.0.0
@@ -174,9 +188,12 @@ public class AutoGeneratorCode {
     private ModuleConfig.ModuleType moduleType;
 
     /**
-     * 生成全局变量
+     * 生成全局配置对象
      *
-     * @return the global config
+     * 配置代码生成器的全局参数，包括输出路径、作者信息、文件覆盖策略等
+     * 设置各个组件的名称格式和ActiveRecord支持
+     *
+     * @return 全局配置对象
      * @since 1.0.0
      */
     GlobalConfig buildGlobalConfig() {
@@ -213,10 +230,12 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * Build data source config data source config.
-     * 生成 数据源
+     * 构建数据源配置对象
      *
-     * @return the data source config
+     * 根据数据库URL自动识别数据库类型，配置相应的类型转换器
+     * 支持MySQL等主流数据库，并提供自定义的类型映射规则
+     *
+     * @return 数据源配置对象
      * @since 1.0.0
      */
     @SuppressWarnings("PMD.UndefineMagicConstantRule")
@@ -258,9 +277,12 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 生成 策略配置
+     * 构建策略配置对象
      *
-     * @return the strategy config
+     * 配置代码生成的策略参数，包括命名策略、表前缀处理、父类配置等
+     * 设置Entity、Mapper、Service、Controller的父类，支持Lombok和RestController风格
+     *
+     * @return 策略配置对象
      * @since 1.0.0
      */
     StrategyConfig buildStrategyConfig() {
@@ -302,9 +324,12 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 生成 包配置
+     * 构建包配置对象
      *
-     * @return the package config
+     * 根据指定的包名生成各个组件的包路径
+     * 自动解析模块名称，设置根包和各层组件的包路径
+     *
+     * @return 包配置对象
      * @since 1.0.0
      */
     PackageConfig buildPackageConfig() {
@@ -327,10 +352,13 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 自定义模板配置,可以 copy 源码 mybatis-plus/src/main/resources/template 下面内容修改,
-     * 放置自己项目的 src/main/resources/template 目录下, 默认名称一下可以不配置,也可以自定义模板名称
+     * 构建模板配置对象
      *
-     * @return the template config
+     * 根据指定的模板类型配置需要生成的文件类型
+     * 支持Controller、Service、Mapper、Entity等各种组件的生成
+     * 可以自定义模板路径，默认使用内置模板
+     *
+     * @return 模板配置对象
      * @since 1.0.0
      */
     TemplateConfig buildTemplateConfig() {
@@ -401,9 +429,12 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * Build template template config
+     * 构建模板配置对象（内部方法）
      *
-     * @return the template config
+     * 根据TemplatesConfig的配置设置各个组件的模板路径
+     * 对于启用的组件设置相应的模板文件路径
+     *
+     * @return 模板配置对象
      * @since 1.0.0
      */
     private TemplateConfig buildTemplate() {
@@ -452,9 +483,12 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 自定义配置
+     * 构建注入配置对象
      *
-     * @return the injection config
+     * 配置自定义变量和文件输出配置，用于模板中的变量替换
+     * 支持生成各种自定义文件，如DTO、VO、Converter等
+     *
+     * @return 注入配置对象
      * @since 1.0.0
      */
     InjectionConfig buildInjectionConfig() {
@@ -522,10 +556,13 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 生成常用的模板
+     * 构建常用模板文件配置
      *
-     * @param focList    foc list
-     * @param parentPath parent path
+     * 配置常用的模板文件输出路径和文件名称
+     * 包括XML映射文件、Entity、Form、Query、DTO、Converter等
+     *
+     * @param focList    文件输出配置列表
+     * @param parentPath 父级包路径
      * @since 1.0.0
      */
     private void buildCommonTemplate(List<FileOutConfig> focList, String parentPath) {
@@ -593,10 +630,13 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 生成扩展模板
+     * 构建扩展模板文件配置
      *
-     * @param focList    foc list
-     * @param parentPath parent path
+     * 配置项目的扩展模板文件，如启动类、单元测试、配置文件等
+     * 支持Spring Boot和Spring Cloud的配置文件生成
+     *
+     * @param focList    文件输出配置列表
+     * @param parentPath 父级包路径
      * @since 1.0.0
      */
     private void buildExpandTemplate(List<FileOutConfig> focList, String parentPath) {
@@ -635,7 +675,10 @@ public class AutoGeneratorCode {
     }
 
     /**
-     * 初始化配置模板
+     * 初始化属性配置模板
+     *
+     * 根据指定的组件数组初始化相应的属性配置
+     * 支持ActiveMQ、Redis、MyBatis、Dubbo等多种组件的配置
      *
      * @since 1.0.0
      */

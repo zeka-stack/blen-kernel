@@ -11,7 +11,7 @@ import java.util.Set;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.03 14:36
- * @since 1.6.0
+ * @since 1.0.0
  */
 public class AgentRegisteredEvent extends BaseEvent<Map<String, Set<String>>> {
     /** serialVersionUID */
@@ -22,7 +22,7 @@ public class AgentRegisteredEvent extends BaseEvent<Map<String, Set<String>>> {
      * Instantiates a new Base event.
      *
      * @param source the source
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public AgentRegisteredEvent(Map<String, Set<String>> source) {
         super(source);

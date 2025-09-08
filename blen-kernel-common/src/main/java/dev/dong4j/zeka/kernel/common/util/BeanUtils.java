@@ -23,10 +23,23 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * <p>Description: 实体工具类 </p>
+ * Bean工具类，扩展了Spring BeanUtils的功能
+ *
+ * 提供了强大的Java Bean操作功能，包括对象创建、属性复制、类型转换等
+ * 基于CGLib实现高性能的对象复制，支持批量处理和类型转换
+ *
+ * 主要功能：
+ * - 对象实例化（通过类名或Class对象）
+ * - 属性访问（获取和设置 Bean 属性）
+ * - 对象深度复制（clone方法）
+ * - 单个对象复制（支持不同类型间转换）
+ * - 批量对象复制（集合元素类型转换）
+ * - 类型转换复制（支持自定义转换器）
+ * - Map与Bean互转功能
+ * - 动态Bean创建和操作
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.11 18:47
  * @since 1.0.0
@@ -393,7 +406,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
         generator.setSuperclass(superclass);
         generator.setUseCache(true);
         for (BeanProperty prop : props) {
-            generator.addProperty(prop.getName(), prop.getType());
+            generator.addProperty(prop.name(), prop.type());
         }
         return generator.create();
     }

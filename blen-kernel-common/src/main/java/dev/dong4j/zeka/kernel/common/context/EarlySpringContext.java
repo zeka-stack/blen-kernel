@@ -24,10 +24,10 @@ import org.springframework.context.ConfigurableApplicationContext;
  * 此类在 Spring Cloud 中会被多次刷新.
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020-10-29 22:30
- * @since 1.6.0
+ * @since 1.0.0
  */
 @Slf4j
 @AutoContextInitializer
@@ -39,7 +39,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * 取得存储在静态变量中的 ApplicationContext.
      *
      * @return the application context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static ConfigurableApplicationContext getApplicationContext() {
@@ -51,7 +51,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * Set application context.
      *
      * @param context the context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SuppressWarnings("LombokSetterMayBeUsed")
     public static void setApplicationContext(ConfigurableApplicationContext context) {
@@ -142,7 +142,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * @param context  context
      * @param beanName bean name
      * @param target   target
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static void registerBean(@NotNull ConfigurableApplicationContext context, String beanName, Object target) {
         // 获取bean工厂并转换为DefaultListableBeanFactory
@@ -159,7 +159,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * @param context   context
      * @param beanClass bean class
      * @return the t
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public static <T> @NotNull T registerBean(@NotNull ConfigurableApplicationContext context, @NotNull Class<T> beanClass) {
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) context.getAutowireCapableBeanFactory();
@@ -173,7 +173,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * 在应用启动过程中, applicationContext 执行了 refresh 之后才能调用此方法.
      *
      * @param applicationEvent application event
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static void publishEvent(ApplicationEvent applicationEvent) {
         InnerContext.publishEvent(applicationContext, applicationEvent);
@@ -184,7 +184,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
      * 实现 ApplicationContextInitializer 接口, 在所有 bean 初始化之前注入, 能解决不能确定 bean 初始化顺序导致 ApplicationContext 注入失败的问题
      *
      * @param applicationContext the application to configure
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     @SuppressWarnings("java:S2696")
@@ -200,7 +200,7 @@ public class EarlySpringContext implements ApplicationContextInitializer<Configu
     /**
      * 实现 DisposableBean 接口, 在Context关闭时清理静态变量.
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void destroy() {

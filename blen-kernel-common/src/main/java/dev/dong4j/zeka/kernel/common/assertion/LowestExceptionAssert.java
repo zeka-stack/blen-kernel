@@ -11,7 +11,7 @@ import java.io.Serial;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2023.11.11 12:20
- * @since 2024.1.1
+ * @since 1.0.0
  */
 public interface LowestExceptionAssert extends IResultCode, IAssert {
     /** serialVersionUID */
@@ -23,7 +23,7 @@ public interface LowestExceptionAssert extends IResultCode, IAssert {
      *
      * @param args the args
      * @return the base exception
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Override
     default LowestException newException(Object... args) {
@@ -36,7 +36,7 @@ public interface LowestExceptionAssert extends IResultCode, IAssert {
      * @param t    the t
      * @param args the args
      * @return the base exception
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Override
     default LowestException newException(Throwable t, Object... args) {

@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试类
@@ -159,7 +158,7 @@ class ReflectionUtilsTest {
     /**
      * Test 1
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {

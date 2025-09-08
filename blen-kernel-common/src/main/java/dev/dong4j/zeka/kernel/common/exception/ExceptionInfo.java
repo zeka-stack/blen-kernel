@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 开发环境时输出更多的异常信息 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:55
  * @since 1.0.0
@@ -58,7 +58,7 @@ public class ExceptionInfo implements Serializable {
      * @param throwable throwable
      * @param request   request
      * @return the exception info
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ExceptionInfo create(String hyperlink, @NotNull Throwable throwable, @NotNull HttpServletRequest request) {
         ExceptionInfo exceptionEntity = new ExceptionInfo();

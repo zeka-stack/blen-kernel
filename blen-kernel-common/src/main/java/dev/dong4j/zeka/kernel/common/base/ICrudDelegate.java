@@ -13,7 +13,7 @@ import dev.dong4j.zeka.kernel.common.base.query.IQueryDelegateService;
  * @date 2020.11.23 20:31
  * @see CrudDelegateImpl
  * @see IRepositoryService
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S119")
 public interface ICrudDelegate<DTO> extends ICommandDelegateService<DTO>, IQueryDelegateService<DTO> {

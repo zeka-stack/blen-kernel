@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.01.27 13:14
- * @since 1.7.1
+ * @since 1.0.0
  */
 @Slf4j
 class DataTypeUtilsTest {
@@ -18,7 +18,7 @@ class DataTypeUtilsTest {
     /**
      * Test is primitive
      *
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @Test
     void test_isPrimitive() {

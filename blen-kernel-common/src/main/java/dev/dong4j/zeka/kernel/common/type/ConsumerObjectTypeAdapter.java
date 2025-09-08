@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.01.5 22:47
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public final class ConsumerObjectTypeAdapter extends TypeAdapter<Object> {
@@ -44,7 +43,7 @@ public final class ConsumerObjectTypeAdapter extends TypeAdapter<Object> {
      * Object type adapter
      *
      * @param gson gson
-     * @since 1.7.0
+     * @since 1.0.0
      */
     ConsumerObjectTypeAdapter(Gson gson) {
         this.gson = gson;
@@ -56,7 +55,7 @@ public final class ConsumerObjectTypeAdapter extends TypeAdapter<Object> {
      * @param in in
      * @return the object
      * @throws IOException io exception
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public Object read(JsonReader in) throws IOException {
@@ -112,7 +111,7 @@ public final class ConsumerObjectTypeAdapter extends TypeAdapter<Object> {
      * @param out   out
      * @param value value
      * @throws IOException io exception
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     @Override

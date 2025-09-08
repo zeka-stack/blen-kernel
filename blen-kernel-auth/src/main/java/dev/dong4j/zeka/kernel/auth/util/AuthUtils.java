@@ -9,13 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description:  </p>
+ * 认证工具类，提供与HTTP请求相关的认证信息提取功能
+ * 支持多种客户端类型（v8、app、h5、v4）的token获取方式
+ * 提供统一的用户名、客户端ID等信息提取方法，简化上层应用的认证处理
  *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.30 11:49
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 @UtilityClass
@@ -26,7 +28,7 @@ public class AuthUtils {
      *
      * @param request request
      * @return token token
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public String getToken(@NotNull HttpServletRequest request) {
         // 从 header 中获取 token
@@ -55,7 +57,7 @@ public class AuthUtils {
      *
      * @param request request
      * @return the string
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public String getUsername(@NotNull HttpServletRequest request) {
         String token = getToken(request);
@@ -67,7 +69,7 @@ public class AuthUtils {
      *
      * @param request request
      * @return the client id
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public String getClientId(@NotNull HttpServletRequest request) {
         String token = getToken(request);

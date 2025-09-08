@@ -3,12 +3,6 @@ package dev.dong4j.zeka.kernel.common.convert;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.util.ConvertUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.core.convert.converter.ConditionalGenericConverter;
-
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -17,12 +11,17 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.ConditionalGenericConverter;
 
 /**
  * <p>Description: 接收参数 同 jackson Enum -> String 转换 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:05
  * @since 1.0.0
@@ -138,11 +137,9 @@ public class EnumToStringConverter implements ConditionalGenericConverter {
     private static Object invoke(Class<?> clazz, AccessibleObject accessibleObject, Object source, Class<?> targetClazz)
         throws IllegalAccessException, InvocationTargetException {
         Object value = null;
-        if (accessibleObject instanceof Field) {
-            Field field = (Field) accessibleObject;
+        if (accessibleObject instanceof Field field) {
             value = field.get(source);
-        } else if (accessibleObject instanceof Method) {
-            Method method = (Method) accessibleObject;
+        } else if (accessibleObject instanceof Method method) {
             Class<?> paramType = method.getParameterTypes()[0];
             // 类型转换
             Object object = ConvertUtils.convert(source, paramType);

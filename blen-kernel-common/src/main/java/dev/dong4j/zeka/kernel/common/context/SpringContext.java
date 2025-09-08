@@ -3,6 +3,12 @@ package dev.dong4j.zeka.kernel.common.context;
 import dev.dong4j.zeka.kernel.common.constant.App;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.GsonUtils;
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -19,13 +25,6 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * <p>Description: 以静态变量保存 Spring ApplicationContext, 可在任何代码任何地方任何时候取出 ApplicaitonContext. </p>
  * 与 {@link EarlySpringContext} 的区别在于获取的 ApplicationContext 是否执行了 {@link ConfigurableApplicationContext#refresh()}:
@@ -35,7 +34,7 @@ import java.util.stream.Collectors;
  * 在 {org.springframework.context.support.ApplicationContextAwareProcessor} 被调用.
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.27 15:55
  * @see AbstractApplicationContext#prepareBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
@@ -57,7 +56,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
      *
      * @param applicationContext application context
      * @throws BeansException beans exception
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void setApplicationContext(@NotNull ApplicationContext applicationContext) throws BeansException {
@@ -80,7 +79,7 @@ public class SpringContext implements ApplicationContextAware, DisposableBean {
      * 在 SpringContext 初始化后, 进行回调使用, 比如在一些静态方法中实现某段逻辑, 当 spring 执行 {@link SpringContext#setApplicationContext} 将被调用
      *
      * @param callBack 回调函数
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static synchronized void addCallBacks(ContextCallback callBack) {
         if (allowAddCallback) {

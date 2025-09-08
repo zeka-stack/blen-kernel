@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.02 12:09
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 class NetUtilsTest {

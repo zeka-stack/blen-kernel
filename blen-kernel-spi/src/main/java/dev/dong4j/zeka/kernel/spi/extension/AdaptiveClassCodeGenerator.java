@@ -2,22 +2,21 @@ package dev.dong4j.zeka.kernel.spi.extension;
 
 import dev.dong4j.zeka.kernel.spi.URL;
 import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
-import lombok.extern.slf4j.Slf4j;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -83,7 +82,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param type           type
      * @param defaultExtName default ext name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public AdaptiveClassCodeGenerator(Class<?> type, String defaultExtName) {
         this.type = type;
@@ -94,7 +93,7 @@ public class AdaptiveClassCodeGenerator {
      * Has adaptive method
      *
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean hasAdaptiveMethod() {
         return Arrays.stream(type.getMethods()).anyMatch(m -> m.isAnnotationPresent(Adaptive.class));
@@ -104,7 +103,7 @@ public class AdaptiveClassCodeGenerator {
      * Generate
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public String generate() {
         // no need to generate adaptive class since there's no adaptive method found.
@@ -134,7 +133,7 @@ public class AdaptiveClassCodeGenerator {
      * Generate package info
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generatePackageInfo() {
         return String.format(CODE_PACKAGE, type.getPackage().getName());
@@ -144,7 +143,7 @@ public class AdaptiveClassCodeGenerator {
      * Generate imports
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateImports() {
         return String.format(CODE_IMPORTS, SPILoader.class.getName());
@@ -154,7 +153,7 @@ public class AdaptiveClassCodeGenerator {
      * Generate class declaration
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateClassDeclaration() {
         return String.format(CODE_CLASS_DECLARATION, type.getSimpleName(), type.getCanonicalName());
@@ -165,7 +164,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateUnsupported(Method method) {
         return String.format(CODE_UNSUPPORTED, method, type.getName());
@@ -176,7 +175,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the url type index
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private int getUrlTypeIndex(Method method) {
         int urlTypeIndex = -1;
@@ -195,7 +194,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateMethod(Method method) {
         String methodReturnType = method.getReturnType().getCanonicalName();
@@ -211,7 +210,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateMethodArguments(Method method) {
         Class<?>[] pts = method.getParameterTypes();
@@ -225,7 +224,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateMethodThrows(Method method) {
         Class<?>[] ets = method.getExceptionTypes();
@@ -242,7 +241,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param index index
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateUrlNullCheck(int index) {
         return String.format(CODE_URL_NULL_CHECK, index, URL.class.getName(), index);
@@ -253,7 +252,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateMethodContent(Method method) {
         Adaptive adaptiveAnnotation = method.getAnnotation(Adaptive.class);
@@ -296,7 +295,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param value value
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateExtNameNullCheck(String[] value) {
         return String.format(CODE_EXT_NAME_NULL_CHECK, type.getName(), Arrays.toString(value));
@@ -308,7 +307,7 @@ public class AdaptiveClassCodeGenerator {
      * @param value         value
      * @param hasInvocation has invocation
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateExtNameAssignment(String[] value, boolean hasInvocation) {
         // TODO: refactor it
@@ -356,7 +355,7 @@ public class AdaptiveClassCodeGenerator {
      * Generate extension assignment
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateExtensionAssignment() {
         return String.format(CODE_EXTENSION_ASSIGNMENT, type.getName(), SPILoader.class.getSimpleName(), type.getName());
@@ -367,7 +366,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateReturnAndInvocation(Method method) {
         String returnStatement = method.getReturnType().equals(void.class) ? "" : "return ";
@@ -384,7 +383,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean hasInvocationArgument(Method method) {
         Class<?>[] pts = method.getParameterTypes();
@@ -396,7 +395,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateInvocationArgumentNullCheck(Method method) {
         Class<?>[] pts = method.getParameterTypes();
@@ -410,7 +409,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param adaptiveAnnotation adaptive annotation
      * @return the string [ ]
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String[] getMethodAdaptiveValue(Adaptive adaptiveAnnotation) {
         String[] value = adaptiveAnnotation.value();
@@ -427,7 +426,7 @@ public class AdaptiveClassCodeGenerator {
      *
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateUrlAssignmentIndirectly(Method method) {
         Class<?>[] pts = method.getParameterTypes();
@@ -459,7 +458,7 @@ public class AdaptiveClassCodeGenerator {
      * @param type   type
      * @param method method
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String generateGetUrlNullCheck(int index, Class<?> type, String method) {
         // Null point check

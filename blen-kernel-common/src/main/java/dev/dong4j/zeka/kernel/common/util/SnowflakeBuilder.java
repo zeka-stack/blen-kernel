@@ -1,18 +1,17 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import cn.hutool.core.lang.Snowflake;
-import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.StringUtils;
-
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * <p>Description: 雪花算法生成全局唯一 id </p>
  * todo-dong4j : (2020年04月18日 9:22 下午) [待优化]
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
  * @date 2020.04.18 21:14
  * @since 1.0.0

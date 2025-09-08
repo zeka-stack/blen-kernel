@@ -2,19 +2,18 @@ package dev.dong4j.zeka.kernel.test.mock.mocker;
 
 import dev.dong4j.zeka.kernel.test.mock.MockConfig;
 import dev.dong4j.zeka.kernel.test.mock.Mocker;
-import org.jetbrains.annotations.Contract;
-
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: </p>
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:20
  * @since 1.0.0

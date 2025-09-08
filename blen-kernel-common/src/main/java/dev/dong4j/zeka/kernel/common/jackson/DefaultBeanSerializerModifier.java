@@ -10,14 +10,13 @@ import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.DefaultSerializerProvider;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.temporal.TemporalAccessor;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: jackson 默认值为 null 时的处理, 主要是为了避免 app 端出现null导致闪退
@@ -33,7 +32,7 @@ import java.util.List;
  * todo-dong4j : (2020-07-10 14:5) [提供扩展接口, 可自定义 changeProperties ]
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.24 01:46
  * @since 1.0.0
@@ -86,7 +85,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
      * The interface Null json serializers.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 01:46
      * @since 1.0.0

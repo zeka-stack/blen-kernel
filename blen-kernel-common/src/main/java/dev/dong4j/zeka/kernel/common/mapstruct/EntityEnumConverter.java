@@ -2,11 +2,10 @@ package dev.dong4j.zeka.kernel.common.mapstruct;
 
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
 import dev.dong4j.zeka.kernel.common.util.EnumUtils;
-import org.jetbrains.annotations.Contract;
-import org.mapstruct.Named;
-
 import java.io.Serializable;
 import java.util.Optional;
+import org.jetbrains.annotations.Contract;
+import org.mapstruct.Named;
 
 /**
  * <p>Description: 实体枚举类 {@link SerializeEnum} 与 {@link SerializeEnum#getValue()} 和 {@link SerializeEnum#getDesc()} ()} 的转换关系 </p>
@@ -22,7 +21,7 @@ import java.util.Optional;
  * @param <E> the type parameter
  * @param <V> the type parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:08
  * @since 1.0.0
@@ -38,7 +37,7 @@ public abstract class EntityEnumConverter<E extends SerializeEnum<?>, V extends 
      * Entity enum converter
      *
      * @param enumType enum type
-     * @since 1.9.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected EntityEnumConverter(Class<E> enumType) {

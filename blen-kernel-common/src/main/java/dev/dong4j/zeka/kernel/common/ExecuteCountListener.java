@@ -10,10 +10,10 @@ import org.springframework.core.Ordered;
  * <p>Description: listener 执行次数统计 </p>
  *
  * @author dong4j
- * @version 1.4.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 19:46
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Slf4j
 @AutoListener
@@ -34,7 +34,7 @@ public class ExecuteCountListener implements ZekaApplicationListener {
      * On application starting event
      *
      * @param event event
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void onApplicationStartingEvent(@NotNull ApplicationStartingEvent event) {

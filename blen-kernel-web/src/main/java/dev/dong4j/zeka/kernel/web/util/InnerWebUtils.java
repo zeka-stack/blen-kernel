@@ -20,7 +20,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2022.01.06 23:04
- * @since 2022.1.1
+ * @since 1.0.0
  */
 @UtilityClass
 public class InnerWebUtils {
@@ -42,7 +42,7 @@ public class InnerWebUtils {
      * @param filter      filter
      * @param order       order
      * @param urlPatterns url patterns
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public void setUrlPatterns(@NotNull FilterRegistrationBean<? extends Filter> filter, int order, Collection<String> urlPatterns) {
         filter.setUrlPatterns(urlPatterns);
@@ -54,7 +54,7 @@ public class InnerWebUtils {
      * Build url patterns
      *
      * @return the list
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public @NotNull @Unmodifiable List<String> buildUrlPatterns() {
         String contextPath = ConfigKit.getProperty(ConfigKey.SpringConfigKey.SERVER_CONTEXT_PATH, StringPool.SLASH);

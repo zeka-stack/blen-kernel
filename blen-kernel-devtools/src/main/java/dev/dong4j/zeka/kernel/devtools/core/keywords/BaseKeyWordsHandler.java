@@ -26,7 +26,7 @@ import java.util.Locale;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 3.3.2
+ * @since 1.0.0
  */
 public abstract class BaseKeyWordsHandler implements IKeyWordsHandler {
 
@@ -37,7 +37,7 @@ public abstract class BaseKeyWordsHandler implements IKeyWordsHandler {
      * Base key words handler
      *
      * @param keyWords key words
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public BaseKeyWordsHandler(List<String> keyWords) {
         this.keyWords = keyWords;
@@ -47,7 +47,7 @@ public abstract class BaseKeyWordsHandler implements IKeyWordsHandler {
      * Gets key words *
      *
      * @return the key words
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public List<String> getKeyWords() {
@@ -59,7 +59,7 @@ public abstract class BaseKeyWordsHandler implements IKeyWordsHandler {
      *
      * @param columnName column name
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public boolean isKeyWords(String columnName) {
         return getKeyWords().contains(columnName.toUpperCase(Locale.ENGLISH));

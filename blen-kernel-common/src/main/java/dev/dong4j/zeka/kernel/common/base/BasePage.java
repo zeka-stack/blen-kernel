@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.04 14:29
- * @since 1.6.0
+ * @since 1.0.0
  */
 @Data
 @NoArgsConstructor
@@ -37,7 +37,7 @@ public abstract class BasePage<T extends AbstractBaseEntity<?>> implements Seria
      * @param <T>        parameter
      * @param pagination pagination
      * @return the template user page
-     * @since 1.6.0
+     * @since 1.0.0
      * @deprecated 使用 {@link com.baomidou.mybatisplus.core.metadata.IPage#wrapper} 代替
      */
     @Deprecated

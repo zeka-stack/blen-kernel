@@ -1,8 +1,5 @@
 package dev.dong4j.zeka.kernel.test.mock.util;
 
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -11,12 +8,14 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 反射工具类</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:08
  * @since 1.0.0

@@ -71,7 +71,7 @@ public class TableField {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2024.04.15 22:21
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Data
     public static class EnumProperties {
@@ -88,13 +88,13 @@ public class TableField {
     /**
      * 是否关键字
      *
-     * @since 3.3.2
+     * @since 1.0.0
      */
     private boolean keyWords;
     /**
      * 数据库字段（关键字含转义符号）
      *
-     * @since 3.3.2
+     * @since 1.0.0
      */
     private String columnName;
     /**
@@ -107,7 +107,7 @@ public class TableField {
      *
      * @param convert convert
      * @return the convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableField setConvert(boolean convert) {
         this.convert = convert;
@@ -119,7 +119,7 @@ public class TableField {
      *
      * @param strategyConfig strategy config
      * @return the convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected TableField setConvert(StrategyConfig strategyConfig) {
         if (strategyConfig.isEntityTableFieldAnnotationEnable() || isKeyWords()) {
@@ -148,7 +148,7 @@ public class TableField {
      * @param strategyConfig strategy config
      * @param propertyName   property name
      * @return the property name
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableField setPropertyName(StrategyConfig strategyConfig, String propertyName) {
         this.propertyName = propertyName;
@@ -160,7 +160,7 @@ public class TableField {
      * Gets property type *
      *
      * @return the property type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public String getPropertyType() {
         if (null != columnType) {
@@ -179,7 +179,7 @@ public class TableField {
      * 我们并不建议在数据库对应的对象中使用基本类型，因此这里不会考虑基本类型的情况
      *
      * @return the capital name
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public String getCapitalName() {
         if (propertyName.length() == 1) {
@@ -195,7 +195,7 @@ public class TableField {
      * 获取注解字段名称
      *
      * @return 字段 annotation column name
-     * @since 3.3.2
+     * @since 1.0.0
      */
     public String getAnnotationColumnName() {
         if (keyWords) {
@@ -211,7 +211,7 @@ public class TableField {
      *
      * @param word word
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static boolean containsUpperCase(String word) {
         for (int i = 0; i < word.length(); i++) {

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Contract;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 09:43
- * @since 1.4.0
+ * @since 1.0.0
  */
 public final class SystemInfoRt {
     /** OS_NAME */
@@ -39,7 +39,7 @@ public final class SystemInfoRt {
      * Is modular java
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     private static boolean isModularJava() {

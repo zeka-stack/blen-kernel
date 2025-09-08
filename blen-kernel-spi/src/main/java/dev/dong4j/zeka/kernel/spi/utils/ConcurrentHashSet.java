@@ -12,10 +12,10 @@ import java.util.concurrent.ConcurrentMap;
  *
  * @param <E> parameter
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java.io.Serializable {
@@ -33,7 +33,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
     /**
      * Concurrent hash set
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public ConcurrentHashSet() {
         map = new ConcurrentHashMap<E, Object>();
@@ -43,7 +43,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      * Concurrent hash set
      *
      * @param initialCapacity initial capacity
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public ConcurrentHashSet(int initialCapacity) {
         map = new ConcurrentHashMap<E, Object>(initialCapacity);
@@ -53,7 +53,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      * Iterator
      *
      * @return the iterator
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public Iterator<E> iterator() {
@@ -64,7 +64,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      * Size
      *
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public int size() {
@@ -75,7 +75,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      * Is empty
      *
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public boolean isEmpty() {
@@ -87,7 +87,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      *
      * @param o o
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public boolean contains(Object o) {
@@ -99,7 +99,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      *
      * @param e e
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public boolean add(E e) {
@@ -111,7 +111,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
      *
      * @param o o
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public boolean remove(Object o) {
@@ -121,7 +121,7 @@ public class ConcurrentHashSet<E> extends AbstractSet<E> implements Set<E>, java
     /**
      * Clear
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void clear() {

@@ -1,16 +1,28 @@
 package dev.dong4j.zeka.kernel.validation.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
- * <p>Description: 正则表达式工具 </p>
+ * 正则表达式工具类，提供常用的正则表达式常量和匹配方法
+ *
+ * 集成了大量常用的正则表达式常量，包括数字、字符、日期、电话、邮箱等验证
+ * 提供便捷的正则匹配和查找方法，简化数据验证和字符串处理操作
+ *
+ * 主要功能：
+ * - 数字相关正则（整数、小数、货币等）
+ * - 字符相关正则（中文、英文、特殊字符等）
+ * - 联系方式正则（手机号、邮箱、电话、QQ等）
+ * - 证件相关正则（身份证、车牌号等）
+ * - 网络相关正则（IP、域名、URL等）
+ * - 日期时间正则验证
+ * - 用户信息正则（用户名、密码等）
+ * - 文件相关正则验证
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.25 01:58
  * @since 1.0.0

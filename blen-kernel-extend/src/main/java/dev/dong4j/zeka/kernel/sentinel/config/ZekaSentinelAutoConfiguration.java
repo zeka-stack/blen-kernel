@@ -25,10 +25,14 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 /**
-* <p>Description:  可通过配置选择不同的客户端 </p>
+ * Sentinel自动配置类，提供Sentinel与Nacos集成的核心配置
+ * <p>
+ * 该类负责初始化Sentinel相关的动态规则提供者和发布者，实现规则的动态加载和持久化
+ * 通过与Nacos配置中心集成，支持规则的实时更新和分布式一致性
+ * </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.21 23:43
  * @since 1.0.0
@@ -39,11 +43,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ZekaSentinelAutoConfiguration {
 
     /**
-     * Nacos config service config service
+     * 创建Nacos配置服务实例
+     * <p>
+     * 根据配置的Nacos服务器地址初始化配置服务，用于后续规则的读取和发布
+     * </p>
      *
-     * @param properties properties
-     * @return the config service
-     * @throws Exception exception
+     * @param properties Sentinel配置属性，包含Nacos服务器地址等配置信息
+     * @return Nacos配置服务实例
+     * @throws Exception 配置服务初始化失败时抛出异常
      * @since 1.0.0
      */
     @Bean
@@ -52,10 +59,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Flow rule provider dynamic rule provider
+     * 创建流量规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载流量控制规则，将配置内容解析为FlowRuleEntity对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 流量规则动态提供者，用于获取最新的流量控制规则
      * @since 1.0.0
      */
     @Bean
@@ -65,10 +75,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Flow rule publisher dynamic rule publisher
+     * 创建流量规则发布者
+     * <p>
+     * 负责将流量控制规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 流量规则动态发布者，用于发布更新后的流量控制规则
      * @since 1.0.0
      */
     @Bean
@@ -78,10 +91,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Gateway flow rule provider dynamic rule provider
+     * 创建网关流量规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载网关流量控制规则，将配置内容解析为GatewayFlowRuleEntity对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 网关流量规则动态提供者，用于获取最新的网关流量控制规则
      * @since 1.0.0
      */
     @Bean
@@ -91,10 +107,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Gateway flow rule publisher dynamic rule publisher
+     * 创建网关流量规则发布者
+     * <p>
+     * 负责将网关流量控制规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 网关流量规则动态发布者，用于发布更新后的网关流量控制规则
      * @since 1.0.0
      */
     @Bean
@@ -104,10 +123,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Authority rule provider dynamic rule provider
+     * 创建授权规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载授权规则，将配置内容解析为AuthorityRule对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 授权规则动态提供者，用于获取最新的授权规则
      * @since 1.0.0
      */
     @Bean
@@ -117,10 +139,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Authority rule publisher dynamic rule publisher
+     * 创建授权规则发布者
+     * <p>
+     * 负责将授权规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 授权规则动态发布者，用于发布更新后的授权规则
      * @since 1.0.0
      */
     @Bean
@@ -130,10 +155,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Degrade rule provider dynamic rule provider
+     * 创建降级规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载熔断降级规则，将配置内容解析为DegradeRuleEntity对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 降级规则动态提供者，用于获取最新的熔断降级规则
      * @since 1.0.0
      */
     @Bean
@@ -143,10 +171,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Degrade rule publisher dynamic rule publisher
+     * 创建降级规则发布者
+     * <p>
+     * 负责将熔断降级规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 降级规则动态发布者，用于发布更新后的熔断降级规则
      * @since 1.0.0
      */
     @Bean
@@ -156,10 +187,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Param rule provider dynamic rule provider
+     * 创建热点参数规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载热点参数规则，将配置内容解析为ParamFlowRule对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 热点参数规则动态提供者，用于获取最新的热点参数规则
      * @since 1.0.0
      */
     @Bean
@@ -169,10 +203,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * Param rule publisher dynamic rule publisher
+     * 创建热点参数规则发布者
+     * <p>
+     * 负责将热点参数规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 热点参数规则动态发布者，用于发布更新后的热点参数规则
      * @since 1.0.0
      */
     @Bean
@@ -182,10 +219,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * System rule provider dynamic rule provider
+     * 创建系统规则提供者
+     * <p>
+     * 负责从Nacos配置中心加载系统保护规则，将配置内容解析为SystemRuleEntity对象列表
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule provider
+     * @param configService Nacos配置服务实例
+     * @return 系统规则动态提供者，用于获取最新的系统保护规则
      * @since 1.0.0
      */
     @Bean
@@ -195,10 +235,13 @@ public class ZekaSentinelAutoConfiguration {
     }
 
     /**
-     * System rule publisher dynamic rule publisher
+     * 创建系统规则发布者
+     * <p>
+     * 负责将系统保护规则发布到Nacos配置中心，实现规则的持久化和分布式同步
+     * </p>
      *
-     * @param configService config service
-     * @return the dynamic rule publisher
+     * @param configService Nacos配置服务实例
+     * @return 系统规则动态发布者，用于发布更新后的系统保护规则
      * @since 1.0.0
      */
     @Bean

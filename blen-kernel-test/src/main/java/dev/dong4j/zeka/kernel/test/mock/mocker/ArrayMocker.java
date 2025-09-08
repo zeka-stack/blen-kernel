@@ -4,9 +4,6 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.util.RandomUtils;
 import dev.dong4j.zeka.kernel.test.mock.MockConfig;
 import dev.dong4j.zeka.kernel.test.mock.Mocker;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
@@ -16,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 数组模拟器</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:42
  * @since 1.0.0

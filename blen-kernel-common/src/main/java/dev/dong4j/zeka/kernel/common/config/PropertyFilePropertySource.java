@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:21
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Slf4j
 public class PropertyFilePropertySource extends PropertiesPropertySource {
@@ -25,7 +25,7 @@ public class PropertyFilePropertySource extends PropertiesPropertySource {
      * Property file property source
      *
      * @param fileName file name
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public PropertyFilePropertySource(String fileName) {
         super(loadPropertiesFile(fileName));
@@ -36,7 +36,7 @@ public class PropertyFilePropertySource extends PropertiesPropertySource {
      *
      * @param fileName file name
      * @return the properties
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static @NotNull Properties loadPropertiesFile(String fileName) {
         Properties props = new Properties();

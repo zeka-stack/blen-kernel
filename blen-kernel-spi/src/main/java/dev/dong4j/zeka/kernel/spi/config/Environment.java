@@ -3,7 +3,6 @@ package dev.dong4j.zeka.kernel.spi.config;
 
 import dev.dong4j.zeka.kernel.spi.constants.CommonConstants;
 import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -13,10 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("PMD.UndefineMagicConstantRule")
 public class Environment {
@@ -49,7 +48,7 @@ public class Environment {
      * Gets instance *
      *
      * @return the instance
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Environment getInstance() {
         return INSTANCE;
@@ -61,7 +60,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the properties config
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public PropertiesConfiguration getPropertiesConfig(String prefix, String id) {
         return this.propertiesConfigs.computeIfAbsent(toKey(prefix, id), k -> new PropertiesConfiguration(prefix, id));
@@ -73,7 +72,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the system config
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public SystemConfiguration getSystemConfig(String prefix, String id) {
         return this.systemConfigs.computeIfAbsent(toKey(prefix, id), k -> new SystemConfiguration(prefix, id));
@@ -85,7 +84,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the external config
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public InmemoryConfiguration getExternalConfig(String prefix, String id) {
         return this.externalConfigs.computeIfAbsent(toKey(prefix, id), k -> {
@@ -101,7 +100,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the app external config
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public InmemoryConfiguration getAppExternalConfig(String prefix, String id) {
         return this.appExternalConfigs.computeIfAbsent(toKey(prefix, id), k -> {
@@ -117,7 +116,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the environment config
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public EnvironmentConfiguration getEnvironmentConfig(String prefix, String id) {
         return this.environmentConfigs.computeIfAbsent(toKey(prefix, id), k -> new EnvironmentConfiguration(prefix, id));
@@ -127,7 +126,7 @@ public class Environment {
      * Sets external config map *
      *
      * @param externalConfiguration external configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void setExternalConfigMap(Map<String, String> externalConfiguration) {
         this.externalConfigurationMap = externalConfiguration;
@@ -137,7 +136,7 @@ public class Environment {
      * Sets app external config map *
      *
      * @param appExternalConfiguration app external configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void setAppExternalConfigMap(Map<String, String> appExternalConfiguration) {
         this.appExternalConfigurationMap = appExternalConfiguration;
@@ -147,7 +146,7 @@ public class Environment {
      * Gets external configuration map *
      *
      * @return the external configuration map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Map<String, String> getExternalConfigurationMap() {
         return this.externalConfigurationMap;
@@ -157,7 +156,7 @@ public class Environment {
      * Gets app external configuration map *
      *
      * @return the app external configuration map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Map<String, String> getAppExternalConfigurationMap() {
         return this.appExternalConfigurationMap;
@@ -167,7 +166,7 @@ public class Environment {
      * Update external configuration map
      *
      * @param externalMap external map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void updateExternalConfigurationMap(Map<String, String> externalMap) {
         this.externalConfigurationMap.putAll(externalMap);
@@ -177,7 +176,7 @@ public class Environment {
      * Update app external configuration map
      *
      * @param externalMap external map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void updateAppExternalConfigurationMap(Map<String, String> externalMap) {
         this.appExternalConfigurationMap.putAll(externalMap);
@@ -189,7 +188,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public CompositeConfiguration getConfiguration(String prefix, String id) {
         CompositeConfiguration compositeConfiguration = new CompositeConfiguration();
@@ -206,7 +205,7 @@ public class Environment {
      * Gets configuration *
      *
      * @return the configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Configuration getConfiguration() {
         return this.getConfiguration(null, null);
@@ -218,7 +217,7 @@ public class Environment {
      * @param prefix prefix
      * @param id     id
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static String toKey(String prefix, String id) {
         StringBuilder sb = new StringBuilder();
@@ -243,7 +242,7 @@ public class Environment {
      * Is config center first
      *
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public boolean isConfigCenterFirst() {
         return this.configCenterFirst;
@@ -253,7 +252,7 @@ public class Environment {
      * Sets config center first *
      *
      * @param configCenterFirst config center first
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void setConfigCenterFirst(boolean configCenterFirst) {
         this.configCenterFirst = configCenterFirst;
@@ -263,7 +262,7 @@ public class Environment {
      * Gets dynamic configuration *
      *
      * @return the dynamic configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Optional<Configuration> getDynamicConfiguration() {
         return Optional.ofNullable(this.dynamicConfiguration);
@@ -273,7 +272,7 @@ public class Environment {
      * Sets dynamic configuration *
      *
      * @param dynamicConfiguration dynamic configuration
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void setDynamicConfiguration(Configuration dynamicConfiguration) {
         this.dynamicConfiguration = dynamicConfiguration;
@@ -283,7 +282,7 @@ public class Environment {
      * Clear external configs
      * For test
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void clearExternalConfigs() {
         this.externalConfigs.clear();
@@ -294,7 +293,7 @@ public class Environment {
      * Clear app external configs
      * For test
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void clearAppExternalConfigs() {
         this.appExternalConfigs.clear();

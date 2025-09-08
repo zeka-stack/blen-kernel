@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.15 01:41
- * @since 1.6.0
+ * @since 1.0.0
  */
 final class InheritableThreadLocalSecurityContextHolderStrategy implements
     SecurityContextHolderStrategy {
@@ -19,7 +19,7 @@ final class InheritableThreadLocalSecurityContextHolderStrategy implements
     /**
      * Clear context
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void clearContext() {
@@ -30,7 +30,7 @@ final class InheritableThreadLocalSecurityContextHolderStrategy implements
      * Gets context *
      *
      * @return the context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public SecurityContext getContext() {
@@ -48,7 +48,7 @@ final class InheritableThreadLocalSecurityContextHolderStrategy implements
      * Sets context *
      *
      * @param context context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void setContext(SecurityContext context) {
@@ -60,7 +60,7 @@ final class InheritableThreadLocalSecurityContextHolderStrategy implements
      * Create empty context
      *
      * @return the security context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public SecurityContext createEmptyContext() {

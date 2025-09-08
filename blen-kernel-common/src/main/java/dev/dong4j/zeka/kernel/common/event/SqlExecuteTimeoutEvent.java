@@ -10,7 +10,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.04.27 18:30
- * @since 1.8.0
+ * @since 1.0.0
  */
 public class SqlExecuteTimeoutEvent extends BaseEvent<Map<String, Object>> {
     /** serialVersionUID */
@@ -21,7 +21,7 @@ public class SqlExecuteTimeoutEvent extends BaseEvent<Map<String, Object>> {
      * Instantiates a new Base event.
      *
      * @param source the source
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public SqlExecuteTimeoutEvent(Map<String, Object> source) {
         super(source);

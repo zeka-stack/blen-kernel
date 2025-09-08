@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 多线程工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:29
  * @since 1.0.0
@@ -98,7 +98,7 @@ public class ThreadUtils {
      *
      * @param threadCount thread count
      * @param runnable    runnable
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public void submit(int threadCount, CheckedRunnable runnable) {
         Assertions.isTrue(threadCount > 0, "线程数量必须大于 0");
@@ -114,7 +114,7 @@ public class ThreadUtils {
      * 提交多个并行任务
      *
      * @param runnables runnables
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public void submit(List<CheckedRunnable> runnables) throws BrokenBarrierException, InterruptedException {
         if (executor == null) {
@@ -133,7 +133,7 @@ public class ThreadUtils {
      * @param executor executor
      * @param runnable runnable
      * @param barrier  barrier
-     * @since 1.7.1
+     * @since 1.0.0
      */
     private static void execute(Executor executor, CheckedRunnable runnable, CyclicBarrier barrier) {
         executor.execute(() -> {
@@ -161,7 +161,7 @@ public class ThreadUtils {
      * Submit
      *
      * @param runnable runnable
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SuppressWarnings("PMD.ThreadPoolCreationRule")
     public void submit(CheckedRunnable runnable) {
@@ -223,7 +223,7 @@ public class ThreadUtils {
      *
      * @param corePoolSize core pool size
      * @return the executor service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ExecutorService newExecutor(int corePoolSize) {
         return ThreadUtil.newExecutor(corePoolSize);
@@ -233,7 +233,7 @@ public class ThreadUtils {
      * New executor
      *
      * @return the executor service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ExecutorService newExecutor() {
         return ThreadUtil.newExecutor();
@@ -243,7 +243,7 @@ public class ThreadUtils {
      * New single executor
      *
      * @return the executor service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ExecutorService newSingleExecutor() {
         return ThreadUtil.newSingleExecutor();
@@ -255,7 +255,7 @@ public class ThreadUtils {
      * @param corePoolSize    core pool size
      * @param maximumPoolSize maximum pool size
      * @return the thread pool executor
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ThreadPoolExecutor newExecutor(int corePoolSize, int maximumPoolSize) {
         return ThreadUtil.newExecutor(corePoolSize, maximumPoolSize);
@@ -268,7 +268,7 @@ public class ThreadUtils {
      * @param maximumPoolSize  maximum pool size
      * @param maximumQueueSize maximum queue size
      * @return the executor service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ExecutorService newExecutor(int corePoolSize, int maximumPoolSize, int maximumQueueSize) {
         return ThreadUtil.newExecutor(corePoolSize, maximumPoolSize, maximumQueueSize);
@@ -279,7 +279,7 @@ public class ThreadUtils {
      *
      * @param blockingCoefficient blocking coefficient
      * @return the thread pool executor
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ThreadPoolExecutor newExecutorByBlockingCoefficient(float blockingCoefficient) {
         return ThreadUtil.newExecutorByBlockingCoefficient(blockingCoefficient);
@@ -290,7 +290,7 @@ public class ThreadUtils {
      * Execute
      *
      * @param runnable runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void execute(Runnable runnable) {
         ThreadUtil.execute(runnable);
@@ -302,7 +302,7 @@ public class ThreadUtils {
      * @param runnable runnable
      * @param isDaemon is daemon
      * @return the runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> param1")
     public static Runnable execAsync(Runnable runnable, boolean isDaemon) {
@@ -315,7 +315,7 @@ public class ThreadUtils {
      * @param <T>  parameter
      * @param task task
      * @return the future
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static <T> Future<T> execAsync(Callable<T> task) {
         return ThreadUtil.execAsync(task);
@@ -326,7 +326,7 @@ public class ThreadUtils {
      *
      * @param runnable runnable
      * @return the future
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static Future<?> execAsync(Runnable runnable) {
         return ThreadUtil.execAsync(runnable);
@@ -337,7 +337,7 @@ public class ThreadUtils {
      *
      * @param <T> parameter
      * @return the completion service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     public static <T> @NotNull CompletionService<T> newCompletionService() {
@@ -350,7 +350,7 @@ public class ThreadUtils {
      * @param <T>      parameter
      * @param executor executor
      * @return the completion service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public static <T> @NotNull CompletionService<T> newCompletionService(ExecutorService executor) {
@@ -362,7 +362,7 @@ public class ThreadUtils {
      *
      * @param threadCount thread count
      * @return the count down latch
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static CountDownLatch newCountDownLatch(int threadCount) {
         return ThreadUtil.newCountDownLatch(threadCount);
@@ -374,7 +374,7 @@ public class ThreadUtils {
      * @param runnable runnable
      * @param name     name
      * @return the thread
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     public static @NotNull
@@ -389,7 +389,7 @@ public class ThreadUtils {
      * @param name     name
      * @param isDaemon is daemon
      * @return the thread
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _, _ -> new")
     public static @NotNull
@@ -402,7 +402,7 @@ public class ThreadUtils {
      *
      * @param millis millis
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("null -> true")
     public static boolean safeSleep(Number millis) {
@@ -414,7 +414,7 @@ public class ThreadUtils {
      *
      * @param millis millis
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static boolean safeSleep(long millis) {
         return ThreadUtil.safeSleep(millis);
@@ -425,7 +425,7 @@ public class ThreadUtils {
      * Get stack trace
      *
      * @return the stack trace element [ ]
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static StackTraceElement[] getStackTrace() {
         return ThreadUtil.getStackTrace();
@@ -436,7 +436,7 @@ public class ThreadUtils {
      *
      * @param i 堆栈的层级
      * @return the stack trace element
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static StackTraceElement getStackTraceElement(int i) {
         return ThreadUtil.getStackTraceElement(i);
@@ -449,7 +449,7 @@ public class ThreadUtils {
      * @param <T>           parameter
      * @param isInheritable is inheritable
      * @return the thread local
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public static <T> @NotNull ThreadLocal<T> createThreadLocal(boolean isInheritable) {
@@ -460,7 +460,7 @@ public class ThreadUtils {
      * Create thread factory builder
      *
      * @return the cn . hutool . core . thread . thread factory builder
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract(value = " -> new", pure = true)
     public static cn.hutool.core.thread.@NotNull ThreadFactoryBuilder createThreadFactoryBuilder() {
@@ -472,7 +472,7 @@ public class ThreadUtils {
      *
      * @param thread thread
      * @param isJoin is join
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void interrupt(Thread thread, boolean isJoin) {
         ThreadUtil.interrupt(thread, isJoin);
@@ -482,7 +482,7 @@ public class ThreadUtils {
     /**
      * Wait for die
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void waitForDie() {
         ThreadUtil.waitForDie();
@@ -492,7 +492,7 @@ public class ThreadUtils {
      * Wait for die
      *
      * @param thread thread
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void waitForDie(Thread thread) {
         ThreadUtil.waitForDie();
@@ -502,7 +502,7 @@ public class ThreadUtils {
      * Get threads
      *
      * @return the thread [ ]
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     public static Thread[] getThreads() {
@@ -514,7 +514,7 @@ public class ThreadUtils {
      *
      * @param group group
      * @return the thread [ ]
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public static Thread[] getThreads(ThreadGroup group) {
@@ -525,7 +525,7 @@ public class ThreadUtils {
      * Gets main thread *
      *
      * @return the main thread
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static Thread getMainThread() {
         return ThreadUtil.getMainThread();
@@ -535,7 +535,7 @@ public class ThreadUtils {
      * Current thread group
      *
      * @return the thread group
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ThreadGroup currentThreadGroup() {
         return ThreadUtil.currentThreadGroup();
@@ -547,7 +547,7 @@ public class ThreadUtils {
      * @param prefix   prefix
      * @param isDaemon is daemon
      * @return the thread factory
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     public static @NotNull
@@ -562,7 +562,7 @@ public class ThreadUtils {
      * @param threadGroup thread group
      * @param isDaemon    is daemon
      * @return the thread factory
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _, _ -> new")
     public static @NotNull
@@ -578,7 +578,7 @@ public class ThreadUtils {
      * @param isDaemon    is daemon
      * @param handler     handler
      * @return the thread factory
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _, _, _ -> new")
     public static @NotNull
@@ -591,7 +591,7 @@ public class ThreadUtils {
      * Sync
      *
      * @param obj obj
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void sync(Object obj) {
         ThreadUtil.sync(obj);
@@ -604,7 +604,7 @@ public class ThreadUtils {
      * @param threadSize thread size
      * @param runnable   runnable
      * @return the concurrency tester
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static ConcurrencyTester concurrencyTest(int threadSize, Runnable runnable) {
         return ThreadUtil.concurrencyTest(threadSize, runnable);

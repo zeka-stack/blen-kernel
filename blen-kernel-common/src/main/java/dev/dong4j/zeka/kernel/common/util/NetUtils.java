@@ -16,7 +16,7 @@ import org.springframework.util.ObjectUtils;
  * <p>Description: INet 相关工具 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.30 20:43
  * @since 1.0.0
@@ -78,7 +78,7 @@ public class NetUtils extends INetUtils {
      *
      * @param port port
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean available(int port) {
         if (port < MIN_PORT_NUMBER || port > MAX_PORT_NUMBER) {

@@ -7,13 +7,15 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: </p>
+ * 安全上下文持有者，提供多种策略来存储和管理安全上下文信息
+ * 支持ThreadLocal、InheritableThreadLocal和Global三种存储策略
+ * 用于线程安全的用户认证信息传递和管理，确保多线程环境下的数据安全
  *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.15 01:41
- * @since 1.6.0
+ * @since 1.0.0
  */
 public class SecurityContextHolder {
 
@@ -40,7 +42,7 @@ public class SecurityContextHolder {
     /**
      * Clear context
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static void clearContext() {
         strategy.clearContext();
@@ -50,7 +52,7 @@ public class SecurityContextHolder {
      * Gets context *
      *
      * @return the context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static SecurityContext getContext() {
         return strategy.getContext();
@@ -59,7 +61,7 @@ public class SecurityContextHolder {
     /**
      * Initialize
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     private static void initialize() {
         if (!StringUtils.hasText(strategyName)) {
@@ -95,7 +97,7 @@ public class SecurityContextHolder {
      * Sets context *
      *
      * @param context context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static void setContext(SecurityContext context) {
         strategy.setContext(context);
@@ -105,7 +107,7 @@ public class SecurityContextHolder {
      * Sets strategy name *
      *
      * @param strategyName strategy name
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static void setStrategyName(String strategyName) {
         SecurityContextHolder.strategyName = strategyName;
@@ -116,7 +118,7 @@ public class SecurityContextHolder {
      * Gets context holder strategy *
      *
      * @return the context holder strategy
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static SecurityContextHolderStrategy getContextHolderStrategy() {
         return strategy;
@@ -126,7 +128,7 @@ public class SecurityContextHolder {
      * Create empty context
      *
      * @return the security context
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static SecurityContext createEmptyContext() {
         return strategy.createEmptyContext();
@@ -136,7 +138,7 @@ public class SecurityContextHolder {
      * To string
      *
      * @return the string
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {

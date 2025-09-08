@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Contract;
  * 当前的实现覆盖了方法 {@link Random#nextInt(int)} 和 {@link Random#nextLong()} 生成从 0 (包含) 到最大值 (不包含) 的正数.
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:54
  * @since 1.0.0

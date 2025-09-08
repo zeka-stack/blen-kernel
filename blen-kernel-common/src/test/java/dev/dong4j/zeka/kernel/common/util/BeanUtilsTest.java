@@ -107,7 +107,7 @@ class BeanUtilsTest {
          * <p>Description: </p>
          *
          * @author dong4j
-         * @version 1.2.3
+         * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2019.12.25 00:34
          * @since 1.0.0
@@ -147,7 +147,7 @@ class BeanUtilsTest {
          * <p>Description: </p>
          *
          * @author dong4j
-         * @version 1.2.3
+         * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2019.12.25 00:34
          * @since 1.0.0

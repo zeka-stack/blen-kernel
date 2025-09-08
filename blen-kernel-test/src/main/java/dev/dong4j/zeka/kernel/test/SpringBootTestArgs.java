@@ -1,5 +1,8 @@
 package dev.dong4j.zeka.kernel.test;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -7,33 +10,28 @@ import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.test.context.ContextCustomizer;
 import org.springframework.test.context.MergedContextConfiguration;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Set;
-
 /**
  * <p>Description: </p>
  *
+ * @param args Args
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.11.20 19:25
- * @since 2.1.0
+ * @since 1.0.0
  */
-class SpringBootTestArgs implements ContextCustomizer {
+record SpringBootTestArgs(String[] args) implements ContextCustomizer {
     /** NO_ARGS */
     private static final String[] NO_ARGS = new String[0];
-    /** Args */
-    private final String[] args;
 
     /**
      * Spring boot test args
      *
-     * @param testClass test class
-     * @since 2.1.0
+     * @param args test class
+     * @since 1.0.0
      */
-    SpringBootTestArgs(Class<?> testClass) {
-        this.args = MergedAnnotations.from(testClass,
+    SpringBootTestArgs(Class<?> args) {
+        this.args = MergedAnnotations.from(args,
                 MergedAnnotations.SearchStrategy.TYPE_HIERARCHY)
             .get(SpringBootTest.class)
             .getValue("args", String[].class).orElse(NO_ARGS);
@@ -44,7 +42,7 @@ class SpringBootTestArgs implements ContextCustomizer {
      *
      * @param context      context
      * @param mergedConfig merged config
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public void customizeContext(@NotNull ConfigurableApplicationContext context,
                                  @NotNull MergedContextConfiguration mergedConfig) {
@@ -54,9 +52,10 @@ class SpringBootTestArgs implements ContextCustomizer {
      * Get args
      *
      * @return the string [ ]
-     * @since 2.1.0
+     * @since 1.0.0
      */
-    String[] getArgs() {
+    @Override
+    public String[] args() {
         return this.args;
     }
 
@@ -65,7 +64,7 @@ class SpringBootTestArgs implements ContextCustomizer {
      *
      * @param obj obj
      * @return the boolean
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public boolean equals(Object obj) {
         return obj != null && this.getClass() == obj.getClass() && Arrays.equals(this.args, ((SpringBootTestArgs) obj).args);
@@ -75,7 +74,7 @@ class SpringBootTestArgs implements ContextCustomizer {
      * Hash code
      *
      * @return the int
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public int hashCode() {
         return Arrays.hashCode(this.args);
@@ -86,7 +85,7 @@ class SpringBootTestArgs implements ContextCustomizer {
      *
      * @param customizers customizers
      * @return the string [ ]
-     * @since 2.1.0
+     * @since 1.0.0
      */
     static String[] get(@NotNull Set<ContextCustomizer> customizers) {
         Iterator<ContextCustomizer> customizerIterator = customizers.iterator();

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Contract;
  * <p>Description: 认证用户角色实体 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:44
  * @since 1.0.0

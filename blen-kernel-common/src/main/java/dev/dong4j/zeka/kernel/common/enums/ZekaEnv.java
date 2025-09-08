@@ -1,18 +1,17 @@
 package dev.dong4j.zeka.kernel.common.enums;
 
 import dev.dong4j.zeka.kernel.common.constant.App;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * <p>Description: 环境变量 (profile 类型)</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:45
  * @since 1.0.0

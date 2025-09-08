@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.common.context;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import java.util.Map;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
-
-import java.util.Map;
 
 /**
  * <p>Description:  </p>
@@ -14,7 +13,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.01.20 15:53
- * @since 1.7.1
+ * @since 1.0.0
  */
 @UtilityClass
 public class ComponentThreadLocal {
@@ -32,7 +31,7 @@ public class ComponentThreadLocal {
      * Context
      *
      * @return the thread context map
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static TransmittableThreadLocal<Map<String, Object>> context() {
@@ -42,7 +41,7 @@ public class ComponentThreadLocal {
     /**
      * Clear
      *
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static void clear() {

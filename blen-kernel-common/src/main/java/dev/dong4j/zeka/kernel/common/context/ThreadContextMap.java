@@ -9,14 +9,14 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:06
- * @since 1.4.0
+ * @since 1.0.0
  */
 public interface ThreadContextMap {
 
     /**
      * Clears the context.
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     void clear();
 
@@ -25,7 +25,7 @@ public interface ThreadContextMap {
      *
      * @param key The key to locate.
      * @return True if the key is in the context, false otherwise.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     boolean containsKey(String key);
 
@@ -36,7 +36,7 @@ public interface ThreadContextMap {
      *
      * @param key The key to locate.
      * @return The value associated with the key or null.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     String get(String key);
 
@@ -44,7 +44,7 @@ public interface ThreadContextMap {
      * Gets a non-{@code null} mutable copy of current thread's context Map.
      *
      * @return a mutable copy of the context.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     Map<String, String> getCopy();
 
@@ -52,7 +52,7 @@ public interface ThreadContextMap {
      * Returns an immutable view on the context Map or {@code null} if the context map is empty.
      *
      * @return an immutable context Map or {@code null}.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     Map<String, String> getImmutableMapOrNull();
 
@@ -60,7 +60,7 @@ public interface ThreadContextMap {
      * Returns true if the Map is empty.
      *
      * @return true if the Map is empty, false otherwise.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     boolean isEmpty();
 
@@ -74,7 +74,7 @@ public interface ThreadContextMap {
      *
      * @param key   The key name.
      * @param value The key value.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     void put(String key, String value);
 
@@ -83,7 +83,7 @@ public interface ThreadContextMap {
      * parameter.
      *
      * @param key The key to remove.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     void remove(String key);
 }

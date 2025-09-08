@@ -11,6 +11,17 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * 配置文件监控自动配置类，负责初始化和配置文件监控系统
+ * 自动配置文件变更监听器，支持动态刷新配置信息。
+ * 支持自定义配置监控规则，提供灵活的扩展机制
+ *
+ * @author dong4j
+ * @version 1.0.0
+ * @email "mailto:dong4j@gmail.com"
+ * @date 2019.12.26 21:43
+ * @since 1.0.0
+ */
 @Slf4j
 @AutoConfiguration
 public class ConfigFileWatcherAutoConfiguration {

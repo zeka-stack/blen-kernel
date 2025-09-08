@@ -33,7 +33,7 @@ import sun.net.InetAddressCachePolicy;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -42,7 +42,7 @@ public final class InetAddressCacheUtils {
     /**
      * Load dns properties
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void loadDnsProperties() {
         loadDnsProperties(ZekaEnv.LOCAL.getName());
@@ -53,7 +53,7 @@ public final class InetAddressCacheUtils {
      * 默认先读取 includes/dns 目录下的配置, 如果业务端没有配置则读取默认配置
      *
      * @param profile profile
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void loadDnsProperties(String profile) {
         String dnsConfig = "includes/dns-cache-{}.properties";
@@ -95,7 +95,7 @@ public final class InetAddressCacheUtils {
      * @throws InvocationTargetException invocation target exception
      * @throws ClassNotFoundException    class not found exception
      * @throws NoSuchFieldException      no such field exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setInetAddressCache(String host, String[] ips, long expiration)
         throws NoSuchMethodException, UnknownHostException,
@@ -116,7 +116,7 @@ public final class InetAddressCacheUtils {
      * @param host host
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void removeInetAddressCache(String host)
         throws NoSuchFieldException, IllegalAccessException {
@@ -141,7 +141,7 @@ public final class InetAddressCacheUtils {
      * @throws IllegalAccessException    illegal access exception
      * @throws InvocationTargetException invocation target exception
      * @throws InstantiationException    instantiation exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull Object newCacheEntry(String host, String[] ips, long expiration)
         throws UnknownHostException, ClassNotFoundException, NoSuchMethodException,
@@ -169,7 +169,7 @@ public final class InetAddressCacheUtils {
      * @return the cache filed of address cache filed of inet address
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @GuardedBy("getAddressCacheFieldOfInetAddress()")
     static Map<String, Object> getCacheFiledOfAddressCacheFiledOfInetAddress()
@@ -183,7 +183,7 @@ public final class InetAddressCacheUtils {
      * @return the cache filed of negative cache filed of inet address
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @GuardedBy("getAddressCacheFieldOfInetAddress()")
     static Map<String, Object> getCacheFiledOfNegativeCacheFiledOfInetAddress()
@@ -198,7 +198,7 @@ public final class InetAddressCacheUtils {
      * @return the map
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     static Map<String, Object> getCacheFiledOfInetAddress$Cache0(@NotNull Object inetAddressCache)
@@ -216,7 +216,7 @@ public final class InetAddressCacheUtils {
      * @return the address cache field of inet address
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static Object getAddressCacheFieldOfInetAddress()
         throws NoSuchFieldException, IllegalAccessException {
@@ -229,7 +229,7 @@ public final class InetAddressCacheUtils {
      * @return the negative cache field of inet address
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static Object getNegativeCacheFieldOfInetAddress()
         throws NoSuchFieldException, IllegalAccessException {
@@ -245,7 +245,7 @@ public final class InetAddressCacheUtils {
      * @return the object [ ]
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static Object[] getAddressCacheFieldsOfInetAddress0()
         throws NoSuchFieldException, IllegalAccessException {
@@ -275,7 +275,7 @@ public final class InetAddressCacheUtils {
      * @param ips  ips
      * @return the inet address [ ]
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static InetAddress @NotNull [] toInetAddressArray(String host, String @NotNull [] ips) throws UnknownHostException {
         InetAddress[] addresses = new InetAddress[ips.length];
@@ -293,7 +293,7 @@ public final class InetAddressCacheUtils {
      * @return the inet address cache
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Nullable
     public static DnsCacheEntry getInetAddressCache(String host)
@@ -322,7 +322,7 @@ public final class InetAddressCacheUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(value = "null -> true", pure = true)
     static boolean isDnsCacheEntryExpired(String host) {
@@ -335,7 +335,7 @@ public final class InetAddressCacheUtils {
      * @return the dns cache
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     public static @NotNull DnsCache listInetAddressCache()
@@ -379,7 +379,7 @@ public final class InetAddressCacheUtils {
      * @return the dns cache entry
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     static @NotNull DnsCacheEntry inetAddress$CacheEntry2DnsCacheEntry(String host, Object entry)
@@ -430,7 +430,7 @@ public final class InetAddressCacheUtils {
      *
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void clearInetAddressCache() throws NoSuchFieldException, IllegalAccessException {
         synchronized (getAddressCacheFieldOfInetAddress()) {
@@ -445,7 +445,7 @@ public final class InetAddressCacheUtils {
      * @param cacheSeconds cache seconds
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsCachePolicy(int cacheSeconds)
         throws NoSuchFieldException, IllegalAccessException {
@@ -458,7 +458,7 @@ public final class InetAddressCacheUtils {
      * @return the dns cache policy
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static int getDnsCachePolicy()
@@ -472,7 +472,7 @@ public final class InetAddressCacheUtils {
      * @param negativeCacheSeconds negative cache seconds
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsNegativeCachePolicy(int negativeCacheSeconds)
         throws NoSuchFieldException, IllegalAccessException {
@@ -485,7 +485,7 @@ public final class InetAddressCacheUtils {
      * @return the dns negative cache policy
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static int getDnsNegativeCachePolicy()
@@ -505,7 +505,7 @@ public final class InetAddressCacheUtils {
      * @param seconds    seconds
      * @throws NoSuchFieldException   no such field exception
      * @throws IllegalAccessException illegal access exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static void setCachePolicy0(boolean isNegative, int seconds)
         throws NoSuchFieldException, IllegalAccessException {
@@ -558,7 +558,7 @@ public final class InetAddressCacheUtils {
     /**
      * Inet address cache util
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     private InetAddressCacheUtils() {

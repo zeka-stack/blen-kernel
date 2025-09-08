@@ -1,12 +1,11 @@
 package dev.dong4j.zeka.kernel.common.context;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>Description: 全局上下文 </p>
@@ -15,7 +14,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2022.01.20 23:53
- * @since 2022.1.1
+ * @since 1.0.0
  */
 @Slf4j
 public final class GlobalContext {
@@ -28,7 +27,7 @@ public final class GlobalContext {
      *
      * @param key key
      * @return the transmittable thread local
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static @Nullable Object get(String key) {
@@ -45,7 +44,7 @@ public final class GlobalContext {
      *
      * @param key   key
      * @param value value
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static void put(String key, Object value) {
@@ -64,7 +63,7 @@ public final class GlobalContext {
      * Clear
      *
      * @param key key
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static void clear(String key) {

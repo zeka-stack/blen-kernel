@@ -39,7 +39,7 @@ import static java.util.stream.Collectors.toMap;
  * <p>Description: 反射工具类</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:18
  * @since 1.0.0
@@ -618,7 +618,7 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
      * @param fieldName field name
      * @param type      type
      * @return the field value
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public static @Nullable <T> T getFieldValue(Object object, String fieldName, Class<T> type) {

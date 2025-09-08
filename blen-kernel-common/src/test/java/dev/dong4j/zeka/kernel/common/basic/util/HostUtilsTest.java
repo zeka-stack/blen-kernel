@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.14 23:21
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 class HostUtilsTest {
@@ -20,7 +20,7 @@ class HostUtilsTest {
     /**
      * Test read
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_read() {
@@ -30,7 +30,7 @@ class HostUtilsTest {
     /**
      * Test delete
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_delete() {
@@ -42,7 +42,7 @@ class HostUtilsTest {
     /**
      * Test exists
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_exists() {
@@ -52,7 +52,7 @@ class HostUtilsTest {
     /**
      * Test get ips
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_getIps() {

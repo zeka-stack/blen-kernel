@@ -1,18 +1,17 @@
 package dev.dong4j.zeka.kernel.common.env;
 
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
-import java.util.Map;
-
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.10 16:58
  * @since 1.0.0

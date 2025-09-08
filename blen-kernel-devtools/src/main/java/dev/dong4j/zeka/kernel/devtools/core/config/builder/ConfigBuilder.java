@@ -160,7 +160,7 @@ public class ConfigBuilder {
      * @param strategyConfig   表配置
      * @param template         模板配置
      * @param globalConfig     全局配置
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder(PackageConfig packageConfig,
                          DataSourceConfig dataSourceConfig,
@@ -192,7 +192,7 @@ public class ConfigBuilder {
      *
      * @param tableInfoList table info list
      * @return the table info list
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder setTableInfoList(List<TableInfo> tableInfoList) {
         this.tableInfoList = tableInfoList;
@@ -207,7 +207,7 @@ public class ConfigBuilder {
      * @param template  TemplateConfig
      * @param outputDir output dir
      * @param config    PackageConfig
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private void handlerPackage(TemplateConfig template, String outputDir, PackageConfig config) {
         // 包信息
@@ -244,7 +244,7 @@ public class ConfigBuilder {
      * @param outputDir output dir
      * @param path      path
      * @param module    module
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private void setPathInfo(Map<String, String> pathInfo, String template, String outputDir, String path, String module) {
         if (StringUtils.isNotBlank(template)) {
@@ -258,7 +258,7 @@ public class ConfigBuilder {
      * @param tableList 表名称
      * @param config    策略配置项
      * @return 补充完整信息后的表 list
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private List<TableInfo> processTable(List<TableInfo> tableList, StrategyConfig config) {
         for (TableInfo tableInfo : tableList) {
@@ -311,7 +311,7 @@ public class ConfigBuilder {
      * 检测导入包
      *
      * @param tableInfo ignore
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private void checkImportPackages(TableInfo tableInfo) {
         if (StringUtils.isNotBlank(strategyConfig.getSuperBaseEntityClass())) {
@@ -342,7 +342,7 @@ public class ConfigBuilder {
      *
      * @param config config
      * @return the tables info
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public List<TableInfo> getTablesInfo(StrategyConfig config) {
         boolean isInclude = !config.getInclude().isEmpty();
@@ -498,7 +498,7 @@ public class ConfigBuilder {
      * @param setTableName 设置表名
      * @param dbTableName  数据库表单
      * @return ignore boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private boolean tableNameMatches(String setTableName, String dbTableName) {
         return setTableName.equalsIgnoreCase(dbTableName)
@@ -510,7 +510,7 @@ public class ConfigBuilder {
      *
      * @param tableInfo 表信息
      * @param config    命名策略
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private void convertTableFields(TableInfo tableInfo, StrategyConfig config) {
         boolean haveId = false;
@@ -676,7 +676,7 @@ public class ConfigBuilder {
      * @param commentString comment string
      * @param field         field
      * @param queryFields   query fields
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static void processQueryField(TableInfo tableInfo, String commentString, TableField field) {
         // 查询参数字段处理
@@ -696,7 +696,7 @@ public class ConfigBuilder {
      * @param parentDir   路径常量字符串
      * @param packageName 包名
      * @return 连接后的路径 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String joinPath(String parentDir, String packageName) {
         if (StringUtils.isBlank(parentDir)) {
@@ -716,7 +716,7 @@ public class ConfigBuilder {
      * @param parent     父包名
      * @param subPackage 子包名
      * @return 连接后的包名 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String joinPackage(String parent, String subPackage) {
         return StringUtils.isBlank(parent) ? subPackage : (parent + StringPool.DOT + subPackage);
@@ -729,7 +729,7 @@ public class ConfigBuilder {
      * @param name     name
      * @param strategy strategy
      * @return 根据策略返回处理后的名称 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String processName(String name, NamingStrategy strategy) {
         return processName(name, strategy, strategyConfig.getFieldPrefix());
@@ -743,7 +743,7 @@ public class ConfigBuilder {
      * @param strategy ignore
      * @param prefix   ignore
      * @return 根据策略返回处理后的名称 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String processName(String name, NamingStrategy strategy, Set<String> prefix) {
         String propertyName;
@@ -771,7 +771,7 @@ public class ConfigBuilder {
      *
      * @param strategyConfig strategy config
      * @return the strategy config
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder setStrategyConfig(StrategyConfig strategyConfig) {
         this.strategyConfig = strategyConfig;
@@ -783,7 +783,7 @@ public class ConfigBuilder {
      *
      * @param globalConfig global config
      * @return the global config
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder setGlobalConfig(GlobalConfig globalConfig) {
         this.globalConfig = globalConfig;
@@ -796,7 +796,7 @@ public class ConfigBuilder {
      *
      * @param injectionConfig injection config
      * @return the injection config
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder setInjectionConfig(InjectionConfig injectionConfig) {
         this.injectionConfig = injectionConfig;
@@ -808,7 +808,7 @@ public class ConfigBuilder {
      *
      * @param comment 注释
      * @return 注释 string
-     * @since 3.4.0
+     * @since 1.0.0
      */
     public String formatComment(String comment) {
         return StringUtils.isBlank(comment) ? StringPool.EMPTY : comment.replaceAll("\r\n", "\t");
@@ -820,7 +820,7 @@ public class ConfigBuilder {
      * @param regex regex
      * @param input input
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static boolean matches(String regex, String input) {
         if (null == regex || null == input) {

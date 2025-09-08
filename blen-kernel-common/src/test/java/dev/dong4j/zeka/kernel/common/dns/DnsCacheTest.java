@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.dns;
 
-import org.junit.jupiter.api.Test;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -17,14 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:53
- * @since 1.5.0
+ * @since 1.0.0
  */
 class DnsCacheTest {
     /**
      * Test equals
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_equals() throws Exception {
@@ -48,7 +47,7 @@ class DnsCacheTest {
      * Test to string
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_toString() throws Exception {

@@ -36,7 +36,7 @@ public class H2Query extends AbstractDbQuery {
      * Tables sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tablesSql() {
@@ -48,7 +48,7 @@ public class H2Query extends AbstractDbQuery {
      * Table fields sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableFieldsSql() {
@@ -60,7 +60,7 @@ public class H2Query extends AbstractDbQuery {
      * Table name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableName() {
@@ -72,7 +72,7 @@ public class H2Query extends AbstractDbQuery {
      * Table comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableComment() {
@@ -84,7 +84,7 @@ public class H2Query extends AbstractDbQuery {
      * Field name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldName() {
@@ -96,7 +96,7 @@ public class H2Query extends AbstractDbQuery {
      * Field type
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldType() {
@@ -108,7 +108,7 @@ public class H2Query extends AbstractDbQuery {
      * Field comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldComment() {
@@ -120,7 +120,7 @@ public class H2Query extends AbstractDbQuery {
      * Field key
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldKey() {
@@ -134,7 +134,7 @@ public class H2Query extends AbstractDbQuery {
      * @param results results
      * @return the boolean
      * @throws SQLException sql exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public boolean isKeyIdentity(ResultSet results) throws SQLException {

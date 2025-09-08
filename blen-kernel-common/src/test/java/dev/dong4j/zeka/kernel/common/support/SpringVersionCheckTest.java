@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.20 22:01
- * @since 1.6.0
+ * @since 1.0.0
  */
 class SpringVersionCheckTest {
     /**
      * Test 1
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {

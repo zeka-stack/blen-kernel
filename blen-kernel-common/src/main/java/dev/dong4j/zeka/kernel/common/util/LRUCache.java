@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.02 11:58
- * @since 1.5.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class LRUCache<K, V> extends LinkedHashMap<K, V> {
@@ -34,7 +34,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
     /**
      * Lru cache
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public LRUCache() {
         this(DEFAULT_MAX_CAPACITY);
@@ -44,7 +44,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      * Lru cache
      *
      * @param maxCapacity max capacity
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public LRUCache(int maxCapacity) {
         super(16, DEFAULT_LOAD_FACTOR, true);
@@ -56,7 +56,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      *
      * @param eldest eldest
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     protected boolean removeEldestEntry(java.util.Map.Entry<K, V> eldest) {
@@ -68,7 +68,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      *
      * @param key key
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public boolean containsKey(Object key) {
@@ -85,7 +85,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      *
      * @param key key
      * @return the v
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public V get(Object key) {
@@ -103,7 +103,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public V put(K key, V value) {
@@ -120,7 +120,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      *
      * @param key key
      * @return the v
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public V remove(Object key) {
@@ -136,7 +136,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      * Size
      *
      * @return the int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public int size() {
@@ -151,7 +151,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
     /**
      * Clear
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public void clear() {
@@ -167,7 +167,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      * Gets max capacity *
      *
      * @return the max capacity
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public int getMaxCapacity() {
         return this.maxCapacity;
@@ -177,7 +177,7 @@ public class LRUCache<K, V> extends LinkedHashMap<K, V> {
      * Sets max capacity *
      *
      * @param maxCapacity max capacity
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public void setMaxCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;

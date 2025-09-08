@@ -15,10 +15,20 @@ import java.util.Set;
 import lombok.experimental.UtilityClass;
 
 /**
- * <p>Description: </p>
+ * Bean验证工具类，基于JSR-303规范的Bean Validation实现
+ *
+ * 提供了统一的Java Bean数据校验功能，支持单个对象、多个对象和集合的校验
+ * 使用Hibernate Validator作为默认实现，支持所有标准注解和自定义验证注解
+ *
+ * 主要功能：
+ * - 单个对象校验（支持分组验证）
+ * - 多个对象批量校验
+ * - 集合元素逐个校验
+ * - 验证结果统一返回（Map格式）
+ * - 高性能验证器实例复用
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.27 13:20
  * @since 1.0.0

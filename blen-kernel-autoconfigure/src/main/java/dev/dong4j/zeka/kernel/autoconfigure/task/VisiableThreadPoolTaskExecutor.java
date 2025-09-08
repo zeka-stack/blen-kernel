@@ -15,7 +15,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.21 22:35
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
@@ -28,7 +28,7 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      * Show thread pool info
      *
      * @param prefix prefix
-     * @since 1.7.0
+     * @since 1.0.0
      */
     private void showThreadPoolInfo(String prefix) {
         ThreadPoolExecutor threadPoolExecutor = this.getThreadPoolExecutor();
@@ -45,7 +45,7 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      * Execute
      *
      * @param task task
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public void execute(@NotNull Runnable task) {
@@ -58,7 +58,7 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      *
      * @param task         task
      * @param startTimeout start timeout
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public void execute(@NotNull Runnable task, long startTimeout) {
@@ -71,7 +71,7 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      *
      * @param task task
      * @return the future
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public @NotNull Future<?> submit(@NotNull Runnable task) {
@@ -85,7 +85,7 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
      * @param <T>  parameter
      * @param task task
      * @return the future
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public <T> @NotNull Future<T> submit(@NotNull Callable<T> task) {

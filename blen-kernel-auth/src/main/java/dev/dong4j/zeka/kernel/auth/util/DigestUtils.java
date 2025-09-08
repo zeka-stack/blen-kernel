@@ -10,14 +10,14 @@ import java.security.NoSuchAlgorithmException;
  * @version 1.0.0
  * @email "mailto:Spark.Team@gmail.com"
  * @date 2023.04.13 09:21
- * @since 2022.1.1
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class DigestUtils {
     /**
      * Digest utils
      *
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public DigestUtils() {
     }
@@ -28,7 +28,7 @@ public class DigestUtils {
      * @param msg       msg
      * @param algorithm algorithm
      * @return the string
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public static String encode(String msg, ALGORITHM algorithm) {
         try {
@@ -61,7 +61,7 @@ public class DigestUtils {
      * @version 1.0.0
      * @email "mailto:Spark.Team@gmail.com"
      * @date 2023.04.13 09:21
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public static enum ALGORITHM {
         /** Md 2 algorithm */
@@ -80,7 +80,7 @@ public class DigestUtils {
         /**
          * Algorithm
          *
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         private ALGORITHM() {
         }

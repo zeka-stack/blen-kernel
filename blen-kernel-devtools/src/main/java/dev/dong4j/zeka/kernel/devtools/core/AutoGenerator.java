@@ -30,60 +30,57 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 生成文件
+ * MyBatis-Plus代码自动生成器核心类，负责执行代码生成的主流程
+ * <p>
+ * 该类是代码生成器的核心入口，整合了数据源配置、策略配置、模板配置等
+ * 支持多种模板引擎（Velocity、Freemarker等）和灵活的配置策略
+ * <p>
+ * 主要功能：
+ * - 数据库表结构分析和代码生成
+ * - 支持ActiveRecord模式和父类继承
+ * - 支持逻辑删除和乐观锁注解
+ * - 自动处理Boolean类型字段的is前缀
+ * - 支持自定义模板和变量注入
  *
  * @author YangHu, tangguo, hubin
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 2016 -08-30
+ * @since 2016-08-30
  */
 @Data
 @Accessors(chain = true)
 @SuppressWarnings("all")
 public class AutoGenerator {
-    /** logger */
+    /** 日志记录器 */
     private static final Logger logger = LoggerFactory.getLogger(AutoGenerator.class);
 
-    /**
-     * 配置信息
-     */
+    /** 配置信息构建器 */
     protected ConfigBuilder config;
-    /**
-     * 注入配置
-     */
+    /** 注入配置，用于自定义变量和文件输出 */
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     protected InjectionConfig injectionConfig;
-    /**
-     * 数据源配置
-     */
+    /** 数据源配置信息 */
     private DataSourceConfig dataSource;
-    /**
-     * 数据库表配置
-     */
+    /** 数据库表相关的策略配置 */
     private StrategyConfig strategy;
-    /**
-     * 包 相关配置
-     */
+    /** 包结构相关配置 */
     private PackageConfig packageInfo;
-    /**
-     * 模板 相关配置
-     */
+    /** 模板相关配置 */
     private TemplateConfig template;
-    /**
-     * 全局 相关配置
-     */
+    /** 全局相关配置 */
     private GlobalConfig globalConfig;
-    /**
-     * 模板引擎
-     */
+    /** 模板引擎实例 */
     private AbstractTemplateEngine templateEngine;
 
     /**
-     * 生成代码
+     * 执行代码生成
      *
-     * @since 2024.2.0
+     * 初始化配置并执行文件生成流程
+     * 默认使用Velocity模板引擎，支持批量生成和自动打开目录
+     *
+     * @since 1.0.0
      */
     public void execute() {
         logger.debug("==========================准备生成文件...==========================");
@@ -104,22 +101,28 @@ public class AutoGenerator {
     }
 
     /**
-     * 开放表信息、预留子类重写
+     * 获取所有表信息列表
      *
-     * @param config 配置信息
-     * @return ignore all table info list
-     * @since 2024.2.0
+     * 开放给子类重写，允许自定义表信息处理逻辑
+     * 默认返回配置中的所有表信息
+     *
+     * @param config 配置信息构建器
+     * @return 表信息列表
+     * @since 1.0.0
      */
     protected List<TableInfo> getAllTableInfoList(ConfigBuilder config) {
         return config.getTableInfoList();
     }
 
     /**
-     * 预处理配置
+     * 预处理配置信息构建器
+     *
+     * 对配置进行预处理，包括注入自定义配置、处理表信息列表
+     * 自动添加必要的导入包和注解，处理父类继承关系
      *
      * @param config 总配置信息
-     * @return 解析数据结果集 config builder
-     * @since 2024.2.0
+     * @return 解析数据结果集
+     * @since 1.0.0
      */
     protected ConfigBuilder pretreatmentConfigBuilder(ConfigBuilder config) {
         /*
@@ -206,7 +209,7 @@ public class AutoGenerator {
      * Gets cfg *
      *
      * @return the cfg
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public InjectionConfig getCfg() {
         return injectionConfig;
@@ -217,7 +220,7 @@ public class AutoGenerator {
      *
      * @param injectionConfig injection config
      * @return the cfg
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public AutoGenerator setCfg(InjectionConfig injectionConfig) {
         this.injectionConfig = injectionConfig;
@@ -232,7 +235,7 @@ public class AutoGenerator {
      * @param rawString 需要处理的字符串
      * @param index     删除多少个字符(从左至右)
      * @return ignore string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String removePrefixAfterPrefixToLower(String rawString, int index) {
         return prefixToLower(rawString.substring(index), 1);
@@ -244,7 +247,7 @@ public class AutoGenerator {
      * @param rawString 需要处理的字符串
      * @param index     多少个字符(从左至右)
      * @return ignore string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String prefixToLower(String rawString, int index) {
         return rawString.substring(0, index).toLowerCase() +

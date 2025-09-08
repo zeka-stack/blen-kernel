@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
  * <p>Description: 静态 String 池 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 22:06
  * @since 1.0.0

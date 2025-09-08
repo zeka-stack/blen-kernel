@@ -14,10 +14,27 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: </p>
+ * 自动代码生成器构建者类，提供流式的API来配置和构建代码生成器
+ * <p>
+ * 该类采用Builder模式，提供了链式调用的API来配置代码生成器的各项参数
+ * 支持数据库连接、表选择、包结构、父类配置、模板选择等全方位定制
+ * <p>
+ * 主要特性：
+ * - 流式的Builder模式 API设计
+ * - 自动读取数据库配置信息
+ * - 支持单模块和多模块项目结构
+ * - 可配置的组件和模板选择
+ * - 支持Web应用和普通应用的生成
+ * <p>
+ * 使用示例：
+ * {@code AutoGeneratorCodeBuilder.onAutoGeneratorCode()}
+ * {@code     .withModelPath("/path/to/project")}
+ * {@code     .withAuthor("developer")}
+ * {@code     .withTables(new String[]{"user", "role"})}
+ * {@code     .build();}
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:45
  * @since 1.0.0

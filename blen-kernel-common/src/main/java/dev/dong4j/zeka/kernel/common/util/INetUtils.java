@@ -37,7 +37,7 @@ import org.jetbrains.annotations.Nullable;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.02 12:00
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -77,7 +77,7 @@ abstract class INetUtils {
      * Gets random port *
      *
      * @return the random port
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static int getRandomPort() {
         return RND_PORT_START + ThreadLocalRandom.current().nextInt(RND_PORT_RANGE);
@@ -87,7 +87,7 @@ abstract class INetUtils {
      * Gets available port *
      *
      * @return the available port
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static int getAvailablePort() {
         try (ServerSocket ss = new ServerSocket()) {
@@ -103,7 +103,7 @@ abstract class INetUtils {
      *
      * @param port port
      * @return the available port
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static int getAvailablePort(int port) {
         if (port <= 0) {
@@ -125,7 +125,7 @@ abstract class INetUtils {
      *
      * @param port port
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static boolean isInvalidPort(int port) {
@@ -137,7 +137,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean isValidAddress(String address) {
         return ADDRESS_PATTERN.matcher(address).matches();
@@ -148,7 +148,7 @@ abstract class INetUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("null -> false")
     public static boolean isLocalHost(String host) {
@@ -162,7 +162,7 @@ abstract class INetUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(value = "null -> false", pure = true)
     public static boolean isAnyHost(String host) {
@@ -174,7 +174,7 @@ abstract class INetUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("null -> true")
     public static boolean isInvalidLocalHost(String host) {
@@ -190,7 +190,7 @@ abstract class INetUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("null -> false")
     public static boolean isValidLocalHost(String host) {
@@ -203,7 +203,7 @@ abstract class INetUtils {
      * @param host host
      * @param port port
      * @return the local socket address
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull InetSocketAddress getLocalSocketAddress(String host, int port) {
         return isInvalidLocalHost(host)
@@ -216,7 +216,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("null -> false")
     static boolean isValidV4Address(InetAddress address) {
@@ -234,7 +234,7 @@ abstract class INetUtils {
      * Check if an ipv6 address
      *
      * @return true if it is reachable
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     static boolean isPreferIPV6Address() {
@@ -254,7 +254,7 @@ abstract class INetUtils {
      *
      * @param address the input address
      * @return the normalized address, with scope id converted to int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static InetAddress normalizeV6Address(@NotNull Inet6Address address) {
         String addr = address.getHostAddress();
@@ -279,7 +279,7 @@ abstract class INetUtils {
      * Gets local host *
      *
      * @return the local host
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getLocalHost() {
         InetAddress address = getLocalAddress();
@@ -291,7 +291,7 @@ abstract class INetUtils {
      * todo-dong4j : (2021.01.24 02:46) [从配置文件中加载]
      *
      * @return the ip by config
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getIpByConfig() {
         String configIp = System.getProperty(IP_TO_BIND);
@@ -306,7 +306,7 @@ abstract class INetUtils {
      * Find first valid IP from local network card
      *
      * @return first valid local IP
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("all")
     public static InetAddress getLocalAddress() {
@@ -330,7 +330,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the optional
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static Optional<InetAddress> toValidAddress(InetAddress address) {
         if (address instanceof Inet6Address) {
@@ -422,7 +422,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the host name
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getHostName(String address) {
         int i = address.indexOf(':');
@@ -450,7 +450,7 @@ abstract class INetUtils {
      *
      * @param hostName host name
      * @return ip address or hostName if UnknownHostException
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getIpByHost(String hostName) {
         InetAddress inetAddress = getInetAddressWithTimeout(hostName);
@@ -463,7 +463,7 @@ abstract class INetUtils {
      *
      * @param hostName host name
      * @return the inet address with timeout
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public static InetAddress getInetAddressWithTimeout(String hostName) {
         return getInetAddressWithTimeout(hostName, 1000);
@@ -475,7 +475,7 @@ abstract class INetUtils {
      * @param hostName host name
      * @param timeout  timeout
      * @return the inet address with timeout
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public static InetAddress getInetAddressWithTimeout(String hostName, long timeout) {
         try {
@@ -495,7 +495,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull String toAddressString(@NotNull InetSocketAddress address) {
         return address.getAddress().getHostAddress() + ":" + address.getPort();
@@ -506,7 +506,7 @@ abstract class INetUtils {
      *
      * @param address address
      * @return the inet socket address
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     public static @NotNull InetSocketAddress toAddress(@NotNull String address) {
@@ -531,7 +531,7 @@ abstract class INetUtils {
      * @param port     port
      * @param path     path
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull String toURL(String protocol, String host, int port, @NotNull String path) {
         StringBuilder sb = new StringBuilder();
@@ -550,7 +550,7 @@ abstract class INetUtils {
      * @param multicastSocket  multicast socket
      * @param multicastAddress multicast address
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void joinMulticastGroup(MulticastSocket multicastSocket, InetAddress multicastAddress) throws IOException {
         setInterface(multicastSocket, multicastAddress instanceof Inet6Address);
@@ -564,7 +564,7 @@ abstract class INetUtils {
      * @param multicastSocket multicast socket
      * @param preferIpv6      prefer ipv 6
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setInterface(MulticastSocket multicastSocket, boolean preferIpv6) throws IOException {
         boolean interfaceSet = false;
@@ -608,7 +608,7 @@ abstract class INetUtils {
      * @param port    port
      * @return the boolean
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean matchIpExpression(@NotNull String pattern, String host, int port) throws UnknownHostException {
 
@@ -629,7 +629,7 @@ abstract class INetUtils {
      * @param port    port
      * @return boolean boolean
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SneakyThrows
     @Contract("null, _, _ -> fail; !null, null, _ -> fail")
@@ -705,7 +705,7 @@ abstract class INetUtils {
      *
      * @param pattern pattern
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static boolean ipPatternContainExpression(@NotNull String pattern) {
         return pattern.contains("*") || pattern.contains("-");
@@ -717,7 +717,7 @@ abstract class INetUtils {
      * @param pattern pattern
      * @param mask    mask
      * @param isIpv4  is ipv 4
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static void checkHostPattern(String pattern, String[] mask, boolean isIpv4) {
         if (!isIpv4) {
@@ -741,7 +741,7 @@ abstract class INetUtils {
      * @param pattern pattern
      * @param isIpv4  is ipv 4
      * @return the string [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static String @NotNull [] getPatternHostAndPort(@NotNull String pattern, boolean isIpv4) {
         String[] result = new String[2];
@@ -771,7 +771,7 @@ abstract class INetUtils {
      * @param ipSegment ip segment
      * @param isIpv4    is ipv 4
      * @return the num of ip segment
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static @NotNull Integer getNumOfIpSegment(String ipSegment, boolean isIpv4) {
         if (isIpv4) {
@@ -787,7 +787,7 @@ abstract class INetUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2022.02.11 15:27
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     private static class InetUtils implements Closeable {
         /** Executor service */
@@ -799,7 +799,7 @@ abstract class INetUtils {
          * Inet utils
          *
          * @param properties properties
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         InetUtils(final InetUtilsProperties properties) {
             this.properties = properties;
@@ -814,7 +814,7 @@ abstract class INetUtils {
         /**
          * Close
          *
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         @Override
         public void close() {
@@ -825,7 +825,7 @@ abstract class INetUtils {
          * Find first non loopback host info
          *
          * @return the host info
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         HostInfo findFirstNonLoopbackHostInfo() {
             InetAddress address = findFirstNonLoopbackAddress();
@@ -842,7 +842,7 @@ abstract class INetUtils {
          * Find first non loopback address
          *
          * @return the inet address
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         InetAddress findFirstNonLoopbackAddress() {
             InetAddress result = null;
@@ -898,7 +898,7 @@ abstract class INetUtils {
          *
          * @param address address
          * @return the boolean
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         boolean isPreferredAddress(InetAddress address) {
 
@@ -928,7 +928,7 @@ abstract class INetUtils {
          *
          * @param interfaceName interface name
          * @return the boolean
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         boolean ignoreInterface(String interfaceName) {
             for (String regex : this.properties.getIgnoredInterfaces()) {
@@ -945,7 +945,7 @@ abstract class INetUtils {
          *
          * @param address address
          * @return the host info
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         HostInfo convertAddress(final InetAddress address) {
             HostInfo hostInfo = new HostInfo();
@@ -970,7 +970,7 @@ abstract class INetUtils {
          * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2022.02.11 15:27
-         * @since 2022.1.1
+         * @since 1.0.0
          */
         @Data
         private static class HostInfo {
@@ -985,7 +985,7 @@ abstract class INetUtils {
              * Gets ip address as int *
              *
              * @return the ip address as int
-             * @since 2022.1.1
+             * @since 1.0.0
              */
             public int getIpAddressAsInt() {
                 InetAddress inetAddress = null;

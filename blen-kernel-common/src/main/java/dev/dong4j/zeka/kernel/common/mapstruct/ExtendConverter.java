@@ -25,7 +25,7 @@ public interface ExtendConverter<F, D, P> extends ServiceConverter<D, P> {
      *
      * @param form form
      * @return the p
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     P f2p(F form);
 
@@ -34,7 +34,7 @@ public interface ExtendConverter<F, D, P> extends ServiceConverter<D, P> {
      *
      * @param list list
      * @return the list
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default List<P> f2p(@NotNull List<F> list) {
         return list.stream().map(this::f2p).collect(Collectors.toList());
@@ -45,7 +45,7 @@ public interface ExtendConverter<F, D, P> extends ServiceConverter<D, P> {
      *
      * @param collection collection
      * @return the collection
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default Collection<P> f2p(@NotNull Collection<F> collection) {
         return collection.stream().map(this::f2p).collect(Collectors.toCollection(HashSet::new));

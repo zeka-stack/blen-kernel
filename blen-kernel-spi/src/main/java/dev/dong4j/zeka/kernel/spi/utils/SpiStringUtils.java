@@ -30,10 +30,10 @@ import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.VERSION_KEY;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -56,7 +56,7 @@ public final class SpiStringUtils {
     /**
      * String utils
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private SpiStringUtils() {
     }
@@ -66,7 +66,7 @@ public final class SpiStringUtils {
      *
      * @param cs cs
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static int length(final CharSequence cs) {
         return cs == null ? 0 : cs.length();
@@ -78,7 +78,7 @@ public final class SpiStringUtils {
      * @param str    str
      * @param repeat repeat
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String repeat(final String str, final int repeat) {
         // Performance tuned for 2.0 (JDK1.4)
@@ -126,7 +126,7 @@ public final class SpiStringUtils {
      * @param separator separator
      * @param repeat    repeat
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String repeat(final String str, final String separator, final int repeat) {
         if (str == null || separator == null) {
@@ -143,7 +143,7 @@ public final class SpiStringUtils {
      * @param str    str
      * @param remove remove
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String removeEnd(final String str, final String remove) {
         if (isAnyEmpty(str, remove)) {
@@ -161,7 +161,7 @@ public final class SpiStringUtils {
      * @param ch     ch
      * @param repeat repeat
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String repeat(final char ch, final int repeat) {
         final char[] buf = new char[repeat];
@@ -177,7 +177,7 @@ public final class SpiStringUtils {
      * @param str        str
      * @param stripChars strip chars
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String stripEnd(final String str, final String stripChars) {
         int end;
@@ -206,7 +206,7 @@ public final class SpiStringUtils {
      * @param searchString search string
      * @param replacement  replacement
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String replace(final String text, final String searchString, final String replacement) {
         return replace(text, searchString, replacement, -1);
@@ -220,7 +220,7 @@ public final class SpiStringUtils {
      * @param replacement  replacement
      * @param max          max
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String replace(final String text, final String searchString, final String replacement, int max) {
         if (isAnyEmpty(text, searchString) || replacement == null || max == 0) {
@@ -253,7 +253,7 @@ public final class SpiStringUtils {
      *
      * @param cs cs
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isBlank(CharSequence cs) {
         int strLen;
@@ -273,7 +273,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isEmpty(String str) {
         return str == null || str.isEmpty();
@@ -284,7 +284,7 @@ public final class SpiStringUtils {
      *
      * @param ss ss
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNoneEmpty(final String... ss) {
         if (ArrayUtils.isEmpty(ss)) {
@@ -303,7 +303,7 @@ public final class SpiStringUtils {
      *
      * @param ss ss
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isAnyEmpty(final String... ss) {
         return !isNoneEmpty(ss);
@@ -314,7 +314,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
@@ -326,7 +326,7 @@ public final class SpiStringUtils {
      * @param s1 s 1
      * @param s2 s 2
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isEquals(String s1, String s2) {
         if (s1 == null && s2 == null) {
@@ -343,7 +343,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isInteger(String str) {
         return isNotEmpty(str) && INT_PATTERN.matcher(str).matches();
@@ -354,7 +354,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static int parseInteger(String str) {
         return isInteger(str) ? Integer.parseInt(str) : 0;
@@ -365,7 +365,7 @@ public final class SpiStringUtils {
      *
      * @param s s
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isJavaIdentifier(String s) {
         if (isEmpty(s) || !Character.isJavaIdentifierStart(s.charAt(0))) {
@@ -385,7 +385,7 @@ public final class SpiStringUtils {
      * @param values values
      * @param value  value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isContains(String values, String value) {
         return isNotEmpty(values) && isContains(COMMA_SPLIT_PATTERN.split(values), value);
@@ -397,7 +397,7 @@ public final class SpiStringUtils {
      * @param values values
      * @param value  value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isContains(String[] values, String value) {
         if (isNotEmpty(value) && ArrayUtils.isNotEmpty(values)) {
@@ -416,7 +416,7 @@ public final class SpiStringUtils {
      * @param str      str
      * @param allowDot allow dot
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNumeric(String str, boolean allowDot) {
         if (str == null || str.isEmpty()) {
@@ -445,7 +445,7 @@ public final class SpiStringUtils {
      *
      * @param e e
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toString(Throwable e) {
         UnsafeStringWriter w = new UnsafeStringWriter();
@@ -469,7 +469,7 @@ public final class SpiStringUtils {
      * @param msg msg
      * @param e   e
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toString(String msg, Throwable e) {
         UnsafeStringWriter w = new UnsafeStringWriter();
@@ -490,7 +490,7 @@ public final class SpiStringUtils {
      * @param from from
      * @param to   to
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String translate(String src, String from, String to) {
         if (isEmpty(src)) {
@@ -525,7 +525,7 @@ public final class SpiStringUtils {
      * @param str str
      * @param ch  ch
      * @return the string [ ]
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String[] split(String str, char ch) {
         List<String> list = null;
@@ -552,7 +552,7 @@ public final class SpiStringUtils {
      *
      * @param array array
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String join(String[] array) {
         if (ArrayUtils.isEmpty(array)) {
@@ -571,7 +571,7 @@ public final class SpiStringUtils {
      * @param array array
      * @param split split
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String join(String[] array, char split) {
         if (ArrayUtils.isEmpty(array)) {
@@ -593,7 +593,7 @@ public final class SpiStringUtils {
      * @param array array
      * @param split split
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String join(String[] array, String split) {
         if (ArrayUtils.isEmpty(array)) {
@@ -615,7 +615,7 @@ public final class SpiStringUtils {
      * @param coll  coll
      * @param split split
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String join(Collection<String> coll, String split) {
         if (CollectionUtils.isEmpty(coll)) {
@@ -641,7 +641,7 @@ public final class SpiStringUtils {
      * @param str           str
      * @param itemSeparator item separator
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static Map<String, String> parseKeyValuePair(String str, String itemSeparator) {
         String[] tmp = str.split(itemSeparator);
@@ -662,7 +662,7 @@ public final class SpiStringUtils {
      * @param qs  qs
      * @param key key
      * @return the query string value
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getQueryStringValue(String qs, String key) {
         Map<String, String> map = SpiStringUtils.parseQueryString(qs);
@@ -674,7 +674,7 @@ public final class SpiStringUtils {
      *
      * @param qs qs
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, String> parseQueryString(String qs) {
         if (isEmpty(qs)) {
@@ -688,7 +688,7 @@ public final class SpiStringUtils {
      *
      * @param ps ps
      * @return the service key
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getServiceKey(Map<String, String> ps) {
         StringBuilder buf = new StringBuilder();
@@ -709,7 +709,7 @@ public final class SpiStringUtils {
      *
      * @param ps ps
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toQueryString(Map<String, String> ps) {
         StringBuilder buf = new StringBuilder();
@@ -736,7 +736,7 @@ public final class SpiStringUtils {
      * @param camelName camel name
      * @param split     split
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String camelToSplitName(String camelName, String split) {
         if (isEmpty(camelName)) {
@@ -768,7 +768,7 @@ public final class SpiStringUtils {
      *
      * @param args args
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toArgumentString(Object[] args) {
         StringBuilder buf = new StringBuilder();
@@ -795,7 +795,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String trim(String str) {
         return str == null ? null : str.trim();
@@ -806,7 +806,7 @@ public final class SpiStringUtils {
      *
      * @param key key
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toURLKey(String key) {
         return key.toLowerCase().replaceAll(SEPARATOR_REGEX, HIDE_KEY_PREFIX);
@@ -817,7 +817,7 @@ public final class SpiStringUtils {
      *
      * @param key key
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toOSStyleKey(String key) {
         key = key.toUpperCase().replaceAll(DOT_REGEX, UNDERLINE_SEPARATOR);
@@ -832,7 +832,7 @@ public final class SpiStringUtils {
      *
      * @param str str
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isAllUpperCase(String str) {
         if (str != null && !isEmpty(str)) {
@@ -855,7 +855,7 @@ public final class SpiStringUtils {
      *
      * @param rawParameters raw parameters
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Map<String, String> parseParameters(String rawParameters) {
         Pattern pattern = Pattern.compile("^\\[((\\s*\\{\\s*[\\w_\\-\\.]+\\s*:\\s*.+?\\s*\\}\\s*,?\\s*)+)\\s*\\]$");

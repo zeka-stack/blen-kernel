@@ -33,7 +33,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Tables sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tablesSql() {
@@ -45,7 +45,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Table fields sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableFieldsSql() {
@@ -57,7 +57,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Table name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableName() {
@@ -69,7 +69,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Table comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableComment() {
@@ -81,7 +81,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Field name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldName() {
@@ -93,7 +93,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Field type
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldType() {
@@ -105,7 +105,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Field comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldComment() {
@@ -117,7 +117,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * Field key
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldKey() {
@@ -131,7 +131,7 @@ public class MySqlQuery extends AbstractDbQuery {
      * @param results results
      * @return the boolean
      * @throws SQLException sql exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public boolean isKeyIdentity(ResultSet results) throws SQLException {

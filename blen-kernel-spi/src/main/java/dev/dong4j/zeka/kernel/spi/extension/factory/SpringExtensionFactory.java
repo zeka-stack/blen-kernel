@@ -4,22 +4,21 @@ package dev.dong4j.zeka.kernel.spi.extension.factory;
 import dev.dong4j.zeka.kernel.spi.extension.ExtensionFactory;
 import dev.dong4j.zeka.kernel.spi.extension.SPI;
 import dev.dong4j.zeka.kernel.spi.utils.ConcurrentHashSet;
+import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.Set;
-
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 public class SpringExtensionFactory implements ExtensionFactory {
@@ -31,7 +30,7 @@ public class SpringExtensionFactory implements ExtensionFactory {
      * Add application context
      *
      * @param context context
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void addApplicationContext(ApplicationContext context) {
         CONTEXTS.add(context);
@@ -44,7 +43,7 @@ public class SpringExtensionFactory implements ExtensionFactory {
      * Remove application context
      *
      * @param context context
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void removeApplicationContext(ApplicationContext context) {
         CONTEXTS.remove(context);
@@ -54,7 +53,7 @@ public class SpringExtensionFactory implements ExtensionFactory {
      * Gets contexts *
      *
      * @return the contexts
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Set<ApplicationContext> getContexts() {
         return CONTEXTS;
@@ -63,7 +62,7 @@ public class SpringExtensionFactory implements ExtensionFactory {
     /**
      * Clear contexts
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void clearContexts() {
         CONTEXTS.clear();
@@ -76,7 +75,7 @@ public class SpringExtensionFactory implements ExtensionFactory {
      * @param type type
      * @param name name
      * @return the extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     @SuppressWarnings("unchecked")

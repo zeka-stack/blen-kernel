@@ -15,7 +15,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * <p>Description: launcher 扩展 用于一些组件发现</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 04:12
  * @since 1.0.0
@@ -68,7 +68,7 @@ public interface LauncherInitiation extends Ordered {
      * @param appName       app name
      * @param isLocalLaunch is local launch
      * @return the chain map
-     * @since 1.7.1
+     * @since 1.0.0
      */
     Map<String, Object> setDefaultProperties(ConfigurableEnvironment env, String appName, boolean isLocalLaunch);
 

@@ -12,7 +12,7 @@ import java.io.IOException;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.05.26 16:40
- * @since 1.9.0
+ * @since 1.0.0
  */
 public class StringTrimmerDeserializer extends JsonDeserializer<String> {
 
@@ -23,7 +23,7 @@ public class StringTrimmerDeserializer extends JsonDeserializer<String> {
      * @param deserializationContext deserialization context
      * @return the string
      * @throws IOException io exception
-     * @since 1.9.0
+     * @since 1.0.0
      */
     @Override
     @SuppressWarnings("java:S3252")

@@ -2,13 +2,12 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import cn.hutool.core.io.FileUtil;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import org.apache.commons.lang3.SystemUtils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.apache.commons.lang3.SystemUtils;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 修改 hosts 文件 </p>
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.14 22:56
- * @since 1.5.0
+ * @since 1.0.0
  */
 public abstract class HostUtils {
 
@@ -28,7 +27,7 @@ public abstract class HostUtils {
      * 读取 hosts, 排除注释项, 将一行记录解析为 [ip + 空格 + domain}
      *
      * @return the set
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static Set<String> read() {
         return FileUtil.readLines(getHostFile(), Charsets.UTF_8).stream()
@@ -43,7 +42,7 @@ public abstract class HostUtils {
      * @param ip     ip
      * @param domain domain
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static @NotNull String combine(String ip, String domain) {
@@ -58,7 +57,7 @@ public abstract class HostUtils {
      *
      * @param domain domain
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean exists(String domain) {
         return exists(StringPool.EMPTY, domain);
@@ -70,7 +69,7 @@ public abstract class HostUtils {
      * @param ip     ip
      * @param domain domain
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean exists(String ip, String domain) {
         return exists(read(), ip, domain);
@@ -83,7 +82,7 @@ public abstract class HostUtils {
      * @param ip      ip
      * @param domain  domain
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean exists(@NotNull Set<String> records, String ip, String domain) {
         String combine = combine(ip, domain);
@@ -101,7 +100,7 @@ public abstract class HostUtils {
      * @param records records
      * @param domain  domain
      * @return the set
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull Set<String> getIps(@NotNull Set<String> records, String domain) {
         Set<String> ips = new HashSet<>(4);
@@ -121,7 +120,7 @@ public abstract class HostUtils {
      *
      * @param record record
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String ip(@NotNull String record) {
         String[] split = check(record);
@@ -133,7 +132,7 @@ public abstract class HostUtils {
      *
      * @param record record
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String doamin(@NotNull String record) {
         String[] split = check(record);
@@ -145,7 +144,7 @@ public abstract class HostUtils {
      *
      * @param record record
      * @return the string [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @NotNull
     @SuppressWarnings("PMD.UndefineMagicConstantRule")
@@ -161,7 +160,7 @@ public abstract class HostUtils {
      * 获取 host 文件路径
      *
      * @return host file
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull String getHostFile() {
         String fileName;
@@ -180,7 +179,7 @@ public abstract class HostUtils {
      *
      * @param ip     ip
      * @param domain domain
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static synchronized void deleteHost(String ip, String domain) {
         String record = combine(ip, domain);
@@ -197,7 +196,7 @@ public abstract class HostUtils {
      *
      * @param ip     ip
      * @param domain domain
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static synchronized void updateHost(String ip, String domain) {
         if (StringUtils.isAnyBlank(ip, domain)) {

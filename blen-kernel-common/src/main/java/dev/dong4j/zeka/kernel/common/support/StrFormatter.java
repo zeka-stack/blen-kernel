@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * <p>Description: 字符串格式化 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 20:42
  * @since 1.0.0
@@ -121,7 +121,7 @@ public class StrFormatter {
      * @param value  value
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public static String mergeFormat(@NotNull String value, @NotNull Object... params) {

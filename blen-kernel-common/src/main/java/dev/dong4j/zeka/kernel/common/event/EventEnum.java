@@ -10,7 +10,7 @@ import lombok.Getter;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.20 05:32
- * @since 3.0.0
+ * @since 1.0.0
  */
 @Getter
 @AllArgsConstructor

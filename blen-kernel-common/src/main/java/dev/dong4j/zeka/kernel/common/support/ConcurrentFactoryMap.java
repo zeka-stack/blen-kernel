@@ -1,11 +1,6 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import com.google.common.collect.Maps;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
@@ -15,6 +10,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 线程安全的 Map 工厂类</p>
@@ -25,7 +24,7 @@ import java.util.function.Supplier;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 10:04
- * @since 1.4.0
+ * @since 1.0.0
  */
 @SuppressWarnings("checkstyle:ModifierOrder")
 public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> {
@@ -37,7 +36,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
     /**
      * Concurrent factory map
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private ConcurrentFactoryMap() {
 
@@ -48,7 +47,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param name name
      * @return the object
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(value = "_ -> new", pure = true)
     @NotNull
@@ -63,7 +62,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param <V>          parameter
      * @param computeValue compute value
      * @return the concurrent map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     @NotNull
@@ -84,7 +83,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param <V>     parameter
      * @param compute compute
      * @return Concurrent factory map with weak keys, strong values
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public static <T, V> ConcurrentMap<T, V> createWeakMap(@NotNull Function<? super T, ? extends V> compute) {
@@ -99,7 +98,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param computeValue compute value
      * @param mapCreator   map creator
      * @return the concurrent map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     @NotNull
@@ -125,7 +124,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param value value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public boolean removeValue(Object value) {
         Object t = notNull(value);
@@ -137,7 +136,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Size
      *
      * @return the int
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public int size() {
@@ -148,7 +147,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Is empty
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -161,7 +160,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param key key
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -174,7 +173,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param value value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -187,7 +186,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param key key
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V get(Object key) {
@@ -209,7 +208,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param <T> parameter
      * @param key key
      * @return the t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(value = "!null -> param1", pure = true)
     private static <T> T notNull(Object key) {
@@ -222,7 +221,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param key key
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nullable
     protected abstract V create(K key);
@@ -236,7 +235,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param key          key
      * @param defaultValue default value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public static <K, V> V cacheOrGet(@NotNull ConcurrentMap<K, V> map, @NotNull K key, @NotNull V defaultValue) {
@@ -254,7 +253,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param <T>   parameter
      * @param value value
      * @return the t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Nullable
@@ -267,7 +266,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param <T> parameter
      * @return the t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @SuppressWarnings("unchecked")
@@ -281,7 +280,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V put(K key, V value) {
@@ -296,7 +295,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      *
      * @param key key
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V remove(Object key) {
@@ -308,7 +307,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Put all
      *
      * @param m m
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void putAll(@NotNull Map<? extends K, ? extends V> m) {
@@ -320,7 +319,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
     /**
      * Clear
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void clear() {
@@ -331,7 +330,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Key set
      *
      * @return the set
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -343,7 +342,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Values
      *
      * @return the collection
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -355,7 +354,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Entry set
      *
      * @return the set
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -378,7 +377,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * Create map
      *
      * @return the concurrent map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     protected ConcurrentMap<K, V> createMap() {
@@ -391,7 +390,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V putIfAbsent(@NotNull K key, V value) {
@@ -404,7 +403,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param key   key
      * @param value value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public boolean remove(@NotNull Object key, Object value) {
@@ -418,7 +417,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param oldValue old value
      * @param newValue new value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public boolean replace(@NotNull K key, @NotNull V oldValue, @NotNull V newValue) {
@@ -431,7 +430,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V replace(@NotNull K key, @NotNull V value) {
@@ -442,7 +441,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * To string
      *
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {
@@ -457,7 +456,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.19 10:04
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static class CollectionWrapper<K> extends AbstractCollection<K> {
         /** My delegate */
@@ -467,7 +466,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          * Collection wrapper
          *
          * @param delegate delegate
-         * @since 1.4.0
+         * @since 1.0.0
          */
         CollectionWrapper(Collection<K> delegate) {
             this.myDelegate = delegate;
@@ -477,7 +476,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          * Iterator
          *
          * @return the iterator
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @NotNull
         @Override
@@ -506,7 +505,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          * Size
          *
          * @return the int
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public int size() {
@@ -518,7 +517,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          *
          * @param o o
          * @return the boolean
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public boolean contains(Object o) {
@@ -530,7 +529,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          *
          * @param o o
          * @return the boolean
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public boolean remove(Object o) {
@@ -542,7 +541,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          *
          * @param val val
          * @return the object
-         * @since 1.4.0
+         * @since 1.0.0
          */
         protected Object wrap(Object val) {
             return notNull(val);
@@ -553,7 +552,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          *
          * @param val val
          * @return the k
-         * @since 1.4.0
+         * @since 1.0.0
          */
         protected K unwrap(K val) {
             return nullize(val);
@@ -567,14 +566,14 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2020.05.19 10:04
-         * @since 1.4.0
+         * @since 1.0.0
          */
         private static class Set<K> extends CollectionWrapper<K> implements java.util.Set<K> {
             /**
              * Set
              *
              * @param delegate delegate
-             * @since 1.4.0
+             * @since 1.0.0
              */
             Set(Collection<K> delegate) {
                 super(delegate);
@@ -590,7 +589,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
          * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2020.05.19 10:04
-         * @since 1.4.0
+         * @since 1.0.0
          */
         protected static final class EntryWrapper<K, V> implements Entry<K, V> {
             /** My entry */
@@ -600,7 +599,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              * Entry wrapper
              *
              * @param entry entry
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Contract(pure = true)
             private EntryWrapper(Entry<? extends K, ? extends V> entry) {
@@ -611,7 +610,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              * Gets key *
              *
              * @return the key
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Override
             public K getKey() {
@@ -622,7 +621,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              * Gets value *
              *
              * @return the value
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Override
             public V getValue() {
@@ -634,7 +633,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              *
              * @param value value
              * @return the value
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Override
             public V setValue(V value) {
@@ -645,7 +644,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              * Hash code
              *
              * @return the int
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Override
             public int hashCode() {
@@ -657,7 +656,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
              *
              * @param obj obj
              * @return the boolean
-             * @since 1.4.0
+             * @since 1.0.0
              */
             @Override
             public boolean equals(Object obj) {
@@ -670,35 +669,33 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
     /**
      * <p>Description: </p>
      *
+     * @param myName My name
      * @author dong4j
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.19 10:04
-     * @since 1.4.0
+     * @since 1.0.0
      */
-    private static final class Sentinel {
-        /** My name */
-        private final String myName;
+        private record Sentinel(String myName) {
+            /**
+             * Sentinel
+             *
+             * @param myName name
+             * @since 1.0.0
+             */
+            private Sentinel(@NotNull String myName) {
+                this.myName = myName;
+            }
 
-        /**
-         * Sentinel
-         *
-         * @param name name
-         * @since 1.4.0
-         */
-        Sentinel(@NotNull String name) {
-            this.myName = name;
+            /**
+             * To string
+             *
+             * @return the string
+             * @since 1.0.0
+             */
+            @Override
+            public String toString() {
+                return this.myName;
+            }
         }
-
-        /**
-         * To string
-         *
-         * @return the string
-         * @since 1.4.0
-         */
-        @Override
-        public String toString() {
-            return this.myName;
-        }
-    }
 }

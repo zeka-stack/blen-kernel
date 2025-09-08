@@ -1,13 +1,12 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A class that enables to get an IP range from CIDR specification. It supports
@@ -19,7 +18,7 @@ import java.util.List;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.07.02 11:56
- * @since 1.5.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class CIDRUtils {
@@ -40,7 +39,7 @@ public class CIDRUtils {
      *
      * @param cidr cidr
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public CIDRUtils(String cidr) throws UnknownHostException {
 
@@ -66,7 +65,7 @@ public class CIDRUtils {
      * Calculate
      *
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private void calculate() throws UnknownHostException {
 
@@ -107,7 +106,7 @@ public class CIDRUtils {
      * @param array      array
      * @param targetSize target size
      * @return the byte [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private byte @NotNull [] toBytes(byte[] array, int targetSize) {
         int counter = 0;
@@ -134,7 +133,7 @@ public class CIDRUtils {
      * Gets network address *
      *
      * @return the network address
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public String getNetworkAddress() {
 
@@ -145,7 +144,7 @@ public class CIDRUtils {
      * Gets broadcast address *
      *
      * @return the broadcast address
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public String getBroadcastAddress() {
         return this.endAddress.getHostAddress();
@@ -157,7 +156,7 @@ public class CIDRUtils {
      * @param ipAddress ip address
      * @return the boolean
      * @throws UnknownHostException unknown host exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public boolean isInRange(String ipAddress) throws UnknownHostException {
         InetAddress address = InetAddress.getByName(ipAddress);

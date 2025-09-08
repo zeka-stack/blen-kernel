@@ -62,7 +62,7 @@ public class TemplateConfig {
      *
      * @param kotlin kotlin
      * @return the entity
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public String getEntity(boolean kotlin) {
         return kotlin ? entityKt : entity;
@@ -73,7 +73,7 @@ public class TemplateConfig {
      *
      * @param templateTypes 模板类型
      * @return this template config
-     * @since 3.3.2
+     * @since 1.0.0
      */
     public TemplateConfig disable(TemplateType... templateTypes) {
         if (templateTypes != null) {

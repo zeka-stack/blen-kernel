@@ -4,17 +4,17 @@ import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
 import lombok.experimental.UtilityClass;
 
 /**
- * <p>Description: oauth2 常量</p>
+ * <p>Description: 认证相关常量类，定义了OAuth2认证、用户登录、令牌管理等过程中使用的常量</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:43
  * @since 1.0.0
  */
 @UtilityClass
 public class AuthConstant {
-    /** LOGIN_URL */
+    /** 登录接口URL */
     public static final String LOGIN_URL = "/login";
     /** LOGOUT_URL */
     public static final String LOGOUT_URL = "/logout";

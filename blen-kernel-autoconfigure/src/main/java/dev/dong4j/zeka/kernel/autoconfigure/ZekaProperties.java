@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Zeka组件通用属性配置类，定义了框架组件的通用配置项
+ * 主要用于控制组件的全局启用状态，支持统一的开关控制
+ * 所有Zeka组件均可继承此类来实现统一的开关管理
+ *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"

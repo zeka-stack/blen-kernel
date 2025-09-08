@@ -4,8 +4,6 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.dns.DnsCache;
 import dev.dong4j.zeka.kernel.common.dns.DnsCacheEntry;
 import dev.dong4j.zeka.kernel.common.dns.DnsCacheManipulator;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -17,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -25,7 +24,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class DnsAgent {
@@ -39,7 +38,7 @@ public class DnsAgent {
      *
      * @param agentArgument agent argument
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void agentmain(String agentArgument) throws Exception {
         System.out.printf("%s: attached with agent argument: %s.\n", DnsAgent.class.getName(), agentArgument);
@@ -124,7 +123,7 @@ public class DnsAgent {
      *
      * @param argument argument
      * @return the map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull Map<String, List<String>> parseAgentArgument(@NotNull String argument) {
         String[] split = argument.split("\\s+");
@@ -155,7 +154,7 @@ public class DnsAgent {
      *
      * @param list list
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull String join(List<String> list) {
         return join(list, " ");
@@ -167,7 +166,7 @@ public class DnsAgent {
      * @param list      list
      * @param separator separator
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull String join(@NotNull List<String> list, String separator) {
         StringBuilder ret = new StringBuilder();
@@ -187,7 +186,7 @@ public class DnsAgent {
      * @param arguments arguments
      * @return the object
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static Object doAction(String action, String[] arguments) throws Exception {
         Method method = action2Method.get(action);
@@ -204,7 +203,7 @@ public class DnsAgent {
      * @param arguments      arguments
      * @param parameterTypes parameter types
      * @return the object [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static Object @NotNull [] convertStringArray2Arguments(String action,
                                                            String @NotNull [] arguments,
@@ -256,7 +255,7 @@ public class DnsAgent {
      * @param action action
      * @param result result
      * @param writer writer
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static void printResult(String action, Object result, PrintWriter writer) {
         if (writer == null) {
@@ -298,7 +297,7 @@ public class DnsAgent {
      *
      * @param e e
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static String throwable2StackString(@NotNull Throwable e) {
         StringWriter w = new StringWriter();
@@ -313,7 +312,7 @@ public class DnsAgent {
      * Init action 2 method
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static synchronized void initAction2Method() throws Exception {
         if (action2Method != null) {

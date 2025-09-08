@@ -11,9 +11,6 @@ import dev.dong4j.zeka.kernel.spi.utils.Holder;
 import dev.dong4j.zeka.kernel.spi.utils.SpiClassUtils;
 import dev.dong4j.zeka.kernel.spi.utils.SpiReflectUtils;
 import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
@@ -31,6 +28,8 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.COMMA_SPLIT_PATTERN;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.DEFAULT_KEY;
@@ -41,10 +40,10 @@ import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.REMOVE_VALUE_
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -103,7 +102,7 @@ public final class SPILoader<T> {
      * Extension loader
      *
      * @param type type
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private SPILoader(Class<?> type) {
         this.type = type;
@@ -117,7 +116,7 @@ public final class SPILoader<T> {
      * @param <T>  parameter
      * @param type type
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static <T> boolean withExtensionAnnotation(Class<T> type) {
         return type.isAnnotationPresent(SPI.class);
@@ -129,7 +128,7 @@ public final class SPILoader<T> {
      * @param <T>  parameter
      * @param type type
      * @return the extension loader
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public static <T> SPILoader<T> getExtensionLoader(Class<T> type) {
@@ -157,7 +156,7 @@ public final class SPILoader<T> {
      * Reset extension loader
      *
      * @param type type
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void resetExtensionLoader(Class type) {
         SPILoader loader = EXTENSION_LOADERS.get(type);
@@ -176,7 +175,7 @@ public final class SPILoader<T> {
      * Find class loader
      *
      * @return the class loader
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static ClassLoader findClassLoader() {
         return SpiClassUtils.getClassLoader(SPILoader.class);
@@ -187,7 +186,7 @@ public final class SPILoader<T> {
      *
      * @param extensionInstance extension instance
      * @return the extension name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public String getExtensionName(T extensionInstance) {
         return this.getExtensionName(extensionInstance.getClass());
@@ -198,7 +197,7 @@ public final class SPILoader<T> {
      *
      * @param extensionClass extension class
      * @return the extension name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public String getExtensionName(Class<?> extensionClass) {
         this.getExtensionClasses();
@@ -211,7 +210,7 @@ public final class SPILoader<T> {
      * @param url url
      * @param key key
      * @return the activate extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public List<T> getActivateExtension(URL url, String key) {
         return this.getActivateExtension(url, key, null);
@@ -223,7 +222,7 @@ public final class SPILoader<T> {
      * @param url    url
      * @param values values
      * @return the activate extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public List<T> getActivateExtension(URL url, String[] values) {
         return this.getActivateExtension(url, values, null);
@@ -236,7 +235,7 @@ public final class SPILoader<T> {
      * @param key   key
      * @param group group
      * @return the activate extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public List<T> getActivateExtension(URL url, String key, String group) {
         String value = url.getParameter(key);
@@ -250,7 +249,7 @@ public final class SPILoader<T> {
      * @param values values
      * @param group  group
      * @return the activate extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public List<T> getActivateExtension(URL url, String[] values, String group) {
         List<T> exts = new ArrayList<>();
@@ -308,7 +307,7 @@ public final class SPILoader<T> {
      * @param group  group
      * @param groups groups
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean isMatchGroup(String group, String[] groups) {
         if (SpiStringUtils.isEmpty(group)) {
@@ -330,7 +329,7 @@ public final class SPILoader<T> {
      * @param keys keys
      * @param url  url
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean isActive(String[] keys, URL url) {
         if (keys.length == 0) {
@@ -354,7 +353,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the loaded extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public T getLoadedExtension(String name) {
@@ -370,7 +369,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the or create holder
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Holder<Object> getOrCreateHolder(String name) {
         Holder<Object> holder = this.cachedInstances.get(name);
@@ -385,7 +384,7 @@ public final class SPILoader<T> {
      * Gets loaded extensions *
      *
      * @return the loaded extensions
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Set<String> getLoadedExtensions() {
         return Collections.unmodifiableSet(new TreeSet<>(this.cachedInstances.keySet()));
@@ -395,7 +394,7 @@ public final class SPILoader<T> {
      * Gets loaded adaptive extension instances *
      *
      * @return the loaded adaptive extension instances
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Object getLoadedAdaptiveExtensionInstances() {
         return this.cachedAdaptiveInstance.get();
@@ -406,7 +405,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public T getExtension(String name) {
@@ -434,7 +433,7 @@ public final class SPILoader<T> {
      * Gets default extension *
      *
      * @return the default extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public T getDefaultExtension() {
         this.getExtensionClasses();
@@ -449,7 +448,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public boolean hasExtension(String name) {
         if (SpiStringUtils.isEmpty(name)) {
@@ -463,7 +462,7 @@ public final class SPILoader<T> {
      * Gets supported extensions *
      *
      * @return the supported extensions
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public Set<String> getSupportedExtensions() {
         Map<String, Class<?>> clazzes = this.getExtensionClasses();
@@ -474,7 +473,7 @@ public final class SPILoader<T> {
      * Gets default extension name *
      *
      * @return the default extension name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public String getDefaultExtensionName() {
         this.getExtensionClasses();
@@ -486,7 +485,7 @@ public final class SPILoader<T> {
      *
      * @param name  name
      * @param clazz clazz
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void addExtension(String name, Class<?> clazz) {
         this.getExtensionClasses(); // load classes
@@ -525,7 +524,7 @@ public final class SPILoader<T> {
      *
      * @param name  name
      * @param clazz clazz
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Deprecated
     public void replaceExtension(String name, Class<?> clazz) {
@@ -566,7 +565,7 @@ public final class SPILoader<T> {
      * Gets adaptive extension *
      *
      * @return the adaptive extension
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public T getAdaptiveExtension() {
@@ -600,7 +599,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the illegal state exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private IllegalStateException findException(String name) {
         for (Map.Entry<String, IllegalStateException> entry : this.exceptions.entrySet()) {
@@ -632,7 +631,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     private T createExtension(String name) {
@@ -665,7 +664,7 @@ public final class SPILoader<T> {
      *
      * @param instance instance
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private T injectExtension(T instance) {
 
@@ -712,7 +711,7 @@ public final class SPILoader<T> {
      *
      * @param method method
      * @return the setter property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private String getSetterProperty(Method method) {
         return method.getName().length() > 3 ? method.getName().substring(3, 4).toLowerCase() + method.getName().substring(4) : "";
@@ -723,7 +722,7 @@ public final class SPILoader<T> {
      *
      * @param method method
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean isSetter(Method method) {
         return method.getName().startsWith("set")
@@ -736,7 +735,7 @@ public final class SPILoader<T> {
      *
      * @param name name
      * @return the extension class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Class<?> getExtensionClass(String name) {
         if (this.type == null) {
@@ -752,7 +751,7 @@ public final class SPILoader<T> {
      * Gets extension classes *
      *
      * @return the extension classes
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Map<String, Class<?>> getExtensionClasses() {
         Map<String, Class<?>> classes = this.cachedClasses.get();
@@ -772,7 +771,7 @@ public final class SPILoader<T> {
      * Load extension classes
      *
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Map<String, Class<?>> loadExtensionClasses() {
         this.cacheDefaultExtensionName();
@@ -790,7 +789,7 @@ public final class SPILoader<T> {
     /**
      * Cache default extension name
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void cacheDefaultExtensionName() {
         SPI defaultAnnotation = this.type.getAnnotation(SPI.class);
@@ -817,7 +816,7 @@ public final class SPILoader<T> {
      * @param extensionClasses extension classes
      * @param dir              dir
      * @param type             type
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void loadDirectory(Map<String, Class<?>> extensionClasses, String dir, String type) {
         String fileName = dir + type;
@@ -847,7 +846,7 @@ public final class SPILoader<T> {
      * @param extensionClasses extension classes
      * @param classLoader      class loader
      * @param resourceURL      resource url
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void loadResource(Map<String, Class<?>> extensionClasses, ClassLoader classLoader, java.net.URL resourceURL) {
         try {
@@ -894,7 +893,7 @@ public final class SPILoader<T> {
      * @param clazz            clazz
      * @param name             name
      * @throws NoSuchMethodException no such method exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void loadClass(Map<String, Class<?>> extensionClasses, java.net.URL resourceURL, Class<?> clazz, String name) throws NoSuchMethodException {
         if (!this.type.isAssignableFrom(clazz)) {
@@ -931,7 +930,7 @@ public final class SPILoader<T> {
      *
      * @param clazz clazz
      * @param name  name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void cacheName(Class<?> clazz, String name) {
         if (!this.cachedNames.containsKey(clazz)) {
@@ -945,7 +944,7 @@ public final class SPILoader<T> {
      * @param extensionClasses extension classes
      * @param clazz            clazz
      * @param name             name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void saveInExtensionClass(Map<String, Class<?>> extensionClasses, Class<?> clazz, String name) {
         Class<?> c = extensionClasses.get(name);
@@ -964,7 +963,7 @@ public final class SPILoader<T> {
      *
      * @param clazz clazz
      * @param name  name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void cacheActivateClass(Class<?> clazz, String name) {
         Activate activate = clazz.getAnnotation(Activate.class);
@@ -983,7 +982,7 @@ public final class SPILoader<T> {
      * Cache adaptive class
      *
      * @param clazz clazz
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void cacheAdaptiveClass(Class<?> clazz) {
         if (this.cachedAdaptiveClass == null) {
@@ -999,7 +998,7 @@ public final class SPILoader<T> {
      * Cache wrapper class
      *
      * @param clazz clazz
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private void cacheWrapperClass(Class<?> clazz) {
         if (this.cachedWrapperClasses == null) {
@@ -1013,7 +1012,7 @@ public final class SPILoader<T> {
      *
      * @param clazz clazz
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private boolean isWrapperClass(Class<?> clazz) {
         try {
@@ -1029,7 +1028,7 @@ public final class SPILoader<T> {
      *
      * @param clazz clazz
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("deprecation")
     private String findAnnotationName(Class<?> clazz) {
@@ -1049,7 +1048,7 @@ public final class SPILoader<T> {
      * Create adaptive extension
      *
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     private T createAdaptiveExtension() {
@@ -1064,7 +1063,7 @@ public final class SPILoader<T> {
      * Gets adaptive extension class *
      *
      * @return the adaptive extension class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Class<?> getAdaptiveExtensionClass() {
         this.getExtensionClasses();
@@ -1078,7 +1077,7 @@ public final class SPILoader<T> {
      * Create adaptive extension class
      *
      * @return the class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Class<?> createAdaptiveExtensionClass() {
         String code = new AdaptiveClassCodeGenerator(this.type, this.cachedDefaultName).generate();
@@ -1091,7 +1090,7 @@ public final class SPILoader<T> {
      * To string
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {

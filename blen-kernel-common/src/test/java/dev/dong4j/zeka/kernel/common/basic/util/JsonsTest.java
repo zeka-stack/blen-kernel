@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * <p>Description: Jackson.enableDefaultTyping 测试 </p>
  *
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.02.19 02:37
  * @since 1.0.0
@@ -122,7 +122,7 @@ public class JsonsTest {
      * {"name": "zhangfei"}___xxxx
      * 这样格式的数据判断为true
      *
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Test
     void test_jackson_isJson() {
@@ -147,7 +147,7 @@ public class JsonsTest {
     /**
      * 测试正常情况下的json判断
      *
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Test
     void test_normal_json() {
@@ -172,7 +172,7 @@ public class JsonsTest {
     /**
      * 测试jsonmap的方式是否判断通过
      *
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     @Test
     void test_json_map() {
@@ -197,7 +197,7 @@ public class JsonsTest {
      *
      * @param <T> parameter
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.19 14:38
      * @since 1.0.0

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Contract;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.23 23:54
- * @since 1.6.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class Trace {
@@ -22,7 +22,7 @@ public class Trace {
      * Context
      *
      * @return the thread context map
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static TransmittableThreadLocal<String> context() {
@@ -32,7 +32,7 @@ public class Trace {
     /**
      * Clear
      *
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static void clear() {

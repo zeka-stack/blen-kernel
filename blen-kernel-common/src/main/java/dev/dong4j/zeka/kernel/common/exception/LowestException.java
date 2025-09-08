@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2023.11.11 23:45
- * @since 2024.1.1
+ * @since 1.0.0
  */
 @Slf4j
 @Getter
@@ -219,7 +219,7 @@ public class LowestException extends RuntimeException {
      * Prints this throwable and its backtrace to the specified print stream.
      *
      * @param s {@code PrintStream} to use for output
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Override
     public void printStackTrace(PrintStream s) {

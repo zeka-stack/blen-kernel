@@ -7,18 +7,17 @@ import dev.dong4j.zeka.kernel.common.reflection.wrapper.CollectionWrapper;
 import dev.dong4j.zeka.kernel.common.reflection.wrapper.MapWrapper;
 import dev.dong4j.zeka.kernel.common.reflection.wrapper.ObjectWrapper;
 import dev.dong4j.zeka.kernel.common.reflection.wrapper.ObjectWrapperFactory;
-import lombok.Getter;
-import org.jetbrains.annotations.Contract;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: 实体元数据包装对象 </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 10:55
  * @since 1.0.0

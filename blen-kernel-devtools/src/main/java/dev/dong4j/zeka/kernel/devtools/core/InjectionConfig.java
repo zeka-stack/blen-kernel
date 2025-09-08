@@ -60,7 +60,7 @@ public abstract class InjectionConfig {
     /**
      * 注入自定义 Map 对象，针对所有表的全局参数
      *
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public abstract void initMap();
 
@@ -68,7 +68,7 @@ public abstract class InjectionConfig {
      * 依据表相关信息，从三方获取到需要元数据，处理方法环境里面
      *
      * @param tableInfo table info
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public void initTableMap(TableInfo tableInfo) {
         // 子类重写注入表对应补充信息
@@ -79,7 +79,7 @@ public abstract class InjectionConfig {
      *
      * @param objectMap object map
      * @return the map
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Map<String, Object> prepareObjectMap(Map<String, Object> objectMap) {
         return objectMap;

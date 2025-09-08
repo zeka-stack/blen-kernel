@@ -67,7 +67,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
  * 在使用此工具类时, 最好要了解配置的声明周期, 不然可能会造成获取不到配置的尴尬问题
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 00:43
  * @since 1.0.0
@@ -188,7 +188,7 @@ public class ConfigKit {
      * 是否为单元测试
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static @NotNull Boolean isStartedByJunit() {
         return App.START_JUNIT.equals(System.getProperty(App.START_TYPE));
@@ -224,7 +224,7 @@ public class ConfigKit {
      * @param key          key
      * @param defaultValue default value
      * @return the property
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getProperty(ConfigurableEnvironment environment, String key, String defaultValue) {
         String value = getProperty(environment, key);
@@ -248,7 +248,7 @@ public class ConfigKit {
      * @param environment environment
      * @param key         key
      * @return the property
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String getProperty(ConfigurableEnvironment environment, String key) {
         String value;
@@ -415,7 +415,7 @@ public class ConfigKit {
      *
      * @param resource resource
      * @return the property source
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("java:S1452")
     public static @NotNull PropertySource<?> getPropertySource(Resource resource) {
@@ -541,7 +541,7 @@ public class ConfigKit {
      *
      * @param fileName file name
      * @return the includes file
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SneakyThrows
     public static @NotNull File getIncludesFile(String fileName) {
@@ -554,7 +554,7 @@ public class ConfigKit {
      *
      * @param fileName file name
      * @return the includes path
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static @NotNull String getIncludesFilePath(String fileName) {
         return FileUtils.appendPath(getIncludesPath(), fileName);
@@ -578,7 +578,7 @@ public class ConfigKit {
      * Gets rest port *
      *
      * @return the rest port
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Integer getRestPort() {
         return getPort(ConfigKey.SpringConfigKey.SERVER_PORT);
@@ -588,7 +588,7 @@ public class ConfigKit {
      * Gets management port *
      *
      * @return the management port
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Integer getManagementPort() {
         return getPort(ConfigKey.SpringConfigKey.MANAGEMENT_SERVER_PORT);
@@ -598,7 +598,7 @@ public class ConfigKit {
      * Gets dubbo port *
      *
      * @return the dubbo port
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Integer getDubboPort() {
         return getPort(ConfigKey.DubboConfigKey.PROTOCOL_PORT);
@@ -609,7 +609,7 @@ public class ConfigKit {
      *
      * @param key key
      * @return the port
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Integer getPort(String key) {
         String port = getProperty(key);
@@ -1216,7 +1216,7 @@ public class ConfigKit {
      * Sets properties *
      *
      * @param properties properties
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public void setProperties(Properties properties) {
         setProperties(environment, properties);
@@ -1227,7 +1227,7 @@ public class ConfigKit {
      *
      * @param environment environment
      * @param properties  properties
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public void setProperties(@NotNull ConfigurableEnvironment environment, Properties properties) {
         setProperties(environment, Tools.getMapFromProperties(properties));
@@ -1237,7 +1237,7 @@ public class ConfigKit {
      * Sets properties *
      *
      * @param map map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public void setProperties(Map<String, Object> map) {
         setProperties(environment, map);
@@ -1248,7 +1248,7 @@ public class ConfigKit {
      *
      * @param environment environment
      * @param map         map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public void setProperties(@NotNull ConfigurableEnvironment environment, Map<String, Object> map) {
         setProperties(environment, map, false);
@@ -1261,7 +1261,7 @@ public class ConfigKit {
      * @param environment environment
      * @param map         map
      * @param first       first
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public void setProperties(@NotNull ConfigurableEnvironment environment, Map<String, Object> map, boolean first) {
         if (first) {
@@ -1285,7 +1285,7 @@ public class ConfigKit {
      *
      * @param environment environment
      * @return the map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static @NotNull @UnmodifiableView Map<String, Object> extractProperties(ConfigurableEnvironment environment) {
         return Collections.unmodifiableMap(doExtraProperties(environment));
@@ -1296,7 +1296,7 @@ public class ConfigKit {
      *
      * @param environment environment
      * @return the map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static @NotNull Map<String, Object> doExtraProperties(ConfigurableEnvironment environment) {
         Map<String, Object> properties = new LinkedHashMap<>();
@@ -1321,7 +1321,7 @@ public class ConfigKit {
      *
      * @param environment environment
      * @return the map
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static @NotNull Map<String, PropertySource<?>> doGetPropertySources(@NotNull ConfigurableEnvironment environment) {
         Map<String, PropertySource<?>> map = new LinkedHashMap<>();
@@ -1338,7 +1338,7 @@ public class ConfigKit {
      * @param root   root
      * @param map    map
      * @param source source
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static void extract(String root, Map<String, PropertySource<?>> map, PropertySource<?> source) {
         if (source instanceof CompositePropertySource) {
@@ -1359,7 +1359,7 @@ public class ConfigKit {
      * @param clazz       clazz
      * @param environment environment
      * @return the @ nullable t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static <T> @Nullable T bind(String name, Class<T> clazz, @NotNull ConfigurableEnvironment environment) {
         List<ConfigurationPropertySource> configs = new ArrayList<>();
@@ -1387,7 +1387,7 @@ public class ConfigKit {
      * @param environment environment
      * @param aliases     aliases
      * @return the @ nullable t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static <T> @Nullable T bind(String name,
                                        T instance,
@@ -1408,7 +1408,7 @@ public class ConfigKit {
      * Is v 5 framework
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static boolean isV8Framework() {
         return BasicUtils.isV8Framework();
@@ -1418,7 +1418,7 @@ public class ConfigKit {
      * Gets app version *
      *
      * @return the app version
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static String getAppVersion() {
         return BasicUtils.getAppVersion();
@@ -1428,7 +1428,7 @@ public class ConfigKit {
      * Gets framework version *
      *
      * @return the framework version
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static String getFrameworkVersion() {
         return BasicUtils.getFrameworkVersion();

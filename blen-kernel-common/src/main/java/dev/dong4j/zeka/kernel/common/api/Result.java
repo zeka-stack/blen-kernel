@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
  * @date 2020.02.06 17:44
  * @since 1.0.0
@@ -97,7 +97,7 @@ public abstract class Result<T> implements Serializable {
      * @param message message
      * @param data    data
      * @param traceId trace id
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected Result(@NotNull Integer code, String message, T data, String traceId) {
@@ -112,7 +112,7 @@ public abstract class Result<T> implements Serializable {
      * Is ok boolean
      *
      * @return the boolean
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @JsonIgnore
     public boolean isOk() {
@@ -124,7 +124,7 @@ public abstract class Result<T> implements Serializable {
      *
      * @param result result
      * @return the boolean
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("null -> false")
     public static boolean isOk(@Nullable Result<?> result) {
@@ -135,7 +135,7 @@ public abstract class Result<T> implements Serializable {
      * Is fail boolean
      *
      * @return the boolean
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @JsonIgnore
     public boolean isFail() {
@@ -147,7 +147,7 @@ public abstract class Result<T> implements Serializable {
      *
      * @param result result
      * @return the boolean
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("null -> true")
     public static boolean isFail(@Nullable Result<?> result) {

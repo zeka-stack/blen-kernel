@@ -6,16 +6,15 @@ import dev.dong4j.zeka.kernel.common.function.CheckedConsumer;
 import dev.dong4j.zeka.kernel.common.function.CheckedFunction;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
 import dev.dong4j.zeka.kernel.common.function.CheckedSupplier;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: Lambda 受检异常处理 </p>
@@ -23,7 +22,7 @@ import java.util.function.Supplier;
  * https://github.com/jOOQ/jOOL
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:17
  * @since 1.0.0

@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.18 17:19
- * @since 1.7.0
+ * @since 1.0.0
  */
 @UtilityClass
 @SuppressWarnings("all")
@@ -28,7 +28,7 @@ class AssertUtils {
      * Fail
      *
      * @param message message
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract("_ -> fail")
     static void fail(String message) {
@@ -39,7 +39,7 @@ class AssertUtils {
      * Fail
      *
      * @param exceptionSupplier exception supplier
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract("_ -> fail")
     @SneakyThrows
@@ -52,7 +52,7 @@ class AssertUtils {
      *
      * @param exceptionSupplier exception supplier
      * @param runnable          runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @SneakyThrows
     static void fail(Supplier<? extends RuntimeException> exceptionSupplier, CheckedRunnable runnable) {
@@ -70,7 +70,7 @@ class AssertUtils {
      *
      * @param exceptionSupplier message supplier
      * @return the exception
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract("null -> new")
     static Exception nullSafeGetException(@Nullable Supplier<? extends RuntimeException> exceptionSupplier) {
@@ -83,7 +83,7 @@ class AssertUtils {
      * @param type    type
      * @param obj     obj
      * @param message message
-     * @since 1.6.0
+     * @since 1.0.0
      */
     static void instanceCheckFailed(Class<?> type, @Nullable Object obj, @Nullable String message) {
         String className = (obj != null ? obj.getClass().getName() : "null");
@@ -109,7 +109,7 @@ class AssertUtils {
      * @param superType super type
      * @param subType   sub type
      * @param message   message
-     * @since 1.6.0
+     * @since 1.0.0
      */
     static void assignableCheckFailed(Class<?> superType, @Nullable Class<?> subType, @Nullable String message) {
         String result = "";
@@ -133,7 +133,7 @@ class AssertUtils {
      *
      * @param message message
      * @return the boolean
-     * @since 1.6.0
+     * @since 1.0.0
      */
     static boolean endsWithSeparator(@NotNull String message) {
         return (message.endsWith(":") || message.endsWith(";") || message.endsWith(",") || message.endsWith("."));
@@ -145,7 +145,7 @@ class AssertUtils {
      * @param message  message
      * @param typeName type name
      * @return the string
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     static @NotNull String messageWithTypeName(@NotNull String message, @Nullable Object typeName) {
@@ -158,7 +158,7 @@ class AssertUtils {
      * @param value1 value 1
      * @param value2 value 2
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static boolean floatsAreEqual(float value1, float value2) {
         return Float.floatToIntBits(value1) == Float.floatToIntBits(value2);
@@ -171,7 +171,7 @@ class AssertUtils {
      * @param value2 value 2
      * @param delta  delta
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static boolean floatsAreEqual(float value1, float value2, float delta) {
         assertValidDelta(delta);
@@ -185,7 +185,7 @@ class AssertUtils {
      * @param value2 value 2
      * @param delta  delta
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static boolean doublesAreEqual(double value1, double value2, double delta) {
         assertValidDelta(delta);
@@ -196,7 +196,7 @@ class AssertUtils {
      * Assert valid delta
      *
      * @param delta delta
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void assertValidDelta(double delta) {
         if (Double.isNaN(delta) || delta < 0.0) {
@@ -208,7 +208,7 @@ class AssertUtils {
      * Fail illegal delta
      *
      * @param delta delta
-     * @since 1.7.0
+     * @since 1.0.0
      */
     private static void failIllegalDelta(String delta) {
         fail("positive delta expected but was: <" + delta + ">");
@@ -220,7 +220,7 @@ class AssertUtils {
      * @param value1 value 1
      * @param value2 value 2
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static boolean doublesAreEqual(double value1, double value2) {
         return Double.doubleToLongBits(value1) == Double.doubleToLongBits(value2);
@@ -232,7 +232,7 @@ class AssertUtils {
      * @param o1 待判断对象, 同时为 null 则为 true
      * @param o2 待判断对象
      * @return the boolean
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract(value = "null, null -> true; null, !null -> false", pure = true)
     static boolean objectsAreEqual(Object o1, Object o2) {

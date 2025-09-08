@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
  * 排序元素载体
  *
  * @author HCL Create at 2019/5/27
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.11 01:34
  * @since 1.0.0

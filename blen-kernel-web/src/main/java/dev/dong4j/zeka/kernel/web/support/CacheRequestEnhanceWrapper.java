@@ -44,7 +44,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
  * 1. json
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.27 22:31
  * @since 1.0.0
@@ -276,7 +276,7 @@ public class CacheRequestEnhanceWrapper extends HttpServletRequestWrapper {
      *
      * @param <E> the type parameter
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.11.21 19:14
      * @since 1.0.0

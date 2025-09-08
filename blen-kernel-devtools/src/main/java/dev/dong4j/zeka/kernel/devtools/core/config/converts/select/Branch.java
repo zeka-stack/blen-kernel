@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
  * @see BranchBuilder
- * @since 2024.2.0
+ * @since 1.0.0
  */
 public interface Branch<P, T> {
 
@@ -21,7 +21,7 @@ public interface Branch<P, T> {
      * Tester
      *
      * @return 分支进入条件 predicate
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     Predicate<P> tester();
 
@@ -29,7 +29,7 @@ public interface Branch<P, T> {
      * Factory
      *
      * @return 值工厂 function
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     Function<P, T> factory();
 
@@ -41,7 +41,7 @@ public interface Branch<P, T> {
      * @param tester  测试器
      * @param factory 值工厂
      * @return 返回一个新的分支 branch
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     static <P, T> Branch<P, T> of(Predicate<P> tester, Function<P, T> factory) {
         return new Branch<P, T>() {

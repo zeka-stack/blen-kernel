@@ -54,7 +54,7 @@ public class MySqlTypeConvert implements ITypeConvert {
      * @param fieldType field type
      * @return the column type
      * @inheritDoc
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {
@@ -79,7 +79,7 @@ public class MySqlTypeConvert implements ITypeConvert {
      * @param config 配置信息
      * @param type   类型
      * @return 返回对应的列类型 column type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static IColumnType toDateType(GlobalConfig config, String type) {
         DateType dateType = config.getDateType();

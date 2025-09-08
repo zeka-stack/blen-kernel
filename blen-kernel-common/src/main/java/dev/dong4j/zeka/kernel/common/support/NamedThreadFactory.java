@@ -1,9 +1,8 @@
 package dev.dong4j.zeka.kernel.common.support;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: </p>
@@ -12,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.12.09 22:10
- * @since 2.1.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class NamedThreadFactory implements ThreadFactory {
@@ -35,7 +34,7 @@ public class NamedThreadFactory implements ThreadFactory {
     /**
      * Named thread factory
      *
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public NamedThreadFactory() {
         this("pool-" + POOL_SEQ.getAndIncrement(), false);
@@ -45,7 +44,7 @@ public class NamedThreadFactory implements ThreadFactory {
      * Named thread factory
      *
      * @param prefix prefix
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public NamedThreadFactory(String prefix) {
         this(prefix, false);
@@ -56,7 +55,7 @@ public class NamedThreadFactory implements ThreadFactory {
      *
      * @param prefix prefix
      * @param daemon daemon
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public NamedThreadFactory(String prefix, boolean daemon) {
         mPrefix = prefix + "-thread-";
@@ -70,7 +69,7 @@ public class NamedThreadFactory implements ThreadFactory {
      *
      * @param runnable runnable
      * @return the thread
-     * @since 2.1.0
+     * @since 1.0.0
      */
     @Override
     public Thread newThread(@NotNull Runnable runnable) {
@@ -84,7 +83,7 @@ public class NamedThreadFactory implements ThreadFactory {
      * Gets thread group *
      *
      * @return the thread group
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public ThreadGroup getThreadGroup() {
         return mGroup;

@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.plugin;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>Description: 插件 Id 定义 </p>
@@ -14,7 +13,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 14:38
- * @since 1.4.0
+ * @since 1.0.0
  */
 public final class PluginId implements Comparable<PluginId> {
     /** EMPTY_ARRAY */
@@ -30,7 +29,7 @@ public final class PluginId implements Comparable<PluginId> {
      *
      * @param idString id string
      * @return the id
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public static synchronized PluginId getId(@NotNull String idString) {
@@ -41,7 +40,7 @@ public final class PluginId implements Comparable<PluginId> {
      * Plugin id
      *
      * @param idString id string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     private PluginId(@NotNull String idString) {
@@ -53,7 +52,7 @@ public final class PluginId implements Comparable<PluginId> {
      *
      * @param idStrings id strings
      * @return the plugin id
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nullable
     public static synchronized PluginId findId(@NotNull String... idStrings) {
@@ -70,7 +69,7 @@ public final class PluginId implements Comparable<PluginId> {
      * Gets registered ids *
      *
      * @return the registered ids
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     @NotNull
@@ -83,7 +82,7 @@ public final class PluginId implements Comparable<PluginId> {
      *
      * @param o o
      * @return the int
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -95,7 +94,7 @@ public final class PluginId implements Comparable<PluginId> {
      * To string
      *
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -107,7 +106,7 @@ public final class PluginId implements Comparable<PluginId> {
      * Gets id string *
      *
      * @return the id string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull

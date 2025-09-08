@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * <p>Description: java 动态代理, 每次都会创建一个新的实例 </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.27 10:53
  * @since 1.0.0
@@ -36,7 +36,7 @@ class ProxyUtilsTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.27 11:00
      * @since 1.0.0
@@ -54,7 +54,7 @@ class ProxyUtilsTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.27 11:00
      * @since 1.0.0

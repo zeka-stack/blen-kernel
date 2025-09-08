@@ -27,7 +27,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020 -01-09
- * @since 3.3.1
+ * @since 1.0.0
  */
 public class DbQueryRegistry {
 
@@ -37,7 +37,7 @@ public class DbQueryRegistry {
     /**
      * Db query registry
      *
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public DbQueryRegistry() {
         dbTypeIDbQueryEnumMap.put(DbType.MARIADB, new MariadbQuery());
@@ -52,7 +52,7 @@ public class DbQueryRegistry {
      *
      * @param dbType db type
      * @return the db query
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public IDbQuery getDbQuery(DbType dbType) {
         return dbTypeIDbQueryEnumMap.get(dbType);

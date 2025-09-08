@@ -48,7 +48,7 @@ public class FirebirdTypeConvert implements ITypeConvert {
      * @param fieldType field type
      * @return the column type
      * @inheritDoc
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {

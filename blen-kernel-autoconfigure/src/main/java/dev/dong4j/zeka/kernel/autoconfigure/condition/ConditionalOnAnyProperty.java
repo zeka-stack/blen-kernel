@@ -7,8 +7,10 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Conditional;
 
 /**
- * 任一条件满足即可
- *
+ * 任意属性条件注解，用于条件化配置组件或方法
+ * 当指定的多个属性中任意一个为true时，被标注的组件或方法就会生效
+ * 提供了比传统@ConditionalOnProperty更灵活的条件匹配机制
+ * 
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
@@ -19,5 +21,11 @@ import org.springframework.context.annotation.Conditional;
 @Retention(RetentionPolicy.RUNTIME)
 @Conditional(OnAnyPropertyCondition.class)
 public @interface ConditionalOnAnyProperty {
+    /**
+     * 需要检查的属性名数组，任意一个为true即可满足条件
+     *
+     * @return 属性名数组
+     * @since 1.0.0
+     */
     String[] value();
 }

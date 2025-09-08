@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 密码加密方式 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:47
  * @since 1.0.0
@@ -37,7 +37,7 @@ public class CryptoUtils {
      * @param rawPassword raw password
      * @param salt        salt
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String encode(@NotNull CharSequence rawPassword, String salt) {
         return generatePassword(rawPassword.toString(), salt);
@@ -77,7 +77,7 @@ public class CryptoUtils {
      *
      * @param password password
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static String generatePassword(String password) {
         return generatePassword(password, AUTH_SALT);

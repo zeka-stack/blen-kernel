@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
  * allows for easy mapping between property names and getter/setter methods.
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 11:54
  * @since 1.0.0
@@ -88,7 +88,7 @@ public class Reflector {
      * Checks whether can control member accessible.
      *
      * @return If can control member accessible, it return {@literal true}
-     * @since 3.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("removal")
     public static boolean canControlMemberAccessible() {

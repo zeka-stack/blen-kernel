@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 16:39
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Slf4j
 class BasicBundleTest {
     /**
      * Test 1
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {

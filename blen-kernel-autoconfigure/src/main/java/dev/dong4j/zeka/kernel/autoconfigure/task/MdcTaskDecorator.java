@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.autoconfigure.task;
 
+import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
 import org.springframework.core.task.TaskDecorator;
-
-import java.util.Map;
 
 /**
  * <p>Description: 线程池内的线程间 MDC 参数传递 </p>
@@ -13,7 +12,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.21 22:49
- * @since 1.7.0
+ * @since 1.0.0
  */
 public class MdcTaskDecorator implements TaskDecorator {
     /**
@@ -21,7 +20,7 @@ public class MdcTaskDecorator implements TaskDecorator {
      *
      * @param runnable runnable
      * @return the runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public @NotNull Runnable decorate(@NotNull Runnable runnable) {

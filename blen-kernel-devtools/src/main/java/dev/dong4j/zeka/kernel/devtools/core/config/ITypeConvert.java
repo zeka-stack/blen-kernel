@@ -35,7 +35,7 @@ public interface ITypeConvert {
      * @param globalConfig 全局配置
      * @param tableField   字段列信息
      * @return ignore column type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
         return processTypeConvert(globalConfig, tableField.getType());
@@ -47,7 +47,7 @@ public interface ITypeConvert {
      * @param globalConfig 全局配置
      * @param fieldType    字段类型
      * @return ignore column type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType);
 

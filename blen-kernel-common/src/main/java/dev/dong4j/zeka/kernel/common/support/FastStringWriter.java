@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
  * <p>Description: 借助 StringBuilder 提供快读的字符串写出, 相比 jdk 的 StringWriter 非线程安全, 速度更快.  </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:47
  * @since 1.0.0

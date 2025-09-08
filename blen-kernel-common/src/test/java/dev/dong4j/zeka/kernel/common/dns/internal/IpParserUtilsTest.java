@@ -1,8 +1,7 @@
 package dev.dong4j.zeka.kernel.common.dns.internal;
 
-import org.junit.jupiter.api.Test;
-
 import java.net.InetAddress;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.fail;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:53
- * @since 1.5.0
+ * @since 1.0.0
  */
 class IpParserUtilsTest {
     /**
      * Test ip 2 byte array
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_ip2ByteArray() throws Exception {
@@ -42,7 +41,7 @@ class IpParserUtilsTest {
      * Test ip 2 byte array ipv 4 exception
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_ip2ByteArray_ipv4_exception() throws Exception {
@@ -83,7 +82,7 @@ class IpParserUtilsTest {
      * Test ip 2 byte array ipv 6 exception
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_ip2ByteArray_ipv6_exception() throws Exception {
@@ -118,7 +117,7 @@ class IpParserUtilsTest {
      * @param ip ip
      * @return the inet address by get all by name
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static InetAddress getInetAddressByGetAllByName(String ip) throws Exception {
         InetAddress[] addresses = InetAddress.getAllByName(ip);

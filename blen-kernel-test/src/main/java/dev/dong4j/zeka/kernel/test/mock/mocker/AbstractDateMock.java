@@ -1,7 +1,6 @@
 package dev.dong4j.zeka.kernel.test.mock.mocker;
 
 import dev.dong4j.zeka.kernel.test.mock.MockException;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -9,7 +8,7 @@ import java.text.SimpleDateFormat;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:37
  * @since 1.0.0

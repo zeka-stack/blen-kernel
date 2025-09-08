@@ -28,7 +28,7 @@ import dev.dong4j.zeka.kernel.devtools.core.config.rules.IColumnType;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 3.3.1
+ * @since 1.0.0
  */
 public class TypeConverts {
 
@@ -37,7 +37,7 @@ public class TypeConverts {
      *
      * @param dbType 数据库类型
      * @return 返回转换器 type convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static ITypeConvert getTypeConvert(DbType dbType) {
         switch (dbType) {
@@ -54,7 +54,7 @@ public class TypeConverts {
      *
      * @param param 参数
      * @return 返回选择器 selector
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     static Selector<String, IColumnType> use(String param) {
         return new Selector<>(param.toLowerCase());
@@ -66,7 +66,7 @@ public class TypeConverts {
      * @param value 分支的值
      * @return 返回分支构建器 branch builder
      * @see #containsAny(CharSequence...)
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     static BranchBuilder<String, IColumnType> contains(CharSequence value) {
         return BranchBuilder.of(s -> s.contains(value));
@@ -78,7 +78,7 @@ public class TypeConverts {
      * @param values values
      * @return the branch builder
      * @see #contains(CharSequence)
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     static BranchBuilder<String, IColumnType> containsAny(CharSequence... values) {
         return BranchBuilder.of(s -> {

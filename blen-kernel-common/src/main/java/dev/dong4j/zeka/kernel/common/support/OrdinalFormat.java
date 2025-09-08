@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 09:42
- * @since 1.4.0
+ * @since 1.0.0
  */
 public class OrdinalFormat {
     /** LOCATION_EN */
@@ -29,7 +29,7 @@ public class OrdinalFormat {
      * Replaces all instances of {@code "{?,number,ordinal}"} format elements with the ordinal format for the locale.
      *
      * @param format format
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void apply(@NotNull MessageFormat format) {
         Format[] formats = format.getFormats();
@@ -50,7 +50,7 @@ public class OrdinalFormat {
      *
      * @param locale locale
      * @return the ordinal format
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("null -> new")
     private static @NotNull NumberFormat getOrdinalFormat(Locale locale) {
@@ -69,7 +69,7 @@ public class OrdinalFormat {
      *
      * @param num num
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @SuppressWarnings("PMD.UndefineMagicConstantRule")
@@ -97,7 +97,7 @@ public class OrdinalFormat {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.19 09:42
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static class EnglishOrdinalFormat extends NumberFormat {
         /** serialVersionUID */
@@ -111,7 +111,7 @@ public class OrdinalFormat {
          * @param toAppendTo to append to
          * @param pos        pos
          * @return the string buffer
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public StringBuffer format(double number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -125,7 +125,7 @@ public class OrdinalFormat {
          * @param toAppendTo to append to
          * @param pos        pos
          * @return the string buffer
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public StringBuffer format(long number, StringBuffer toAppendTo, FieldPosition pos) {
@@ -138,7 +138,7 @@ public class OrdinalFormat {
          * @param source        source
          * @param parsePosition parse position
          * @return the number
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Override
         public Number parse(String source, ParsePosition parsePosition) {

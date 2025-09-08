@@ -40,7 +40,7 @@ public abstract class FileOutConfig {
     /**
      * File out config
      *
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public FileOutConfig() {
         // to do nothing
@@ -50,7 +50,7 @@ public abstract class FileOutConfig {
      * File out config
      *
      * @param templatePath template path
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public FileOutConfig(String templatePath) {
         this.templatePath = templatePath;
@@ -61,7 +61,7 @@ public abstract class FileOutConfig {
      *
      * @param tableInfo table info
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public abstract String outputFile(TableInfo tableInfo);
 }

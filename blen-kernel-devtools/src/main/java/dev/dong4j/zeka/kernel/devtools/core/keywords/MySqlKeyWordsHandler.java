@@ -27,7 +27,7 @@ import java.util.List;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 3.3.2
+ * @since 1.0.0
  */
 public class MySqlKeyWordsHandler extends BaseKeyWordsHandler {
 
@@ -659,7 +659,7 @@ public class MySqlKeyWordsHandler extends BaseKeyWordsHandler {
     /**
      * My sql key words handler
      *
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public MySqlKeyWordsHandler() {
         super(KEY_WORDS);
@@ -669,7 +669,7 @@ public class MySqlKeyWordsHandler extends BaseKeyWordsHandler {
      * My sql key words handler
      *
      * @param keyWords key words
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public MySqlKeyWordsHandler(List<String> keyWords) {
         super(keyWords);
@@ -679,7 +679,7 @@ public class MySqlKeyWordsHandler extends BaseKeyWordsHandler {
      * Format style
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String formatStyle() {

@@ -9,7 +9,7 @@ import java.io.Serial;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.08.30 10:18
- * @since 1.6.0
+ * @since 1.0.0
  */
 public class ExceptionEvent extends BaseEvent<Throwable> {
     @Serial

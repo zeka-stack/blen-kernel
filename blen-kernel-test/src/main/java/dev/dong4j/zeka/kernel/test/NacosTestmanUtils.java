@@ -5,10 +5,9 @@ import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
+import java.util.Properties;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
-
-import java.util.Properties;
 
 /**
  * <p>Description: </p>
@@ -17,7 +16,7 @@ import java.util.Properties;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.11.20 21:48
- * @since 2.1.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class NacosTestmanUtils {
@@ -28,7 +27,7 @@ public class NacosTestmanUtils {
      * @param namespace   namespace
      * @param serviceName service name
      * @return the instance
-     * @since 2.1.0
+     * @since 1.0.0
      */
     @SneakyThrows
     public String getInstance(String namespace, String serviceName) {
@@ -42,7 +41,7 @@ public class NacosTestmanUtils {
      * @param namespace   namespace
      * @param serviceName service name
      * @return the string
-     * @since 2.1.0
+     * @since 1.0.0
      */
     @SneakyThrows
     public String getInstance(String serverAddr, String namespace, String serviceName) {

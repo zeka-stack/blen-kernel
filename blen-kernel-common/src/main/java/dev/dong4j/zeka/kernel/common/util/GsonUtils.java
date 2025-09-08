@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
  * 此工具类只适合简单的 json 操作, 如果是复杂且严格的 json 推荐使用 {@link Jsons}
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:17
  * @since 1.0.0
@@ -69,7 +69,7 @@ public final class GsonUtils {
     /**
      * 扫描所有的 {@link SerializeEnum} 枚举类, 注册到 Gson 的全局枚举解析器
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings("all")
     private static void init() {
@@ -98,7 +98,7 @@ public final class GsonUtils {
      * Build enum enhance
      *
      * @param builder builder
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void buildEnumEnhance(GsonBuilder builder) {
         ENUM_TYPE_ADAPTER.forEach((k, v) -> setDateFormat(builder).registerTypeAdapter(k, v));
@@ -138,7 +138,7 @@ public final class GsonUtils {
      * @param isPretty is pretty
      * @param isEnum   is enum
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String toJson(Object object, boolean isPretty, boolean isEnum) {
         Assertions.notNull(object);
@@ -187,7 +187,7 @@ public final class GsonUtils {
      * @param object object
      * @param isEnum is enum
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static String toDebugJson(Object object, boolean isEnum) {
         if (ObjectUtils.isEmpty(object)) {
@@ -260,7 +260,7 @@ public final class GsonUtils {
      * @param json json
      * @param type type
      * @return the t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static <T> T fromJson(String json, Type type) {
         return fromJson(json, type, false);
@@ -274,7 +274,7 @@ public final class GsonUtils {
      * @param type   type
      * @param isEnum is enum
      * @return the t
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SneakyThrows
     @SuppressWarnings("unchecked")
@@ -304,7 +304,7 @@ public final class GsonUtils {
      * @param type type
      * @param gson gson
      * @return the adapter
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     private <T> TypeAdapter<T> getAdapter(com.google.gson.reflect.TypeToken<T> type, Gson gson) {
@@ -355,7 +355,7 @@ public final class GsonUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2021.01.05 23:14
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static class FutureTypeAdapter<T> extends TypeAdapter<T> {
         /** Delegate */
@@ -365,7 +365,7 @@ public final class GsonUtils {
          * Sets delegate *
          *
          * @param typeAdapter type adapter
-         * @since 1.7.0
+         * @since 1.0.0
          */
         public void setDelegate(TypeAdapter<T> typeAdapter) {
             if (this.delegate != null) {
@@ -380,7 +380,7 @@ public final class GsonUtils {
          * @param in in
          * @return the t
          * @throws IOException io exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         @Override
         public T read(JsonReader in) throws IOException {
@@ -396,7 +396,7 @@ public final class GsonUtils {
          * @param out   out
          * @param value value
          * @throws IOException io exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         @Override
         public void write(JsonWriter out, T value) throws IOException {
@@ -504,7 +504,7 @@ public final class GsonUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:17
      * @since 1.0.0

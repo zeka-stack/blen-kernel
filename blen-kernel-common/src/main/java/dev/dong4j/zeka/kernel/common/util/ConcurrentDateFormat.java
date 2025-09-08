@@ -1,9 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.Getter;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,13 +7,16 @@ import java.util.Locale;
 import java.util.Queue;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import lombok.Getter;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 安全的时间格式化</p>
  * 参考 tomcat8 中的并发 DateFormat, {@link SimpleDateFormat}的线程安全包装器. 不使用ThreadLocal,创建足够的SimpleDateFormat对象来满足并发性要求.
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:18
  * @since 1.0.0

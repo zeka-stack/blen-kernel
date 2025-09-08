@@ -1,17 +1,16 @@
 package dev.dong4j.zeka.kernel.common.metadata;
 
+import java.util.function.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Supplier;
-
 /**
  * 严格填充模式 model
  *
  * @author miemie
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 12:06
  * @since 1.0.0

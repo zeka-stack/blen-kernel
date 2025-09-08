@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Unmodifiable;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:21
- * @since 1.4.0
+ * @since 1.0.0
  */
 public interface PropertySource {
 
@@ -29,7 +29,7 @@ public interface PropertySource {
      * 返回此属性源具有优先级的顺序. 较高的值意味着稍后将应用源, 以便优先于其他属性源.
      *
      * @return priority value
-     * @since 1.5.0
+     * @since 1.0.0
      */
     int getPriority();
 
@@ -37,7 +37,7 @@ public interface PropertySource {
      * 遍历所有属性并对每个键/值对执行操作.
      *
      * @param action action to perform on each key/value pair
-     * @since 1.5.0
+     * @since 1.0.0
      */
     void forEach(BiConsumer<String, String> action);
 
@@ -46,7 +46,7 @@ public interface PropertySource {
      *
      * @param tokens list of property name tokens
      * @return a normalized property name using the given tokens
-     * @since 1.5.0
+     * @since 1.0.0
      */
     CharSequence getNormalForm(Iterable<? extends CharSequence> tokens);
 
@@ -57,7 +57,7 @@ public interface PropertySource {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
-     * @since 1.4.0
+     * @since 1.0.0
      */
     class Comparator implements java.util.Comparator<PropertySource>, Serializable {
         /** serialVersionUID */
@@ -70,7 +70,7 @@ public interface PropertySource {
          * @param o1 o 1
          * @param o2 o 2
          * @return the int
-         * @since 1.5.0
+         * @since 1.0.0
          */
         @Override
         public int compare(PropertySource o1, PropertySource o2) {
@@ -85,7 +85,7 @@ public interface PropertySource {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
-     * @since 1.4.0
+     * @since 1.0.0
      */
     final class Util {
         /** PREFIXES */
@@ -103,7 +103,7 @@ public interface PropertySource {
          *
          * @param value property name
          * @return the property broken into lower case tokens
-         * @since 1.5.0
+         * @since 1.0.0
          */
         public static List<CharSequence> tokenize(CharSequence value) {
             if (CACHE.containsKey(value)) {
@@ -123,7 +123,7 @@ public interface PropertySource {
          *
          * @param tokens tokens to convert
          * @return tokensAsCamelCase char sequence
-         * @since 1.5.0
+         * @since 1.0.0
          */
         public static @NotNull @Unmodifiable CharSequence joinAsCamelCase(@NotNull Iterable<? extends CharSequence> tokens) {
             StringBuilder sb = new StringBuilder();
@@ -145,7 +145,7 @@ public interface PropertySource {
         /**
          * Util
          *
-         * @since 1.5.0
+         * @since 1.0.0
          */
         @Contract(pure = true)
         private Util() {

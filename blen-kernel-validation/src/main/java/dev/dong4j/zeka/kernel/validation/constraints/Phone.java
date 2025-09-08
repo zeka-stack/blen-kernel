@@ -13,10 +13,14 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: 手机号码验证, 可为 null 和 "", 一旦赋值必须满足正则</p>
+ * 手机号码验证注解，用于验证字符串是否为有效的手机号码格式
+ *
+ * 可以为null和空字符串，但一旦赋值必须满足手机号码正则表达式
+ * 支持自定义正则表达式，默认支持中国大陆手机号码格式
+ * 使用JSR-303标准，可与其他验证注解组合使用
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.25 01:22
  * @since 1.0.0
@@ -64,7 +68,7 @@ public @interface Phone {
      * <p>Description: 验证逻辑实现</p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.25 01:22
      * @since 1.0.0

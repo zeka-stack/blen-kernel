@@ -3,8 +3,6 @@ package dev.dong4j.zeka.kernel.spi.utils;
 
 import dev.dong4j.zeka.kernel.spi.constants.CommonConstants;
 import dev.dong4j.zeka.kernel.spi.extension.SPILoader;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -17,6 +15,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
 
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.COMMA_SPLIT_PATTERN;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.DEFAULT_KEY;
@@ -27,10 +26,10 @@ import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.REMOVE_VALUE_
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -47,7 +46,7 @@ public class ConfigUtils {
     /**
      * Config utils
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private ConfigUtils() {
     }
@@ -57,7 +56,7 @@ public class ConfigUtils {
      *
      * @param value value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNotEmpty(String value) {
         return !isEmpty(value);
@@ -68,7 +67,7 @@ public class ConfigUtils {
      *
      * @param value value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isEmpty(String value) {
         return SpiStringUtils.isEmpty(value)
@@ -83,7 +82,7 @@ public class ConfigUtils {
      *
      * @param value value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isDefault(String value) {
         return "true".equalsIgnoreCase(value)
@@ -97,7 +96,7 @@ public class ConfigUtils {
      * @param cfg  cfg
      * @param def  def
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static List<String> mergeValues(Class<?> type, String cfg, List<String> def) {
         List<String> defaults = new ArrayList<String>();
@@ -149,7 +148,7 @@ public class ConfigUtils {
      * @param expression expression
      * @param params     params
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String replaceProperty(String expression, Map<String, String> params) {
         if (expression == null || expression.length() == 0 || expression.indexOf('$') < 0) {
@@ -176,7 +175,7 @@ public class ConfigUtils {
      * Gets properties *
      *
      * @return the properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Properties getProperties() {
         if (PROPERTIES == null) {
@@ -200,7 +199,7 @@ public class ConfigUtils {
      * Sets properties *
      *
      * @param properties properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void setProperties(Properties properties) {
         PROPERTIES = properties;
@@ -210,7 +209,7 @@ public class ConfigUtils {
      * Add properties
      *
      * @param properties properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void addProperties(Properties properties) {
         if (properties != null) {
@@ -223,7 +222,7 @@ public class ConfigUtils {
      *
      * @param key key
      * @return the property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getProperty(String key) {
         return getProperty(key, null);
@@ -235,7 +234,7 @@ public class ConfigUtils {
      * @param key          key
      * @param defaultValue default value
      * @return the property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static String getProperty(String key, String defaultValue) {
@@ -252,7 +251,7 @@ public class ConfigUtils {
      *
      * @param key key
      * @return the system property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getSystemProperty(String key) {
         String value = System.getenv(key);
@@ -267,7 +266,7 @@ public class ConfigUtils {
      *
      * @param fileName file name
      * @return the properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Properties loadProperties(String fileName) {
         return loadProperties(fileName, false, false);
@@ -279,7 +278,7 @@ public class ConfigUtils {
      * @param fileName       file name
      * @param allowMultiFile allow multi file
      * @return the properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Properties loadProperties(String fileName, boolean allowMultiFile) {
         return loadProperties(fileName, allowMultiFile, false);
@@ -292,7 +291,7 @@ public class ConfigUtils {
      * @param allowMultiFile allow multi file
      * @param optional       optional
      * @return the properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Properties loadProperties(String fileName, boolean allowMultiFile, boolean optional) {
         Properties properties = new Properties();
@@ -375,7 +374,7 @@ public class ConfigUtils {
      *
      * @param fileName file name
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static boolean checkFileNameExist(String fileName) {
         File file = new File(fileName);
@@ -387,7 +386,7 @@ public class ConfigUtils {
      * Gets pid *
      *
      * @return the pid
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static int getPid() {
         if (PID < 0) {

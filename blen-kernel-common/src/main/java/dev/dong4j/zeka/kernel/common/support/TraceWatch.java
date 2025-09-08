@@ -1,9 +1,8 @@
 package dev.dong4j.zeka.kernel.common.support;
 
+import java.text.NumberFormat;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.StopWatch;
-
-import java.text.NumberFormat;
 
 /**
  * <p>Description: </p>
@@ -12,7 +11,7 @@ import java.text.NumberFormat;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.05.11 15:19
- * @since 1.8.0
+ * @since 1.0.0
  */
 public class TraceWatch extends StopWatch implements AutoCloseable {
     /** Keep task list */
@@ -24,7 +23,7 @@ public class TraceWatch extends StopWatch implements AutoCloseable {
      * @param taskName task name
      * @return the trace watch
      * @throws IllegalStateException illegal state exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public TraceWatch startings(String taskName) throws IllegalStateException {
         super.start(taskName);
@@ -34,7 +33,7 @@ public class TraceWatch extends StopWatch implements AutoCloseable {
     /**
      * {@link AutoCloseable} 自动关闭
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void close() {
@@ -45,7 +44,7 @@ public class TraceWatch extends StopWatch implements AutoCloseable {
      * Sets keep task list *
      *
      * @param keepTaskList keep task list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void setKeepTaskList(boolean keepTaskList) {
@@ -57,7 +56,7 @@ public class TraceWatch extends StopWatch implements AutoCloseable {
      * Short summary
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public @NotNull String shortSummary() {
@@ -68,7 +67,7 @@ public class TraceWatch extends StopWatch implements AutoCloseable {
      * Pretty print
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public @NotNull String prettyPrint() {

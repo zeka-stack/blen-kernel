@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  * Range(min=,max=,message=) 被注释的元素必须在合适的范围内
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.27 13:24
  * @since 1.0.0
@@ -158,7 +158,7 @@ class PhoneTest extends AuthContextConfiguration {
      * The type Login form.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.27 13:24
      * @since 1.0.0

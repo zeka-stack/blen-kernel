@@ -166,7 +166,7 @@ public class StrategyConfig {
      * -----------------------------------<br>
      * public User setName(String name) { this.name = name; return this; }
      *
-     * @since 3.3.2
+     * @since 1.0.0
      */
     private boolean chainModel = false;
 
@@ -213,19 +213,19 @@ public class StrategyConfig {
     /**
      * 启用sql过滤，语法不能支持使用sql过滤表的话，可以考虑关闭此开关.
      *
-     * @since 3.3.1
+     * @since 1.0.0
      */
     private boolean enableSqlFilter = true;
     /**
      * 包含表名
      *
-     * @since 3.3.0
+     * @since 1.0.0
      */
     private LikeTable likeTable;
     /**
      * 不包含表名
      *
-     * @since 3.3.0
+     * @since 1.0.0
      */
     private LikeTable notLikeTable;
 
@@ -234,7 +234,7 @@ public class StrategyConfig {
      *
      * @param word 待判断字符串
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public boolean isCapitalModeNaming(String word) {
         return isCapitalMode && NamingStrategy.isCapitalMode(word);
@@ -245,7 +245,7 @@ public class StrategyConfig {
      *
      * @param tableName 表名称
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      * @deprecated 3.3.2 {@link #startsWithTablePrefix(String)}
      */
     @Deprecated
@@ -258,7 +258,7 @@ public class StrategyConfig {
      *
      * @param tableName 表名称
      * @return the boolean
-     * @since 3.3.2
+     * @since 1.0.0
      */
     public boolean startsWithTablePrefix(String tableName) {
         return getTablePrefix().stream().anyMatch(tableName::startsWith);
@@ -268,7 +268,7 @@ public class StrategyConfig {
      * Gets column naming *
      *
      * @return the column naming
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public NamingStrategy getColumnNaming() {
         // 未指定以 naming 策略为准
@@ -280,7 +280,7 @@ public class StrategyConfig {
      *
      * @param tablePrefix table prefix
      * @return the table prefix
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setTablePrefix(String... tablePrefix) {
         this.tablePrefix.addAll(Arrays.asList(tablePrefix));
@@ -292,7 +292,7 @@ public class StrategyConfig {
      *
      * @param fieldName field name
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public boolean includeSuperEntityColumns(String fieldName) {
         // 公共字段判断忽略大小写【 部分数据库大小写不敏感 】
@@ -304,7 +304,7 @@ public class StrategyConfig {
      *
      * @param superEntityColumns super entity columns
      * @return the super entity columns
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperEntityColumns(String... superEntityColumns) {
         this.superEntityColumns.addAll(Arrays.asList(superEntityColumns));
@@ -316,7 +316,7 @@ public class StrategyConfig {
      *
      * @param include include
      * @return the include
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setInclude(String... include) {
         this.include.addAll(Arrays.asList(include));
@@ -328,7 +328,7 @@ public class StrategyConfig {
      *
      * @param exclude exclude
      * @return the exclude
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setExclude(String... exclude) {
         this.exclude.addAll(Arrays.asList(exclude));
@@ -340,7 +340,7 @@ public class StrategyConfig {
      *
      * @param fieldPrefixs field prefixs
      * @return the field prefix
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setFieldPrefix(String... fieldPrefixs) {
         this.fieldPrefix.addAll(Arrays.asList(fieldPrefixs));
@@ -352,7 +352,7 @@ public class StrategyConfig {
      *
      * @param superBaseEntityClass 类全名称
      * @return this super entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperBaseEntityClass(String superBaseEntityClass) {
         this.superBaseEntityClass = superBaseEntityClass;
@@ -364,7 +364,7 @@ public class StrategyConfig {
      *
      * @param superExtendEntityClass super extend entity class
      * @return the super extend entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperExtendEntityClass(String superExtendEntityClass) {
         this.superExtendEntityClass = superExtendEntityClass;
@@ -376,7 +376,7 @@ public class StrategyConfig {
      *
      * @param superWithTimeEntityClass super with time entity class
      * @return the super with time entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperWithTimeEntityClass(String superWithTimeEntityClass) {
         this.superWithTimeEntityClass = superWithTimeEntityClass;
@@ -388,7 +388,7 @@ public class StrategyConfig {
      *
      * @param superWithLogicEntityClass super with logic entity class
      * @return the super with logic entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperWithLogicEntityClass(String superWithLogicEntityClass) {
         this.superWithLogicEntityClass = superWithLogicEntityClass;
@@ -406,7 +406,7 @@ public class StrategyConfig {
      *
      * @param clazz 实体父类 Class
      * @return super entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperBaseEntityClass(Class<?> clazz) {
         this.superBaseEntityClass = clazz.getName();
@@ -422,7 +422,7 @@ public class StrategyConfig {
      * @param clazz        实体父类 Class
      * @param columnNaming 字段命名策略
      * @return super entity class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperBaseEntityClass(Class<?> clazz, NamingStrategy columnNaming) {
         this.columnNaming = columnNaming;
@@ -435,7 +435,7 @@ public class StrategyConfig {
      *
      * @param clazz clazz
      * @return the super service class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperServiceClass(Class<?> clazz) {
         this.superServiceClass = clazz.getName();
@@ -447,7 +447,7 @@ public class StrategyConfig {
      *
      * @param superServiceClass super service class
      * @return the super service class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperServiceClass(String superServiceClass) {
         this.superServiceClass = superServiceClass;
@@ -459,7 +459,7 @@ public class StrategyConfig {
      *
      * @param clazz clazz
      * @return the super service impl class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperServiceImplClass(Class<?> clazz) {
         this.superServiceImplClass = clazz.getName();
@@ -471,7 +471,7 @@ public class StrategyConfig {
      *
      * @param superServiceImplClass super service impl class
      * @return the super service impl class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperServiceImplClass(String superServiceImplClass) {
         this.superServiceImplClass = superServiceImplClass;
@@ -483,7 +483,7 @@ public class StrategyConfig {
      *
      * @param clazz clazz
      * @return the super controller class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperControllerClass(Class<?> clazz) {
         this.superControllerClass = clazz.getName();
@@ -495,7 +495,7 @@ public class StrategyConfig {
      *
      * @param superControllerClass super controller class
      * @return the super controller class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public StrategyConfig setSuperControllerClass(String superControllerClass) {
         this.superControllerClass = superControllerClass;
@@ -508,7 +508,7 @@ public class StrategyConfig {
      * </p>
      *
      * @param clazz 实体父类 Class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected void convertSuperEntityColumns(Class<?> clazz) {
         List<Field> fields = getAllFields(clazz);
@@ -533,7 +533,7 @@ public class StrategyConfig {
      * Gets super entity columns *
      *
      * @return the super entity columns
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Set<String> getSuperEntityColumns() {
         if (StringUtils.isNotBlank(this.superBaseEntityClass)) {
@@ -552,7 +552,7 @@ public class StrategyConfig {
      *
      * @param param param
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String camelToUnderline(String param) {
         if (StringUtils.isBlank(param)) {
@@ -575,7 +575,7 @@ public class StrategyConfig {
      *
      * @param name name
      * @return the class
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static Class<?> toClassConfident(String name) {
         try {
@@ -590,7 +590,7 @@ public class StrategyConfig {
      *
      * @param clazz clazz
      * @return the all fields
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static List<Field> getAllFields(Class<?> clazz) {
         List<Field> fieldList = getFieldList(ClassUtils.getUserClass(clazz));
@@ -607,7 +607,7 @@ public class StrategyConfig {
      *
      * @param clazz clazz
      * @return the field list
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static List<Field> getFieldList(Class<?> clazz) {
         if (Objects.isNull(clazz)) {
@@ -644,7 +644,7 @@ public class StrategyConfig {
      * @param fields         fields
      * @param superFieldList super field list
      * @return the map
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static Map<String, Field> excludeOverrideSuperField(Field[] fields, List<Field> superFieldList) {
         // 子类属性
@@ -667,7 +667,7 @@ public class StrategyConfig {
      * @param key               key
      * @param mappingFunction   mapping function
      * @return the v
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static <K, V> V computeIfAbsent(Map<K, V> concurrentHashMap, K key, Function<? super K, ? extends V> mappingFunction) {
         V v = concurrentHashMap.get(key);

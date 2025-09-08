@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:25
  * @since 1.0.0
@@ -48,7 +48,7 @@ class DateUtilsTest {
     /**
      * Test 3
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_3() {
@@ -58,7 +58,7 @@ class DateUtilsTest {
     /**
      * Test 4
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_4() {

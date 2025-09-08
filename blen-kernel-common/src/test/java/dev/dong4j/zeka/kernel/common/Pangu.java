@@ -17,14 +17,14 @@ import java.util.regex.Pattern;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.12.26 20:07
- * @since 1.7.0
+ * @since 1.0.0
  */
 public class Pangu {
 
     /**
      * Pangu
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public Pangu() {
     }
@@ -93,7 +93,7 @@ public class Pangu {
      *
      * @param text the string you want to process, must not be {@code null}.
      * @return a comfortable and readable version of {@code text} for paranoiac.
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public String spacingText(String text) {
         // CJK and quotes
@@ -146,7 +146,7 @@ public class Pangu {
      * @param inputFile  an existing file to process, must not be {@code null}.
      * @param outputFile the processed file, must not be {@code null}.
      * @throws IOException if an error occurs.
-     * @since 1.1.0
+     * @since 1.0.0
      */
     public void spacingFile(File inputFile, File outputFile) throws IOException {
         // TODO: support charset

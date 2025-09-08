@@ -5,17 +5,16 @@ import dev.dong4j.zeka.kernel.test.mock.MockException;
 import dev.dong4j.zeka.kernel.test.mock.Mocker;
 import dev.dong4j.zeka.kernel.test.mock.annotation.MockIgnore;
 import dev.dong4j.zeka.kernel.test.mock.util.ReflectionUtils;
-import org.jetbrains.annotations.Contract;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map.Entry;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:20
  * @since 1.0.0

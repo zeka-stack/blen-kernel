@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.02.06 19:58
  * @see Result
@@ -33,7 +33,7 @@ public final class R<T> extends Result<T> {
      * @param code    code
      * @param message message
      * @param data    data
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     private R(Integer code, String message, T data) {
@@ -45,7 +45,7 @@ public final class R<T> extends Result<T> {
      *
      * @param <T> parameter
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull
@@ -60,7 +60,7 @@ public final class R<T> extends Result<T> {
      * @param <T>  parameter
      * @param data data
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull
@@ -76,7 +76,7 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull
@@ -89,7 +89,7 @@ public final class R<T> extends Result<T> {
      *
      * @param <T> parameter
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull
@@ -103,7 +103,7 @@ public final class R<T> extends Result<T> {
      * @param <T> parameter
      * @param msg msg
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @NotNull
@@ -118,7 +118,7 @@ public final class R<T> extends Result<T> {
      * @param code code
      * @param msg  msg
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     @Contract(pure = true)
@@ -133,7 +133,7 @@ public final class R<T> extends Result<T> {
      * @param <T>        parameter
      * @param resultCode result code
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static <T> Result<T> failed(@NotNull IResultCode resultCode) {
@@ -147,7 +147,7 @@ public final class R<T> extends Result<T> {
      * @param resultCode result code
      * @param msg        msg
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static <T> Result<T> failed(@NotNull IResultCode resultCode, String msg) {
@@ -162,7 +162,7 @@ public final class R<T> extends Result<T> {
      * @param msg        msg
      * @param data       data
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     @Contract(value = "_, _, _ -> new", pure = true)
@@ -178,7 +178,7 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     @Contract(value = "_, _, _ -> new", pure = true)
@@ -193,7 +193,7 @@ public final class R<T> extends Result<T> {
      * @param code code
      * @param msg  msg
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     @NotNull
@@ -210,7 +210,7 @@ public final class R<T> extends Result<T> {
      * @param msg  msg
      * @param data data
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract(value = "_, _, _ -> new", pure = true)
     @NotNull
@@ -224,7 +224,7 @@ public final class R<T> extends Result<T> {
      * @param <T>        parameter
      * @param expression expression
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("_ -> !null")
     public static <T> Result<T> status(boolean expression) {
@@ -238,7 +238,7 @@ public final class R<T> extends Result<T> {
      * @param expression expression
      * @param resultCode result code
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("_, _ -> !null")
     public static <T> Result<T> status(boolean expression, @NotNull IResultCode resultCode) {
@@ -252,7 +252,7 @@ public final class R<T> extends Result<T> {
      * @param expression expression
      * @param message    message
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @Contract("_, _ -> !null")
     public static <T> Result<T> status(boolean expression, String message) {
@@ -264,7 +264,7 @@ public final class R<T> extends Result<T> {
      *
      * @param args 键值对一一对应
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static Result<Map<String, Object>> values(@NotNull Object... args) {
@@ -277,7 +277,7 @@ public final class R<T> extends Result<T> {
      * @param <T>  parameter
      * @param data data
      * @return the map
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static <T> Map<String, Object> map(T data) {
@@ -298,7 +298,7 @@ public final class R<T> extends Result<T> {
      * @param message message
      * @param traceId trace id
      * @return the map
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static <T> Map<String, Object> map(Integer code,
@@ -321,7 +321,7 @@ public final class R<T> extends Result<T> {
      *
      * @param resultCode result code
      * @return the map
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static Map<String, Object> failMap(@NotNull IResultCode resultCode) {
@@ -335,7 +335,7 @@ public final class R<T> extends Result<T> {
      * @param resultCode result code
      * @param data       data
      * @return the map
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     public static <T> Map<String, Object> map(@NotNull IResultCode resultCode, T data) {

@@ -12,7 +12,7 @@ import org.springframework.web.context.request.RequestAttributes;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.03.11 11:39
- * @since 1.8.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class AgentRequestContextHolder {
@@ -24,7 +24,7 @@ public class AgentRequestContextHolder {
     /**
      * Reset the RequestAttributes for the current thread.
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void resetRequestAttributes() {
         INHERITABLE_REQUEST_ATTRIBUTES_HOLDER.remove();
@@ -35,7 +35,7 @@ public class AgentRequestContextHolder {
      * <i>not</i> exposing it as inheritable for child threads.
      *
      * @param attributes the RequestAttributes to expose
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void setRequestAttributes(@Nullable RequestAttributes attributes) {
         if (attributes == null) {
@@ -49,7 +49,7 @@ public class AgentRequestContextHolder {
      * Return the RequestAttributes currently bound to the thread.
      *
      * @return the RequestAttributes currently bound to the thread, or {@code null} if none bound
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Nullable
     public static RequestAttributes getRequestAttributes() {
@@ -62,7 +62,7 @@ public class AgentRequestContextHolder {
      *
      * @return the request attributes
      * @throws IllegalStateException illegal state exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static RequestAttributes currentRequestAttributes() throws IllegalStateException {
         RequestAttributes attributes = getRequestAttributes();

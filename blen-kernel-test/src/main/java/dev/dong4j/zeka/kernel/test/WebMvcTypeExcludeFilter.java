@@ -28,7 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  * @author dong4j
  * @version 1.0.0
- * @since 1.8.0
+ * @since 1.0.0
  */
 public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizableTypeExcludeFilter<WebMvcTest> {
     /** 空控制器数组常量 */

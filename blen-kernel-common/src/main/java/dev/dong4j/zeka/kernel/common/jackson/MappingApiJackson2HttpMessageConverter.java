@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.jackson;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-
-import java.io.IOException;
 
 /**
  * <p>Description: 针对 api 服务对 android 和 ios 和 web 处理的 分读写的 jackson 处理 </p>
@@ -15,7 +14,7 @@ import java.io.IOException;
  * 2. 返回给 app 端的数据使用 writeObjectMapper
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:08
  * @since 1.0.0

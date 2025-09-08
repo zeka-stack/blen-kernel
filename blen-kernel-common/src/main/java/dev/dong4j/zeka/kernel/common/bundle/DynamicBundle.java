@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 11:22
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Slf4j
 public abstract class DynamicBundle extends AbstractBundle {
@@ -23,7 +23,7 @@ public abstract class DynamicBundle extends AbstractBundle {
      * Dynamic bundle
      *
      * @param pathToBundle path to bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     protected DynamicBundle(@NotNull String pathToBundle) {
         super(pathToBundle);

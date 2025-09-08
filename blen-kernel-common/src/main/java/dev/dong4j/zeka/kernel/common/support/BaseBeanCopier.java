@@ -2,6 +2,10 @@ package dev.dong4j.zeka.kernel.common.support;
 
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.util.BeanUtils;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Modifier;
+import java.security.ProtectionDomain;
+import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.asm.ClassVisitor;
 import org.springframework.asm.Type;
@@ -18,18 +22,13 @@ import org.springframework.cglib.core.ReflectUtils;
 import org.springframework.cglib.core.Signature;
 import org.springframework.cglib.core.TypeUtils;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Modifier;
-import java.security.ProtectionDomain;
-import java.util.Map;
-
 /**
  * <p>Description: spring cglib 修改 </p>
  * 1. 支持链式 bean
  * 2. 自定义的 BeanCopier 解决 spring boot 和 cglib ClassLoader classLoader 不一致的问题
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:46
  * @since 1.0.0
@@ -99,7 +98,7 @@ public abstract class BaseBeanCopier {
      * The interface Bean copier key.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:46
      * @since 1.0.0
@@ -121,7 +120,7 @@ public abstract class BaseBeanCopier {
      * The type Generator.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:46
      * @since 1.0.0

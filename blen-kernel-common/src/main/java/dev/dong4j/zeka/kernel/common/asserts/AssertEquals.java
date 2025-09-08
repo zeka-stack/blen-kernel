@@ -2,9 +2,8 @@ package dev.dong4j.zeka.kernel.common.asserts;
 
 import dev.dong4j.zeka.kernel.common.exception.AssertionFailedException;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
-import org.jetbrains.annotations.Contract;
-
 import java.util.function.Supplier;
+import org.jetbrains.annotations.Contract;
 
 /**
  * <p>Description: </p>
@@ -13,7 +12,7 @@ import java.util.function.Supplier;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.18 18:06
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 final class AssertEquals {
@@ -24,7 +23,7 @@ final class AssertEquals {
     /**
      * Assert equals
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     private AssertEquals() {
     }
@@ -34,7 +33,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(byte expected, byte actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -46,7 +45,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(byte expected, byte actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -58,7 +57,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(byte expected, byte actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (expected != actual) {
@@ -71,7 +70,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(char expected, char actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -83,7 +82,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(char expected, char actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -95,7 +94,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(char expected, char actual, Supplier<? extends RuntimeException> messageSupplier) {
         equals(expected, actual, messageSupplier, () -> {
@@ -109,7 +108,7 @@ final class AssertEquals {
      * @param actual          actual
      * @param messageSupplier message supplier
      * @param runnable        runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(char expected, char actual, Supplier<? extends RuntimeException> messageSupplier, CheckedRunnable runnable) {
         if (expected != actual) {
@@ -122,7 +121,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -134,7 +133,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -146,7 +145,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (!AssertUtils.doublesAreEqual(expected, actual)) {
@@ -160,7 +159,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param delta    delta
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual, double delta) {
         equals(expected, actual, delta, DEFAULT_MESSAGE);
@@ -173,7 +172,7 @@ final class AssertEquals {
      * @param actual   actual
      * @param delta    delta
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual, double delta, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -186,7 +185,7 @@ final class AssertEquals {
      * @param actual          actual
      * @param delta           delta
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(double expected, double actual, double delta, Supplier<? extends RuntimeException> messageSupplier) {
         if (!AssertUtils.doublesAreEqual(expected, actual, delta)) {
@@ -199,7 +198,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -211,7 +210,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -223,7 +222,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (!AssertUtils.floatsAreEqual(expected, actual)) {
@@ -237,7 +236,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param delta    delta
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual, float delta) {
         equals(expected, actual, delta, DEFAULT_MESSAGE);
@@ -250,7 +249,7 @@ final class AssertEquals {
      * @param actual   actual
      * @param delta    delta
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual, float delta, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -263,7 +262,7 @@ final class AssertEquals {
      * @param actual          actual
      * @param delta           delta
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(float expected, float actual, float delta, Supplier<? extends RuntimeException> messageSupplier) {
         if (!AssertUtils.floatsAreEqual(expected, actual, delta)) {
@@ -276,7 +275,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(short expected, short actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -288,7 +287,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(short expected, short actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -300,7 +299,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(short expected, short actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (expected != actual) {
@@ -313,7 +312,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(int expected, int actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -325,7 +324,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(int expected, int actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -337,7 +336,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(int expected, int actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (expected != actual) {
@@ -350,7 +349,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(long expected, long actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -362,7 +361,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(long expected, long actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -374,7 +373,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(long expected, long actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (expected != actual) {
@@ -387,7 +386,7 @@ final class AssertEquals {
      *
      * @param expected expected
      * @param actual   actual
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(Object expected, Object actual) {
         equals(expected, actual, DEFAULT_MESSAGE);
@@ -399,7 +398,7 @@ final class AssertEquals {
      * @param expected expected
      * @param actual   actual
      * @param message  message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(Object expected, Object actual, String message) {
         equals(expected, actual, () -> new AssertionFailedException(message));
@@ -411,7 +410,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void equals(Object expected, Object actual, Supplier<? extends RuntimeException> messageSupplier) {
         if (!AssertUtils.objectsAreEqual(expected, actual)) {
@@ -425,7 +424,7 @@ final class AssertEquals {
      * @param expected        expected
      * @param actual          actual
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Contract("_, _, _ -> fail")
     static void failNotEqual(Object expected, Object actual, Supplier<? extends RuntimeException> messageSupplier) {
@@ -440,7 +439,7 @@ final class AssertEquals {
      * @param actual          actual
      * @param messageSupplier message supplier
      * @param runnable        runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void failNotEqual(Object expected,
                              Object actual,

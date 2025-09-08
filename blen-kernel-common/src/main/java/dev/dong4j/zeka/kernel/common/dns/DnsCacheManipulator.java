@@ -31,7 +31,7 @@ import org.springframework.core.io.Resource;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 @UtilityClass
@@ -46,7 +46,7 @@ public final class DnsCacheManipulator {
      *
      * @param host host
      * @param ips  ips
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsCache(String host, String... ips) {
         try {
@@ -64,7 +64,7 @@ public final class DnsCacheManipulator {
      * @param expireMillis expire millis
      * @param host         host
      * @param ips          ips
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsCache(long expireMillis, String host, String... ips) {
         try {
@@ -83,7 +83,7 @@ public final class DnsCacheManipulator {
      * Sets dns cache *
      *
      * @param properties properties
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsCache(@NotNull Properties properties) {
         for (Map.Entry<Object, Object> entry : properties.entrySet()) {
@@ -103,7 +103,7 @@ public final class DnsCacheManipulator {
     /**
      * Load dns cache config
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void loadDnsCacheConfig() {
         String dcmConfigFileName = System.getProperty(DNS_CONFIG_FILENAME, "dns-cache.properties");
@@ -114,7 +114,7 @@ public final class DnsCacheManipulator {
      * Load dns cache config
      *
      * @param propertiesFileName properties file name
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void loadDnsCacheConfig(String propertiesFileName) {
         InputStream inputStream;
@@ -148,7 +148,7 @@ public final class DnsCacheManipulator {
      *
      * @param inputStream input stream
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static @NotNull Properties merge(InputStream inputStream) throws IOException {
         Properties properties = new Properties();
@@ -185,7 +185,7 @@ public final class DnsCacheManipulator {
      *
      * @param host host
      * @return the dns cache
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Nullable
     public static DnsCacheEntry getDnsCache(String host) {
@@ -200,7 +200,7 @@ public final class DnsCacheManipulator {
      * List dns cache
      *
      * @return the list
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static List<DnsCacheEntry> listDnsCache() {
         try {
@@ -214,7 +214,7 @@ public final class DnsCacheManipulator {
      * Gets whole dns cache *
      *
      * @return the whole dns cache
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull DnsCache getWholeDnsCache() {
         try {
@@ -228,7 +228,7 @@ public final class DnsCacheManipulator {
      * Remove dns cache
      *
      * @param host host
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void removeDnsCache(String host) {
         try {
@@ -242,7 +242,7 @@ public final class DnsCacheManipulator {
     /**
      * Clear dns cache
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void clearDnsCache() {
         try {
@@ -256,7 +256,7 @@ public final class DnsCacheManipulator {
      * Gets dns cache policy *
      *
      * @return the dns cache policy
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static int getDnsCachePolicy() {
         try {
@@ -270,7 +270,7 @@ public final class DnsCacheManipulator {
      * Sets dns cache policy *
      *
      * @param cacheSeconds cache seconds
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsCachePolicy(int cacheSeconds) {
         try {
@@ -284,7 +284,7 @@ public final class DnsCacheManipulator {
      * Gets dns negative cache policy *
      *
      * @return the dns negative cache policy
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static int getDnsNegativeCachePolicy() {
         try {
@@ -298,7 +298,7 @@ public final class DnsCacheManipulator {
      * Sets dns negative cache policy *
      *
      * @param negativeCacheSeconds negative cache seconds
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void setDnsNegativeCachePolicy(int negativeCacheSeconds) {
         try {

@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.common.bundle;
 
+import java.util.ResourceBundle;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ResourceBundle;
 
 /**
  * <p>Description: </p>
@@ -13,7 +12,7 @@ import java.util.ResourceBundle;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 10:22
- * @since 1.4.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public final class BasicBundle extends BundleBase {
@@ -25,7 +24,7 @@ public final class BasicBundle extends BundleBase {
     /**
      * Util bundle
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private BasicBundle() {
     }
@@ -36,7 +35,7 @@ public final class BasicBundle extends BundleBase {
      * @param key    key
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nls
     @NotNull
@@ -48,7 +47,7 @@ public final class BasicBundle extends BundleBase {
      * Gets util bundle *
      *
      * @return the util bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     private static ResourceBundle getUtilBundle() {
@@ -63,7 +62,7 @@ public final class BasicBundle extends BundleBase {
      * Load bundle from plugin
      *
      * @param pluginClassLoader plugin class loader
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void loadBundleFromPlugin(@Nullable ClassLoader pluginClassLoader) {
         ResourceBundle bundle = BundleUtils.loadLanguageBundle(pluginClassLoader, BUNDLE);

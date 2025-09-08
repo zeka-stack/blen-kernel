@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:22
  * @see PropertySource
- * @since 1.4.0
+ * @since 1.0.0
  */
 @SuppressWarnings("checkstyle:ModifierOrder")
 public final class PropertiesUtils {
@@ -50,7 +50,7 @@ public final class PropertiesUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:22
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private final static class Environment {
 
@@ -67,7 +67,7 @@ public final class PropertiesUtils {
          * Environment
          *
          * @param propertySource property source
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private Environment(PropertySource propertySource) {
             PropertyFilePropertySource sysProps = new PropertyFilePropertySource(SYSTEM_PROPERTIES_FILE_NAME);
@@ -96,7 +96,7 @@ public final class PropertiesUtils {
         /**
          * Reload
          *
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private synchronized void reload() {
             this.literal.clear();
@@ -123,7 +123,7 @@ public final class PropertiesUtils {
          *
          * @param key key
          * @return the boolean
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private static boolean hasSystemProperty(String key) {
             try {
@@ -138,7 +138,7 @@ public final class PropertiesUtils {
          *
          * @param key key
          * @return the string
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private String get(String key) {
             if (this.normalized.containsKey(key)) {
@@ -158,7 +158,7 @@ public final class PropertiesUtils {
          *
          * @param key key
          * @return the boolean
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private boolean containsKey(String key) {
             return this.normalized.containsKey(key) ||
@@ -172,7 +172,7 @@ public final class PropertiesUtils {
      * Constructs a PropertiesUtil using a given Properties object as its source of defined properties.
      *
      * @param props the Properties to use by default
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public PropertiesUtils(Properties props) {
         this.environment = new Environment(new PropertiesPropertySource(props));
@@ -183,7 +183,7 @@ public final class PropertiesUtils {
      * file are used by default. If a property is not defined in this file, then the equivalent system property is used.
      *
      * @param propertiesFileName the location of properties file to load
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public PropertiesUtils(String propertiesFileName) {
         this.environment = new Environment(new PropertyFilePropertySource(propertiesFileName));
@@ -195,7 +195,7 @@ public final class PropertiesUtils {
      * @param in     a property input stream.
      * @param source a source object describing the source, like a resource string or a URL.
      * @return a new Properties object
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull Properties loadClose(InputStream in, Object source) {
         Properties props = new Properties();
@@ -219,7 +219,7 @@ public final class PropertiesUtils {
      * Returns the PropertiesUtil used by Log4j.
      *
      * @return the main Log4j PropertiesUtil instance.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static PropertiesUtils getProperties() {
@@ -231,7 +231,7 @@ public final class PropertiesUtils {
      *
      * @param name the name of the property to verify
      * @return {@code true} if the specified property is defined, regardless of its value
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public boolean hasProperty(String name) {
         return this.environment.containsKey(name);
@@ -244,7 +244,7 @@ public final class PropertiesUtils {
      *
      * @param name the name of the property to look up
      * @return the boolean value of the property or {@code false} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public boolean getBooleanProperty(String name) {
         return this.getBooleanProperty(name, false);
@@ -256,7 +256,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the boolean value of the property or {@code defaultValue} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public boolean getBooleanProperty(String name, boolean defaultValue) {
         String prop = this.getStringProperty(name);
@@ -270,7 +270,7 @@ public final class PropertiesUtils {
      * @param defaultValueIfAbsent  the default value to use if the property is undefined
      * @param defaultValueIfPresent the default value to use if the property is defined but not assigned
      * @return the boolean value of the property or {@code defaultValue} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public boolean getBooleanProperty(String name, boolean defaultValueIfAbsent,
                                       boolean defaultValueIfPresent) {
@@ -284,7 +284,7 @@ public final class PropertiesUtils {
      *
      * @param name the name of the property to look up
      * @return the Charset value of the property or {@link Charset#defaultCharset()} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public Charset getCharsetProperty(String name) {
         return this.getCharsetProperty(name, Charset.defaultCharset());
@@ -297,7 +297,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the Charset value of the property or {@code defaultValue} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public Charset getCharsetProperty(String name, Charset defaultValue) {
         String charsetName = this.getStringProperty(name);
@@ -325,7 +325,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the parsed double value of the property or {@code defaultValue} if it was undefined or could not be parsed.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public double getDoubleProperty(String name, double defaultValue) {
         String prop = this.getStringProperty(name);
@@ -345,7 +345,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the parsed integer value of the property or {@code defaultValue} if it was undefined or could not be     parsed.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public int getIntegerProperty(String name, int defaultValue) {
         String prop = this.getStringProperty(name);
@@ -365,7 +365,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the parsed long value of the property or {@code defaultValue} if it was undefined or could not be parsed.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public long getLongProperty(String name, long defaultValue) {
         String prop = this.getStringProperty(name);
@@ -384,7 +384,7 @@ public final class PropertiesUtils {
      *
      * @param name the name of the property to look up
      * @return the String value of the property or {@code null} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public String getStringProperty(String name) {
         return this.environment.get(name);
@@ -396,7 +396,7 @@ public final class PropertiesUtils {
      * @param name         the name of the property to look up
      * @param defaultValue the default value to use if the property is undefined
      * @return the String value of the property or {@code defaultValue} if undefined.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public String getStringProperty(String name, String defaultValue) {
         String prop = this.getStringProperty(name);
@@ -407,7 +407,7 @@ public final class PropertiesUtils {
      * Return the system properties or an empty Properties object if an error occurs.
      *
      * @return The system properties.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     public static @NotNull Properties getSystemProperties() {
@@ -423,7 +423,7 @@ public final class PropertiesUtils {
     /**
      * Reloads all properties. This is primarily useful for unit tests.
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public void reload() {
         this.environment.reload();
@@ -436,7 +436,7 @@ public final class PropertiesUtils {
      * @param properties The Properties to evaluate.
      * @param prefix     The prefix to extract.
      * @return The subset of properties.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull Properties extractSubset(Properties properties, String prefix) {
         Properties subset = new Properties();
@@ -466,7 +466,7 @@ public final class PropertiesUtils {
      * Gets charsets resource bundle *
      *
      * @return the charsets resource bundle
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static ResourceBundle getCharsetsResourceBundle() {
         return ResourceBundle.getBundle("Log4j-charsets");
@@ -478,7 +478,7 @@ public final class PropertiesUtils {
      * @param properties properties to partition
      * @return the partitioned properties where each key is the common prefix (minus the period) and the values are     new property maps
      * without the prefix and period in the key
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static @NotNull Map<String, Properties> partitionOnCommonPrefixes(@NotNull Properties properties) {
         Map<String, Properties> parts = Maps.newConcurrentMap();
@@ -496,7 +496,7 @@ public final class PropertiesUtils {
      * Returns true if system properties tell us we are running on Windows.
      *
      * @return true if system properties tell us we are running on Windows.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public boolean isOsWindows() {

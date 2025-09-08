@@ -35,10 +35,12 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: </p>
+ * JWT令牌工具类，提供JWT令牌的解析、生成、验证等功能
+ * 包含签名验证和非签名验证两种模式，支持用户信息提取、权限解析、过期时间检查等操作
+ * 主要用于用户认证、授权信息传递和令牌生命周期管理
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 20:16
  * @since 1.0.0
@@ -115,7 +117,7 @@ public class JwtUtils {
      *
      * @param request request
      * @return the token
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static String getToken(@NotNull HttpServletRequest request) {
         return getToken(request.getHeader(AuthConstant.OAUTH_HEADER_TYPE));
@@ -171,7 +173,7 @@ public class JwtUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.09.12 17:54
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SuppressWarnings({"LoggingSimilarMessage", "DuplicatedCode"})
     @UtilityClass
@@ -356,7 +358,7 @@ public class JwtUtils {
          * @param key   key
          * @param token token
          * @return the application id
-         * @since 1.5.0
+         * @since 1.0.0
          */
         @Nullable
         public static Long getAppId(String key, String token) {
@@ -456,7 +458,7 @@ public class JwtUtils {
      * @param key   key
      * @param token token
      * @return the application id
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Nullable
     public static String getClientType(String key, String token) {

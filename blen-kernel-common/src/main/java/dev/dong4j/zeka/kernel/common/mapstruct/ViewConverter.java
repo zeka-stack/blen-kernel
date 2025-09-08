@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.mapstruct;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import dev.dong4j.zeka.kernel.common.mybatis.support.Page;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 视图转换包装基类 </p>
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.30 16:40
- * @since 1.6.0
+ * @since 1.0.0
  */
 public interface ViewConverter<F, D, V> {
 
@@ -46,7 +45,7 @@ public interface ViewConverter<F, D, V> {
      *
      * @param pages pages
      * @return page page
-     * @since 1.6.0
+     * @since 1.0.0
      */
     default IPage<V> vo(@NotNull IPage<D> pages) {
         List<V> records = this.vo(pages.getRecords());
@@ -60,7 +59,7 @@ public interface ViewConverter<F, D, V> {
      *
      * @param list list
      * @return list list
-     * @since 1.6.0
+     * @since 1.0.0
      */
     default List<V> vo(@NotNull List<D> list) {
         return list.stream().map(this::vo).collect(Collectors.toList());
@@ -71,7 +70,7 @@ public interface ViewConverter<F, D, V> {
      *
      * @param collection collection
      * @return the collection
-     * @since 1.8.0
+     * @since 1.0.0
      */
     default Collection<V> vo(@NotNull Collection<D> collection) {
         return collection.stream().map(this::vo).collect(Collectors.toCollection(HashSet::new));
@@ -82,7 +81,7 @@ public interface ViewConverter<F, D, V> {
      *
      * @param list list
      * @return list list
-     * @since 1.6.0
+     * @since 1.0.0
      */
     default List<D> dto(@NotNull List<F> list) {
         return list.stream().map(this::dto).collect(Collectors.toList());
@@ -93,7 +92,7 @@ public interface ViewConverter<F, D, V> {
      *
      * @param collection collection
      * @return the collection
-     * @since 1.8.0
+     * @since 1.0.0
      */
     default Collection<D> dto(@NotNull Collection<F> collection) {
         return collection.stream().map(this::dto).collect(Collectors.toCollection(HashSet::new));

@@ -4,17 +4,16 @@ import dev.dong4j.zeka.kernel.common.util.RandomUtils;
 import dev.dong4j.zeka.kernel.test.mock.MockConfig;
 import dev.dong4j.zeka.kernel.test.mock.MockException;
 import dev.dong4j.zeka.kernel.test.mock.Mocker;
+import java.lang.reflect.Field;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.Field;
 
 /**
  * <p>Description: Double对象模拟器</p>
  *
  * @param <T> the type parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:20
  * @since 1.0.0

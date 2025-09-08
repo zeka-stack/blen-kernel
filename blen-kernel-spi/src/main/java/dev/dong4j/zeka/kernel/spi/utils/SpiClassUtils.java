@@ -12,10 +12,10 @@ import java.util.Set;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class SpiClassUtils {
@@ -57,7 +57,7 @@ public class SpiClassUtils {
      * @param name name
      * @return the class
      * @throws ClassNotFoundException class not found exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forNameWithThreadContextClassLoader(String name)
         throws ClassNotFoundException {
@@ -71,7 +71,7 @@ public class SpiClassUtils {
      * @param caller caller
      * @return the class
      * @throws ClassNotFoundException class not found exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forNameWithCallerClassLoader(String name, Class<?> caller)
         throws ClassNotFoundException {
@@ -83,7 +83,7 @@ public class SpiClassUtils {
      *
      * @param caller caller
      * @return the caller class loader
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static ClassLoader getCallerClassLoader(Class<?> caller) {
         return caller.getClassLoader();
@@ -94,7 +94,7 @@ public class SpiClassUtils {
      *
      * @param clazz clazz
      * @return the class loader
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static ClassLoader getClassLoader(Class<?> clazz) {
         ClassLoader cl = null;
@@ -123,7 +123,7 @@ public class SpiClassUtils {
      * Gets class loader *
      *
      * @return the class loader
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static ClassLoader getClassLoader() {
         return getClassLoader(SpiClassUtils.class);
@@ -135,7 +135,7 @@ public class SpiClassUtils {
      * @param name name
      * @return the class
      * @throws ClassNotFoundException class not found exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forName(String name) throws ClassNotFoundException {
         return forName(name, getClassLoader());
@@ -149,7 +149,7 @@ public class SpiClassUtils {
      * @return the class
      * @throws ClassNotFoundException class not found exception
      * @throws LinkageError           linkage error
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forName(String name, ClassLoader classLoader)
         throws ClassNotFoundException, LinkageError {
@@ -192,7 +192,7 @@ public class SpiClassUtils {
      *
      * @param name name
      * @return the class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> resolvePrimitiveClassName(String name) {
         Class<?> result = null;
@@ -210,7 +210,7 @@ public class SpiClassUtils {
      *
      * @param obj obj
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toShortString(Object obj) {
         if (obj == null) {
@@ -225,7 +225,7 @@ public class SpiClassUtils {
      *
      * @param clazz clazz
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String simpleClassName(Class<?> clazz) {
         if (clazz == null) {
@@ -245,7 +245,7 @@ public class SpiClassUtils {
      *
      * @param type type
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isPrimitive(Class<?> type) {
         return type.isPrimitive()
@@ -267,7 +267,7 @@ public class SpiClassUtils {
      * @param type  type
      * @param value value
      * @return the object
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Object convertPrimitive(Class<?> type, String value) {
         if (value == null) {
@@ -304,7 +304,7 @@ public class SpiClassUtils {
      * @param type  type
      * @param value value
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isTypeMatch(Class<?> type, String value) {
         if ((type == boolean.class || type == Boolean.class)

@@ -1,11 +1,6 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,12 +14,28 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 集合工具类 </p>
+ * 集合工具类，扩展了Spring CollectionUtils的功能
+ *
+ * 提供了丰富的集合和数组操作功能，包括集合判断、转换、合并、查找等
+ * 结合Guava和Java 8 Stream API，提供更便捷的集合处理方法
+ *
+ * 主要功能：
+ * - 集合空判断（isEmpty、isNotEmpty等）
+ * - 数组和集合转换（toList、toMap、ofImmutableSet等）
+ * - 数组元素查找和包含判断（contains系列方法）
+ * - 数组合并和连接（concat系列方法）
+ * - 不可变集合创建（ofImmutableList、ofImmutableSet）
+ * - Map构建工具（支持key-value对数组）
+ * - 类型安全的查找和转换操作
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.24 15:24
  * @since 1.0.0
@@ -271,7 +282,7 @@ public class CollectionUtils extends org.springframework.util.CollectionUtils {
      * @return the random list
      * @Description list 随机取数据
      * @params list list集合           num     随机取多少条
-     * @since 2.0.0
+     * @since 1.0.0
      */
     public static <T> List<T> getRandomList(@NotNull List<T> list, int num) {
         List<T> randomList = new ArrayList<>();
@@ -295,7 +306,7 @@ public class CollectionUtils extends org.springframework.util.CollectionUtils {
      * @return the random list
      * @Description list 随机取数据
      * @params list list集合           num     随机取多少条
-     * @since 2.0.0
+     * @since 1.0.0
      */
     public static <T> T getRandom(@NotNull List<T> list) {
         if (isEmpty(list)) {

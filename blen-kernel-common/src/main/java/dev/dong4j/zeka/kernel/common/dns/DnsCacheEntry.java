@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Immutable
 public final class DnsCacheEntry implements Serializable {
@@ -36,7 +36,7 @@ public final class DnsCacheEntry implements Serializable {
      * Gets host *
      *
      * @return the host
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public String getHost() {
@@ -47,7 +47,7 @@ public final class DnsCacheEntry implements Serializable {
      * Get ips
      *
      * @return the string [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public String @NotNull [] getIps() {
         String[] copy = new String[this.ips.length];
@@ -59,7 +59,7 @@ public final class DnsCacheEntry implements Serializable {
      * Gets ip *
      *
      * @return the ip
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public String getIp() {
@@ -70,7 +70,7 @@ public final class DnsCacheEntry implements Serializable {
      * Gets expiration *
      *
      * @return the expiration
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public Date getExpiration() {
@@ -83,7 +83,7 @@ public final class DnsCacheEntry implements Serializable {
      * @param host       host
      * @param ips        ips
      * @param expiration expiration
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public DnsCacheEntry(String host, String[] ips, Date expiration) {
@@ -96,7 +96,7 @@ public final class DnsCacheEntry implements Serializable {
      * To string
      *
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public @NotNull String toString() {
@@ -114,7 +114,7 @@ public final class DnsCacheEntry implements Serializable {
      *
      * @param o o
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(value = "null -> false", pure = true)
     @Override
@@ -141,7 +141,7 @@ public final class DnsCacheEntry implements Serializable {
      * Hash code
      *
      * @return the int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public int hashCode() {

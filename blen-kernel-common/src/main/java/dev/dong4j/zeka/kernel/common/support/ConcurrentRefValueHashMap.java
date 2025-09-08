@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 10:22
- * @since 1.4.0
+ * @since 1.0.0
  */
 abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
     /** My queue */
@@ -35,7 +35,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V putIfAbsent(@NotNull K key, @NotNull V value) {
@@ -63,7 +63,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param key   key
      * @param value value
      * @return the value reference
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     abstract ValueReference<K, V> createValueReference(@NotNull K key, @NotNull V value);
@@ -72,7 +72,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Process queue
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @SuppressWarnings("UnusedReturnValue")
     boolean processQueue() {
@@ -96,7 +96,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param key   key
      * @param value value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public boolean remove(@NotNull Object key, @NotNull Object value) {
@@ -112,7 +112,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param oldValue old value
      * @param newValue new value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public boolean replace(@NotNull K key, @NotNull V oldValue, @NotNull V newValue) {
@@ -126,7 +126,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V replace(@NotNull K key, @NotNull V value) {
@@ -139,7 +139,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * To string
      *
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {
@@ -150,7 +150,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Size
      *
      * @return the int
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public int size() {
@@ -162,7 +162,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Is empty
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -176,7 +176,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      *
      * @param key key
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -189,7 +189,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      *
      * @param value value
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     @Override
@@ -202,7 +202,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      *
      * @param key key
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V get(@NotNull Object key) {
@@ -219,7 +219,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param key   key
      * @param value value
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V put(@NotNull K key, @NotNull V value) {
@@ -233,7 +233,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      *
      * @param key key
      * @return the v
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public V remove(@NotNull Object key) {
@@ -246,7 +246,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Put all
      *
      * @param t t
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void putAll(@NotNull Map<? extends K, ? extends V> t) {
@@ -263,7 +263,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
     /**
      * Clear
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     public void clear() {
@@ -275,7 +275,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Key set
      *
      * @return the set
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -287,7 +287,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Values
      *
      * @return the collection
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -307,7 +307,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * Entry set
      *
      * @return the set
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Override
@@ -353,7 +353,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @param items     items
      * @param separator separator
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     @Contract(pure = true)
@@ -377,14 +377,14 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.19 10:22
-     * @since 1.4.0
+     * @since 1.0.0
      */
     interface ValueReference<K, V> {
         /**
          * Gets key *
          *
          * @return the key
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @NotNull
         K getKey();
@@ -393,7 +393,7 @@ abstract class ConcurrentRefValueHashMap<K, V> implements ConcurrentMap<K, V> {
          * Get
          *
          * @return the v
-         * @since 1.4.0
+         * @since 1.0.0
          */
         V get();
     }

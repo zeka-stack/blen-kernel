@@ -49,7 +49,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.20 14:11
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 public class GlobalExceptionHandler implements ZekaAutoConfiguration {
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       e
      * @param request request
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     private Result<?> buildResult(LowestException e, @NotNull HttpServletRequest request) {
@@ -87,7 +87,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param throwable throwable
      * @param request   request
      * @return the exception info
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     @SuppressWarnings("checkstyle:Regexp")
@@ -101,7 +101,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         LowestException.class
@@ -115,7 +115,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * Handle basic exception
      *
      * @return the result
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         NoResourceFoundException.class
@@ -131,7 +131,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         NoHandlerFoundException.class,
@@ -193,7 +193,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e 异常
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         BindException.class,
@@ -208,7 +208,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param bindingResult 绑定结果
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @NotNull
     private Result<Void> wrapperBindingResult(@NotNull BindingResult bindingResult) {
@@ -234,7 +234,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e 异常
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         MethodArgumentNotValidException.class
@@ -249,7 +249,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e the e
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         ConstraintViolationException.class
@@ -264,7 +264,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      *
      * @param e e
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         RestClientException.class
@@ -280,7 +280,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       异常
      * @param request request
      * @return 异常结果 result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(value = {
         Exception.class
@@ -295,7 +295,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       the e
      * @param request request
      * @return the result
-     * @since 2024.1.1
+     * @since 1.0.0
      */
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -309,7 +309,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param e       e
      * @param request request
      * @return the result
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static @NotNull Result<?> lastHandle(Throwable e, HttpServletRequest request) {
         String hyperlink = buildErrorLink();
@@ -346,7 +346,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * Build error link
      *
      * @return the string
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public static String buildErrorLink() {
         return StringUtils.format(hyperLink,
@@ -361,7 +361,7 @@ public class GlobalExceptionHandler implements ZekaAutoConfiguration {
      * @param req     req
      * @param message message
      * @return the result
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static @NotNull Result<?> result(@NotNull Exception e, HttpServletRequest req, String message) {
         final Result<?> failed = R.failed(BaseCodes.FAILURE, message);

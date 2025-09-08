@@ -59,7 +59,7 @@ public class DataSourceConfig {
     /**
      * 关键字处理器
      *
-     * @since 3.3.2
+     * @since 1.0.0
      */
     private IKeyWordsHandler keyWordsHandler;
     /**
@@ -83,7 +83,7 @@ public class DataSourceConfig {
      * Gets db query *
      *
      * @return the db query
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public IDbQuery getDbQuery() {
         if (null == dbQuery) {
@@ -100,7 +100,7 @@ public class DataSourceConfig {
      * 判断数据库类型
      *
      * @return 类型枚举值 db type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public DbType getDbType() {
         if (null == this.dbType) {
@@ -118,7 +118,7 @@ public class DataSourceConfig {
      *
      * @param str 用于寻找特征的字符串，可以是 driverName 或小写后的 url
      * @return 类型枚举值 ，如果没找到，则返回 null
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private DbType getDbType(String str) {
         if (str.contains(":mysql:") || str.contains(":cobar:")) {
@@ -158,7 +158,7 @@ public class DataSourceConfig {
      * Gets type convert *
      *
      * @return the type convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ITypeConvert getTypeConvert() {
         if (null == typeConvert) {
@@ -176,7 +176,7 @@ public class DataSourceConfig {
      * 创建数据库连接对象
      *
      * @return Connection conn
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Connection getConn() {
         Connection conn;

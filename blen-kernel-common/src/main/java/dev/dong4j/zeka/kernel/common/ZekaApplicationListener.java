@@ -33,12 +33,20 @@ import org.springframework.core.ResolvableType;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
- * <p>Description: 抽象所有事件处理器的公共代码 </p>
- * 以下事件全部由 {@link org.springframework.boot.context.event.EventPublishingRunListener} 发布
- * 每个实现类都必须重写后的方法的执行次数, 因为 spring boot 和 spring cloud 的原因, 会存在多个上下文, 因此会执行多次自定义事件处理逻辑
+ * Zeka应用程序生命周期事件监听器接口
+ *
+ * 抽象所有Spring Boot应用程序事件处理器的公共代码，提供统一的事件处理机制
+ * 以下事件全部由EventPublishingRunListener发布，每个实现类都必须重写后的方法的执行次数
+ * 由于Spring Boot和Spring Cloud的原因，会存在多个上下文，因此会执行多次自定义事件处理逻辑
+ *
+ * 支持的事件类型包括：
+ * - 应用启动相关事件（Starting、EnvironmentPrepared、ContextInitialized等）
+ * - 应用运行时事件（Started、Ready、Failed等）
+ * - 上下文生命周期事件（Refreshed、Started、Stopped、Closed等）
+ * - Web服务器事件（WebServerInitialized等）
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:37
  * @since 1.0.0
@@ -263,7 +271,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:37
      * @since 1.0.0
@@ -294,7 +302,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
      * @param event    event
      * @param subClass sub class
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     default String key(@NotNull ApplicationEvent event, @NotNull Class<? extends ZekaApplicationListener> subClass) {
         return String.join(StringPool.COLON, event.getClass().getName(), subClass.getName());
@@ -304,10 +312,10 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
      * <p>Description: 统计 listener 执行次数, 提供在第几次执行 listener, 主要用于解决在 spring cloud 下多次执行 listener 的问题
      *
      * @author dong4j
-     * @version 1.4.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.19 20:10
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Slf4j
     class Runner {
@@ -320,7 +328,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          * 执行后增加次数
          *
          * @param key key
-         * @since 1.4.0
+         * @since 1.0.0
          */
         public static void execution(String key) {
             EXECTIE_COUNT_MAP.merge(key, 1, Integer::sum);
@@ -341,7 +349,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
         /**
          * 统计执行次数 (使用有个优先级最高的 listener 统计执行次数)
          *
-         * @since 1.4.0
+         * @since 1.0.0
          */
         public static void executeCount() {
             EXECUTE_COUNT.getAndIncrement();
@@ -351,7 +359,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          * Get execute count
          *
          * @return the int
-         * @since 1.4.0
+         * @since 1.0.0
          */
         public static int getExecuteTotalCount() {
             return EXECUTE_COUNT.get();
@@ -362,7 +370,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          *
          * @param key key
          * @return the execute current count
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Contract(pure = true)
         public static int getExecuteCurrentCount(String key) {
@@ -374,7 +382,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          *
          * @param key      key
          * @param consumer consumer
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Contract(pure = true)
         public static void executeAtFirst(String key, CheckedRunnable consumer) {
@@ -386,7 +394,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          *
          * @param key      key
          * @param consumer consumer
-         * @since 1.4.0
+         * @since 1.0.0
          */
         @Contract(pure = true)
         public static void executeAtLast(String key, CheckedRunnable consumer) {
@@ -399,7 +407,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          * @param key      key
          * @param index    index
          * @param consumer consumer
-         * @since 1.4.0
+         * @since 1.0.0
          */
         public static void executeAt(String key, int index, CheckedRunnable consumer) {
             execution(key);
@@ -416,7 +424,7 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
          * 每次都执行
          *
          * @param consumer consumer
-         * @since 1.5.0
+         * @since 1.0.0
          */
         public static void execute(CheckedRunnable consumer) {
             try {

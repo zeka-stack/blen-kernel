@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  * @see RuntimePermission
  * @see Thread#getContextClassLoader()
  * @see ClassLoader#getSystemClassLoader()
- * @since 1.4.0
+ * @since 1.0.0
  */
 @UtilityClass
 public final class LoaderUtils {
@@ -51,7 +51,7 @@ public final class LoaderUtils {
      * 如果使用不允许访问线程类加载器或系统类加载器的SecurityManager运行, 则返回该类的类加载器.
      *
      * @return the current ThreadContextClassLoader.
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static ClassLoader getThreadContextClassLoader() {
         if (GET_CLASS_LOADER_DISABLED) {
@@ -69,14 +69,14 @@ public final class LoaderUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static class ThreadContextClassLoaderGetter implements PrivilegedAction<ClassLoader> {
         /**
          * Run
          *
          * @return the class loader
-         * @since 1.5.0
+         * @since 1.0.0
          */
         @Override
         public ClassLoader run() {
@@ -93,7 +93,7 @@ public final class LoaderUtils {
      * Get class loaders
      *
      * @return the class loader [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static ClassLoader[] getClassLoaders() {
         List<ClassLoader> classLoaders = new ArrayList<>();
@@ -125,7 +125,7 @@ public final class LoaderUtils {
      *
      * @param className The class name.
      * @return {@code true} if the class could be found or {@code false} otherwise.
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static boolean isClassAvailable(String className) {
         try {
@@ -145,7 +145,7 @@ public final class LoaderUtils {
      * @param className The class name.
      * @return the Class for the given name.
      * @throws ClassNotFoundException if the specified class name could not be found
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static Class<?> loadClass(String className) throws ClassNotFoundException {
         if (isIgnoreTccl()) {
@@ -167,7 +167,7 @@ public final class LoaderUtils {
      * @throws InstantiationException    if there was an exception whilst instantiating the class
      * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
      * @throws InvocationTargetException if there was an exception whilst constructing the class
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static <T> @NotNull T newInstanceOf(@NotNull Class<T> clazz)
         throws InstantiationException, IllegalAccessException, InvocationTargetException {
@@ -193,7 +193,7 @@ public final class LoaderUtils {
      * @throws InstantiationException    if there was an exception whilst instantiating the class
      * @throws NoSuchMethodException     if there isn't a no-args constructor on the class
      * @throws InvocationTargetException if there was an exception whilst constructing the class
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public static <T> @NotNull T newInstanceOf(String className) throws ClassNotFoundException, IllegalAccessException,
@@ -214,7 +214,7 @@ public final class LoaderUtils {
      * @throws InvocationTargetException if there was an exception whilst constructing the class
      * @throws InstantiationException    if there was an exception whilst instantiating the class
      * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> param1")
     public static <T> T newCheckedInstanceOf(String className, @NotNull Class<T> clazz)
@@ -235,7 +235,7 @@ public final class LoaderUtils {
      * @throws InvocationTargetException if there was an exception whilst constructing the class
      * @throws InstantiationException    if there was an exception whilst instantiating the class
      * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static <T> @Nullable T newCheckedInstanceOfProperty(String propertyName, Class<T> clazz)
         throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException,
@@ -251,7 +251,7 @@ public final class LoaderUtils {
      * Is ignore tccl
      *
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static boolean isIgnoreTccl() {
         if (ignoreTCCL == null) {
@@ -266,7 +266,7 @@ public final class LoaderUtils {
      *
      * @param resource the name of the resource to find.
      * @return a Collection of URLs matching the resource name. If no resources could be found, then this will be empty.
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static @NotNull Collection<URL> findResources(String resource) {
         Collection<UrlResource> urlResources = findUrlResources(resource);
@@ -282,7 +282,7 @@ public final class LoaderUtils {
      *
      * @param resource resource
      * @return the collection
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("PMD.Indentation")
     static @NotNull Collection<UrlResource> findUrlResources(String resource) {
@@ -317,7 +317,7 @@ public final class LoaderUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
-     * @since 1.5.0
+     * @since 1.0.0
      */
         record UrlResource(ClassLoader classLoader, URL url) {
         /**
@@ -325,7 +325,7 @@ public final class LoaderUtils {
          *
          * @param classLoader class loader
          * @param url         url
-         * @since 1.5.0
+         * @since 1.0.0
          */
         @Contract(pure = true)
         UrlResource {
@@ -336,7 +336,7 @@ public final class LoaderUtils {
              *
              * @param o o
              * @return the boolean
-             * @since 1.5.0
+             * @since 1.0.0
              */
             @Contract(value = "null -> false", pure = true)
             @Override

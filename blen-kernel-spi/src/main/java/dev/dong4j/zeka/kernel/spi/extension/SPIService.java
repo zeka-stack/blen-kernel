@@ -10,10 +10,10 @@ import java.lang.annotation.Target;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.25 11:53
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -24,7 +24,7 @@ public @interface SPIService {
      * Value
      *
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     String value() default "";
 

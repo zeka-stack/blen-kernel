@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.base.command;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.base.IRepositoryService;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>Description:  </p>
@@ -19,7 +18,7 @@ import java.util.Map;
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.23 21:05
  * @see IRepositoryService
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> implements ICommandDelegateService<DTO> {
@@ -35,7 +34,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param dto dto
      * @return the serializable
      * @throws Exception 异常
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> I create(@NotNull DTO dto) throws Exception {
@@ -83,7 +82,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param dto dto
      * @return the boolean
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> I createOrUpdate(@NotNull DTO dto) throws Exception {
@@ -154,7 +153,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createBatch(Collection<DTO> dtos) throws Exception {
@@ -169,7 +168,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param dtos      dtos
      * @param batchSize 插入批次数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -183,7 +182,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      *
      * @param dto dto
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void update(@NotNull DTO dto) throws Exception {
@@ -197,7 +196,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void updateBatch(Collection<DTO> dtos) throws Exception {
@@ -212,7 +211,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param dtos      dtos
      * @param batchSize 更新批次数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void updateBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -226,7 +225,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createOrUpdateBatch(Collection<DTO> dtos) throws Exception {
@@ -241,7 +240,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param dtos      dtos
      * @param batchSize 每次的数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createOrUpdateBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -256,7 +255,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param <I> parameter
      * @param id  id
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> void delete(@NotNull I id) throws Exception {
@@ -271,7 +270,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      * @param <I> parameter
      * @param ids ids
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> void delete(Collection<I> ids) throws Exception {
@@ -285,7 +284,7 @@ public class CommandDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> 
      *
      * @param columnMap 表字段 map 对象
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void delete(@NotNull Map<String, Object> columnMap) throws Exception {

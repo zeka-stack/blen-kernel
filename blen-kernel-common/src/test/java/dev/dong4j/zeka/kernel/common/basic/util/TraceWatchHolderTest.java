@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.basic.util;
 
 import dev.dong4j.zeka.kernel.common.support.TraceWatch;
 import dev.dong4j.zeka.kernel.common.support.TraceWatchHolder;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-
 import java.util.concurrent.TimeUnit;
 import java.util.function.IntConsumer;
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>Description: </p>
@@ -16,7 +15,7 @@ import java.util.function.Supplier;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.05.11 15:21
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 class TraceWatchHolderTest {
@@ -24,7 +23,7 @@ class TraceWatchHolderTest {
     /**
      * 方式一: 使用 {@link Supplier} 或 {@link IntConsumer} 自动关闭任务
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {
@@ -63,7 +62,7 @@ class TraceWatchHolderTest {
      * 方式二: 使用 try-with-resource 语法关闭任务
      *
      * @throws InterruptedException interrupted exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Test
     void test_2() throws InterruptedException {

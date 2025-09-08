@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
  * @date 2020.02.13 16:00
  * @since 1.0.0
@@ -42,7 +42,7 @@ public final class BasicConstant {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.11.22 12:16
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @UtilityClass
     public static class Agent {

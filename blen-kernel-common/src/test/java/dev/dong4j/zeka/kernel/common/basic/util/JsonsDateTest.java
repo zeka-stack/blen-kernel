@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.10 14:44
  * @since 1.0.0
@@ -126,7 +126,7 @@ class JsonsDateTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.04.10 15:05
      * @since 1.0.0
@@ -174,7 +174,7 @@ class JsonsDateTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.04.10 15:05
      * @since 1.0.0

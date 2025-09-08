@@ -1,10 +1,9 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.Data;
-
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
 
 /**
  * <p>Description: 针对多网卡获取 IP 错误的问题, 使用此类可配置获取 IP 的方式 </p>
@@ -13,7 +12,7 @@ import java.util.List;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2022.02.11 13:22
- * @since 2022.1.1
+ * @since 1.0.0
  */
 @Data
 class InetUtilsProperties {
@@ -41,7 +40,7 @@ class InetUtilsProperties {
     /**
      * Inet utils properties
      *
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     InetUtilsProperties() {
         this.timeoutSeconds = this.propertiesUtils.getIntegerProperty("timeoutSeconds", 1);

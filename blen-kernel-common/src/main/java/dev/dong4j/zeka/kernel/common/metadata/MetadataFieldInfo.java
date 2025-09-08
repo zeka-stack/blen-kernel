@@ -1,18 +1,17 @@
 package dev.dong4j.zeka.kernel.common.metadata;
 
 import dev.dong4j.zeka.kernel.common.enums.FieldFill;
+import java.lang.reflect.Field;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Field;
-
 /**
  * <p>Description: object 字段反射信息</p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 12:51
  * @since 1.0.0

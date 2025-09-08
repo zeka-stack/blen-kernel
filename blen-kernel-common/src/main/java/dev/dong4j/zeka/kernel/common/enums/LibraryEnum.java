@@ -7,7 +7,7 @@ import lombok.Getter;
  * <p>Description: 启动成功后将实现指定的提示信息, 主要用于 starter 的自动装配类.</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 11:28
  * @since 1.0.0

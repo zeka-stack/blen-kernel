@@ -48,17 +48,25 @@ import org.reflections.util.ConfigurationBuilder;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p>Description: Jackson工具类
- * 系统中使用到 {@link ObjectMapper} 的地方定将用此类进行初始化, 提供 2 种方式:
- * 1. {@link Jsons#getInstance()};
- * 2. {@link Jsons#getCopyMapper()};
- * 第一种方式将返回一个单例对象, 请确保在使用 {@link ObjectMapper} 的过程中不会修改 {@link ObjectMapper} 的配置, 如果需要定制化 {@link ObjectMapper},
- * 可使用第二种方式, 此方式将每次返回一个新的 {@link ObjectMapper} 对象.
- * 此类每个工具方法都进行过重载, 如果需要使用自定义 {@link ObjectMapper} 对 json 处理, 请调用具有 {@link ObjectMapper} 参数的工具方法.
- * </p>
+ * Jackson JSON处理工具类，提供统一的JSON序列化和反序列化功能
+ *
+ * 系统中使用ObjectMapper的地方必须用此类进行初始化，提供2种方式：
+ * 1. getInstance() - 返回单例对象，请确保不修改配置
+ * 2. getCopyMapper() - 返回新对象，用于定制化配置
+ *
+ * 每个工具方法都进行过重载，支持使用自定义ObjectMapper对JSON处理
+ *
+ * 主要功能：
+ * - JSON序列化和反序列化（对象、集合、Map等）
+ * - JSON格式验证和检查
+ * - JSON美化和压缩功能
+ * - 类型安全的反序列化（TypeReference支持）
+ * - 性能优化的配置（字符串去空格、日期格式等）
+ * - 数据校验集成（JSR-303支持）
+ * - 多种数据源支持（字符串、字节数组、输入流等）
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:35
  * @since 1.0.0
@@ -99,7 +107,7 @@ public class Jsons {
      * Create Object Node
      *
      * @return the object node
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public static ObjectNode createNode() {
         return getInstance().createObjectNode();
@@ -110,7 +118,7 @@ public class Jsons {
      *
      * @param mapper mapper
      * @return the object node
-     * @since 2.1.0
+     * @since 1.0.0
      */
     public static @NotNull ObjectNode createNode(@NotNull ObjectMapper mapper) {
         return mapper.createObjectNode();
@@ -132,7 +140,7 @@ public class Jsons {
      *
      * @param json json
      * @return the string
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static @NotNull String compress(String json) {
         return toJson(json);
@@ -897,7 +905,7 @@ public class Jsons {
      * @param keyClass   key class
      * @param valueClass value class
      * @return the map
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @NotNull
     public static <K, V> Map<K, V> toMap(Object content, Class<?> keyClass, Class<?> valueClass) {
@@ -914,7 +922,7 @@ public class Jsons {
      * @param keyClass   key class
      * @param valueClass value class
      * @return the map
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static <K, V> Map<K, V> toMap(@NotNull ObjectMapper mapper, Object content, Class<?> keyClass, Class<?> valueClass) {
         if (ObjectUtil.isEmpty(content)) {
@@ -1072,7 +1080,7 @@ public class Jsons {
      * <p>Description: 使用静态内部类实例化单例对象, 此 ObjectMapper 会在全局使用 </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:35
      * @since 1.0.0
@@ -1119,7 +1127,7 @@ public class Jsons {
          * String 首尾空字符处理器
          *
          * @param objectMapper object mapper
-         * @since 1.9.0
+         * @since 1.0.0
          */
         private static void trimmer(ObjectMapper objectMapper) {
             SimpleModule stringTrimmerModule = new SimpleModule("String-Trim-Converter", PackageVersion.VERSION);
@@ -1134,7 +1142,7 @@ public class Jsons {
          * 2. 在子类或实现类上添加 @JsonTypeName(value = "标识")
          *
          * @param objectMapper object mapper
-         * @since 1.6.0
+         * @since 1.0.0
          */
         private static void registerSubtypes(@NotNull ObjectMapper objectMapper) {
             StopWatch stopWatch = new StopWatch();

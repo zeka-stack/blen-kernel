@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
  * <p>Description: 更改 html 请求异常为 ajax </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.02 01:40
  * @since 1.0.0
@@ -97,7 +97,7 @@ public class ServletErrorController extends BasicErrorController {
      * Check exception
      *
      * @param request request
-     * @since 1.7.0
+     * @since 1.0.0
      */
     private Exception checkException(HttpServletRequest request) {
         Exception exception = (Exception) request.getAttribute(BasicConstant.REQUEST_EXCEPTION_INFO_ATTR);
@@ -126,7 +126,7 @@ public class ServletErrorController extends BasicErrorController {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.02 02:37
      * @since 1.0.0

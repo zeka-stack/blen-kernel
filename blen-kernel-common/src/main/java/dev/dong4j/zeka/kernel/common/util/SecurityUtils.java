@@ -2,16 +2,15 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Sets;
 import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.PathMatcher;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.PathMatcher;
 
 /**
  * <p>Description:  </p>
@@ -20,7 +19,7 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.19 23:44
- * @since 1.5.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class SecurityUtils {
@@ -66,7 +65,7 @@ public class SecurityUtils {
      *
      * @param consumterIgnoreUrls 自定义的需要忽略的 url
      * @return the set 合并后的 url
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull Set<String> mergeSkipPatterns(String consumterIgnoreUrls) {
         return mergeSkipPatterns(SecurityUtils.DEFAULT_SKIP_URL, consumterIgnoreUrls);
@@ -78,7 +77,7 @@ public class SecurityUtils {
      * @param defaultSkipUrl      default skip url
      * @param consumterIgnoreUrls consumter ignore urls
      * @return the set
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull Set<String> mergeSkipPatterns(Collection<String> defaultSkipUrl, String consumterIgnoreUrls) {
         Set<String> ignores = new HashSet<>(defaultSkipUrl);
@@ -99,7 +98,7 @@ public class SecurityUtils {
      * @param excludePatterns exclude patterns
      * @param pathMatcher     path matcher
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static boolean matches(String lookupPath,
                                   String[] includePatterns,

@@ -3,19 +3,18 @@ package dev.dong4j.zeka.kernel.common.bundle;
 import dev.dong4j.zeka.kernel.common.support.ConcurrentFactoryMap;
 import dev.dong4j.zeka.kernel.common.support.ConcurrentSoftValueHashMap;
 import dev.dong4j.zeka.kernel.common.support.SoftReference;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.lang.ref.Reference;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 国际化配置文件绑定抽象类 </p>
@@ -24,7 +23,7 @@ import java.util.function.Supplier;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 10:22
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Slf4j
 public abstract class AbstractBundle {
@@ -41,7 +40,7 @@ public abstract class AbstractBundle {
      * Abstract bundle
      *
      * @param pathToBundle path to bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     protected AbstractBundle(@NonNls @NotNull String pathToBundle) {
@@ -54,7 +53,7 @@ public abstract class AbstractBundle {
      * @param key    key
      * @param params params
      * @return the lazy message
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public Supplier<String> getLazyMessage(@NotNull String key, Object... params) {
@@ -67,7 +66,7 @@ public abstract class AbstractBundle {
      * @param key    key
      * @param params params
      * @return the message
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public String getMessage(@NotNull String key, Object... params) {
@@ -81,7 +80,7 @@ public abstract class AbstractBundle {
      * @param key    key
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nls
     @NotNull
@@ -93,7 +92,7 @@ public abstract class AbstractBundle {
      * Gets resource bundle *
      *
      * @return the resource bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public ResourceBundle getResourceBundle() {
         return this.getResourceBundle(null);
@@ -104,7 +103,7 @@ public abstract class AbstractBundle {
      *
      * @param classLoader class loader
      * @return the resource bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     protected ResourceBundle getResourceBundle(@Nullable ClassLoader classLoader) {
@@ -122,7 +121,7 @@ public abstract class AbstractBundle {
      * @param pathToBundle path to bundle
      * @param loader       loader
      * @return the resource bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public ResourceBundle getResourceBundle(@NotNull String pathToBundle, @NotNull ClassLoader loader) {
@@ -149,7 +148,7 @@ public abstract class AbstractBundle {
      * @param loader       loader
      * @param control      control
      * @return the resource bundle
-     * @since 1.4.0
+     * @since 1.0.0
      */
     protected ResourceBundle findBundle(@NotNull String pathToBundle, @NotNull ClassLoader loader,
                                         @NotNull ResourceBundle.Control control) {
@@ -162,7 +161,7 @@ public abstract class AbstractBundle {
      * @param key    key
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nullable
     public String messageOfNull(@NotNull String key, Object... params) {
@@ -176,7 +175,7 @@ public abstract class AbstractBundle {
      * @param key    key
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nullable
     public static String messageOrNull(@NotNull ResourceBundle bundle, @NotNull String key, Object... params) {
@@ -195,7 +194,7 @@ public abstract class AbstractBundle {
      * @param defaultValue default value
      * @param params       params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("null, _, _, _ -> param3")
     public static String messageOrDefault(@Nullable ResourceBundle bundle,
@@ -217,7 +216,7 @@ public abstract class AbstractBundle {
      * @param defaultValue default value
      * @param params       params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public String messageOrDefault(@NotNull String key,
                                    @Nullable String defaultValue,
@@ -230,7 +229,7 @@ public abstract class AbstractBundle {
      *
      * @param key key
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public boolean containsKey(@NotNull String key) {
         return this.getResourceBundle().containsKey(key);

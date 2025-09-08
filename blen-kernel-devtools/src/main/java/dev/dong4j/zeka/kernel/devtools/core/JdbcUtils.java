@@ -36,7 +36,7 @@ public class JdbcUtils {
      *
      * @param jdbcUrl 连接地址
      * @return ignore db type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static DbType getDbType(String jdbcUrl) {
         Assert.isFalse(StringUtils.isBlank(jdbcUrl), "Error: The jdbcUrl is Null, Cannot read database type");
@@ -92,7 +92,7 @@ public class JdbcUtils {
      * @param regex 正则
      * @param input 字符串
      * @return 验证成功返回 true，验证失败返回 false
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static boolean regexFind(String regex, CharSequence input) {
         if (null == input) {

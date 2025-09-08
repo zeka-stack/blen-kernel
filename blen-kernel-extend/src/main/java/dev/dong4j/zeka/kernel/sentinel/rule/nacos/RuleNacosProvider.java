@@ -16,6 +16,7 @@
 
 package dev.dong4j.zeka.kernel.sentinel.rule.nacos;
 
+import com.alibaba.csp.sentinel.dashboard.rule.DynamicRuleProvider;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.csp.sentinel.util.StringUtil;
 import com.alibaba.nacos.api.config.ConfigService;
@@ -26,29 +27,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* <p>Description: </p>
+ * Sentinel规则Nacos提供者实现类
+ * <p>
+ * 该类实现了DynamicRuleProvider接口，负责从Nacos配置中心获取Sentinel规则配置
+ * 支持泛型，可以处理多种类型的规则配置，如流量控制规则、熔断降级规则等
+ * </p>
  *
- * @param <T> parameter
+ * @param <T> 规则类型参数，可以是FlowRuleEntity、DegradeRuleEntity等各种规则实体类型
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.21 23:37
  * @since 1.0.0
  */
 public class RuleNacosProvider<T> implements DynamicRuleProvider<List<T>> {
-    /** Config service */
+    /** Nacos配置服务实例，用于获取配置信息 */
     private final ConfigService configService;
-    /** Converter */
+    /** 配置转换器，将字符串配置转换为指定类型的规则列表 */
     private final Converter<String, List<T>> converter;
-    /** Data id */
+    /** 规则数据ID后缀，与应用名组合形成完整的数据ID */
     private final String dataId;
 
     /**
-     * Rule nacos provider
+     * 构造函数，初始化RuleNacosProvider实例
      *
-     * @param configService config service
-     * @param converter     converter
-     * @param dataId        data id
+     * @param configService Nacos配置服务实例
+     * @param converter     配置转换器，用于将字符串配置转换为规则列表
+     * @param dataId        规则数据ID后缀
      * @since 1.0.0
      */
     @Contract(pure = true)
@@ -61,11 +66,15 @@ public class RuleNacosProvider<T> implements DynamicRuleProvider<List<T>> {
     }
 
     /**
-     * Gets rules *
+     * 获取指定应用的规则列表
+     * <p>
+     * 从Nacos配置中心获取指定应用的规则配置，并通过转换器转换为规则对象列表
+     * 如果配置为空，则返回空列表
+     * </p>
      *
-     * @param appName app name
-     * @return the rules
-     * @throws Exception exception
+     * @param appName 应用名称，用于构建完整的数据ID
+     * @return 规则对象列表，如果没有配置则返回空列表
+     * @throws Exception 获取配置失败或转换失败时抛出异常
      * @since 1.0.0
      */
     @Override

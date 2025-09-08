@@ -7,7 +7,7 @@ package dev.dong4j.zeka.kernel.common.constant;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.08.31 21:51
- * @since 1.6.0
+ * @since 1.0.0
  */
 public final class TraceConstant {
     /** TRACE_ID */

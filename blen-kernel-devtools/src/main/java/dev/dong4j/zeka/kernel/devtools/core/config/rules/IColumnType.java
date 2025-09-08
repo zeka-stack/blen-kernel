@@ -30,7 +30,7 @@ public interface IColumnType {
      * 获取字段类型
      *
      * @return 字段类型 type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String getType();
 
@@ -38,7 +38,7 @@ public interface IColumnType {
      * 获取字段类型完整名
      *
      * @return 字段类型完整名 pkg
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String getPkg();
 }

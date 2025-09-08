@@ -116,7 +116,7 @@ public enum DbColumnType implements IColumnType {
      *
      * @param type type
      * @param pkg  pkg
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     DbColumnType(final String type, final String pkg) {
         this.type = type;
@@ -127,7 +127,7 @@ public enum DbColumnType implements IColumnType {
      * Gets type *
      *
      * @return the type
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String getType() {
@@ -138,7 +138,7 @@ public enum DbColumnType implements IColumnType {
      * Gets pkg *
      *
      * @return the pkg
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String getPkg() {

@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.10.31 14:51
- * @since 2.0.0
+ * @since 1.0.0
  */
 public interface IDubboClient<D extends BaseDTO<? extends Serializable>> extends ICrudDelegate<D> {
 

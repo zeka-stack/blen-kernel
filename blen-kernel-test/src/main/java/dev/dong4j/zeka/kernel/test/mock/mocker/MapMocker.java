@@ -4,17 +4,16 @@ import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.util.RandomUtils;
 import dev.dong4j.zeka.kernel.test.mock.MockConfig;
 import dev.dong4j.zeka.kernel.test.mock.Mocker;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.Type;
 import java.util.Map;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 模拟Map</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:24
  * @since 1.0.0

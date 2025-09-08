@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.12.26 20:08
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 public class ExampleApp {
@@ -17,7 +17,7 @@ public class ExampleApp {
      * Main
      *
      * @param args args
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void main(String[] args) {
         Pangu pangu = new Pangu();

@@ -10,7 +10,7 @@ import org.springframework.util.StringValueResolver;
  * <p>Description: 类型 转换 服务,添加了 IEnum 转换 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:06
  * @since 1.0.0
@@ -53,7 +53,7 @@ public final class CustomConversionService extends ApplicationConversionService 
      * <p>Description: 静态内部类实现单例</p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:06
      * @since 1.0.0

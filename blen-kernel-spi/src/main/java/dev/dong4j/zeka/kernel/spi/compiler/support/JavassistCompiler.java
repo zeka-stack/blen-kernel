@@ -1,20 +1,19 @@
 package dev.dong4j.zeka.kernel.spi.compiler.support;
 
 import dev.dong4j.zeka.kernel.spi.utils.SpiClassUtils;
-import javassist.CtClass;
-
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javassist.CtClass;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class JavassistCompiler extends AbstractCompiler {
@@ -41,7 +40,7 @@ public class JavassistCompiler extends AbstractCompiler {
      * @param source source
      * @return the class
      * @throws Throwable throwable
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public Class<?> doCompile(String name, String source) throws Throwable {

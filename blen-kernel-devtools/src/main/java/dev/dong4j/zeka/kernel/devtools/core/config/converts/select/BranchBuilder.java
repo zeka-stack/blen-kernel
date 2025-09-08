@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 2024.2.0
+ * @since 1.0.0
  */
 public interface BranchBuilder<P, T> {
 
@@ -21,7 +21,7 @@ public interface BranchBuilder<P, T> {
      *
      * @param factory 值工厂
      * @return 返回分支 branch
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     Branch<P, T> then(Function<P, T> factory);
 
@@ -30,7 +30,7 @@ public interface BranchBuilder<P, T> {
      *
      * @param value 值
      * @return 返回一个分支 branch
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default Branch<P, T> then(T value) {
         return then(p -> value);
@@ -43,7 +43,7 @@ public interface BranchBuilder<P, T> {
      * @param <T>    返回值类型
      * @param tester 测试器
      * @return 返回一个分支创建者 branch builder
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     static <P, T> BranchBuilder<P, T> of(Predicate<P> tester) {
         return factory -> Branch.of(tester, factory);

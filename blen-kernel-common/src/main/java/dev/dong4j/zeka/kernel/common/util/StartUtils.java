@@ -24,7 +24,7 @@ import org.springframework.boot.WebApplicationType;
  * <p>Description: 启动相关工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.11 12:56
  * @since 1.0.0
@@ -42,7 +42,7 @@ public class StartUtils {
      * Set custom info
      *
      * @param customInfo custom info
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void addCustomInfo(CustomInfo customInfo) {
         CUSTOM_COMPONENT.add(customInfo);
@@ -52,7 +52,7 @@ public class StartUtils {
      * Sets custom info *
      *
      * @param customInfo custom info
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void addCustomInfo(List<CustomInfo> customInfo) {
         CUSTOM_COMPONENT.addAll(customInfo);
@@ -126,7 +126,7 @@ public class StartUtils {
      *
      * @param libraryName library name
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull StringBuilder padding(String libraryName) {
         return StringUtils.builder()
@@ -139,7 +139,7 @@ public class StartUtils {
      *
      * @param startInfo start info
      * @param maxLength max length
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static void showStartInfo1(String startInfo, int maxLength) {
         int currentMaxLength = maxLength;
@@ -226,10 +226,10 @@ public class StartUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.4.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.05.15 04:12
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public interface CustomInfo {
 
@@ -237,7 +237,7 @@ public class StartUtils {
          * Custom
          *
          * @return the string
-         * @since 1.4.0
+         * @since 1.0.0
          */
         String custom();
     }
@@ -377,7 +377,7 @@ public class StartUtils {
     /**
      * Set framework version
      *
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void setFrameworkVersion() {
         System.setProperty(ConfigKey.APPLICATION_FRAMEWORK_VERSION,

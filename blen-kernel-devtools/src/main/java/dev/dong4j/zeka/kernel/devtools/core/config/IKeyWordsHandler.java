@@ -24,7 +24,7 @@ import java.util.List;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 3.3.2
+ * @since 1.0.0
  */
 public interface IKeyWordsHandler {
 
@@ -32,7 +32,7 @@ public interface IKeyWordsHandler {
      * 获取关键字
      *
      * @return 关键字集合 key words
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     List<String> getKeyWords();
 
@@ -40,7 +40,7 @@ public interface IKeyWordsHandler {
      * 格式化关键字格式
      *
      * @return 格式 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String formatStyle();
 
@@ -49,7 +49,7 @@ public interface IKeyWordsHandler {
      *
      * @param columnName 字段名称
      * @return 是否为关键字 boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     boolean isKeyWords(String columnName);
 
@@ -58,7 +58,7 @@ public interface IKeyWordsHandler {
      *
      * @param columnName 字段名称
      * @return 格式化字段 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default String formatColumn(String columnName) {
         return String.format(formatStyle(), columnName);

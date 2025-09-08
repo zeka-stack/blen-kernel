@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * <p>Description: servlet 全局异常处理器 </p>
- * {@link org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler}
- * {@link org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver}
+ * Servlet全局异常处理器，专门处理Servlet环境下的异常
+ * 继承自通用全局异常处理器，添加了Web特定的异常处理逻辑
+ * 优先级高于默认处理器，确保在Servlet环境下生效
  *
+ * @see org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+ * @see org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.20 10:23
  * @since 1.0.0

@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
  *
  * @param <T> parameter
  * @author hubin
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.11 01:34
  * @since 1.0.0
@@ -44,7 +44,7 @@ public interface IPage<T> extends Serializable {
      * 两个参数都为 true 才会进行sql处理
      *
      * @return true 是 / false 否
-     * @since 3.4.4 @2021-09-13
+     * @since 1.0.0 @2021-09-13
      */
     default boolean optimizeJoinOfCountSql() {
         return true;
@@ -73,7 +73,7 @@ public interface IPage<T> extends Serializable {
     /**
      * 最大每页分页数限制,优先级高于分页插件内的 maxLimit
      *
-     * @since 3.4.0 @2020-07-17
+     * @since 1.0.0 @2020-07-17
      */
     default Long maxLimit() {
         return null;
@@ -171,7 +171,7 @@ public interface IPage<T> extends Serializable {
      * MappedStatement 的 id
      *
      * @return id
-     * @since 3.4.0 @2020-06-19
+     * @since 1.0.0 @2020-06-19
      */
     default String countId() {
         return null;
@@ -183,7 +183,7 @@ public interface IPage<T> extends Serializable {
      * @param <P>   parameter
      * @param clazz clazz
      * @return the p
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default <P extends BasePage<?>> P wrapper(Class<P> clazz) {

@@ -32,7 +32,7 @@ import org.springframework.util.ObjectUtils;
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.14 18:41
  * @since 1.0.0

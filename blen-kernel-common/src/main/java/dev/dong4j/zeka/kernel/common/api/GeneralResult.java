@@ -7,7 +7,7 @@ package dev.dong4j.zeka.kernel.common.api;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.10.14 00:55
- * @since 1.6.0
+ * @since 1.0.0
  */
 public interface GeneralResult {
 

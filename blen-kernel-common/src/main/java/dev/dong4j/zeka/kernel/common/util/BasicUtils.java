@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.19 15:27
- * @since 1.5.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class BasicUtils {
@@ -21,7 +21,7 @@ public class BasicUtils {
      * Is v 5 framework
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static boolean isV8Framework() {
         String frameworkVersion = System.getProperty(ConfigKey.APPLICATION_FRAMEWORK_VERSION);
@@ -33,7 +33,7 @@ public class BasicUtils {
      * Gets app version *
      *
      * @return the app version
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static String getAppVersion() {
         return getVersion(ConfigKey.SERVICE_VERSION);
@@ -43,7 +43,7 @@ public class BasicUtils {
      * Gets framework version *
      *
      * @return the framework version
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static String getFrameworkVersion() {
         return getVersion(ConfigKey.APPLICATION_FRAMEWORK_VERSION);
@@ -54,7 +54,7 @@ public class BasicUtils {
      *
      * @param key key
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private static String getVersion(String key) {
         if (!isV8Framework()) {

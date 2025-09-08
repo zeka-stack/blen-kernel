@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 模拟对象门面类 </p>
  *
  * @author jsonzou, kanyuxia, TaoYu
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:07
  * @since 1.0.0

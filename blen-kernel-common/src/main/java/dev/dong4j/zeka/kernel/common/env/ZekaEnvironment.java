@@ -31,7 +31,7 @@ import org.springframework.util.SystemPropertyUtils;
  * <p>Description: 解析所有配置</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 20:40
  * @since 1.0.0
@@ -306,7 +306,7 @@ public class ZekaEnvironment {
      * if present.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -354,7 +354,7 @@ public class ZekaEnvironment {
      * A description of an {@link Environment}.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -408,7 +408,7 @@ public class ZekaEnvironment {
      * A description of an entry of the {@link Environment}.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -481,7 +481,7 @@ public class ZekaEnvironment {
      * @param source Source
      * @param value  Value
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -529,7 +529,7 @@ public class ZekaEnvironment {
      * A description of a {@link PropertySource}.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -583,7 +583,7 @@ public class ZekaEnvironment {
      * A description of a particular entry of {@link PropertySource}.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0
@@ -637,7 +637,7 @@ public class ZekaEnvironment {
      * A description of a property's value, including its origin if available.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.26 20:40
      * @since 1.0.0

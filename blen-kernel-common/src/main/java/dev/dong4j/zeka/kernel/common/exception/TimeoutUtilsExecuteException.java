@@ -9,7 +9,7 @@ import java.io.Serial;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.01.26 13:22
- * @since 1.7.1
+ * @since 1.0.0
  */
 public class TimeoutUtilsExecuteException extends Exception {
     /** serialVersionUID */
@@ -20,7 +20,7 @@ public class TimeoutUtilsExecuteException extends Exception {
      * Timeout utils execute exception
      *
      * @param message message
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public TimeoutUtilsExecuteException(String message) {
         super(message);

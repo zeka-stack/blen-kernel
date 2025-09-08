@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.23 21:05
  * @see IRepositoryService
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> implements IQueryDelegateService<DTO> {
@@ -34,7 +34,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * 查询总记录数
      *
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public long counts() {
@@ -48,7 +48,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <Q>   parameter
      * @param query query
      * @return the int
-     * @since 2.1.0
+     * @since 1.0.0
      */
     @Override
     public <Q extends BaseQuery<? extends Serializable>> int counts(@NotNull Q query) {
@@ -62,7 +62,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <I> parameter
      * @param id  id
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> DTO find(@NotNull I id) {
@@ -76,7 +76,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <Q>   parameter
      * @param query 查询
      * @return {@link DTO}
-     * @since 2.1.0
+     * @since 1.0.0
      */
     @Override
     public <Q extends BaseQuery<? extends Serializable>> DTO find(@NotNull Q query) {
@@ -89,7 +89,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * 查询所有的 DTO 数据
      *
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public List<DTO> find() {
@@ -103,7 +103,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <I> parameter
      * @param ids 主键ID列表
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> List<DTO> find(Collection<I> ids) {
@@ -119,7 +119,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <Q>   parameter
      * @param query 查询参数
      * @return the page
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> IPage<D> page(@NotNull Q query) {
@@ -135,7 +135,7 @@ public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> im
      * @param <Q>   parameter
      * @param query 查询参数
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> List<D> list(@NotNull Q query) {

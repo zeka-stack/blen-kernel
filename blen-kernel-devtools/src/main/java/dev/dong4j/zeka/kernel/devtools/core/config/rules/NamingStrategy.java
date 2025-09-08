@@ -50,7 +50,7 @@ public enum NamingStrategy {
      *
      * @param name name
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String underlineToCamel(String name) {
         // 快速检查
@@ -87,7 +87,7 @@ public enum NamingStrategy {
      * @param prefix ignore
      * @return ignore string
      * @see #removePrefix(String, Set)
-     * @since 2024.2.0
+     * @since 1.0.0
      * @deprecated 3.4.1
      */
     @Deprecated
@@ -102,7 +102,7 @@ public enum NamingStrategy {
      * @param name   name
      * @param prefix prefix
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String removePrefix(String name, Set<String> prefix) {
         if (StringUtils.isBlank(name)) {
@@ -124,7 +124,7 @@ public enum NamingStrategy {
      * @param name   ignore
      * @param prefix ignore
      * @return ignore boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static boolean isPrefixContained(String name, String... prefix) {
         if (null == prefix || StringUtils.isBlank(name)) {
@@ -140,7 +140,7 @@ public enum NamingStrategy {
      * @param tablePrefix ignore
      * @return ignore string
      * @see #removePrefix(String, Set)
-     * @since 2024.2.0
+     * @since 1.0.0
      * @deprecated 3.4.1
      */
     @Deprecated
@@ -154,7 +154,7 @@ public enum NamingStrategy {
      * @param name        name
      * @param tablePrefix table prefix
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String removePrefixAndCamel(String name, Set<String> tablePrefix) {
         return underlineToCamel(removePrefix(name, tablePrefix));
@@ -166,7 +166,7 @@ public enum NamingStrategy {
      *
      * @param name 待转换的字符串
      * @return 转换后的字符串 string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String capitalFirst(String name) {
         if (StringUtils.isNotBlank(name)) {
@@ -180,7 +180,7 @@ public enum NamingStrategy {
      *
      * @param word word
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static boolean isCapitalMode(String word) {
         return null != word && CAPITAL_MODE.matcher(word).matches();
@@ -191,7 +191,7 @@ public enum NamingStrategy {
      *
      * @param word word
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static boolean isMixedMode(String word) {
         return matches(".*[A-Z]+.*", word) && matches(".*[/_]+.*", word);
@@ -203,7 +203,7 @@ public enum NamingStrategy {
      * @param regex regex
      * @param input input
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static boolean matches(String regex, String input) {
         if (null == regex || null == input) {

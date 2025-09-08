@@ -1,7 +1,6 @@
 package dev.dong4j.zeka.kernel.spi.compiler.support;
 
 import dev.dong4j.zeka.kernel.spi.utils.SpiStringUtils;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
@@ -21,10 +20,10 @@ import java.util.Map;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public final class CompilerClassUtils {
@@ -40,7 +39,7 @@ public final class CompilerClassUtils {
     /**
      * Class utils
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private CompilerClassUtils() {
     }
@@ -50,7 +49,7 @@ public final class CompilerClassUtils {
      *
      * @param name name
      * @return the object
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Object newInstance(String name) {
         try {
@@ -68,7 +67,7 @@ public final class CompilerClassUtils {
      * @param packages  packages
      * @param className class name
      * @return the class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forName(String[] packages, String className) {
         try {
@@ -91,7 +90,7 @@ public final class CompilerClassUtils {
      *
      * @param className class name
      * @return the class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> forName(String className) {
         try {
@@ -107,7 +106,7 @@ public final class CompilerClassUtils {
      * @param className class name
      * @return the class
      * @throws ClassNotFoundException class not found exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> classForName(String className) throws ClassNotFoundException {
         switch (className) {
@@ -166,7 +165,7 @@ public final class CompilerClassUtils {
      * @param className class name
      * @return the class
      * @throws ClassNotFoundException class not found exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static Class<?> arrayForName(String className) throws ClassNotFoundException {
         return Class.forName(className.endsWith("[]")
@@ -179,7 +178,7 @@ public final class CompilerClassUtils {
      *
      * @param type type
      * @return the boxed class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> getBoxedClass(Class<?> type) {
         if (type == boolean.class) {
@@ -208,7 +207,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Boolean boxed(boolean v) {
         return Boolean.valueOf(v);
@@ -219,7 +218,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the character
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Character boxed(char v) {
         return Character.valueOf(v);
@@ -230,7 +229,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the byte
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Byte boxed(byte v) {
         return Byte.valueOf(v);
@@ -241,7 +240,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the short
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Short boxed(short v) {
         return Short.valueOf(v);
@@ -252,7 +251,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the integer
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Integer boxed(int v) {
         return Integer.valueOf(v);
@@ -263,7 +262,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the long
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Long boxed(long v) {
         return Long.valueOf(v);
@@ -274,7 +273,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the float
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Float boxed(float v) {
         return Float.valueOf(v);
@@ -285,7 +284,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the double
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Double boxed(double v) {
         return Double.valueOf(v);
@@ -296,7 +295,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the object
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Object boxed(Object v) {
         return v;
@@ -307,7 +306,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean unboxed(Boolean v) {
         return v == null ? false : v.booleanValue();
@@ -318,7 +317,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the char
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static char unboxed(Character v) {
         return v == null ? '\0' : v.charValue();
@@ -329,7 +328,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the byte
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static byte unboxed(Byte v) {
         return v == null ? 0 : v.byteValue();
@@ -340,7 +339,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the short
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static short unboxed(Short v) {
         return v == null ? 0 : v.shortValue();
@@ -351,7 +350,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static int unboxed(Integer v) {
         return v == null ? 0 : v.intValue();
@@ -362,7 +361,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the long
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static long unboxed(Long v) {
         return v == null ? 0 : v.longValue();
@@ -373,7 +372,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the float
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static float unboxed(Float v) {
         return v == null ? 0 : v.floatValue();
@@ -384,7 +383,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the double
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static double unboxed(Double v) {
         return v == null ? 0 : v.doubleValue();
@@ -395,7 +394,7 @@ public final class CompilerClassUtils {
      *
      * @param v v
      * @return the object
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Object unboxed(Object v) {
         return v;
@@ -406,7 +405,7 @@ public final class CompilerClassUtils {
      *
      * @param object object
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isNotEmpty(Object object) {
         return getSize(object) > 0;
@@ -417,7 +416,7 @@ public final class CompilerClassUtils {
      *
      * @param object object
      * @return the size
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static int getSize(Object object) {
         if (object == null) {
@@ -439,7 +438,7 @@ public final class CompilerClassUtils {
      *
      * @param name name
      * @return the uri
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static URI toURI(String name) {
         try {
@@ -454,7 +453,7 @@ public final class CompilerClassUtils {
      *
      * @param cls cls
      * @return the generic class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> getGenericClass(Class<?> cls) {
         return getGenericClass(cls, 0);
@@ -466,7 +465,7 @@ public final class CompilerClassUtils {
      * @param cls cls
      * @param i   i
      * @return the generic class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Class<?> getGenericClass(Class<?> cls, int i) {
         try {
@@ -503,7 +502,7 @@ public final class CompilerClassUtils {
      *
      * @param javaVersion java version
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isBeforeJava5(String javaVersion) {
         return (SpiStringUtils.isEmpty(javaVersion) || "1.0".equals(javaVersion)
@@ -516,7 +515,7 @@ public final class CompilerClassUtils {
      *
      * @param javaVersion java version
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isBeforeJava6(String javaVersion) {
         return isBeforeJava5(javaVersion) || "1.5".equals(javaVersion);
@@ -527,7 +526,7 @@ public final class CompilerClassUtils {
      *
      * @param e e
      * @return the string
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String toString(Throwable e) {
         StringWriter w = new StringWriter();
@@ -549,7 +548,7 @@ public final class CompilerClassUtils {
      *
      * @param name     name
      * @param bytecode bytecode
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static void checkBytecode(String name, byte[] bytecode) {
         if (bytecode.length > JIT_LIMIT) {
@@ -562,7 +561,7 @@ public final class CompilerClassUtils {
      *
      * @param cls cls
      * @return the size method
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getSizeMethod(Class<?> cls) {
         try {
@@ -591,7 +590,7 @@ public final class CompilerClassUtils {
      * @param parameterClasses parameter classes
      * @param rightCode        right code
      * @return the method name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getMethodName(Method method, Class<?>[] parameterClasses, String rightCode) {
         if (method.getParameterTypes().length > parameterClasses.length) {
@@ -631,7 +630,7 @@ public final class CompilerClassUtils {
      * @param parameterTypes parameter types
      * @return the method
      * @throws NoSuchMethodException no such method exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static Method searchMethod(Class<?> currentClass, String name, Class<?>[] parameterTypes) throws NoSuchMethodException {
         if (currentClass == null) {
@@ -669,7 +668,7 @@ public final class CompilerClassUtils {
      *
      * @param type type
      * @return the init code
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getInitCode(Class<?> type) {
         if (byte.class.equals(type)
@@ -695,7 +694,7 @@ public final class CompilerClassUtils {
      * @param <V>     parameter
      * @param entries entries
      * @return the map
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static <K, V> Map<K, V> toMap(Map.Entry<K, V>[] entries) {
         Map<K, V> map = new HashMap<K, V>(16);
@@ -712,7 +711,7 @@ public final class CompilerClassUtils {
      *
      * @param qualifiedName qualified name
      * @return the simple class name
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getSimpleClassName(String qualifiedName) {
         if (null == qualifiedName) {

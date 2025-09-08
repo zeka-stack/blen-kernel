@@ -22,7 +22,7 @@ package dev.dong4j.zeka.kernel.devtools.core.config;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 3.3.2
+ * @since 1.0.0
  */
 public enum TemplateType {
 

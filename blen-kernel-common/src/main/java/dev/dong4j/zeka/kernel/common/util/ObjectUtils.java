@@ -1,16 +1,15 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import java.util.Objects;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.springframework.lang.Nullable;
-
-import java.util.Objects;
 
 /**
  * <p>Description: 对象工具类</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:18
  * @since 1.0.0

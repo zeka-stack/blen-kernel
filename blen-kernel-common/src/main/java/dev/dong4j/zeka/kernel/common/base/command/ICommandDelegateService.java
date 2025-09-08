@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.common.base.command;
 
 import dev.dong4j.zeka.kernel.common.base.IRepositoryService;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 命令类接口, 使用 {@link IRepositoryService} 桥接到 DAO 层. </p>
@@ -16,7 +15,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.02.28 01:53
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S119")
 public interface ICommandDelegateService<DTO> {
@@ -29,7 +28,7 @@ public interface ICommandDelegateService<DTO> {
      * @param dto dto
      * @return the boolean
      * @throws Exception 异常
-     * @since 1.7.0
+     * @since 1.0.0
      */
     <I extends Serializable> I create(@NotNull DTO dto) throws Exception;
 
@@ -39,7 +38,7 @@ public interface ICommandDelegateService<DTO> {
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void createBatch(Collection<DTO> dtos) throws Exception;
 
@@ -50,7 +49,7 @@ public interface ICommandDelegateService<DTO> {
      * @param dtos      dtos
      * @param batchSize 插入批次数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void createBatch(Collection<DTO> dtos, int batchSize) throws Exception;
 
@@ -128,7 +127,7 @@ public interface ICommandDelegateService<DTO> {
      * @param dto dto
      * @return the boolean
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <I extends Serializable> I createOrUpdate(@NotNull DTO dto) throws Exception;
 
@@ -138,7 +137,7 @@ public interface ICommandDelegateService<DTO> {
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void createOrUpdateBatch(Collection<DTO> dtos) throws Exception;
 
@@ -149,7 +148,7 @@ public interface ICommandDelegateService<DTO> {
      * @param dtos      dtos
      * @param batchSize 每次的数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void createOrUpdateBatch(Collection<DTO> dtos, int batchSize) throws Exception;
 
@@ -159,7 +158,7 @@ public interface ICommandDelegateService<DTO> {
      *
      * @param entity entity
      * @throws Exception exception
-     * @since 1.7.0
+     * @since 1.0.0
      */
     void update(@NotNull DTO entity) throws Exception;
 
@@ -169,7 +168,7 @@ public interface ICommandDelegateService<DTO> {
      *
      * @param dtos dtos
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void updateBatch(Collection<DTO> dtos) throws Exception;
 
@@ -180,7 +179,7 @@ public interface ICommandDelegateService<DTO> {
      * @param dtos      dtos
      * @param batchSize 更新批次数量
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     void updateBatch(Collection<DTO> dtos, int batchSize) throws Exception;
 
@@ -191,7 +190,7 @@ public interface ICommandDelegateService<DTO> {
      * @param <I> parameter
      * @param id  id
      * @throws Exception exception
-     * @since 1.7.0
+     * @since 1.0.0
      */
     <I extends Serializable> void delete(@NotNull I id) throws Exception;
 
@@ -202,7 +201,7 @@ public interface ICommandDelegateService<DTO> {
      * @param <I> parameter
      * @param ids ids
      * @throws Exception exception
-     * @since 1.8.0
+     * @since 1.0.0
      */
     <I extends Serializable> void delete(Collection<I> ids) throws Exception;
 
@@ -212,7 +211,7 @@ public interface ICommandDelegateService<DTO> {
      *
      * @param columnMap column map
      * @throws Exception exception
-     * @since 2.0.0
+     * @since 1.0.0
      */
     void delete(@NotNull Map<String, Object> columnMap) throws Exception;
 }

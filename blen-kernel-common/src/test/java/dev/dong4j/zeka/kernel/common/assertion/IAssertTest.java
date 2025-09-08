@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.17 19:55
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 class IAssertTest {
@@ -24,7 +24,7 @@ class IAssertTest {
     /**
      * Test 1
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {
@@ -35,7 +35,7 @@ class IAssertTest {
     /**
      * Test 2
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_2() {
@@ -48,7 +48,7 @@ class IAssertTest {
     /**
      * Test 3
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_3() {
@@ -209,7 +209,7 @@ class IAssertTest {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.11.17 21:08
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Builder
     static class User {
@@ -226,7 +226,7 @@ class IAssertTest {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.11.17 21:08
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Data
     @Builder

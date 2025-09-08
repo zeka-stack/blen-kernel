@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
  * <p>Description:  所有的配置常量</p>
  *
  * @author dong4j
- * @version 1.2.4
+ * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
  * @date 2020.02.04 15:51
  * @since 1.0.0
@@ -71,7 +71,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.26 17:13
      * @since 1.0.0
@@ -87,7 +87,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.26 10:01
      * @since 1.0.0
@@ -145,7 +145,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 17:05
      * @since 1.0.0
@@ -180,7 +180,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 18:07
      * @since 1.0.0
@@ -201,7 +201,7 @@ public final class ConfigKey {
      * <p>Description: Undertow 请求日志配置 </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.10 12:46
      * @since 1.0.0
@@ -224,7 +224,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 17:31
      * @since 1.0.0
@@ -277,7 +277,7 @@ public final class ConfigKey {
      * <p>Description: 自定义 nacos 配置, 用于访问自定义配置和服务 </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.20 17:39
      * @since 1.0.0
@@ -313,7 +313,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 17:42
      * @since 1.0.0
@@ -337,7 +337,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 17:50
      * @since 1.0.0
@@ -372,7 +372,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 17:54
      * @since 1.0.0
@@ -393,7 +393,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 18:10
      * @since 1.0.0
@@ -436,7 +436,7 @@ public final class ConfigKey {
      * todo-dong4j : (2020年02月28日 12:38) [重构]
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 18:13
      * @since 1.0.0
@@ -506,7 +506,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.04 18:59
      * @since 1.0.0
@@ -535,7 +535,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.07 16:30
      * @since 1.0.0
@@ -619,7 +619,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.4
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.02.07 16:39
      * @since 1.0.0
@@ -648,7 +648,7 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.3.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.04.03 11:40
      * @since 1.0.0
@@ -677,10 +677,10 @@ public final class ConfigKey {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.7.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.12.08 12:08
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @UtilityClass
     public static class MqConfigKey {
@@ -698,7 +698,7 @@ public final class ConfigKey {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2022.01.21 11:38
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public static class LogcatConfigKey {
         /** ADMIN_URL */

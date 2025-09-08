@@ -1,9 +1,8 @@
 package dev.dong4j.zeka.kernel.common.plugin;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.io.File;
 import java.nio.file.Path;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 插件元数据接口</p>
@@ -12,7 +11,7 @@ import java.nio.file.Path;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 14:39
- * @since 1.4.0
+ * @since 1.0.0
  */
 public interface PluginDescriptor {
 
@@ -20,7 +19,7 @@ public interface PluginDescriptor {
      * Gets plugin id *
      *
      * @return the plugin id
-     * @since 1.4.0
+     * @since 1.0.0
      */
     PluginId getPluginId();
 
@@ -28,7 +27,7 @@ public interface PluginDescriptor {
      * Gets plugin class loader *
      *
      * @return the plugin class loader
-     * @since 1.4.0
+     * @since 1.0.0
      */
     ClassLoader getPluginClassLoader();
 
@@ -36,7 +35,7 @@ public interface PluginDescriptor {
      * Is bundled
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     default boolean isBundled() {
         return false;
@@ -46,7 +45,7 @@ public interface PluginDescriptor {
      * Gets path *
      *
      * @return the path
-     * @since 1.4.0
+     * @since 1.0.0
      */
     File getPath();
 
@@ -54,7 +53,7 @@ public interface PluginDescriptor {
      * Gets plugin path *
      *
      * @return the plugin path
-     * @since 1.4.0
+     * @since 1.0.0
      */
     Path getPluginPath();
 
@@ -62,7 +61,7 @@ public interface PluginDescriptor {
      * Gets description *
      *
      * @return the description
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Nullable
     String getDescription();
@@ -71,7 +70,7 @@ public interface PluginDescriptor {
      * Gets change notes *
      *
      * @return the change notes
-     * @since 1.4.0
+     * @since 1.0.0
      */
     String getChangeNotes();
 
@@ -79,7 +78,7 @@ public interface PluginDescriptor {
      * Gets name *
      *
      * @return the name
-     * @since 1.4.0
+     * @since 1.0.0
      */
     String getName();
 
@@ -87,7 +86,7 @@ public interface PluginDescriptor {
      * Gets vendor *
      *
      * @return the vendor
-     * @since 1.4.0
+     * @since 1.0.0
      */
     String getVendor();
 
@@ -95,7 +94,7 @@ public interface PluginDescriptor {
      * Gets version *
      *
      * @return the version
-     * @since 1.4.0
+     * @since 1.0.0
      */
     String getVersion();
 
@@ -103,7 +102,7 @@ public interface PluginDescriptor {
      * Is enabled
      *
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     boolean isEnabled();
 
@@ -111,7 +110,7 @@ public interface PluginDescriptor {
      * Sets enabled *
      *
      * @param enabled enabled
-     * @since 1.4.0
+     * @since 1.0.0
      */
     void setEnabled(boolean enabled);
 }

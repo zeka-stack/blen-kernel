@@ -1,19 +1,18 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Description: 只会输出一次的日志 </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.13 01:14
  * @since 1.0.0
@@ -30,7 +29,7 @@ public class JustOnceLogger {
      *
      * @param loggerName logger name
      * @param message    message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static void infoOnce(String loggerName, String message) {
         if (!log.isInfoEnabled()) {
@@ -64,7 +63,7 @@ public class JustOnceLogger {
      *
      * @param loggerName logger name
      * @param message    message
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void printOnce(String loggerName, String message) {
         if (check(loggerName, message)) {
@@ -79,7 +78,7 @@ public class JustOnceLogger {
      * @param loggerName logger name
      * @param message    message
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static boolean check(String loggerName, String message) {
         if (!KNOWN_LOGS.containsKey(loggerName)) {

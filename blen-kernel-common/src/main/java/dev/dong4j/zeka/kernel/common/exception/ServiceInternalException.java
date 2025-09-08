@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.18 16:11
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 public class ServiceInternalException extends RuntimeException {
@@ -54,7 +54,7 @@ public class ServiceInternalException extends RuntimeException {
     /**
      * Basic exception
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public ServiceInternalException() {
         super();
@@ -64,7 +64,7 @@ public class ServiceInternalException extends RuntimeException {
      * Service internal exception
      *
      * @param throwable throwable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public ServiceInternalException(Throwable throwable) {
         super(DEFAULT_MESSAGE, throwable);
@@ -74,7 +74,7 @@ public class ServiceInternalException extends RuntimeException {
      * Service internal exception
      *
      * @param message message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public ServiceInternalException(String message) {
         super(message);
@@ -85,7 +85,7 @@ public class ServiceInternalException extends RuntimeException {
      *
      * @param message   message
      * @param throwable throwable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public ServiceInternalException(String message, Throwable throwable) {
         super(message, throwable);
@@ -94,7 +94,7 @@ public class ServiceInternalException extends RuntimeException {
     /**
      * 重写打印异常堆栈, 转为日志输出.
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public void printStackTrace() {
@@ -105,7 +105,7 @@ public class ServiceInternalException extends RuntimeException {
      * Prints this throwable and its backtrace to the specified print stream.
      *
      * @param s {@code PrintStream} to use for output
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public void printStackTrace(PrintStream s) {
@@ -116,7 +116,7 @@ public class ServiceInternalException extends RuntimeException {
      * Gets message *
      *
      * @return the message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Override
     public String getMessage() {

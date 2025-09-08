@@ -76,7 +76,7 @@ public class PackageConfig {
      * 父包名
      *
      * @return the parent
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public String getParent() {
         if (StringUtils.isNotBlank(moduleName)) {

@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.19 09:44
- * @since 1.4.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S1118")
 public abstract class BundleBase {
@@ -40,7 +40,7 @@ public abstract class BundleBase {
      * Assert on missed keys
      *
      * @param doAssert do assert
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static void assertOnMissedKeys(boolean doAssert) {
         assertOnMissedKeys = doAssert;
@@ -53,7 +53,7 @@ public abstract class BundleBase {
      * @param key    key
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     public static String message(@NotNull ResourceBundle bundle, @NotNull String key, @NotNull Object... params) {
@@ -68,7 +68,7 @@ public abstract class BundleBase {
      * @param defaultValue default value
      * @param params       params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract("null, _, _, _ -> param3")
     public static String messageOrDefault(@Nullable ResourceBundle bundle,
@@ -101,7 +101,7 @@ public abstract class BundleBase {
      * @param key          key
      * @param defaultValue default value
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Contract(value = "_, _, !null -> param3", pure = true)
     @NotNull
@@ -123,7 +123,7 @@ public abstract class BundleBase {
      * @param value  value
      * @param params params
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     static String postprocessValue(@NotNull ResourceBundle bundle, @NotNull String value, @NotNull Object[] params) {
         value = replaceMnemonicAmpersand(value);
@@ -151,7 +151,7 @@ public abstract class BundleBase {
      *
      * @param result result
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @NotNull
     protected static String appendLocalizationMarker(@NotNull String result) {
@@ -168,7 +168,7 @@ public abstract class BundleBase {
      *
      * @param value value
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @SuppressWarnings("D")
     @Contract("null -> null")

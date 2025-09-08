@@ -30,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.24 15:55
  * @since 1.0.0
@@ -321,7 +321,7 @@ public class DataTypeUtils {
      *
      * @param method method
      * @return the boolean
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public static boolean isExtendPrimitive(Method method) {
         Class<?> outClass = getaOutParamClass(method);
@@ -334,7 +334,7 @@ public class DataTypeUtils {
      *
      * @param clazz clazz
      * @return the boolean
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public static boolean isExtendPrimitive(Class<?> clazz) {
         return isPrimitive(clazz)
@@ -349,7 +349,7 @@ public class DataTypeUtils {
      *
      * @param method method
      * @return the out param class
-     * @since 1.7.1
+     * @since 1.0.0
      */
     public static Class<?> getaOutParamClass(Method method) {
         Type returnType = method.getGenericReturnType();
@@ -960,7 +960,7 @@ public class DataTypeUtils {
      * The type Data type exception.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -985,7 +985,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1130,7 +1130,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1178,7 +1178,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1228,7 +1228,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1277,7 +1277,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1326,7 +1326,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1362,7 +1362,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1409,7 +1409,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1447,7 +1447,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1491,7 +1491,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1520,7 +1520,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1583,7 +1583,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:55
      * @since 1.0.0
@@ -1618,7 +1618,7 @@ public class DataTypeUtils {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.24 15:54
      * @since 1.0.0

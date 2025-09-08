@@ -9,10 +9,10 @@ import lombok.Getter;
  * <p>Description: 应用类型 </p>
  *
  * @author dong4j
- * @version 1.4.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.24 15:20
- * @since 1.4.0
+ * @since 1.0.0
  */
 @Getter
 @AllArgsConstructor

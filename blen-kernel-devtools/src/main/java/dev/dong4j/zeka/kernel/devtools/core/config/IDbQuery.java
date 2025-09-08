@@ -34,7 +34,7 @@ public interface IDbQuery {
      * 数据库类型
      *
      * @return the db type
-     * @since 2024.2.0
+     * @since 1.0.0
      * @deprecated 3.3.1 {@link DataSourceConfig#setDbType(DbType)}
      */
     @Deprecated
@@ -47,7 +47,7 @@ public interface IDbQuery {
      * 表信息查询 SQL
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String tablesSql();
 
@@ -56,7 +56,7 @@ public interface IDbQuery {
      * 表字段信息查询 SQL
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String tableFieldsSql();
 
@@ -65,7 +65,7 @@ public interface IDbQuery {
      * 表名称
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String tableName();
 
@@ -74,7 +74,7 @@ public interface IDbQuery {
      * 表注释
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String tableComment();
 
@@ -83,7 +83,7 @@ public interface IDbQuery {
      * 字段名称
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String fieldName();
 
@@ -92,7 +92,7 @@ public interface IDbQuery {
      * 字段类型
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String fieldType();
 
@@ -101,7 +101,7 @@ public interface IDbQuery {
      * 字段注释
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String fieldComment();
 
@@ -110,7 +110,7 @@ public interface IDbQuery {
      * 主键字段
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String fieldKey();
 
@@ -121,7 +121,7 @@ public interface IDbQuery {
      * @param results ResultSet
      * @return 主键是否为identity boolean
      * @throws SQLException ignore
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     boolean isKeyIdentity(ResultSet results) throws SQLException;
 
@@ -130,7 +130,7 @@ public interface IDbQuery {
      * 自定义字段名称
      *
      * @return the string [ ]
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String[] fieldCustom();
 }

@@ -37,7 +37,7 @@ public interface IFileCreate {
      * @param fileType      文件类型
      * @param filePath      文件路径
      * @return ignore boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath);
 
@@ -45,7 +45,7 @@ public interface IFileCreate {
      * 检查文件目录，不存在自动递归创建
      *
      * @param filePath 文件路径
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     default void checkDir(String filePath) {
         File file = new File(filePath);

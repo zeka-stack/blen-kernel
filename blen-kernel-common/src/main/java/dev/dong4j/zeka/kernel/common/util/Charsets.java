@@ -1,17 +1,16 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.experimental.UtilityClass;
-import org.springframework.util.StringUtils;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
+import lombok.experimental.UtilityClass;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>Description: 字符集工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:55
  * @since 1.0.0

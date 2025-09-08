@@ -4,122 +4,121 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.dong4j.zeka.kernel.auth.entity.AuthorizationRole;
 import dev.dong4j.zeka.kernel.auth.entity.AuthorizationUser;
 import dev.dong4j.zeka.kernel.auth.enums.UserType;
-
 import java.util.Set;
 
 /**
- * <p>Description:  </p>
+ * <p>Description: 当前用户信息接口，定义了获取用户基本信息的方法，是系统中用户信息的统一抽象</p>
  *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.11 11:58
- * @since 1.6.0
+ * @since 1.0.0
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = AuthorizationUser.class)
 public interface CurrentUser {
 
     /**
-     * userId
+     * 获取用户唯一标识
      *
-     * @return the id
-     * @since 1.6.0
+     * @return 用户ID
+     * @since 1.0.0
      */
     Long getId();
 
     /**
-     * 用户名
+     * 获取用户登录名
      *
-     * @return the username
-     * @since 1.6.0
+     * @return 用户名
+     * @since 1.0.0
      */
     String getUsername();
 
     /**
-     * 手机号
+     * 获取用户手机号码
      *
-     * @return the mobile
-     * @since 1.6.0
+     * @return 手机号
+     * @since 1.0.0
      */
     String getMobile();
 
     /**
-     * 邮箱
+     * 获取用户电子邮箱
      *
-     * @return the email
-     * @since 1.6.0
+     * @return 邮箱
+     * @since 1.0.0
      */
     String getEmail();
 
     /**
-     * 用户类型
+     * 获取用户类型枚举值
      *
-     * @return the user type
-     * @since 1.6.0
+     * @return 用户类型
+     * @since 1.0.0
      */
     UserType getUserType();
 
     /**
-     * 企业类型
+     * 获取企业类型标识
      *
-     * @return the integer
-     * @since 1.6.0
+     * @return 企业类型
+     * @since 1.0.0
      */
     Integer getEnterpriseType();
 
     /**
-     * 租户 id
+     * 获取租户ID
      *
-     * @return the tenant id
-     * @since 1.6.0
+     * @return 租户ID
+     * @since 1.0.0
      */
     Long getTenantId();
 
     /**
-     * Gets tenant app id *
+     * 获取租户应用ID
      *
-     * @return the tenant app id
-     * @since 1.6.0
+     * @return 租户应用ID
+     * @since 1.0.0
      */
     Long getTenantAppId();
 
     /**
-     * Gets system app id *
+     * 获取系统应用ID
      *
-     * @return the system app id
-     * @since 1.6.0
+     * @return 系统应用ID
+     * @since 1.0.0
      */
     Long getSystemAppId();
 
     /**
-     * 用户标记, 登录邮箱后缀
+     * 获取用户标记，通常为登录邮箱后缀
      *
-     * @return the marked
-     * @since 1.6.0
+     * @return 用户标记
+     * @since 1.0.0
      */
     String getMarked();
 
     /**
-     * Gets roles *
+     * 获取用户所属角色集合
      *
-     * @return the roles
-     * @since 1.6.0
+     * @return 角色集合
+     * @since 1.0.0
      */
     Set<AuthorizationRole> getRoles();
 
     /**
-     * 获取公司 id
+     * 获取公司ID
      *
-     * @return the company id
-     * @since 1.7.3
+     * @return 公司ID
+     * @since 1.0.0
      */
     Long getCompanyId();
 
     /**
-     * 扩展字段
+     * 获取用户扩展信息
      *
-     * @return the extend
-     * @since 2.0.0
+     * @return 扩展信息对象
+     * @since 1.0.0
      */
     Object getExtend();
 }

@@ -13,7 +13,7 @@ import org.springframework.core.SpringVersion;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.09.20 21:58
- * @since 1.6.0
+ * @since 1.0.0
  */
 @UtilityClass
 public final class SpringVersionCheck {
@@ -33,7 +33,7 @@ public final class SpringVersionCheck {
      * Version
      *
      * @return the string
-     * @since 1.6.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public static String version() {

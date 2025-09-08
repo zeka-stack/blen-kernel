@@ -23,10 +23,22 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * <p>Description: 继承自Spring util的工具类</p>
+ * 字符串工具类，扩展了Spring的StringUtils功能
+ *
+ * 提供了丰富的字符串操作方法，包括空值检查、数字验证、格式化、连接、分割、编码解码等
+ * 结合了Apache Commons、Hutool等第三方库的优秀功能，提供统一的字符串处理接口
+ *
+ * 主要功能：
+ * - 空值和空白字符检查（isBlank、isNotBlank、isAnyBlank等）
+ * - 字符串连接和分割（join、split系列方法）
+ * - 数字和格式验证（isNumeric、特殊字符正则等）
+ * - 字符串格式化和模板替换
+ * - HTML转义和URL编码处理
+ * - 随机字符串生成
+ * - 字符串比较和搜索功能
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.27 09:50
  * @since 1.0.0
@@ -291,7 +303,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param isTrim      是否去除切分字符串后每个元素两边的空格
      * @param ignoreEmpty 是否忽略空串
      * @return 切分后的集合 list
-     * @since 3.0.8
+     * @since 1.0.0
      */
     @Contract("null, _, _, _, _ -> new")
     public static List<String> split(CharSequence str, char separator, int limit, boolean isTrim, boolean ignoreEmpty) {
@@ -307,7 +319,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str       被切分的字符串
      * @param separator 分隔符字符
      * @return 切分后的集合 list
-     * @since 3.1.2
+     * @since 1.0.0
      */
     @Contract("null, _ -> new")
     public static List<String> splitTrim(CharSequence str, char separator) {
@@ -321,7 +333,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param separator 分隔符字符
      * @param limit     限制分片数,-1不限制
      * @return 切分后的集合 list
-     * @since 3.1.0
+     * @since 1.0.0
      */
     @Contract("null, _, _ -> new")
     private static List<String> splitTrim(CharSequence str, char separator, int limit) {
@@ -334,7 +346,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str       被切分的字符串
      * @param separator 分隔符字符
      * @return 切分后的集合 list
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Contract("null, _ -> new")
     public static List<String> splitTrim(CharSequence str, CharSequence separator) {
@@ -348,7 +360,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param separator 分隔符字符
      * @param limit     限制分片数,-1不限制
      * @return 切分后的集合 list
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Contract("null, _, _ -> new")
     private static List<String> splitTrim(CharSequence str, CharSequence separator, int limit) {
@@ -364,7 +376,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param isTrim      是否去除切分字符串后每个元素两边的空格
      * @param ignoreEmpty 是否忽略空串
      * @return 切分后的集合 list
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Contract("null, _, _, _, _ -> new")
     public static List<String> split(CharSequence str, CharSequence separator, int limit, boolean isTrim, boolean ignoreEmpty) {
@@ -383,7 +395,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param isTrim      是否去除切分字符串后每个元素两边的空格
      * @param ignoreEmpty 是否忽略空串
      * @return 切分后的集合 list
-     * @since 3.0.8
+     * @since 1.0.0
      */
     @Contract("null, _, _, _ -> new")
     public static List<String> split(CharSequence str, char separator, boolean isTrim, boolean ignoreEmpty) {
@@ -432,7 +444,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str        字符串
      * @param searchChar 被查找的字符
      * @return 是否包含 boolean
-     * @since 3.1.2
+     * @since 1.0.0
      */
     public static boolean contains(CharSequence str, char searchChar) {
         return indexOf(str, searchChar) > -1;
@@ -514,7 +526,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param separator       分隔字符串 (不包括)
      * @param isLastSeparator 是否查找最后一个分隔字符串 (多次出现分隔字符串时选取最后一个) ,true为选取最后一个
      * @return 切割后的字符串 string
-     * @since 3.1.1
+     * @since 1.0.0
      */
     @Nullable
     public static String subBefore(CharSequence string, CharSequence separator, boolean isLastSeparator) {
@@ -567,7 +579,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param separator       分隔字符串 (不包括)
      * @param isLastSeparator 是否查找最后一个分隔字符串 (多次出现分隔字符串时选取最后一个) ,true为选取最后一个
      * @return 切割后的字符串 string
-     * @since 3.1.1
+     * @since 1.0.0
      */
     @Nullable
     public static String subAfter(CharSequence string, CharSequence separator, boolean isLastSeparator) {
@@ -614,7 +626,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str            被切割的字符串
      * @param beforeAndAfter 截取开始和结束的字符串标识
      * @return 截取后的字符串 string
-     * @since 3.1.1
+     * @since 1.0.0
      */
     @Contract("null, _ -> null; !null, null -> null")
     public static String subBetween(CharSequence str, CharSequence beforeAndAfter) {
@@ -642,7 +654,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param before 截取开始的字符串标识
      * @param after  截取到的字符串标识
      * @return 截取后的字符串 string
-     * @since 3.1.1
+     * @since 1.0.0
      */
     @Contract("null, _, _ -> null; !null, null, _ -> null; !null, !null, null -> null")
     private static String subBetween(CharSequence str, CharSequence before, CharSequence after) {
@@ -904,7 +916,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str       字符串
      * @param searchStr 需要查找位置的字符串
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     public static int indexOfIgnoreCase(CharSequence str, CharSequence searchStr) {
         return indexOfIgnoreCase(str, searchStr, 0);
@@ -930,7 +942,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param searchStr 需要查找位置的字符串
      * @param fromIndex 起始位置
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     private static int indexOfIgnoreCase(CharSequence str, CharSequence searchStr, int fromIndex) {
         return indexOf(str, searchStr, fromIndex, true);
@@ -944,7 +956,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param fromIndex  起始位置
      * @param ignoreCase 是否忽略大小写
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     public static int indexOf(CharSequence str, CharSequence searchStr, int fromIndex, boolean ignoreCase) {
         if (str == null || searchStr == null) {
@@ -986,7 +998,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param length     截取长度
      * @param ignoreCase 是否忽略大小写
      * @return 子串是否相同 boolean
-     * @since 3.2.1
+     * @since 1.0.0
      */
     @SuppressWarnings("checkstyle:ParameterNumber")
     @Contract("null, _, _, _, _, _ -> false; !null, _, null, _, _, _ -> false")
@@ -1009,7 +1021,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str       字符串
      * @param searchStr 需要查找位置的字符串
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     public static int lastIndexOfIgnoreCase(CharSequence str, CharSequence searchStr) {
         return lastIndexOfIgnoreCase(str, searchStr, str.length());
@@ -1022,7 +1034,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param searchStr 需要查找位置的字符串
      * @param fromIndex 起始位置,从后往前计数
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     private static int lastIndexOfIgnoreCase(CharSequence str, CharSequence searchStr, int fromIndex) {
         return lastIndexOf(str, searchStr, fromIndex, true);
@@ -1036,7 +1048,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param fromIndex  起始位置,从后往前计数
      * @param ignoreCase 是否忽略大小写
      * @return 位置 int
-     * @since 3.2.1
+     * @since 1.0.0
      */
     private static int lastIndexOf(CharSequence str, CharSequence searchStr, int fromIndex, boolean ignoreCase) {
         if (str == null || searchStr == null) {
@@ -1087,7 +1099,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param searchStr 被查找的字符串,可以为null
      * @param ordinal   第几次出现的位置
      * @return 查找到的位置 int
-     * @since 3.2.3
+     * @since 1.0.0
      */
     public static int ordinalIndexOf(String str, String searchStr, int ordinal) {
         if (str == null || searchStr == null || ordinal <= 0) {
@@ -1135,7 +1147,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str2       要比较的字符串2
      * @param ignoreCase 是否忽略大小写
      * @return 如果两个字符串相同 ,或者都是<code>null</code>,则返回<code>true</code>
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Contract("null, null, _ -> true; null, !null, _ -> false; !null, null, _ -> false")
     public static boolean equals(CharSequence str1, CharSequence str2, boolean ignoreCase) {
@@ -1380,7 +1392,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str    被重复的字符
      * @param padLen 指定长度
      * @return 重复字符字符串 string
-     * @since 4.3.2
+     * @since 1.0.0
      */
     @Contract("null, _ -> null")
     private static String repeatByLength(CharSequence str, int padLen) {
@@ -1449,7 +1461,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param string 字符串
      * @param length 切割长度
      * @return 切割后后剩余的后半部分字符串 string
-     * @since 4.0.1
+     * @since 1.0.0
      */
     @Nullable
     private static String subSufByLength(CharSequence string, int length) {
@@ -1474,7 +1486,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param minLength 最小长度
      * @param padStr    补充的字符
      * @return 补充后的字符串 string
-     * @since 4.3.2
+     * @since 1.0.0
      */
     @Contract("null, _, _ -> null")
     public static String padAfter(CharSequence str, int minLength, CharSequence padStr) {
@@ -1692,7 +1704,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str      指定字符串
      * @param testStrs 需要检查的字符串数组
      * @return 是否包含任意一个字符串 boolean
-     * @since 3.2.0
+     * @since 1.0.0
      */
     public static boolean containsAny(CharSequence str, CharSequence... testStrs) {
         return null != getContainsStr(str, testStrs);
@@ -1704,7 +1716,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str      指定字符串
      * @param testStrs 需要检查的字符串数组
      * @return 被包含的第一个字符串 contains str
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Nullable
     private static String getContainsStr(CharSequence str, CharSequence... testStrs) {
@@ -1726,7 +1738,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str      指定字符串
      * @param testStrs 需要检查的字符串数组
      * @return 是否包含任意一个字符串 boolean
-     * @since 3.2.0
+     * @since 1.0.0
      */
     public static boolean containsAnyIgnoreCase(CharSequence str, CharSequence... testStrs) {
         return null != getContainsStrIgnoreCase(str, testStrs);
@@ -1739,7 +1751,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @param str      指定字符串
      * @param testStrs 需要检查的字符串数组
      * @return 被包含的第一个字符串 contains str ignore case
-     * @since 3.2.0
+     * @since 1.0.0
      */
     @Nullable
     private static String getContainsStrIgnoreCase(CharSequence str, CharSequence... testStrs) {

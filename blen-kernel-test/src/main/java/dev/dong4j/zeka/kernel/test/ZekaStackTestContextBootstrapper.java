@@ -64,7 +64,7 @@ class ZekaStackTestContextBootstrapper extends SpringBootTestContextBootstrapper
      * 获取应用名
      *
      * @param testClass test class
-     * @since 1.5.0
+     * @since 1.0.0
      */
     protected void getApplicationName(Class<?> testClass) {
         String applicationName = MergedAnnotations.from(testClass, SearchStrategy.INHERITED_ANNOTATIONS)
@@ -162,7 +162,7 @@ class ZekaStackTestContextBootstrapper extends SpringBootTestContextBootstrapper
      *
      * @param mergedConfig merged config
      * @return the class [ ]
-     * @since 1.4.0
+     * @since 1.0.0
      */
     @Override
     protected Class<?>[] getOrFindConfigurationClasses(@NotNull MergedContextConfiguration mergedConfig) {
@@ -186,7 +186,7 @@ class ZekaStackTestContextBootstrapper extends SpringBootTestContextBootstrapper
      *
      * @param classes classes
      * @return the boolean
-     * @since 1.4.0
+     * @since 1.0.0
      */
     private boolean containsNonTestComponentOverride(@NotNull Class<?>[] classes) {
         for (Class<?> candidate : classes) {

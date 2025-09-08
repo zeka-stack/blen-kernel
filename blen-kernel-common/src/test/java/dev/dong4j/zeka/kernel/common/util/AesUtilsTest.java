@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.4.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.05.20 16:59
- * @since 1.9.0
+ * @since 1.0.0
  */
 @Slf4j
 class AesUtilsTest {
@@ -18,7 +18,7 @@ class AesUtilsTest {
     /**
      * Test 1
      *
-     * @since 1.9.0
+     * @since 1.0.0
      */
     @Test
     void test_1() {

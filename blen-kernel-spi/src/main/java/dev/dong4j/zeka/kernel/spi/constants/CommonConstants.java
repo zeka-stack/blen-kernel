@@ -3,63 +3,74 @@ package dev.dong4j.zeka.kernel.spi.constants;
 import java.util.regex.Pattern;
 
 /**
- * <p>Description: </p>
+ * SPI框架通用常量定义接口，提供框架内部使用的各种常量定义
+ * <p>
+ * 该接口集中定义了SPI框架中使用的所有通用常量
+ * 包括协议名称、分隔符、正则表达式、配置键名等
+ * <p>
+ * 主要分类：
+ * - 协议相关常量（DUBBO、PROTOCOL_KEY等）
+ * - 分隔符和正则表达式（COMMA_SEPARATOR、COMMA_SPLIT_PATTERN等）
+ * - 配置键名常量（GROUP_KEY、VERSION_KEY等）
+ * - 网络地址相关常量（ANYHOST_KEY、LOCALHOST_KEY等）
+ * <p>
+ * 注意：使用@SuppressWarnings("java:S1214")抑制接口中定义常量的警告
  *
  * @author dong4j
- * @version 1.8.0
- * @email "mailto:dong4j@gmaidl.com"
+ * @version 1.0.0
+ * @email "mailto:dong4j@gmail.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S1214")
 public interface CommonConstants {
-    /** DUBBO */
+    /** Dubbo协议名称 */
     String DUBBO = "dubbo";
-    /** DUBBO_PROPERTIES_KEY */
+    /** Dubbo属性文件配置键 */
     String DUBBO_PROPERTIES_KEY = "dubbo.properties.file";
-    /** DEFAULT_DUBBO_PROPERTIES */
+    /** 默认Dubbo属性文件名 */
     String DEFAULT_DUBBO_PROPERTIES = "dubbo.properties";
-    /** COMMA_SEPARATOR */
+    /** 逗号分隔符 */
     String COMMA_SEPARATOR = ",";
-    /** COMMA_SPLIT_PATTERN */
+    /** 逗号分割正则表达式 */
     Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*[,]+\\s*");
-    /** PROTOCOL_KEY */
+    /** 协议配置键 */
     String PROTOCOL_KEY = "protocol";
-    /** REMOVE_VALUE_PREFIX */
+    /** 移除值前缀标识 */
     String REMOVE_VALUE_PREFIX = "-";
-    /** UNDERLINE_SEPARATOR */
+    /** 下划线分隔符 */
     String UNDERLINE_SEPARATOR = "_";
-    /** SEPARATOR_REGEX */
+    /** 分隔符正则表达式（下划线或连字符） */
     String SEPARATOR_REGEX = "_|-";
-    /** HIDE_KEY_PREFIX */
+    /** 隐藏键前缀 */
     String HIDE_KEY_PREFIX = ".";
-    /** DOT_REGEX */
+    /** 点号正则表达式 */
     String DOT_REGEX = "\\.";
-    /** DEFAULT_KEY_PREFIX */
+    /** 默认键前缀 */
     String DEFAULT_KEY_PREFIX = "default.";
-    /** DEFAULT_KEY */
+    /** 默认键名 */
     String DEFAULT_KEY = "default";
-    /** ANYHOST_KEY */
+    /** 任意主机配置键 */
     String ANYHOST_KEY = "anyhost";
-    /** ANYHOST_VALUE */
+    /** 任意主机地址值 */
     String ANYHOST_VALUE = "0.0.0.0";
-    /** LOCALHOST_KEY */
+    /** 本地主机配置键 */
     String LOCALHOST_KEY = "localhost";
-    /** GROUP_KEY */
+    /** 分组配置键 */
     String GROUP_KEY = "group";
-    /** PATH_KEY */
+    /** 路径配置键 */
     String PATH_KEY = "path";
-    /** INTERFACE_KEY */
+    /** 接口配置键 */
     String INTERFACE_KEY = "interface";
-    /** VERSION_KEY */
+    /** 版本配置键 */
     String VERSION_KEY = "version";
-    /** USERNAME_KEY */
+    /** 用户名配置键 */
     String USERNAME_KEY = "username";
-    /** PASSWORD_KEY */
+    /** 密码配置键 */
     String PASSWORD_KEY = "password";
-    /** HOST_KEY */
+    /** 主机配置键 */
     String HOST_KEY = "host";
-    /** PORT_KEY */
+    /** 端口配置键 */
     String PORT_KEY = "port";
 
 }

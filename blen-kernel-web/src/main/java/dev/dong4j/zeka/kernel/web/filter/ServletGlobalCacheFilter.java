@@ -16,7 +16,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
  * <p>Description: request 缓存过滤器, 优先级最高 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.03 11:51
  * @since 1.0.0
@@ -28,7 +28,7 @@ public class ServletGlobalCacheFilter extends AbstractSkipFilter {
      * Servlet global cache filter
      *
      * @param skipUrl skip url
-     * @since 2022.1.1
+     * @since 1.0.0
      */
     public ServletGlobalCacheFilter(String skipUrl) {
         super(skipUrl);

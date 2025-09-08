@@ -2,12 +2,11 @@ package dev.dong4j.zeka.kernel.common.dns.agent;
 
 import dev.dong4j.zeka.kernel.common.dns.DnsCacheManipulator;
 import dev.dong4j.zeka.kernel.common.util.FileUtils;
+import java.io.File;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:53
- * @since 1.5.0
+ * @since 1.0.0
  */
 class DcmAgentTest {
     /** Output file */
@@ -35,7 +34,7 @@ class DcmAgentTest {
      * Sets up *
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @BeforeEach
     void setUp() throws Exception {
@@ -54,7 +53,7 @@ class DcmAgentTest {
      * Tear down
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @AfterEach
     void tearDown() throws Exception {
@@ -69,7 +68,7 @@ class DcmAgentTest {
      * Test agentmain empty
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_empty() throws Exception {
@@ -80,7 +79,7 @@ class DcmAgentTest {
      * Test agentmain file
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_file() throws Exception {
@@ -94,7 +93,7 @@ class DcmAgentTest {
      * Test agentmain set
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_set() throws Exception {
@@ -106,7 +105,7 @@ class DcmAgentTest {
      * Test agentmain set to file
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_set_toFile() throws Exception {
@@ -121,7 +120,7 @@ class DcmAgentTest {
      * Test agentmain set multi ip
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_set_MultiIp() throws Exception {
@@ -133,7 +132,7 @@ class DcmAgentTest {
      * Test agentmain get
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_get() throws Exception {
@@ -145,7 +144,7 @@ class DcmAgentTest {
      * Test agentmain rm
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_rm() throws Exception {
@@ -159,7 +158,7 @@ class DcmAgentTest {
      * Test agentmain rm with file
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_rm_withFile() throws Exception {
@@ -174,7 +173,7 @@ class DcmAgentTest {
      * Test agentmain list
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_list() throws Exception {
@@ -185,7 +184,7 @@ class DcmAgentTest {
      * Test agentmain clear
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_clear() throws Exception {
@@ -198,7 +197,7 @@ class DcmAgentTest {
      * Test agentmain set policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_setPolicy() throws Exception {
@@ -210,7 +209,7 @@ class DcmAgentTest {
      * Test agentmain get policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_getPolicy() throws Exception {
@@ -223,7 +222,7 @@ class DcmAgentTest {
      * Test agentmain set negative policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_setNegativePolicy() throws Exception {
@@ -235,7 +234,7 @@ class DcmAgentTest {
      * Test agentmain get negative policy
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_getNegativePolicy() throws Exception {
@@ -248,7 +247,7 @@ class DcmAgentTest {
      * Test agentmain skip no action arguments
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_skipNoActionArguments() throws Exception {
@@ -259,7 +258,7 @@ class DcmAgentTest {
      * Test agentmain action need more argument
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_actionNeedMoreArgument() throws Exception {
@@ -278,7 +277,7 @@ class DcmAgentTest {
      * Test agentmain action too more argument
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_actionTooMoreArgument() throws Exception {
@@ -297,7 +296,7 @@ class DcmAgentTest {
      * Test agentmain unknown action
      *
      * @throws Exception exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Test
     void test_agentmain_unknownAction() throws Exception {

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Contract;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Immutable
 @SuppressWarnings("all")
@@ -33,7 +33,7 @@ public class DnsCache implements Serializable {
      *
      * @param cache         cache
      * @param negativeCache negative cache
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public DnsCache(List<DnsCacheEntry> cache, List<DnsCacheEntry> negativeCache) {
@@ -45,7 +45,7 @@ public class DnsCache implements Serializable {
      * Gets cache *
      *
      * @return the cache
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public List<DnsCacheEntry> getCache() {
         // defensive copy
@@ -56,7 +56,7 @@ public class DnsCache implements Serializable {
      * Gets negative cache *
      *
      * @return the negative cache
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public List<DnsCacheEntry> getNegativeCache() {
         // defensive copy
@@ -67,7 +67,7 @@ public class DnsCache implements Serializable {
      * To string
      *
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class DnsCache implements Serializable {
      *
      * @param o o
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(value = "null -> false", pure = true)
     @Override
@@ -106,7 +106,7 @@ public class DnsCache implements Serializable {
      * Hash code
      *
      * @return the int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public int hashCode() {

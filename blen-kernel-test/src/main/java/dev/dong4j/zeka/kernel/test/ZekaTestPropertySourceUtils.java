@@ -2,6 +2,8 @@ package dev.dong4j.zeka.kernel.test;
 
 import dev.dong4j.zeka.kernel.common.env.DefaultEnvironment;
 import dev.dong4j.zeka.kernel.common.util.Tools;
+import java.util.LinkedHashMap;
+import java.util.Properties;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,14 +14,11 @@ import org.springframework.test.context.support.TestPropertySourceUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
-import java.util.LinkedHashMap;
-import java.util.Properties;
-
 /**
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.23 16:47
  * @since 1.0.0

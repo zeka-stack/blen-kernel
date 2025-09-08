@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:59
- * @since 1.5.0
+ * @since 1.0.0
  */
 public final class ThreadContextMapFactory {
     /** THREAD_CONTEXT_KEY */
@@ -30,7 +30,7 @@ public final class ThreadContextMapFactory {
      * Initializes static variables based on system properties. Normally called when this class is initialized by the VM
      * and when Log4j is reconfigured.
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void init() {
         DefaultThreadContextMap.init();
@@ -41,7 +41,7 @@ public final class ThreadContextMapFactory {
      * Initializes static variables based on system properties. Normally called when this class is initialized by the VM
      * and when Log4j is reconfigured.
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static void initPrivate() {
         PropertiesUtils properties = PropertiesUtils.getProperties();
@@ -51,7 +51,7 @@ public final class ThreadContextMapFactory {
     /**
      * Thread context map factory
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     private ThreadContextMapFactory() {
@@ -61,7 +61,7 @@ public final class ThreadContextMapFactory {
      * Create thread context map
      *
      * @return the thread context map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull ThreadContextMap createThreadContextMap() {
         ClassLoader cl = findClassLoader();
@@ -89,7 +89,7 @@ public final class ThreadContextMapFactory {
      * Create default thread context map
      *
      * @return the thread context map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(" -> new")
     private static @NotNull ThreadContextMap createDefaultThreadContextMap() {
@@ -100,7 +100,7 @@ public final class ThreadContextMapFactory {
      * Find class loader
      *
      * @return the class loader
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static ClassLoader findClassLoader() {
         return LoaderUtils.getThreadContextClassLoader();

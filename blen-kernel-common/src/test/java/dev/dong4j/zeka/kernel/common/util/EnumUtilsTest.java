@@ -1,19 +1,18 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.junit.jupiter.api.Test;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:25
  * @since 1.0.0
@@ -39,7 +38,7 @@ class EnumUtilsTest {
     /**
      * Test add
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Test
     void test_add() {
@@ -61,7 +60,7 @@ class EnumUtilsTest {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.12.05 14:44
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public enum CodeInfoEnum {
         /** Lock code info enum */
@@ -85,7 +84,7 @@ class EnumUtilsTest {
          * @param infoId    info id
          * @param classCode class code
          * @param infoCode  info code
-         * @since 1.7.0
+         * @since 1.0.0
          */
         CodeInfoEnum(Long classId, Long infoId, String classCode, String infoCode) {
             this.classId = classId;
@@ -99,7 +98,7 @@ class EnumUtilsTest {
          *
          * @param infoId info id
          * @return the by info id
-         * @since 1.7.0
+         * @since 1.0.0
          */
         public static CodeInfoEnum getByInfoId(Long infoId) {
             return CodeInfoEnum.valueOf(infoId + "");
@@ -110,7 +109,7 @@ class EnumUtilsTest {
          *
          * @param classId class id
          * @return the by class id
-         * @since 1.7.0
+         * @since 1.0.0
          */
         public static List<CodeInfoEnum> getByClassId(Long classId) {
             return Arrays.stream(CodeInfoEnum.values()).filter(item -> item.classId.equals(classId)).collect(Collectors.toList());
@@ -122,7 +121,7 @@ class EnumUtilsTest {
          * @param classCode class code
          * @param infoCode  info code
          * @return the by class code and info code
-         * @since 1.7.0
+         * @since 1.0.0
          */
         public static CodeInfoEnum getByClassCodeAndInfoCode(String classCode, String infoCode) {
             Optional<CodeInfoEnum> opt =
@@ -134,7 +133,7 @@ class EnumUtilsTest {
          * To string
          *
          * @return the string
-         * @since 1.7.0
+         * @since 1.0.0
          */
         @Override
         public String toString() {
@@ -151,7 +150,7 @@ class EnumUtilsTest {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:25
      * @since 1.0.0

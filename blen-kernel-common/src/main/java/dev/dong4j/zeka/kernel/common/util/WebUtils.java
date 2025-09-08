@@ -44,7 +44,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
  * <p>Description: 用于处理HTTP请求的工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.27 09:40
  * @since 1.0.0
@@ -244,7 +244,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      * 获取请求的 url: http[s]://www.xxx.xx[:port]
      *
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull String getUrl() {
         return getUrl(WebUtils.getRequest());
@@ -255,7 +255,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      *
      * @param request request
      * @return the url
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull String getUrl(@NotNull HttpServletRequest request) {
         String schemeAndHost = request.getScheme() + "://" + request.getServerName();
@@ -830,7 +830,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      *
      * @param url the url
      * @return the query params
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull Map<String, Object> converterToMap(@NotNull String url) {
         try {
@@ -856,7 +856,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
      *
      * @param request request
      * @return the browser
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static String getBrowser(@NotNull HttpServletRequest request) {
         UserAgent userAgent = UserAgentUtil.parse(request.getHeader("User-Agent"));

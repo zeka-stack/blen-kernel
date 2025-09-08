@@ -36,10 +36,10 @@ import javax.tools.ToolProvider;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class JdkCompiler extends AbstractCompiler {
@@ -62,7 +62,7 @@ public class JdkCompiler extends AbstractCompiler {
     /**
      * Jdk compiler
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public JdkCompiler() {
         options = new ArrayList<String>();
@@ -96,7 +96,7 @@ public class JdkCompiler extends AbstractCompiler {
      * @param sourceCode source code
      * @return the class
      * @throws Throwable throwable
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public Class<?> doCompile(String name, String sourceCode) throws Throwable {
@@ -118,10 +118,10 @@ public class JdkCompiler extends AbstractCompiler {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.8.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmaidl.com"
      * @date 2021.02.26 17:47
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static final class JavaFileObjectImpl extends SimpleJavaFileObject {
 
@@ -135,7 +135,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param baseName base name
          * @param source   source
-         * @since 1.8.0
+         * @since 1.0.0
          */
         public JavaFileObjectImpl(final String baseName, final CharSequence source) {
             super(CompilerClassUtils.toURI(baseName + CompilerClassUtils.JAVA_EXTENSION), Kind.SOURCE);
@@ -147,7 +147,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param name name
          * @param kind kind
-         * @since 1.8.0
+         * @since 1.0.0
          */
         JavaFileObjectImpl(final String name, final Kind kind) {
             super(CompilerClassUtils.toURI(name), kind);
@@ -159,7 +159,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param uri  uri
          * @param kind kind
-         * @since 1.8.0
+         * @since 1.0.0
          */
         public JavaFileObjectImpl(URI uri, Kind kind) {
             super(uri, kind);
@@ -172,7 +172,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param ignoreEncodingErrors ignore encoding errors
          * @return the char content
          * @throws UnsupportedOperationException unsupported operation exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public CharSequence getCharContent(final boolean ignoreEncodingErrors) throws UnsupportedOperationException {
@@ -186,7 +186,7 @@ public class JdkCompiler extends AbstractCompiler {
          * Open input stream
          *
          * @return the input stream
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public InputStream openInputStream() {
@@ -197,7 +197,7 @@ public class JdkCompiler extends AbstractCompiler {
          * Open output stream
          *
          * @return the output stream
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public OutputStream openOutputStream() {
@@ -208,7 +208,7 @@ public class JdkCompiler extends AbstractCompiler {
          * Get byte code
          *
          * @return the byte [ ]
-         * @since 1.8.0
+         * @since 1.0.0
          */
         public byte[] getByteCode() {
             return bytecode.toByteArray();
@@ -219,10 +219,10 @@ public class JdkCompiler extends AbstractCompiler {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.8.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmaidl.com"
      * @date 2021.02.26 17:47
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static final class JavaFileManagerImpl extends ForwardingJavaFileManager<JavaFileManager> {
 
@@ -237,7 +237,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param fileManager file manager
          * @param classLoader class loader
-         * @since 1.8.0
+         * @since 1.0.0
          */
         public JavaFileManagerImpl(JavaFileManager fileManager, ClassLoaderImpl classLoader) {
             super(fileManager);
@@ -252,7 +252,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param relativeName relative name
          * @return the file for input
          * @throws IOException io exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public FileObject getFileForInput(Location location, String packageName, String relativeName) throws IOException {
@@ -270,7 +270,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param packageName  package name
          * @param relativeName relative name
          * @param file         file
-         * @since 1.8.0
+         * @since 1.0.0
          */
         public void putFileForInput(StandardLocation location, String packageName, String relativeName, JavaFileObject file) {
             fileObjects.put(uri(location, packageName, relativeName), file);
@@ -283,7 +283,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param packageName  package name
          * @param relativeName relative name
          * @return the uri
-         * @since 1.8.0
+         * @since 1.0.0
          */
         private URI uri(Location location, String packageName, String relativeName) {
             return CompilerClassUtils.toURI(location.getName() + '/' + packageName + '/' + relativeName);
@@ -298,7 +298,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param outputFile    output file
          * @return the java file for output
          * @throws IOException io exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public JavaFileObject getJavaFileForOutput(Location location, String qualifiedName, Kind kind, FileObject outputFile)
@@ -313,7 +313,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param location location
          * @return the class loader
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public ClassLoader getClassLoader(Location location) {
@@ -326,7 +326,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param loc  loc
          * @param file file
          * @return the string
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public String inferBinaryName(Location loc, JavaFileObject file) {
@@ -345,7 +345,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param recurse     recurse
          * @return the iterable
          * @throws IOException io exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds, boolean recurse)
@@ -389,10 +389,10 @@ public class JdkCompiler extends AbstractCompiler {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.8.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmaidl.com"
      * @date 2021.02.26 17:47
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private final class ClassLoaderImpl extends ClassLoader {
 
@@ -403,7 +403,7 @@ public class JdkCompiler extends AbstractCompiler {
          * Class loader
          *
          * @param parentClassLoader parent class loader
-         * @since 1.8.0
+         * @since 1.0.0
          */
         ClassLoaderImpl(final ClassLoader parentClassLoader) {
             super(parentClassLoader);
@@ -413,7 +413,7 @@ public class JdkCompiler extends AbstractCompiler {
          * Files
          *
          * @return the collection
-         * @since 1.8.0
+         * @since 1.0.0
          */
         Collection<JavaFileObject> files() {
             return Collections.unmodifiableCollection(classes.values());
@@ -425,7 +425,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param qualifiedClassName qualified class name
          * @return the class
          * @throws ClassNotFoundException class not found exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         protected Class<?> findClass(final String qualifiedClassName) throws ClassNotFoundException {
@@ -446,7 +446,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param qualifiedClassName qualified class name
          * @param javaFile           java file
-         * @since 1.8.0
+         * @since 1.0.0
          */
         void add(final String qualifiedClassName, final JavaFileObject javaFile) {
             classes.put(qualifiedClassName, javaFile);
@@ -459,7 +459,7 @@ public class JdkCompiler extends AbstractCompiler {
          * @param resolve resolve
          * @return the class
          * @throws ClassNotFoundException class not found exception
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         protected synchronized Class<?> loadClass(final String name, final boolean resolve) throws ClassNotFoundException {
@@ -471,7 +471,7 @@ public class JdkCompiler extends AbstractCompiler {
          *
          * @param name name
          * @return the resource as stream
-         * @since 1.8.0
+         * @since 1.0.0
          */
         @Override
         public InputStream getResourceAsStream(final String name) {

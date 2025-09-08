@@ -8,13 +8,13 @@ package dev.dong4j.zeka.kernel.common.context;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.25 20:37
- * @since 1.7.0
+ * @since 1.0.0
  */
 public interface ContextCallback {
     /**
      * 回调执行方法
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     void executor();
 
@@ -22,7 +22,7 @@ public interface ContextCallback {
      * 本回调任务名称
      *
      * @return /
-     * @since 1.7.0
+     * @since 1.0.0
      */
     default String getCallbackName() {
         return Thread.currentThread().getId() + ":" + this.getClass().getName();

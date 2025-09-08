@@ -30,7 +30,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Tables sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tablesSql() {
@@ -45,7 +45,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Table fields sql
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableFieldsSql() {
@@ -76,7 +76,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Table name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableName() {
@@ -88,7 +88,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Table comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String tableComment() {
@@ -100,7 +100,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Field name
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldName() {
@@ -112,7 +112,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Field type
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldType() {
@@ -124,7 +124,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Field comment
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldComment() {
@@ -136,7 +136,7 @@ public class FirebirdQuery extends AbstractDbQuery {
      * Field key
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String fieldKey() {

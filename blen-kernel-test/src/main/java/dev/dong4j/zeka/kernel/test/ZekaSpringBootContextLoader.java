@@ -59,7 +59,7 @@ import static org.springframework.test.context.support.TestPropertySourceUtils.c
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.23 16:34
  * @since 1.0.0
@@ -73,7 +73,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      * Gets environment *
      *
      * @return the environment
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     protected ConfigurableEnvironment getEnvironment() {
@@ -88,7 +88,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param config config
      * @return the string [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     protected String[] getInlinedProperties(@NotNull MergedContextConfiguration config) {
@@ -117,7 +117,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param config config
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private boolean notEmbeddedWebEnvironment(@NotNull MergedContextConfiguration config) {
         return !MergedAnnotations.from(config.getTestClass(), MergedAnnotations.SearchStrategy.TYPE_HIERARCHY)
@@ -132,7 +132,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param properties properties
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private boolean hasCustomServerPort(List<String> properties) {
         Binder binder = new Binder(this.convertToConfigurationPropertySource(properties));
@@ -145,7 +145,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param properties properties
      * @return the configuration property source
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("_ -> new")
     private @NotNull
@@ -228,7 +228,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.07.18 23:56
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static class WebConfigurer {
 
@@ -241,7 +241,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
          * @param configuration configuration
          * @param application   application
          * @param initializers  initializers
-         * @since 1.5.0
+         * @since 1.0.0
          */
         void configure(MergedContextConfiguration configuration, @NotNull SpringApplication application,
                        List<ApplicationContextInitializer<?>> initializers) {
@@ -256,7 +256,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
          *
          * @param initializers     initializers
          * @param webConfiguration web configuration
-         * @since 1.5.0
+         * @since 1.0.0
          */
         private void addMockServletContext(@NotNull List<ApplicationContextInitializer<?>> initializers,
                                            @NotNull WebMergedContextConfiguration webConfiguration) {
@@ -273,7 +273,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.07.18 23:56
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static class ReactiveWebConfigurer {
 
@@ -284,7 +284,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
          * Configure
          *
          * @param application application
-         * @since 1.5.0
+         * @since 1.0.0
          */
         void configure(@NotNull SpringApplication application) {
             // Spring Boot 3 中 setApplicationContextClass 方法已被移除
@@ -298,7 +298,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param environment environment
      * @param profiles    profiles
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private void setActiveProfilesOverride(ConfigurableEnvironment environment, String[] profiles) {
         TestPropertyValues.of("spring.profiles.active=" + StringUtils.arrayToCommaDelimitedString(profiles)).applyTo(environment);
@@ -312,7 +312,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      * @param environment    environment
      * @param resourceLoader resource loader
      * @param locations      locations
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static void addPropertiesFilesToEnvironment(ConfigurableEnvironment environment,
                                                         ResourceLoader resourceLoader,
@@ -338,7 +338,7 @@ public class ZekaSpringBootContextLoader extends SpringBootContextLoader {
      *
      * @param environment       environment
      * @param inlinedProperties inlined properties
-     * @since 2.1.0
+     * @since 1.0.0
      */
     private static void addInlinedPropertiesToEnvironment(ConfigurableEnvironment environment, String... inlinedProperties) {
         Assert.notNull(environment, "'environment' must not be null");

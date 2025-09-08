@@ -8,10 +8,10 @@ import java.util.Map;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 public class InmemoryConfiguration extends AbstractPrefixConfiguration {
 
@@ -23,7 +23,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
      *
      * @param prefix prefix
      * @param id     id
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public InmemoryConfiguration(String prefix, String id) {
         super(prefix, id);
@@ -32,7 +32,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
     /**
      * Inmemory configuration
      *
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public InmemoryConfiguration() {
         this(null, null);
@@ -43,7 +43,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
      *
      * @param key key
      * @return the internal property
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public Object getInternalProperty(String key) {
@@ -55,7 +55,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
      *
      * @param key   key
      * @param value value
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void addProperty(String key, String value) {
         this.store.put(key, value);
@@ -65,7 +65,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
      * Add properties
      *
      * @param properties properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void addProperties(Map<String, String> properties) {
         if (properties != null) {
@@ -77,7 +77,7 @@ public class InmemoryConfiguration extends AbstractPrefixConfiguration {
      * Sets properties *
      *
      * @param properties properties
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public void setProperties(Map<String, String> properties) {
         if (properties != null) {

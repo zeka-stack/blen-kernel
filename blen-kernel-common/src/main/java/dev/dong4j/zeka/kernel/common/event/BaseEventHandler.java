@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationEvent;
  *
  * @param <T> the type parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.11.20 17:01
  * @since 1.0.0

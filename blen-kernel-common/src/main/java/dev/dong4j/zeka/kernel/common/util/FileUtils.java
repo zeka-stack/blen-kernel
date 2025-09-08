@@ -37,7 +37,7 @@ import org.springframework.web.multipart.MultipartFile;
  * <p>Description: 文件工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:26
  * @since 1.0.0
@@ -615,7 +615,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      *
      * @param path path
      * @return the string
-     * @since 1.4.0
+     * @since 1.0.0
      */
     public static @NotNull String toPath(String path) {
         File logFile = new File(path);
@@ -629,7 +629,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * 默认为true
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:26
      * @since 1.0.0
@@ -661,7 +661,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      *
      * @param file file
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static void touch(@NotNull File file) throws IOException {
         if (!file.exists()) {
@@ -681,7 +681,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * @param file file
      * @return the file output stream
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public static @NotNull FileOutputStream openOutputStream(File file) throws IOException {
         return openOutputStream(file, false);
@@ -694,7 +694,7 @@ public class FileUtils extends org.springframework.util.FileCopyUtils {
      * @param append append
      * @return the file output stream
      * @throws IOException io exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract("_, _ -> new")
     public static @NotNull FileOutputStream openOutputStream(@NotNull File file, boolean append) throws IOException {

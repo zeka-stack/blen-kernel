@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Contract;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:21
- * @since 1.4.0
+ * @since 1.0.0
  */
 public class PropertiesPropertySource implements PropertySource {
 
@@ -27,7 +27,7 @@ public class PropertiesPropertySource implements PropertySource {
      * Properties property source
      *
      * @param properties properties
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(pure = true)
     public PropertiesPropertySource(Properties properties) {
@@ -38,7 +38,7 @@ public class PropertiesPropertySource implements PropertySource {
      * Gets priority *
      *
      * @return the priority
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public int getPriority() {
@@ -49,7 +49,7 @@ public class PropertiesPropertySource implements PropertySource {
      * For each
      *
      * @param action action
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public void forEach(BiConsumer<String, String> action) {
@@ -63,7 +63,7 @@ public class PropertiesPropertySource implements PropertySource {
      *
      * @param tokens tokens
      * @return the normal form
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public CharSequence getNormalForm(Iterable<? extends CharSequence> tokens) {

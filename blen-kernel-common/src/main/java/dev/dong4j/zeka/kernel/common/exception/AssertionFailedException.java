@@ -9,7 +9,7 @@ import java.io.Serial;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.18 00:26
- * @since 1.7.0
+ * @since 1.0.0
  */
 public class AssertionFailedException extends ServiceInternalException {
     /** serialVersionUID */
@@ -21,7 +21,7 @@ public class AssertionFailedException extends ServiceInternalException {
     /**
      * Basic exception
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public AssertionFailedException() {
         super();
@@ -31,7 +31,7 @@ public class AssertionFailedException extends ServiceInternalException {
      * Base exception
      *
      * @param describe describe
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public AssertionFailedException(String describe) {
         super(DEFAULT_MESSAGE + describe);

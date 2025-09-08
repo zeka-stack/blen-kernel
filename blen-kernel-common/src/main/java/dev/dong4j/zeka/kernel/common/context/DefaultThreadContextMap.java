@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.04 19:28
- * @since 1.4.0
+ * @since 1.0.0
  */
 public class DefaultThreadContextMap implements ThreadContextMap {
 
@@ -45,7 +45,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param isMapEnabled is map enabled
      * @return the thread local
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static @NotNull
     ThreadLocal<Map<String, String>> createThreadLocalMap(boolean isMapEnabled) {
@@ -66,7 +66,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
     /**
      * Init
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static void init() {
         inheritableMap = PropertiesUtils.getProperties().getBooleanProperty(INHERITABLE_MAP);
@@ -75,7 +75,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
     /**
      * Default thread context map
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public DefaultThreadContextMap() {
         this(true);
@@ -85,7 +85,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Default thread context map
      *
      * @param useMap use map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public DefaultThreadContextMap(boolean useMap) {
         this.useMap = useMap;
@@ -97,7 +97,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param key   key
      * @param value value
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public void put(String key, String value) {
@@ -114,7 +114,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Put all
      *
      * @param m m
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public void putAll(Map<String, String> m) {
         if (!this.useMap) {
@@ -131,7 +131,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param key key
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public String get(String key) {
@@ -143,7 +143,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Remove
      *
      * @param key key
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public void remove(String key) {
@@ -159,7 +159,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Remove all
      *
      * @param keys keys
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public void removeAll(Iterable<String> keys) {
         Map<String, String> map = this.localMap.get();
@@ -175,7 +175,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
     /**
      * Clear
      *
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public void clear() {
@@ -186,7 +186,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * To map
      *
      * @return the map
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public Map<String, String> toMap() {
         return this.getCopy();
@@ -197,7 +197,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param key key
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public boolean containsKey(String key) {
@@ -210,7 +210,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param <V>    parameter
      * @param action action
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public <V> void forEach(BiConsumer<String, ? super V> action) {
         Map<String, String> map = this.localMap.get();
@@ -231,7 +231,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * @param <S>    parameter
      * @param action action
      * @param state  state
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public <V, S> void forEach(TriConsumer<String, ? super V, S> action, S state) {
         Map<String, String> map = this.localMap.get();
@@ -250,7 +250,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * @param <V> parameter
      * @param key key
      * @return the value
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
     public <V> V getValue(String key) {
@@ -262,7 +262,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Gets copy *
      *
      * @return the copy
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public Map<String, String> getCopy() {
@@ -274,7 +274,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Gets immutable map or null *
      *
      * @return the immutable map or null
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public Map<String, String> getImmutableMapOrNull() {
@@ -285,7 +285,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Is empty
      *
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public boolean isEmpty() {
@@ -297,7 +297,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Size
      *
      * @return the int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public int size() {
         Map<String, String> map = this.localMap.get();
@@ -308,7 +308,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * To string
      *
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {
@@ -320,7 +320,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * Hash code
      *
      * @return the int
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public int hashCode() {
@@ -337,7 +337,7 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      *
      * @param obj obj
      * @return the boolean
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Contract(value = "null -> false", pure = true)
     @Override

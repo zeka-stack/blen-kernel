@@ -30,7 +30,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.21 22:34
- * @since 1.7.0
+ * @since 1.0.0
  */
 @Slf4j
 @ConditionalOnClass(ThreadPoolTaskExecutor.class)
@@ -45,7 +45,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      * @param taskExecutorCustomizers ThreadPoolTaskExecutor 业务端配置
      * @param taskDecorator           task decorator
      * @return the task executor builder
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Bean
     @Primary
@@ -80,7 +80,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      *
      * @param builder builder
      * @return the thread pool task executor
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Lazy
     @Primary
@@ -94,7 +94,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      *
      * @param boostExecutor boost executor
      * @return the executor service
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Bean(name = BasicConstant.BOOST_EXECUTORSERVICE)
     @ConditionalOnMissingBean(ExecutorService.class)
@@ -106,7 +106,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      * Mdc task decorator
      *
      * @return the task decorator
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Bean
     public TaskDecorator mdcTaskDecorator() {
@@ -117,7 +117,7 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      * Task executor customizer
      *
      * @return the task executor customizer
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @Bean
     public ThreadPoolTaskExecutorCustomizer consumerTaskExecutorCustomizer() {

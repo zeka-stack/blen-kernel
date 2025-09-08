@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: 枚举工具类</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:22
  * @since 1.0.0
@@ -92,7 +92,7 @@ public class EnumUtils {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.12.03 14:33
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static class DynamicEnum {
         /** reflectionFactory */
@@ -107,7 +107,7 @@ public class EnumUtils {
          * @param enumName   枚举名
          * @param paramClass 枚举中包含的字段类型
          * @param paramValue 枚举中包含的字段对应的值
-         * @since 1.7.0
+         * @since 1.0.0
          */
         @SuppressWarnings("unchecked")
         public static <T extends Enum<?>> void addEnum(Class<T> enumType,
@@ -168,7 +168,7 @@ public class EnumUtils {
          * @param additionalValues 枚举中包含的字段对应的值
          * @return the object 枚举
          * @throws Exception exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         private static Object makeEnum(Class<?> enumClass,
                                        String enumName,
@@ -189,7 +189,7 @@ public class EnumUtils {
          * @param additionalParameterTypes 枚举中包含的字段类型
          * @return the constructor accessor 枚举构造方法
          * @throws NoSuchMethodException no such method exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         private static jdk.internal.reflect.ConstructorAccessor getConstructorAccessor(Class<?> enumClass,
                                                                                        Class<?>[] additionalParameterTypes)
@@ -209,7 +209,7 @@ public class EnumUtils {
          * @param value  枚举值
          * @throws NoSuchFieldException   no such field exception
          * @throws IllegalAccessException illegal access exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         private static void setFailsafeFieldValue(Field field, Object target, Object value) throws NoSuchFieldException,
             IllegalAccessException {
@@ -229,7 +229,7 @@ public class EnumUtils {
          * @param enumClass 枚举字段
          * @throws NoSuchFieldException   no such field exception
          * @throws IllegalAccessException illegal access exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         private static void cleanEnumCache(Class<?> enumClass) throws NoSuchFieldException, IllegalAccessException {
             blankField(enumClass, "enumConstantDirectory");
@@ -243,7 +243,7 @@ public class EnumUtils {
          * @param fieldName field name
          * @throws NoSuchFieldException   no such field exception
          * @throws IllegalAccessException illegal access exception
-         * @since 1.7.0
+         * @since 1.0.0
          */
         private static void blankField(Class<?> enumClass, String fieldName) throws NoSuchFieldException,
             IllegalAccessException {

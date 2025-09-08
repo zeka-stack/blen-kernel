@@ -2,16 +2,15 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Map;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description:  </p>
@@ -20,7 +19,7 @@ import java.util.Map;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2021.07.22 16:17
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @UtilityClass
@@ -31,7 +30,7 @@ public class UrlUtils extends org.springframework.web.util.UriUtils {
      *
      * @param map map
      * @return the string
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static String buildUrlParamsByMap(Map<String, String> map) {
         if (map == null) {
@@ -53,7 +52,7 @@ public class UrlUtils extends org.springframework.web.util.UriUtils {
      *
      * @param param param
      * @return the map
-     * @since 1.7.0
+     * @since 1.0.0
      */
     public static @NotNull Map<String, String> buildMapByUrlParams(String param) {
         Map<String, String> map = Maps.newHashMap();

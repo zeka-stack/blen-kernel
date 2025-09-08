@@ -5,7 +5,7 @@ package dev.dong4j.zeka.kernel.test.mock;
  *
  * @param <T> the type parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:06
  * @since 1.0.0

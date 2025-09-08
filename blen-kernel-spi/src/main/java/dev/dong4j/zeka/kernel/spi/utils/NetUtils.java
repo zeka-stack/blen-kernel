@@ -1,11 +1,10 @@
 package dev.dong4j.zeka.kernel.spi.utils;
 
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.regex.Pattern;
+import lombok.extern.slf4j.Slf4j;
 
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.LOCALHOST_KEY;
 
@@ -13,10 +12,10 @@ import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.LOCALHOST_KEY
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @Slf4j
 @SuppressWarnings("all")
@@ -30,7 +29,7 @@ public class NetUtils {
      *
      * @param host host
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static boolean isLocalHost(String host) {
         return host != null
@@ -43,7 +42,7 @@ public class NetUtils {
      *
      * @param hostName host name
      * @return the ip by host
-     * @since 1.8.0
+     * @since 1.0.0
      */
     public static String getIpByHost(String hostName) {
         try {

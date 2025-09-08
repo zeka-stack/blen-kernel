@@ -51,7 +51,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param configBuilder config builder
      * @return the abstract template engine
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public AbstractTemplateEngine init(ConfigBuilder configBuilder) {
         this.configBuilder = configBuilder;
@@ -63,7 +63,7 @@ public abstract class AbstractTemplateEngine {
      * 输出 java xml 文件
      *
      * @return the abstract template engine
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public AbstractTemplateEngine batchOutput() {
         try {
@@ -186,7 +186,7 @@ public abstract class AbstractTemplateEngine {
      * @param tableInfo       table info
      * @param field           field
      * @param injectionConfig injection config
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static void addEnumImport(TableInfo tableInfo,
                                       TableField field,
@@ -212,7 +212,7 @@ public abstract class AbstractTemplateEngine {
      * @param templatePath template path
      * @param outputFile   output file
      * @throws Exception exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected void writerFile(Map<String, Object> objectMap, String templatePath, String outputFile) throws Exception {
         if (StringUtils.isNotBlank(templatePath)) this.writer(objectMap, templatePath, outputFile);
@@ -225,7 +225,7 @@ public abstract class AbstractTemplateEngine {
      * @param templatePath 模板文件
      * @param outputFile   文件生成的目录
      * @throws Exception exception
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public abstract void writer(Map<String, Object> objectMap, String templatePath, String outputFile) throws Exception;
 
@@ -233,7 +233,7 @@ public abstract class AbstractTemplateEngine {
      * 处理输出目录
      *
      * @return the abstract template engine
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public AbstractTemplateEngine mkdirs() {
         getConfigBuilder().getPathInfo().forEach((key, value) -> {
@@ -252,7 +252,7 @@ public abstract class AbstractTemplateEngine {
     /**
      * 打开输出目录
      *
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public void open() {
         String outDir = getConfigBuilder().getGlobalConfig().getOutputDir();
@@ -281,7 +281,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param tableInfo 表信息对象
      * @return ignore object map
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Map<String, Object> getObjectMap(TableInfo tableInfo) {
         Map<String, Object> objectMap = new HashMap<>();
@@ -336,7 +336,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param classPacket ignore
      * @return ignore string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String verifyClassPacket(String classPacket) {
         return StringUtils.isBlank(classPacket) ? null : classPacket;
@@ -347,7 +347,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param classPath ignore
      * @return ignore super class name
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private String getSuperClassName(String classPath) {
         if (StringUtils.isBlank(classPath)) {
@@ -362,7 +362,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param filePath 文件路径
      * @return ignore string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public abstract String templateFilePath(String filePath);
 
@@ -373,7 +373,7 @@ public abstract class AbstractTemplateEngine {
      * @param fileType file type
      * @param filePath file path
      * @return 文件是否存在 boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected boolean isCreate(FileType fileType, String filePath) {
         ConfigBuilder cb = getConfigBuilder();
@@ -395,7 +395,7 @@ public abstract class AbstractTemplateEngine {
      * 文件后缀
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected String suffixJavaOrKt() {
         return getConfigBuilder().getGlobalConfig().isKotlin() ? ConstVal.KT_SUFFIX : ConstVal.JAVA_SUFFIX;
@@ -406,7 +406,7 @@ public abstract class AbstractTemplateEngine {
      * Gets config builder *
      *
      * @return the config builder
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public ConfigBuilder getConfigBuilder() {
         return configBuilder;
@@ -417,7 +417,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param configBuilder config builder
      * @return the config builder
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public AbstractTemplateEngine setConfigBuilder(ConfigBuilder configBuilder) {
         this.configBuilder = configBuilder;
@@ -429,7 +429,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param input input
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static String camelToHyphen(String input) {
         return wordsToHyphenCase(wordsAndHyphenAndCamelToConstantCase(input));
@@ -440,7 +440,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param s s
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static String wordsToHyphenCase(String s) {
         StringBuilder buf = new StringBuilder();
@@ -471,7 +471,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param input input
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static String wordsAndHyphenAndCamelToConstantCase(String input) {
         StringBuilder buf = new StringBuilder();
@@ -506,7 +506,7 @@ public abstract class AbstractTemplateEngine {
      *
      * @param c c
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     private static boolean shouldReplace(char c) {
         return (c == '.') || (c == '_') || (c == '-');

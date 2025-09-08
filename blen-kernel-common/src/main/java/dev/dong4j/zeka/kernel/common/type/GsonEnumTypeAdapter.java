@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.29 22:03
- * @since 1.5.0
+ * @since 1.0.0
  */
 @Slf4j
 public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implements JsonSerializer<E>, JsonDeserializer<E> {
@@ -39,7 +39,7 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
      * Gson enum type adapter
      *
      * @param enumType enum type
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public GsonEnumTypeAdapter(@NotNull Class<E> enumType) {
         this.enumType = enumType;
@@ -61,7 +61,7 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
      * @param jsonDeserializationContext json deserialization context
      * @return the e
      * @throws JsonParseException json parse exception
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -108,7 +108,7 @@ public class GsonEnumTypeAdapter<E extends Enum<E> & SerializeEnum<?>> implement
      * @param type                     type
      * @param jsonSerializationContext json serialization context
      * @return the json element
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @Override
     public JsonElement serialize(E e, Type type, JsonSerializationContext jsonSerializationContext) {

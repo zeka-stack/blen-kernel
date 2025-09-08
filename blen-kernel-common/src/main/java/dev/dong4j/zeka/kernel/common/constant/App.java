@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
  * <p>Description: 系统常量</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:40
  * @since 1.0.0
@@ -78,7 +78,7 @@ public final class App {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2021.01.20 01:43
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @UtilityClass
     public static final class BuildInfo {
@@ -97,7 +97,7 @@ public final class App {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2021.01.20 01:50
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @UtilityClass
     public static final class GitInfo {
@@ -125,7 +125,7 @@ public final class App {
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2021.01.16 02:32
-     * @since 1.7.1
+     * @since 1.0.0
      */
     @UtilityClass
     public static class Components {

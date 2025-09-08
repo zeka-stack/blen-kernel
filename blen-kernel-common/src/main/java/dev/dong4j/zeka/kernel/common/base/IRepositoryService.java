@@ -8,7 +8,7 @@ package dev.dong4j.zeka.kernel.common.base;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.23 21:16
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings("java:S119")
 public interface IRepositoryService<DTO> extends ICrudDelegate<DTO> {

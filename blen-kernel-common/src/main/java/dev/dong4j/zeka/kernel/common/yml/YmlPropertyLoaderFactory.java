@@ -26,7 +26,7 @@ import org.springframework.util.PropertiesPersister;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 20:43
  * @since 1.0.0
@@ -84,7 +84,7 @@ public class YmlPropertyLoaderFactory extends DefaultPropertySourceFactory {
      *
      * @param resource resource
      * @return the name for resource
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private static String getNameForResource(@NotNull Resource resource) {
         String name = resource.getDescription();

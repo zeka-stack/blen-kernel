@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Description: Base64工具 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:45
  * @since 1.0.0
@@ -165,7 +165,7 @@ public class Base64Utils {
      *
      * @param src the original byte array
      * @return the encoded byte array
-     * @since 4.2.4
+     * @since 1.0.0
      */
     public static byte[] encodeUrlSafe(byte[] src) {
         if (src.length == 0) {
@@ -180,7 +180,7 @@ public class Base64Utils {
      *
      * @param src the encoded byte array
      * @return the original byte array
-     * @since 4.2.4
+     * @since 1.0.0
      */
     public static byte[] decodeUrlSafe(byte[] src) {
         if (src.length == 0) {

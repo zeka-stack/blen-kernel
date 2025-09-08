@@ -16,7 +16,7 @@ import org.springframework.beans.factory.InitializingBean;
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 11:28
  * @since 1.0.0
@@ -69,7 +69,7 @@ public interface ZekaAutoConfiguration extends InitializingBean, DisposableBean 
      * Gets library types *
      *
      * @return the library types
-     * @since 1.7.1
+     * @since 1.0.0
      */
     default List<LibraryEnum> getLibraryTypes() {
         return Collections.emptyList();
@@ -108,7 +108,7 @@ public interface ZekaAutoConfiguration extends InitializingBean, DisposableBean 
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 11:28
      * @since 1.0.0

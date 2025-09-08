@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  *
  * @param <T> the type parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.03 19:31
  * @since 1.0.0
@@ -52,7 +52,7 @@ public interface SerializeEnum<T extends Serializable> {
      * Type
      *
      * @return the class
-     * @since 1.5.0
+     * @since 1.0.0
      */
     default Class<?> valueClass() {
         return this.getValue().getClass();
@@ -129,7 +129,7 @@ public interface SerializeEnum<T extends Serializable> {
      * @param clz   clz
      * @param value value
      * @return the enum by order
-     * @since 2022.1.1
+     * @since 1.0.0
      * @deprecated 不再使用下标查找枚举
      */
     @SuppressWarnings("unchecked")

@@ -10,7 +10,7 @@ import sun.net.util.IPAddressUtil;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.09 19:52
- * @since 1.5.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public final class IpParserUtils {
@@ -19,7 +19,7 @@ public final class IpParserUtils {
      *
      * @param ip ip
      * @return the byte [ ]
-     * @since 1.5.0
+     * @since 1.0.0
      */
     static byte @NotNull [] ip2ByteArray(@NotNull String ip) {
         boolean ipv6Expected = false;

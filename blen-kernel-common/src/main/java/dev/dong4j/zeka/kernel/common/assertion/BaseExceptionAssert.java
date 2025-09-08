@@ -7,7 +7,7 @@
 //  * <p>Description: 全局错误异常断言 </p>
 //  *
 //  * @author dong4j
-//  * @version 1.2.3
+//  * @version 1.0.0
 //  * @email "mailto:dong4j@gmail.com"
 //  * @date 2019.12.24 12:20
 //  * @since 1.0.0

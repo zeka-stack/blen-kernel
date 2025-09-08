@@ -2,20 +2,19 @@ package dev.dong4j.zeka.kernel.common.metadata;
 
 import dev.dong4j.zeka.kernel.common.enums.FieldFill;
 import dev.dong4j.zeka.kernel.common.reflection.MetaObject;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 元对象字段填充控制器抽象类, 实现公共字段自动写入<p>
  * 所有入参的 MetaObject 必定是 entity 或其子类的 MetaObject
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.12 14:36
  * @since 1.0.0
@@ -39,7 +38,7 @@ public interface MetaObjectHandler {
      * 暂时不确定什么时候会移出此开关,请尽快使用新的Id生成策略来生成Id
      *
      * @return 是否启用 boolean
-     * @since 3.3.0
+     * @since 1.0.0
      */
     default boolean compatibleFillId() {
         return false;

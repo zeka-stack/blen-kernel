@@ -1,16 +1,15 @@
 package dev.dong4j.zeka.kernel.common.env;
 
+import java.util.regex.Pattern;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.Assert;
-
-import java.util.regex.Pattern;
 
 /**
  * <p>Description: 安全过滤 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.26 20:40
  * @since 1.0.0

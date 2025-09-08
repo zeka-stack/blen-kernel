@@ -24,27 +24,30 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.util.CollectionUtils;
 
 /**
- * <p>Description:  </p>
+ * 验证工具类，提供高级的Bean Validation功能和统一的错误处理
+ *
+ * 该类实现了ApplicationContextInitializer接口，支持Spring容器集成
+ * 提供了丰富的验证方法，支持分组验证、错误消息处理和异常抛出
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.18 11:59
  * @since 1.0.0
  */
 public class ValidatorUtils implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-    /** validator */
+    /** 验证器实例 */
     private static Validator validator;
-    /** MAPPER */
+    /** JSON对象映射器 */
     private static final ObjectMapper MAPPER = Jsons.getCopyMapper();
-    /** applicationContext */
+    /** Spring应用上下文 */
     private static ConfigurableApplicationContext applicationContext = null;
 
     /**
-     * Initialize the given application context.
+     * 初始化Spring应用上下文
      *
-     * @param applicationContext the application to configure
-     * @since 1.6.0
+     * @param applicationContext 可配置的应用上下文
+     * @since 1.0.0
      */
     @Override
     public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
@@ -52,12 +55,12 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
     }
 
     /**
-     * Validate result process optional
+     * 验证对象并处理验证结果
      *
-     * @param obj    待验证的实体参数
-     * @param groups 分组验证接口
-     * @return the optional
-     * @throws ValidationException validation exception
+     * @param obj    待验证的实体对象
+     * @param groups 分组验证接口数组
+     * @return 验证错误信息的Optional
+     * @throws ValidationException 验证异常
      * @since 1.0.0
      */
     public static Optional<String> validateResultProcess(Object obj, Class<?>... groups) throws ValidationException {
@@ -150,7 +153,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
      * Gets validator *
      *
      * @return the validator
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Validator getValidator() {
         if (ValidatorUtils.validator == null) {
@@ -167,7 +170,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.5
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.04 11:37
      * @since 1.0.0
@@ -184,7 +187,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.5
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.04 11:37
      * @since 1.0.0
@@ -201,7 +204,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.5
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.03.04 11:37
      * @since 1.0.0
@@ -211,7 +214,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
          * <p>Description: </p>
          *
          * @author dong4j
-         * @version 1.2.5
+         * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2020.03.04 11:37
          * @since 1.0.0
@@ -223,7 +226,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
          * <p>Description: </p>
          *
          * @author dong4j
-         * @version 1.2.5
+         * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2020.03.04 11:37
          * @since 1.0.0
@@ -235,7 +238,7 @@ public class ValidatorUtils implements ApplicationContextInitializer<Configurabl
          * <p>Description: </p>
          *
          * @author dong4j
-         * @version 1.2.5
+         * @version 1.0.0
          * @email "mailto:dong4j@gmail.com"
          * @date 2020.03.04 11:37
          * @since 1.0.0

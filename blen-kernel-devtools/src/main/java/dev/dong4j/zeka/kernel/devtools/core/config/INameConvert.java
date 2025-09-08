@@ -34,7 +34,7 @@ public interface INameConvert {
      *
      * @param tableInfo 表信息对象
      * @return string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String entityNameConvert(TableInfo tableInfo);
 
@@ -43,7 +43,7 @@ public interface INameConvert {
      *
      * @param field 表字段对象，如果属性表字段命名不一致注意 convert 属性的设置
      * @return string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     String propertyNameConvert(TableField field);
 }

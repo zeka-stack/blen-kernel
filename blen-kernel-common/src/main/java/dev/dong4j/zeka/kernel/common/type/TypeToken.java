@@ -1,17 +1,16 @@
 package dev.dong4j.zeka.kernel.common.type;
 
 import dev.dong4j.zeka.kernel.common.type.exception.TypeException;
-import lombok.Getter;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import lombok.Getter;
 
 /**
  * <p>Description: </p>
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 14:47
  * @since 1.0.0

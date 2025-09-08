@@ -87,7 +87,7 @@ public class TableInfo {
      *
      * @param convert convert
      * @return the convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableInfo setConvert(boolean convert) {
         this.convert = convert;
@@ -99,7 +99,7 @@ public class TableInfo {
      *
      * @param strategyConfig strategy config
      * @return the convert
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     protected TableInfo setConvert(StrategyConfig strategyConfig) {
         if (strategyConfig.startsWithTablePrefix(name) || strategyConfig.isEntityTableFieldAnnotationEnable()) {
@@ -128,7 +128,7 @@ public class TableInfo {
      * @param strategyConfig strategy config
      * @param entityName     entity name
      * @return the entity name
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableInfo setEntityName(StrategyConfig strategyConfig, String entityName) {
         this.entityName = entityName;
@@ -141,7 +141,7 @@ public class TableInfo {
      *
      * @param fields fields
      * @return the fields
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableInfo setFields(List<TableField> fields) {
         this.fields = fields;
@@ -179,7 +179,7 @@ public class TableInfo {
      *
      * @param pkg pkg
      * @return the import packages
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public TableInfo setImportPackages(String pkg) {
         if (importPackages.contains(pkg)) {
@@ -195,7 +195,7 @@ public class TableInfo {
      *
      * @param logicDeletePropertyName logic delete property name
      * @return the boolean
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public boolean isLogicDelete(String logicDeletePropertyName) {
         return fields.parallelStream().anyMatch(tf -> tf.getName().equals(logicDeletePropertyName));
@@ -205,7 +205,7 @@ public class TableInfo {
      * 转换filed实体为 xml mapper 中的 base column 字符串信息
      *
      * @return the field names
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public String getFieldNames() {
         if (StringUtils.isBlank(fieldNames)

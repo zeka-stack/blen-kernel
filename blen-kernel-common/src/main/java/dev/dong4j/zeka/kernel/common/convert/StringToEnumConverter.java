@@ -3,13 +3,6 @@ package dev.dong4j.zeka.kernel.common.convert;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import dev.dong4j.zeka.kernel.common.util.ConvertUtils;
 import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.core.convert.converter.ConditionalGenericConverter;
-import org.springframework.lang.Nullable;
-
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -19,12 +12,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.ConditionalGenericConverter;
+import org.springframework.lang.Nullable;
 
 /**
  * <p>Description: 接收参数 同 jackson String -> Enum 转换 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:06
  * @since 1.0.0
@@ -151,15 +150,13 @@ public class StringToEnumConverter implements ConditionalGenericConverter {
     @Nullable
     private static Object invoke(Class<?> clazz, AccessibleObject accessibleObject, String value)
         throws IllegalAccessException, InvocationTargetException, InstantiationException {
-        if (accessibleObject instanceof Constructor) {
-            @SuppressWarnings("rawtypes") Constructor constructor = (Constructor) accessibleObject;
+        if (accessibleObject instanceof @SuppressWarnings("rawtypes")Constructor constructor) {
             Class<?> paramType = constructor.getParameterTypes()[0];
             // 类型转换
             Object object = ConvertUtils.convert(value, paramType);
             return constructor.newInstance(object);
         }
-        if (accessibleObject instanceof Method) {
-            Method method = (Method) accessibleObject;
+        if (accessibleObject instanceof Method method) {
             Class<?> paramType = method.getParameterTypes()[0];
             // 类型转换
             Object object = ConvertUtils.convert(value, paramType);

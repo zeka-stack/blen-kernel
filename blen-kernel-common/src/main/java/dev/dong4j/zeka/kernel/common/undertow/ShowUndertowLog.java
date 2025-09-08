@@ -11,12 +11,11 @@ import io.undertow.server.handlers.form.FormDataParser;
 import io.undertow.util.HeaderValues;
 import io.undertow.util.Headers;
 import io.undertow.util.LocaleUtils;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.Map;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Description: 自定义输出容器请求日志, 主要为了解决动态开关问题</p>
@@ -27,7 +26,7 @@ import java.util.Map;
  * @date 2021.04.25 12:49
  * @see AccessLogHandler
  * @see RequestDumpingHandler
- * @since 1.7.3
+ * @since 1.0.0
  */
 @Slf4j
 @UtilityClass
@@ -38,7 +37,7 @@ public class ShowUndertowLog {
      * Show log
      *
      * @param exchange exchange
-     * @since 1.7.3
+     * @since 1.0.0
      */
     public static void showLog(HttpServerExchange exchange, boolean showLog) {
         if (showLog && log.isTraceEnabled()) {
@@ -147,7 +146,7 @@ public class ShowUndertowLog {
      *
      * @param exchange exchange
      * @param sb       sb
-     * @since 1.7.3
+     * @since 1.0.0
      */
     private static void dumpRequestBody(HttpServerExchange exchange, StringBuilder sb) {
         try {

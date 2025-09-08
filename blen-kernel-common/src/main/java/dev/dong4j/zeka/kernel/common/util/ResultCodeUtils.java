@@ -22,10 +22,10 @@ import static java.util.stream.Collectors.toMap;
  * <p>Description: 根据错误码生成一定规则的错误编码【A-项目标识-错误码】 </p>
  *
  * @author dong4j
- * @version 1.5.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.06.11 09:58
- * @since 1.4.0
+ * @since 1.0.0
  */
 @UtilityClass
 public class ResultCodeUtils {
@@ -38,7 +38,7 @@ public class ResultCodeUtils {
      * 初始化枚举类字段等到缓存Map中
      *
      * @param resultCode result code
-     * @since 1.5.0
+     * @since 1.0.0
      */
     private void initEnumMap(@NotNull IResultCode resultCode) {
         String simpleName = resultCode.getClass().getSimpleName();
@@ -56,7 +56,7 @@ public class ResultCodeUtils {
      *
      * @param resultCode result code
      * @return the string
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public @NotNull String generateCode(@NotNull IResultCode resultCode) {
         String enumName = resultCode.name();
@@ -99,7 +99,7 @@ public class ResultCodeUtils {
      *
      * @param code code
      * @return the integer
-     * @since 1.5.0
+     * @since 1.0.0
      */
     @SuppressWarnings("all")
     public @NotNull Integer convert(String code) {
@@ -120,7 +120,7 @@ public class ResultCodeUtils {
      *
      * @param result result
      * @return the integer
-     * @since 1.5.0
+     * @since 1.0.0
      */
     public @NotNull Integer convert(Result<?> result) {
         Assertions.notNull(result, "result 不能为 空");

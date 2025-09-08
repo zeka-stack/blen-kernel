@@ -2,7 +2,6 @@ package dev.dong4j.zeka.kernel.common.asserts;
 
 import dev.dong4j.zeka.kernel.common.exception.AssertionFailedException;
 import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
-
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,14 +13,14 @@ import java.util.regex.Pattern;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.18 17:12
- * @since 1.7.0
+ * @since 1.0.0
  */
 final class AssertNotMatch {
 
     /**
      * Assert not null
      *
-     * @since 1.7.0
+     * @since 1.0.0
      */
     private AssertNotMatch() {
     }
@@ -43,7 +42,7 @@ final class AssertNotMatch {
      * @param regex        regex
      * @param beTestString be test string
      * @param message      message
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void notMatch(String regex, String beTestString, String message) {
         notMatch(regex, beTestString, () -> new AssertionFailedException(message));
@@ -55,7 +54,7 @@ final class AssertNotMatch {
      * @param regex           regex
      * @param beTestString    be test string
      * @param messageSupplier message supplier
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void notMatch(String regex, String beTestString, Supplier<? extends RuntimeException> messageSupplier) {
         notMatch(regex, beTestString, messageSupplier, () -> {
@@ -69,7 +68,7 @@ final class AssertNotMatch {
      * @param beTestString    be test string
      * @param messageSupplier message supplier
      * @param runnable        runnable
-     * @since 1.7.0
+     * @since 1.0.0
      */
     static void notMatch(String regex, String beTestString, Supplier<? extends RuntimeException> messageSupplier,
                          CheckedRunnable runnable) {

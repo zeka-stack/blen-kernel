@@ -11,10 +11,10 @@ import lombok.experimental.UtilityClass;
  * </code>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:42
- * @since 1.2.3
+ * @since 1.0.0
  * @deprecated 请使用 {@link Assertions} 或 ErrorCodes 的方式代替
  */
 @UtilityClass

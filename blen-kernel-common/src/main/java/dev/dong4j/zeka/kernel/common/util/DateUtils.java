@@ -2,11 +2,6 @@ package dev.dong4j.zeka.kernel.common.util;
 
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.Assert;
-
 import java.text.ParseException;
 import java.time.Duration;
 import java.time.Instant;
@@ -24,12 +19,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.Assert;
 
 /**
  * <p>Description: 日期工具类 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.09 10:38
  * @since 1.0.0
@@ -450,7 +449,7 @@ public class DateUtils {
      *
      * @param dateStr date str
      * @return the date
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static Date parseDateTime(String dateStr) {
         return parse(dateStr, PATTERN_DATETIME);
@@ -679,7 +678,7 @@ public class DateUtils {
      * @param targetDate target date
      * @param endTime    end time
      * @return the boolean
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public static boolean between(Date startTime, Date targetDate, Date endTime) {
         return startTime.getTime() <= targetDate.getTime()
@@ -735,7 +734,7 @@ public class DateUtils {
      *
      * @param dateString date string
      * @return the long
-     * @since 1.7.0
+     * @since 1.0.0
      */
     @NotNull
     @Contract(pure = true)

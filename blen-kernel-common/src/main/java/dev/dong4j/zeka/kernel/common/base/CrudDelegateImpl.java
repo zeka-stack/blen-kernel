@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.11.23 21:05
  * @see IRepositoryService
- * @since 1.7.0
+ * @since 1.0.0
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements ICrudDelegate<DTO> {
@@ -32,7 +32,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param dto dto
      * @return the serializable
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> I create(@NotNull DTO dto) throws Exception {
@@ -44,7 +44,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 插入（批量）
      *
      * @param dtos dtos
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createBatch(Collection<DTO> dtos) throws Exception {
@@ -57,7 +57,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param dtos      dtos
      * @param batchSize 插入批次数量
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -145,7 +145,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param dto dto
      * @return the boolean
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> I createOrUpdate(@NotNull DTO dto) throws Exception {
@@ -157,7 +157,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 批量修改插入
      *
      * @param dtos dtos
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createOrUpdateBatch(Collection<DTO> dtos) throws Exception {
@@ -170,7 +170,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param dtos      dtos
      * @param batchSize 每次的数量
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void createOrUpdateBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -182,7 +182,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 通过 DTO 更新数据
      *
      * @param dto dto
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void update(@NotNull DTO dto) throws Exception {
@@ -194,7 +194,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 根据ID 批量更新
      *
      * @param dtos dtos
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void updateBatch(Collection<DTO> dtos) throws Exception {
@@ -207,7 +207,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param dtos      dtos
      * @param batchSize 更新批次数量
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void updateBatch(Collection<DTO> dtos, int batchSize) throws Exception {
@@ -219,7 +219,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 通过 id 删除数据
      *
      * @param id id
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void delete(@NotNull Serializable id) throws Exception {
@@ -231,7 +231,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * Remove
      *
      * @param ids ids
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> void delete(Collection<I> ids) throws Exception {
@@ -243,7 +243,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 根据 columnMap 条件，删除记录
      *
      * @param columnMap 表字段 map 对象
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public void delete(@NotNull Map<String, Object> columnMap) throws Exception {
@@ -255,7 +255,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 查询总记录数
      *
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public long counts() {
@@ -267,7 +267,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param query query
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <Q extends BaseQuery<? extends Serializable>> int counts(@NotNull Q query) {
@@ -279,7 +279,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param id id
      * @return the t
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> DTO find(@NotNull I id) {
@@ -304,7 +304,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      *
      * @param ids 主键ID列表
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <I extends Serializable> List<DTO> find(Collection<I> ids) {
@@ -316,7 +316,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * 查询所有的 DTO 数据
      *
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public List<DTO> find() {
@@ -330,7 +330,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * @param <Q>   BaseQuery 子类
      * @param query 查询参数
      * @return the page
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> IPage<D> page(@NotNull Q query) {
@@ -345,7 +345,7 @@ public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements
      * @param <Q>   BaseQuery 子类
      * @param query 查询参数
      * @return the list
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public <D extends BaseDTO<? extends Serializable>, Q extends BaseQuery<? extends Serializable>> List<D> list(@NotNull Q query) {

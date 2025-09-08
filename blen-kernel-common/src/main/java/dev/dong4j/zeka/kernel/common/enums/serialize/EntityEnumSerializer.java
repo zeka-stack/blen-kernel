@@ -5,10 +5,6 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.google.common.collect.Maps;
 import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.CollectionUtils;
-
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -16,6 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.CollectionUtils;
 
 /**
  * <p>Description: EntityEnum 及子类,序列化成 json 时, 指定序列值 </p>
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
  *
  * @param <T> parameter
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:22
  * @since 1.0.0

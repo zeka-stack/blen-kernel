@@ -3,19 +3,18 @@ package dev.dong4j.zeka.kernel.spi.extension.support;
 import dev.dong4j.zeka.kernel.spi.extension.Activate;
 import dev.dong4j.zeka.kernel.spi.extension.SPI;
 import dev.dong4j.zeka.kernel.spi.extension.SPILoader;
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.util.Arrays;
 import java.util.Comparator;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.8.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmaidl.com"
  * @date 2021.02.26 17:47
- * @since 1.8.0
+ * @since 1.0.0
  */
 @SuppressWarnings("all")
 public class ActivateComparator implements Comparator<Object> {
@@ -29,7 +28,7 @@ public class ActivateComparator implements Comparator<Object> {
      * @param o1 o 1
      * @param o2 o 2
      * @return the int
-     * @since 1.8.0
+     * @since 1.0.0
      */
     @Override
     public int compare(Object o1, Object o2) {
@@ -86,7 +85,7 @@ public class ActivateComparator implements Comparator<Object> {
      *
      * @param clazz clazz
      * @return the class
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private Class<?> findSpi(Class clazz) {
         if (clazz.getInterfaces().length == 0) {
@@ -112,7 +111,7 @@ public class ActivateComparator implements Comparator<Object> {
      *
      * @param clazz clazz
      * @return the activate info
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private ActivateInfo parseActivate(Class<?> clazz) {
         ActivateInfo info = new ActivateInfo();
@@ -134,10 +133,10 @@ public class ActivateComparator implements Comparator<Object> {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.8.0
+     * @version 1.0.0
      * @email "mailto:dong4j@gmaidl.com"
      * @date 2021.02.26 17:47
-     * @since 1.8.0
+     * @since 1.0.0
      */
     private static class ActivateInfo {
         /** Before */
@@ -151,7 +150,7 @@ public class ActivateComparator implements Comparator<Object> {
          * Applicable to compare
          *
          * @return the boolean
-         * @since 1.8.0
+         * @since 1.0.0
          */
         private boolean applicableToCompare() {
             return ArrayUtils.isNotEmpty(before) || ArrayUtils.isNotEmpty(after);
@@ -162,7 +161,7 @@ public class ActivateComparator implements Comparator<Object> {
          *
          * @param name name
          * @return the boolean
-         * @since 1.8.0
+         * @since 1.0.0
          */
         private boolean isLess(String name) {
             return Arrays.asList(before).contains(name);
@@ -173,7 +172,7 @@ public class ActivateComparator implements Comparator<Object> {
          *
          * @param name name
          * @return the boolean
-         * @since 1.8.0
+         * @since 1.0.0
          */
         private boolean isMore(String name) {
             return Arrays.asList(after).contains(name);

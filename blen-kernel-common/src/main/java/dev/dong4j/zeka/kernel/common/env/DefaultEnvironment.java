@@ -1,20 +1,19 @@
 package dev.dong4j.zeka.kernel.common.env;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.env.StandardEnvironment;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-
 /**
  * <p>Description: </p>
  *
  * @author dong4j
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.04.10 16:51
  * @since 1.0.0
@@ -55,7 +54,7 @@ public class DefaultEnvironment extends StandardEnvironment {
      * Default environment
      *
      * @param propertySource property source
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public DefaultEnvironment(PropertySource<?> propertySource) {
         this(new ArrayList<>(Collections.singleton(propertySource)));
@@ -65,7 +64,7 @@ public class DefaultEnvironment extends StandardEnvironment {
      * Default environment
      *
      * @param propertySources property sources
-     * @since 1.6.0
+     * @since 1.0.0
      */
     public DefaultEnvironment(Collection<PropertySource<?>> propertySources) {
         this();

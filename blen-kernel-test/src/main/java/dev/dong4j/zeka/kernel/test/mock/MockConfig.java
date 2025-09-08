@@ -13,8 +13,6 @@ import dev.dong4j.zeka.kernel.test.mock.mocker.IntegerMocker;
 import dev.dong4j.zeka.kernel.test.mock.mocker.LongMocker;
 import dev.dong4j.zeka.kernel.test.mock.mocker.ShortMocker;
 import dev.dong4j.zeka.kernel.test.mock.mocker.StringMocker;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
@@ -22,12 +20,13 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>Description: 模拟数据配置类</p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:05
  * @since 1.0.0
@@ -500,7 +499,7 @@ public class MockConfig {
      * The enum String enum.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.01.27 18:05
      * @since 1.0.0

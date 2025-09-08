@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * aes的key必须是256byte长 (比如32个字符) ,可以使用AesKit.genAesKey()来生成一组key
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.26 21:39
  * @since 1.0.0
@@ -33,7 +33,7 @@ public class AesUtils {
      *
      * @param cap cap
      * @return the int
-     * @since 1.9.0
+     * @since 1.0.0
      */
     private static final int relengh(int cap) {
         int n = cap - 1;
@@ -50,7 +50,7 @@ public class AesUtils {
      *
      * @param n n
      * @return the boolean
-     * @since 1.9.0
+     * @since 1.0.0
      */
     private boolean checkPowerOf2(int n) {
         if (n <= 0) {
@@ -77,7 +77,7 @@ public class AesUtils {
      *
      * @param length length
      * @return the string
-     * @since 1.9.0
+     * @since 1.0.0
      */
     public static String genAesKey(int length) {
         return RandomUtils.random(relengh(length));
@@ -135,7 +135,7 @@ public class AesUtils {
      * @param content    content
      * @param aesTextKey aes text key
      * @return the string
-     * @since 1.9.0
+     * @since 1.0.0
      */
     public static String encryptToStr(@NotNull String content, @NotNull String aesTextKey) {
         return Base64Utils.encodeToString(encrypt(content, aesTextKey));
@@ -160,7 +160,7 @@ public class AesUtils {
      * @param content    content
      * @param aesTextKey aes text key
      * @return the string
-     * @since 1.9.0
+     * @since 1.0.0
      */
     public static String decryptToStr(@NotNull String content, @NotNull String aesTextKey) {
         return new String(decrypt(content, aesTextKey));
@@ -172,7 +172,7 @@ public class AesUtils {
      * @param content    content
      * @param aesTextKey aes text key
      * @return the byte [ ]
-     * @since 1.9.0
+     * @since 1.0.0
      */
     public static byte[] decrypt(@NotNull String content, @NotNull String aesTextKey) {
         return decrypt(Base64Utils.decodeFromString(content), aesTextKey);
@@ -245,7 +245,7 @@ public class AesUtils {
      * 提供基于PKCS7算法的加解密接口.
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.26 21:39
      * @since 1.0.0

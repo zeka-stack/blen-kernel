@@ -16,7 +16,7 @@ import java.util.function.Supplier;
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2024.04.02 23:58
- * @since 2024.2.0
+ * @since 1.0.0
  */
 public class Selector<P, T> {
     /** Selected */
@@ -33,7 +33,7 @@ public class Selector<P, T> {
      * Selector
      *
      * @param param 参数
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Selector(P param) {
         this.param = param;
@@ -46,7 +46,7 @@ public class Selector<P, T> {
      * @param <T>   返回值类型
      * @param param 参数
      * @return 返回新的选择器 selector
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public static <P, T> Selector<P, T> param(P param) {
         return new Selector<>(param);
@@ -57,7 +57,7 @@ public class Selector<P, T> {
      *
      * @param branch 则当前选择器将接受当前分支的结果并完成
      * @return 选择器自身 selector
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public Selector<P, T> test(Branch<P, T> branch) {
         if (!selected) {
@@ -76,7 +76,7 @@ public class Selector<P, T> {
      *
      * @param supplier 默认值提供者
      * @return 如果有分支被击中 ，则返回分支值，否则返回参数提供的值
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public T or(Supplier<T> supplier) {
         return selected ? this.factory.apply(param) : supplier.get();
@@ -88,7 +88,7 @@ public class Selector<P, T> {
      * @param t 给定默认值
      * @return 如果有分支被击中 ，则返回分支值，否则返回参数
      * @see #or(Supplier)
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public T or(T t) {
         return or(() -> t);
@@ -98,7 +98,7 @@ public class Selector<P, T> {
      * 当前选择器是否已经选择分支
      *
      * @return 如果已经存在分支被击中 ，则返回 true；否则返回 false
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     public boolean isSelected() {
         return selected;
@@ -108,7 +108,7 @@ public class Selector<P, T> {
      * To string
      *
      * @return the string
-     * @since 2024.2.0
+     * @since 1.0.0
      */
     @Override
     public String toString() {

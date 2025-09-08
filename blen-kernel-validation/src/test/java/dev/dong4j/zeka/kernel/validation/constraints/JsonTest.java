@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
  * <p>Description:  </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2019.12.27 13:19
  * @since 1.0.0
@@ -28,7 +28,7 @@ class JsonTest extends AuthContextConfiguration {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.27 13:25
      * @since 1.0.0
@@ -86,7 +86,7 @@ class JsonTest extends AuthContextConfiguration {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.27 13:25
      * @since 1.0.0
@@ -145,7 +145,7 @@ class JsonTest extends AuthContextConfiguration {
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.2.3
+     * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.27 13:25
      * @since 1.0.0

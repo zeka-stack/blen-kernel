@@ -7,7 +7,7 @@ import java.util.Random;
  * <p>Description: 一些常用的单例对象 </p>
  *
  * @author dong4j
- * @version 1.2.3
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.01.27 18:17
  * @since 1.0.0

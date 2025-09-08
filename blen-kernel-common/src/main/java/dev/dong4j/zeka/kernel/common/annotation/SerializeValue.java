@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * </p>
  *
  * @author yuxiaobin
- * @version 1.3.0
+ * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
  * @date 2020.03.23 19:10
  * @since 1.0.0
