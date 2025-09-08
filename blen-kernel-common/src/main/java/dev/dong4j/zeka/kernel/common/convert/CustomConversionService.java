@@ -36,6 +36,7 @@ public final class CustomConversionService extends ApplicationConversionService 
         super(embeddedValueResolver);
         super.addConverter(new EnumToStringConverter());
         super.addConverter(new StringToEnumConverter());
+        super.addConverter(new StringToMapConverter());
     }
 
     /**
