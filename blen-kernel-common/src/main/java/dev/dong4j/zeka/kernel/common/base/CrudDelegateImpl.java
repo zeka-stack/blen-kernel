@@ -10,10 +10,40 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * <p>Description: 合并 command 和 query 接口 </p>
+ * <p>CRUD 委托服务实现类.
+ * <p>合并命令模式和查询模式接口，为数据操作提供统一的实现和访问入口.
+ * <p>主要功能：
+ * <ul>
+ *     <li>整合 ICommandDelegateService 和 IQueryDelegateService 的所有操作</li>
+ *     <li>提供完整的 CRUD 操作实现（创建、读取、更新、删除）</li>
+ *     <li>支持单条和批量数据操作</li>
+ *     <li>统一的参数校验和异常处理机制</li>
+ * </ul>
+ * <p>支持的操作类型：
+ * <ul>
+ *     <li>创建操作：create、createIgnore、createReplace、createOrUpdate</li>
+ *     <li>批量创建：createBatch、createIgnoreBatch、createReplaceBatch、createOrUpdateBatch</li>
+ *     <li>更新操作：update、updateBatch</li>
+ *     <li>删除操作：按 ID、按条件、批量删除</li>
+ *     <li>查询操作：find、counts、page、list</li>
+ * </ul>
+ * <p>设计优势：
+ * <ul>
+ *     <li>通过委托模式将具体实现交给 IRepositoryService</li>
+ *     <li>实现了 CQRS（命令查询职责分离）模式的统一入口</li>
+ *     <li>提供了统一的异常处理和参数验证</li>
+ *     <li>支持 Spring 依赖注入和自动装配</li>
+ * </ul>
+ * <p>适用场景：
+ * <ul>
+ *     <li>需要完整 CRUD 功能的业务服务层</li>
+ *     <li>微服务架构中的数据访问层</li>
+ *     <li>需要统一数据操作接口的复杂业务</li>
+ *     <li>API 层和 Agent 服务的基础实现</li>
+ * </ul>
  *
- * @param <S>   {@link IRepositoryService} 子类
- * @param <DTO> DTO 实体
+ * @param <S>   IRepositoryService 的具体实现类
+ * @param <DTO> 数据传输对象类型
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"

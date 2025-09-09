@@ -22,18 +22,53 @@ import org.springframework.util.Assert;
 import org.springframework.web.method.HandlerMethod;
 
 /**
- * 类工具类，扩展了Spring ClassUtils的功能
- *
- * 提供了丰富的Java类和反射操作功能，包括注解处理、泛型解析、代理检测等
- * 结合Spring的反射工具和注解工具，提供更强大的类操作能力
- *
+ * <p>Description: 类工具类，扩展了Spring ClassUtils的功能，提供更强大的类操作能力</p>
+ * <p>
  * 主要功能：
- * - 方法参数信息获取（支持构造器和普通方法）
- * - 注解获取和解析（支持组合注解和Spring的注解合并）
- * - 泛型类型解析（接口泛型和父类泛型）
- * - 代理对象检测（CGLIB、Javassist等）
- * - 类型判断和检查工具
- * - 对象实例化和类加载操作
+ * <ul>
+ *     <li>方法参数信息获取（支持构造器和普通方法）</li>
+ *     <li>注解获取和解析（支持组合注解和Spring的注解合并）</li>
+ *     <li>泛型类型解析（接口泛型和父类泛型）</li>
+ *     <li>代理对象检测（CGLIB、Javassist等）</li>
+ *     <li>类型判断和检查工具</li>
+ *     <li>对象实例化和类加载操作</li>
+ * </ul>
+ * </p>
+ * <p>
+ * 使用示例：
+ * <pre>
+ * // 获取方法参数信息
+ * Method method = MyClass.class.getMethod("myMethod", String.class, int.class);
+ * MethodParameter param = ClassUtils.getMethodParameter(method, 0);
+ *
+ * // 获取方法上的注解
+ * MyAnnotation annotation = ClassUtils.getAnnotation(method, MyAnnotation.class);
+ *
+ * // 解析泛型类型
+ * Class<?> genericType = ClassUtils.getSuperClassT(MyClass.class, 0);
+ *
+ * // 检查是否为代理对象
+ * boolean isProxy = ClassUtils.isProxy(MyClass.class);
+ *
+ * // 实例化对象
+ * MyClass instance = ClassUtils.newInstance(MyClass.class);
+ *
+ * // 获取类名包路径
+ * String packageName = ClassUtils.getPackageName(MyClass.class);
+ * </pre>
+ * </p>
+ * <p>
+ * 技术特性：
+ * <ul>
+ *     <li>继承Spring的ClassUtils功能</li>
+ *     <li>支持方法参数名发现</li>
+ *     <li>提供注解合并解析功能</li>
+ *     <li>支持泛型类型递归解析</li>
+ *     <li>检测多种代理类型（CGLIB、Javassist等）</li>
+ *     <li>安全的对象实例化机制</li>
+ *     <li>类型兼容性检查</li>
+ * </ul>
+ * </p>
  *
  * @author dong4j
  * @version 1.0.0
@@ -45,11 +80,11 @@ import org.springframework.web.method.HandlerMethod;
 @SuppressWarnings("all")
 public class ClassUtils extends org.springframework.util.ClassUtils {
 
-    /** PARAMETER_NAME_DISCOVERER */
+    /** 参数名发现器 */
     public static final ParameterNameDiscoverer PARAMETER_NAME_DISCOVERER = new DefaultParameterNameDiscoverer();
-    /** PACKAGE_SEPARATOR */
+    /** 包分隔符 */
     public static final char PACKAGE_SEPARATOR = '.';
-    /** 代理 class 的名称 */
+    /** 代理类名称列表 */
     protected static final List<String> PROXY_CLASS_NAMES = Arrays.asList(
         "net.sf.cglib.proxy.Factory",
         "org.springframework.cglib.proxy.Factory",
@@ -61,7 +96,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
      *
      * @param constructor    构造器
      * @param parameterIndex 参数序号
-     * @return {MethodParameter}
+     * @return 方法参数对象
      * @since 1.0.0
      */
     public static @NotNull MethodParameter getMethodParameter(Constructor<?> constructor, int parameterIndex) {
@@ -75,7 +110,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
      *
      * @param method         方法
      * @param parameterIndex 参数序号
-     * @return {MethodParameter}
+     * @return 方法参数对象
      * @since 1.0.0
      */
     public static @NotNull MethodParameter getMethodParameter(Method method, int parameterIndex) {
@@ -85,12 +120,12 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     }
 
     /**
-     * 获取Annotation
+     * 获取方法上的注解
      *
-     * @param <A>            泛型标记
-     * @param method         Method
+     * @param <A>            注解泛型
+     * @param method         方法对象
      * @param annotationType 注解类
-     * @return {Annotation}
+     * @return 注解对象
      * @since 1.0.0
      */
     public static <A extends Annotation> A getAnnotation(@NotNull Method method, Class<A> annotationType) {
@@ -110,12 +145,12 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     }
 
     /**
-     * 获取Annotation
+     * 获取处理器方法上的注解
      *
-     * @param <A>            泛型标记
-     * @param handlerMethod  HandlerMethod
+     * @param <A>            注解泛型
+     * @param handlerMethod  处理器方法
      * @param annotationType 注解类
-     * @return {Annotation}
+     * @return 注解对象
      * @since 1.0.0
      */
     public static <A extends Annotation> A getAnnotation(@NotNull HandlerMethod handlerMethod, Class<A> annotationType) {
@@ -130,12 +165,12 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     }
 
     /**
-     * 获取接口上的泛型T
+     * 获取接口上的泛型类型
      *
-     * @param clazz          clazz
-     * @param interfaceClass interface class
+     * @param clazz          类
+     * @param interfaceClass 接口类
      * @param index          泛型索引
-     * @return the interface t
+     * @return 泛型类
      * @since 1.0.0
      */
     public static @NotNull Class<?> getInterfaceT(@NotNull Class<?> clazz, Class<?> interfaceClass, int index) {
@@ -152,9 +187,9 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     /**
      * 获取父类上的泛型
      *
-     * @param clazz clazz
-     * @param index index
-     * @return the class
+     * @param clazz 类
+     * @param index 索引
+     * @return 泛型类
      * @since 1.0.0
      */
     public static @NotNull Class<?> getSuperClassT(@NotNull Class<?> clazz, @NotNull Integer index) {
@@ -167,9 +202,9 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     /**
      * 递归获取泛型类型
      *
-     * @param type  type
-     * @param index index
-     * @return the class
+     * @param type  类型
+     * @param index 索引
+     * @return 类
      * @since 1.0.0
      */
     @Contract("null, _ -> fail")
@@ -220,7 +255,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     /**
      * 获取当前对象的 class
      *
-     * @param clazz 传入
+     * @param clazz 传入类
      * @return 如果是代理的class , 返回父 class, 否则返回自身
      * @since 1.0.0
      */
@@ -246,7 +281,7 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
      *
      * @param <T>   类型, 由输入类型决定
      * @param clazz 需要实例化的对象
-     * @return 返回新的实例 @ not null t
+     * @return 返回新的实例
      * @since 1.0.0
      */
     public static <T> @NotNull T newInstance(@NotNull Class<T> clazz) {
@@ -276,11 +311,10 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
 
 
     /**
-     * Determine the name of the package of the given class,
-     * e.g. "java.lang" for the {@code java.lang.String} class.
+     * 获取类的包名
      *
-     * @param clazz the class
-     * @return the package name, or the empty String if the class     is defined in the default package
+     * @param clazz 类
+     * @return 包名
      * @since 1.0.0
      */
     public static @NotNull String getPackageName(Class<?> clazz) {
@@ -289,11 +323,10 @@ public class ClassUtils extends org.springframework.util.ClassUtils {
     }
 
     /**
-     * Determine the name of the package of the given fully-qualified class name,
-     * e.g. "java.lang" for the {@code java.lang.String} class name.
+     * 获取完全限定类名的包名
      *
-     * @param fqClassName the fully-qualified class name
-     * @return the package name, or the empty String if the class     is defined in the default package
+     * @param fqClassName 完全限定类名
+     * @return 包名
      * @since 1.0.0
      */
     public static @NotNull String getPackageName(String fqClassName) {

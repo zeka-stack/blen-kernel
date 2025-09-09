@@ -17,9 +17,9 @@ import org.springframework.core.io.support.EncodedResource;
 
 /**
  * 3: 配置加载器
- * 1. 加载主配置文件 application.yml
- * 2. 加载当前激活 Profile 的配置文件（如 application-prod.yml）
- * 3. 返回扁平化配置 Map，格式形如：
+ * 3.1 加载主配置文件 application.yml
+ * 3.2 加载当前激活 Profile 的配置文件（如 application-prod.yml）
+ * 3.3 返回扁平化配置 Map，格式形如：
  *
  * @author dong4j
  * @version 1.0.0
@@ -90,9 +90,8 @@ public class DynamicConfigLoader {
             );
             // propertySource 转 Map<String, Object>
             Map<String, Object> result = new LinkedHashMap<>();
-            if (propertySource.getSource() instanceof Map) {
+            if (propertySource.getSource() instanceof Map<?, ?> sourceMap) {
                 // 如果 source 本身就是 Map，则直接转换
-                Map<?, ?> sourceMap = (Map<?, ?>) propertySource.getSource();
                 for (Map.Entry<?, ?> entry : sourceMap.entrySet()) {
                     if (entry.getKey() instanceof String) {
                         result.put((String) entry.getKey(), entry.getValue());

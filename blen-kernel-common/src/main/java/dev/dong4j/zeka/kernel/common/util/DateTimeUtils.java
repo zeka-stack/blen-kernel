@@ -9,7 +9,44 @@ import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: DateTime 工具类 </p>
+ * <p>DateTime 工具类.
+ * <p>专门处理Java 8新的时间API（LocalDateTime、LocalDate等）的工具类.
+ * <p>提供日期时间格式化、解析、转换等功能，简化Java 8时间API的使用.
+ * <p>主要功能：
+ * <ul>
+ *     <li>日期时间格式化（支持多种格式）</li>
+ *     <li>字符串解析为时间对象</li>
+ *     <li>Date与LocalDateTime互转</li>
+ *     <li>时间格式化器的统一管理</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 日期时间格式化
+ * LocalDateTime now = LocalDateTime.now();
+ * String dateTimeStr = DateTimeUtils.formatDateTime(now); // "yyyy-MM-dd HH:mm:ss"
+ * String dateStr = DateTimeUtils.formatDate(now); // "yyyy-MM-dd"
+ * String timeStr = DateTimeUtils.formatTime(now); // "HH:mm:ss"
+ *
+ * // 自定义格式化
+ * String customFormat = DateTimeUtils.format(now, "yyyy/MM/dd HH:mm");
+ *
+ * // 字符串解析
+ * String dateStr = "2023-01-01 12:00:00";
+ * TemporalAccessor parsed = DateTimeUtils.parse(dateStr, DateUtils.PATTERN_DATETIME);
+ *
+ * // Date与LocalDateTime转换
+ * Date date = new Date();
+ * LocalDateTime localDateTime = DateTimeUtils.toDateTime(date.toInstant());
+ * Instant instant = DateTimeUtils.toInstant(localDateTime);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>专门针对Java 8新的时间API设计</li>
+ *     <li>提供常用的日期时间格式化器</li>
+ *     <li>支持自定义日期格式的解析和格式化</li>
+ *     <li>提供Date与LocalDateTime的互转功能</li>
+ *     <li>使用lombok的@UtilityClass注解，确保工具类的正确性</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

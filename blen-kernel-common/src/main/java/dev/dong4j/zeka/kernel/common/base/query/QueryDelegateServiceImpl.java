@@ -12,10 +12,46 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * <p>Description: 查询类接口, 使用 {@link IRepositoryService} 桥接到 DAO 层 </p>
+ * <p>查询委托服务实现类.
+ * <p>为查询模式提供完整的实现，使用 IRepositoryService 桥接到 DAO 层，实现命令与查询的分离.
+ * <p>主要功能：
+ * <ul>
+ *     <li>实现 IQueryDelegateService 接口的所有查询操作</li>
+ *     <li>提供完整的数据查询功能（单条、列表、分页、统计）</li>
+ *     <li>通过委托模式将具体查询实现交给 IRepositoryService</li>
+ *     <li>统一的参数校验和异常处理机制</li>
+ * </ul>
+ * <p>支持的查询类型：
+ * <ul>
+ *     <li>按 ID 查询：find(id)、find(ids)</li>
+ *     <li>按条件查询：find(query)、list(query)</li>
+ *     <li>分页查询：page(query)</li>
+ *     <li>统计查询：counts()、counts(query)</li>
+ * </ul>
+ * <p>设计优势：
+ * <ul>
+ *     <li>实现了 CQRS（命令查询职责分离）中的查询部分</li>
+ *     <li>通过委托模式降低与具体实现的耦合度</li>
+ *     <li>提供统一的查询接口和参数规范</li>
+ *     <li>支持 Spring 依赖注入和自动装配</li>
+ * </ul>
+ * <p>适用场景：
+ * <ul>
+ *     <li>需要纯查询功能的业务服务层</li>
+ *     <li>读写分离架构中的读操作层</li>
+ *     <li>查询专用的微服务或组件</li>
+ *     <li>需要统一查询接口的复杂业务</li>
+ * </ul>
+ * <p>性能特性：
+ * <ul>
+ *     <li>支持高效的分页查询和批量查询</li>
+ *     <li>内置参数校验，避免无效查询</li>
+ *     <li>灵活的查询条件组合和过滤</li>
+ *     <li>支持查询结果的类型转换和映射</li>
+ * </ul>
  *
- * @param <S>   {@link IRepositoryService} 子类
- * @param <DTO> DTO 实体
+ * @param <S>   IRepositoryService 的具体实现类
+ * @param <DTO> 数据传输对象类型
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"

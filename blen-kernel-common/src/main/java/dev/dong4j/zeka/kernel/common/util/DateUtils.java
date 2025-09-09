@@ -25,7 +25,45 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.util.Assert;
 
 /**
- * <p>Description: 日期工具类 </p>
+ * <p>日期工具类.
+ * <p>提供丰富的日期时间操作功能，包括日期格式化、解析、计算、转换等.
+ * <p>结合Java 8新的时间API和传统Date类，提供统一的日期处理接口.
+ * <p>主要功能：
+ * <ul>
+ *     <li>日期格式化和解析（支持多种日期格式）</li>
+ *     <li>日期计算（加减年、月、日、时、分、秒等）</li>
+ *     <li>日期转换（Date与LocalDateTime、LocalDate等互转）</li>
+ *     <li>日期比较和验证</li>
+ *     <li>线程安全的日期格式化器</li>
+ *     <li>日期常量定义</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 日期计算
+ * Date now = new Date();
+ * Date tomorrow = DateUtils.plusDays(now, 1); // 明天
+ * Date nextMonth = DateUtils.plusMonths(now, 1); // 下个月
+ *
+ * // 日期格式化
+ * String formatted = DateUtils.DATETIME_FORMAT.format(now); // "yyyy-MM-dd HH:mm:ss"
+ * String dateOnly = DateUtils.DATE_FORMAT.format(now); // "yyyy-MM-dd"
+ *
+ * // 字符串转日期
+ * String dateStr = "2023-01-01 12:00:00";
+ * Date date = DateUtils.DATETIME_FORMAT.parse(dateStr);
+ *
+ * // Java 8时间API
+ * LocalDateTime localDateTime = LocalDateTime.now();
+ * String formatted8 = DateUtils.DATETIME_FORMATTER.format(localDateTime);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>结合Java 8新的时间API（LocalDateTime、LocalDate等）</li>
+ *     <li>提供线程安全的日期格式化器（ConcurrentDateFormat）</li>
+ *     <li>支持多种日期格式的常量定义</li>
+ *     <li>提供日期计算和转换功能</li>
+ *     <li>集成Spring的日期处理功能</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

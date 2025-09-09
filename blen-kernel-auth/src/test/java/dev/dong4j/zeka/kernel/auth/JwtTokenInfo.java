@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * <p>Description:  </p>
+ * JWT 令牌信息测试实体类，用于单元测试中构造测试数据
+ * <p>
+ * 该类主要用于 JWT 相关功能的测试，提供简化的令牌信息数据结构
  *
  * @author dong4j
  * @version 1.0.0
@@ -19,15 +21,15 @@ import lombok.Data;
 @Builder
 public class JwtTokenInfo implements Serializable {
 
-    /** serialVersionUID */
+    /** 序列化版本号 */
     @Serial
     private static final long serialVersionUID = -3233750396963053550L;
 
-    /** User id */
+    /** 测试用户 ID */
     private Long userId;
-    /** Username */
+    /** 测试用户名 */
     private String username;
-    /** 时间戳 */
+    /** 测试时间戳 */
     private Date time;
-    private Long exp;
+    /** 测试过期时间 */
 }

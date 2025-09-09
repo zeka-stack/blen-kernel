@@ -23,19 +23,43 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * 字符串工具类，扩展了Spring的StringUtils功能
+ * <p>字符串工具类，扩展了Spring的StringUtils功能.
+ * <p>提供了丰富的字符串操作方法，包括空值检查、数字验证、格式化、连接、分割、编码解码等.
+ * <p>结合了Apache Commons、Hutool等第三方库的优秀功能，提供统一的字符串处理接口.
+ * <p>主要功能：
+ * <ul>
+ *     <li>空值和空白字符检查（isBlank、isNotBlank、isAnyBlank等）</li>
+ *     <li>字符串连接和分割（join、split系列方法）</li>
+ *     <li>数字和格式验证（isNumeric、特殊字符正则等）</li>
+ *     <li>字符串格式化和模板替换</li>
+ *     <li>HTML转义和URL编码处理</li>
+ *     <li>随机字符串生成</li>
+ *     <li>字符串比较和搜索功能</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 检查字符串是否为空白
+ * boolean isEmpty = StringUtils.isBlank(null);      // true
+ * boolean isEmpty2 = StringUtils.isBlank("");        // true
+ * boolean isEmpty3 = StringUtils.isBlank("  ");       // true
+ * boolean isNotEmpty = StringUtils.isNotBlank("abc"); // true
  *
- * 提供了丰富的字符串操作方法，包括空值检查、数字验证、格式化、连接、分割、编码解码等
- * 结合了Apache Commons、Hutool等第三方库的优秀功能，提供统一的字符串处理接口
+ * // 字符串连接
+ * List<String> list = Arrays.asList("a", "b", "c");
+ * String joined = StringUtils.join(list, ","); // "a,b,c"
  *
- * 主要功能：
- * - 空值和空白字符检查（isBlank、isNotBlank、isAnyBlank等）
- * - 字符串连接和分割（join、split系列方法）
- * - 数字和格式验证（isNumeric、特殊字符正则等）
- * - 字符串格式化和模板替换
- * - HTML转义和URL编码处理
- * - 随机字符串生成
- * - 字符串比较和搜索功能
+ * // 数字验证
+ * boolean isNum = StringUtils.isNumeric("123"); // true
+ * boolean isNum2 = StringUtils.isNumeric("abc"); // false
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>继承Spring的StringUtils功能，提供更丰富的字符串处理能力</li>
+ *     <li>集成Apache Commons Text和Hutool的优秀功能</li>
+ *     <li>提供安全的字符串处理方法，避免空指针异常</li>
+ *     <li>支持HTML转义和反向转义</li>
+ *     <li>提供随机字符串生成功能</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0
@@ -79,21 +103,19 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     /**
-     * Check whether the given {@code CharSequence} contains actual <em>text</em>.
-     * <p>More specifically, this method returns {@code true} if the
-     * {@code CharSequence} is not {@code null}, its length is greater than
-     * 0, and it contains at least one non-whitespace character.
-     * <pre class="code">
-     * StringUtil.isBlank(null) = true
-     * StringUtil.isBlank("") = true
-     * StringUtil.isBlank(" ") = true
-     * StringUtil.isBlank("12345") = false
-     * StringUtil.isBlank(" 12345 ") = false
+     * <p>检查给定的{@code CharSequence}是否包含实际的文本内容.
+     * <p>更具体地说，当{@code CharSequence}为{@code null}、长度为0或仅包含空白字符时，此方法返回{@code true}.
+     * <p>使用示例：
+     * <pre>
+     * StringUtils.isBlank(null)      // true
+     * StringUtils.isBlank("")        // true
+     * StringUtils.isBlank(" ")       // true
+     * StringUtils.isBlank("12345")   // false
+     * StringUtils.isBlank(" 12345 ") // false
      * </pre>
      *
-     * @param cs the {@code CharSequence} to check (may be {@code null})
-     * @return {@code true} if the {@code CharSequence} is not {@code null},     its length is greater than 0, and it does not contain
-     * whitespace only
+     * @param cs 要检查的{@code CharSequence}（可能为{@code null}）
+     * @return {@code true} 如果{@code CharSequence}为{@code null}、长度为0或仅包含空白字符
      * @see Character#isWhitespace Character#isWhitespaceCharacter#isWhitespace
      * @since 1.0.0
      */
@@ -131,17 +153,19 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     /**
-     * <p>Checks if a CharSequence is not empty (""), not null and not whitespace only.</p>
+     * <p>检查给定的{@code CharSequence}是否不为空、不为null且不只包含空白字符.
+     * <p>当{@code CharSequence}不为空、不为null且包含至少一个非空白字符时，此方法返回{@code true}.
+     * <p>使用示例：
      * <pre>
-     * StringUtil.isNotBlank(null)      = false
-     * StringUtil.isNotBlank("")        = false
-     * StringUtil.isNotBlank(" ")       = false
-     * StringUtil.isNotBlank("bob")     = true
-     * StringUtil.isNotBlank("  bob  ") = true
+     * StringUtils.isNotBlank(null)      // false
+     * StringUtils.isNotBlank("")        // false
+     * StringUtils.isNotBlank(" ")       // false
+     * StringUtils.isNotBlank("bob")     // true
+     * StringUtils.isNotBlank("  bob  ") // true
      * </pre>
      *
-     * @param cs the CharSequence to check, may be null
-     * @return {@code true} if the CharSequence is not empty and not null and not whitespace
+     * @param cs 要检查的{@code CharSequence}（可能为{@code null}）
+     * @return {@code true} 如果{@code CharSequence}不为空、不为null且不只包含空白字符
      * @see Character#isWhitespace Character#isWhitespaceCharacter#isWhitespace
      * @since 1.0.0
      */
@@ -151,10 +175,19 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     /**
-     * 判断一个字符串是否是数字
+     * <p>判断一个字符串是否是数字.
+     * <p>检查给定的字符序列是否只包含数字字符(0-9).
+     * <p>使用示例：
+     * <pre>
+     * StringUtils.isNumeric(null)   // false
+     * StringUtils.isNumeric("")     // false
+     * StringUtils.isNumeric("123")  // true
+     * StringUtils.isNumeric("12a3") // false
+     * StringUtils.isNumeric("1.23") // false
+     * </pre>
      *
-     * @param cs the CharSequence to check, may be null
-     * @return {boolean}
+     * @param cs 要检查的{@code CharSequence}（可能为{@code null}）
+     * @return {boolean} 如果字符序列只包含数字字符则返回true，否则返回false
      * @since 1.0.0
      */
     public static boolean isNumeric(CharSequence cs) {
@@ -171,11 +204,16 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     /**
-     * Convert a {@code Collection} into a delimited {@code String} (e.g., CSV).
-     * <p>Useful for {@code toString()} implementations.
+     * <p>将{@code Collection}转换为以逗号分隔的{@code String}（例如CSV格式）.
+     * <p>对于{@code toString()}实现非常有用.
+     * <p>使用示例：
+     * <pre>
+     * List<String> list = Arrays.asList("a", "b", "c");
+     * String result = StringUtils.join(list); // "a,b,c"
+     * </pre>
      *
-     * @param coll the {@code Collection} to convert
-     * @return the delimited {@code String}
+     * @param coll 要转换的{@code Collection}
+     * @return 以逗号分隔的{@code String}
      * @since 1.0.0
      */
     @NotNull
@@ -184,12 +222,18 @@ public class StringUtils extends org.springframework.util.StringUtils {
     }
 
     /**
-     * Convert a {@code Collection} into a delimited {@code String} (e.g. CSV).
-     * <p>Useful for {@code toString()} implementations.
+     * <p>将{@code Collection}转换为以指定分隔符分隔的{@code String}（例如CSV格式）.
+     * <p>对于{@code toString()}实现非常有用.
+     * <p>使用示例：
+     * <pre>
+     * List<String> list = Arrays.asList("a", "b", "c");
+     * String result = StringUtils.join(list, "|"); // "a|b|c"
+     * String result2 = StringUtils.join(list, "-"); // "a-b-c"
+     * </pre>
      *
-     * @param coll  the {@code Collection} to convert
-     * @param delim the delimiter to use (typically a ",")
-     * @return the delimited {@code String}
+     * @param coll  要转换的{@code Collection}
+     * @param delim 要使用的分隔符（通常是","）
+     * @return 以指定分隔符分隔的{@code String}
      * @since 1.0.0
      */
     @NotNull

@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * <p>Description: </p>
+ * CryptoUtils 工具类单元测试
+ * <p>
+ * 该测试类用于验证密码加密和验证功能的正确性
  *
  * @author dong4j
  * @version 1.0.0
@@ -16,7 +18,7 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class CryptoUtilsTest {
     /**
-     * Test
+     * 测试密码加密和验证功能
      *
      * @since 1.0.0
      */

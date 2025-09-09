@@ -3,7 +3,27 @@ package dev.dong4j.zeka.kernel.common.util;
 import lombok.experimental.UtilityClass;
 
 /**
- * <p>Description: 静态 String 池 </p>
+ * <p>静态 String 池.
+ * <p>提供常用的字符串常量，避免重复创建字符串对象，提高性能和内存使用效率.
+ * <p>主要功能：
+ * <ul>
+ *     <li>定义常用的符号常量（如标点符号、特殊字符等）</li>
+ *     <li>提供统一的字符串常量管理</li>
+ *     <li>避免在代码中直接使用硬编码字符串</li>
+ *     <li>提高代码可读性和维护性</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 使用常量代替硬编码字符串
+ * String url = "http://example.com" + StringPool.SLASH + "api" + StringPool.SLASH + "users";
+ * // 等价于: String url = "http://example.com/api/users";
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>使用 lombok 的 @UtilityClass 注解，确保类为 final 且构造函数私有</li>
+ *     <li>所有字段均为 public static final，提供全局访问</li>
+ *     <li>按功能分组定义常量，便于查找和使用</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

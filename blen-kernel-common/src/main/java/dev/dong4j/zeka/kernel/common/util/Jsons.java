@@ -48,22 +48,54 @@ import org.reflections.util.ConfigurationBuilder;
 import org.springframework.util.ObjectUtils;
 
 /**
- * Jackson JSON处理工具类，提供统一的JSON序列化和反序列化功能
+ * <p>Jackson JSON处理工具类，提供统一的JSON序列化和反序列化功能.
+ * <p>系统中使用ObjectMapper的地方必须用此类进行初始化，提供2种方式：
+ * <ol>
+ *     <li>getInstance() - 返回单例对象，请确保不修改配置</li>
+ *     <li>getCopyMapper() - 返回新对象，用于定制化配置</li>
+ * </ol>
+ * <p>每个工具方法都进行过重载，支持使用自定义ObjectMapper对JSON处理.
+ * <p>主要功能：
+ * <ul>
+ *     <li>JSON序列化和反序列化（对象、集合、Map等）</li>
+ *     <li>JSON格式验证和检查</li>
+ *     <li>JSON美化和压缩功能</li>
+ *     <li>类型安全的反序列化（TypeReference支持）</li>
+ *     <li>性能优化的配置（字符串去空格、日期格式等）</li>
+ *     <li>数据校验集成（JSR-303支持）</li>
+ *     <li>多种数据源支持（字符串、字节数组、输入流等）</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 对象转JSON
+ * Person person = new Person("张三", 25);
+ * String json = Jsons.toJson(person);
  *
- * 系统中使用ObjectMapper的地方必须用此类进行初始化，提供2种方式：
- * 1. getInstance() - 返回单例对象，请确保不修改配置
- * 2. getCopyMapper() - 返回新对象，用于定制化配置
+ * // JSON转对象
+ * Person parsed = Jsons.parse(json, Person.class);
  *
- * 每个工具方法都进行过重载，支持使用自定义ObjectMapper对JSON处理
+ * // 使用TypeReference处理泛型
+ * List<Person> list = new ArrayList<>();
+ * list.add(person);
+ * String jsonList = Jsons.toJson(list);
+ * List<Person> parsedList = Jsons.parse(jsonList, new TypeReference<List<Person>>() {});
  *
- * 主要功能：
- * - JSON序列化和反序列化（对象、集合、Map等）
- * - JSON格式验证和检查
- * - JSON美化和压缩功能
- * - 类型安全的反序列化（TypeReference支持）
- * - 性能优化的配置（字符串去空格、日期格式等）
- * - 数据校验集成（JSR-303支持）
- * - 多种数据源支持（字符串、字节数组、输入流等）
+ * // 验证JSON格式
+ * boolean isValid = Jsons.isJson(json); // true
+ *
+ * // 获取ObjectMapper实例
+ * ObjectMapper mapper = Jsons.getInstance();
+ * ObjectMapper copyMapper = Jsons.getCopyMapper();
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>基于Jackson库实现，提供高性能的JSON处理能力</li>
+ *     <li>提供单例模式和副本模式两种ObjectMapper获取方式</li>
+ *     <li>集成字符串去空格序列化器和反序列化器</li>
+ *     <li>支持自定义日期格式处理</li>
+ *     <li>提供类型安全的泛型处理（TypeReference支持）</li>
+ *     <li>集成数据校验功能</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

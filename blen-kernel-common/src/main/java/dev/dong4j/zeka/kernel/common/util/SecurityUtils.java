@@ -13,7 +13,38 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.PathMatcher;
 
 /**
- * <p>Description:  </p>
+ * <p>安全相关工具类.
+ * <p>提供安全相关的工具方法，包括URL过滤、路径匹配等.
+ * <p>主要功能：
+ * <ul>
+ *     <li>默认忽略URL列表管理</li>
+ *     <li>自定义忽略URL合并</li>
+ *     <li>路径匹配检查</li>
+ *     <li>安全路径过滤</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 获取默认忽略的URL列表
+ * Set<String> defaultSkipUrls = SecurityUtils.DEFAULT_SKIP_URL;
+ *
+ * // 合并自定义忽略URL
+ * String customIgnoreUrls = "/api/test/**,/static/**";
+ * Set<String> mergedUrls = SecurityUtils.mergeSkipPatterns(customIgnoreUrls);
+ *
+ * // 路径匹配检查
+ * String requestPath = "/api/users";
+ * String[] includePatterns = {"/api/**"};
+ * String[] excludePatterns = {"/api/test/**"};
+ * PathMatcher pathMatcher = new AntPathMatcher();
+ * boolean shouldSkip = SecurityUtils.matches(requestPath, includePatterns, excludePatterns, pathMatcher);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>预定义常用忽略URL模式</li>
+ *     <li>支持自定义忽略URL配置</li>
+ *     <li>集成Spring PathMatcher进行路径匹配</li>
+ *     <li>提供灵活的URL过滤机制</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

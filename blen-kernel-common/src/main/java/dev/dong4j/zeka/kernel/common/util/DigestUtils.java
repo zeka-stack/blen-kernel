@@ -12,7 +12,46 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>Description: 加密相关工具类 </p>
+ * <p>加密相关工具类.
+ * <p>提供常见的加密和摘要算法实现，包括MD5、SHA系列、HMAC等.
+ * <p>主要功能：
+ * <ul>
+ *     <li>MD5摘要算法</li>
+ *     <li>SHA系列摘要算法（SHA-1、SHA-224、SHA-256等）</li>
+ *     <li>HMAC算法支持</li>
+ *     <li>十六进制编码转换</li>
+ *     <li>字节数组与字符串转换</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // MD5摘要
+ * String text = "Hello World";
+ * String md5Hex = DigestUtils.md5Hex(text);
+ * byte[] md5Bytes = DigestUtils.md5(text);
+ *
+ * // SHA-1摘要
+ * String sha1Hex = DigestUtils.sha1Hex(text);
+ * byte[] sha1Bytes = DigestUtils.sha1(text);
+ *
+ * // SHA-256摘要
+ * String sha256Hex = DigestUtils.sha256Hex(text);
+ *
+ * // HMAC-SHA256
+ * String key = "secretKey";
+ * String hmacSha256Hex = DigestUtils.hmacSha256Hex(text, key);
+ *
+ * // 十六进制编码
+ * byte[] bytes = "test".getBytes();
+ * String hex = DigestUtils.encodeHex(bytes);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>继承Spring的DigestUtils功能</li>
+ *     <li>提供多种摘要算法实现</li>
+ *     <li>支持HMAC算法</li>
+ *     <li>提供十六进制编码转换</li>
+ *     <li>异常安全处理</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

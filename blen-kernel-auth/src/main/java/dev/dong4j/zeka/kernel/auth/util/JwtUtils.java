@@ -35,9 +35,24 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.util.StringUtils;
 
 /**
- * JWT令牌工具类，提供JWT令牌的解析、生成、验证等功能
+ * JWT 令牌工具类，提供 JWT 令牌的解析、生成、验证等全套功能
+ * <p>
+ * 该工具类作为认证系统的核心组件，支持现代化的 JWT 标准和安全策略
  * 包含签名验证和非签名验证两种模式，支持用户信息提取、权限解析、过期时间检查等操作
- * 主要用于用户认证、授权信息传递和令牌生命周期管理
+ * <p>
+ * 主要功能：
+ * - JWT 令牌的生成和解析
+ * - 签名验证和安全检查
+ * - 用户信息和权限数据提取
+ * - 无签名解析（客户端场景）
+ * - 令牌生命周期管理
+ * <p>
+ * 支持的操作模式：
+ * - 签名模式：需要密钥验证，适用于服务端验证
+ * - 无签名模式：不需要密钥，适用于客户端解析
+ * <p>
+ * 基于 JJWT 0.12.6 版本，支持最新的 JWT 标准和安全特性
+ * 使用 HMAC-SHA 签名算法，支持多种签名密钥格式
  *
  * @author dong4j
  * @version 1.0.0
@@ -50,9 +65,9 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings(value = {"PMD:MethodLimit", "checkstyle:MethodLimit"})
 public class JwtUtils {
 
-    /** MAPPER */
+    /** Jackson 对象映射器，用于 JSON 序列化和反序列化 */
     public static final ObjectMapper MAPPER;
-    /** ERROR_MESSAGE */
+    /** 错误信息模板 */
     private static final String ERROR_MESSAGE = "解析 token 失败: {}, token = [{}]";
 
     static {
@@ -66,10 +81,11 @@ public class JwtUtils {
     }
 
     /**
-     * 从认证信息中提取 jwt token 字符串（无需验证签名）
+     * 从认证信息中提取 JWT 令牌字符串（无需验证签名）
      *
      * @param authentication 认证信息  Authorization: bearer header.payload.signature
-     * @return token 字符串
+     * @return 纯净的 JWT 令牌字符串，已去除 Bearer 前缀
+     * @throws IllegalArgumentException 当认证信息不存在或格式错误时抛出
      * @since 1.0.0
      */
     @Contract("null -> fail")
@@ -85,10 +101,14 @@ public class JwtUtils {
     }
 
     /**
-     * 解析 JWT token 获取 claims（无需验证签名）
+     * 解析 JWT 令牌获取声明信息（无需验证签名）
+     * <p>
+     * 该方法直接解析 JWT 令牌的 payload 部分，不进行签名验证
+     * 适用于客户端场景或不需要安全验证的情况
      *
-     * @param token JWT token
-     * @return Claims 对象
+     * @param token JWT 令牌字符串
+     * @return Claims 对象，包含 JWT 中的所有声明信息
+     * @throws IllegalArgumentException 当令牌格式错误时抛出
      * @since 1.0.0
      */
     @SneakyThrows
@@ -113,10 +133,10 @@ public class JwtUtils {
     }
 
     /**
-     * Gets token *
+     * 从 HTTP 请求中获取 JWT 令牌
      *
-     * @param request request
-     * @return the token
+     * @param request HTTP 请求对象
+     * @return JWT 令牌字符串，如果不存在则返回 null
      * @since 1.0.0
      */
     public static String getToken(@NotNull HttpServletRequest request) {
@@ -124,10 +144,12 @@ public class JwtUtils {
     }
 
     /**
-     * 从 header 中获取 token 串, authentication = Authorization: bearer header.payload.signature
+     * 从 Authorization Header 中提取 JWT 令牌
+     * <p>
+     * 支持 Bearer 格式的 Authorization Header，自动去除 Bearer 前缀
      *
-     * @param authentication token
-     * @return String token
+     * @param authentication 认证信息字符串，格式为 "Bearer token"
+     * @return JWT 令牌字符串，如果格式不正确则返回 null
      * @since 1.0.0
      */
     @Contract("null -> null")
@@ -143,12 +165,19 @@ public class JwtUtils {
     }
 
     /**
-     * Get claims. (使用 key 解密, 解密失败或者 token 超时都会抛出以下异常)
-     * ExpiredJwtException UnsupportedJwtException, MalformedJwtException, SignatureException, IllegalArgumentException
+     * 使用密钥解析和验证 JWT 令牌获取声明信息
+     * <p>
+     * 该方法会验证 JWT 令牌的签名和过期时间，确保令牌的安全性和有效性
+     * 解密失败或令牌过期都会抛出相应的异常
      *
-     * @param key   the key
-     * @param token the token
-     * @return the claims
+     * @param key   签名密钥，用于验证令牌的真实性
+     * @param token JWT 令牌字符串
+     * @return Claims 对象，包含验证后的声明信息
+     * @throws ExpiredJwtException      当令牌已过期时抛出
+     * @throws UnsupportedJwtException  当令牌不支持时抛出
+     * @throws MalformedJwtException    当令牌格式错误时抛出
+     * @throws SignatureException       当签名验证失败时抛出
+     * @throws IllegalArgumentException 当参数非法时抛出
      * @since 1.0.0
      */
     @Nullable
@@ -167,7 +196,16 @@ public class JwtUtils {
 
 
     /**
-     * <p>Description: token 内部数据 </p>
+     * JWT 令牌数据提取工具类，提供了从 JWT 中获取各种用户信息的便捷方法
+     * <p>
+     * 该内部类将 JWT 解析后的复杂操作封装为简单的方法调用
+     * 同时支持签名验证和无签名解析两种模式，满足不同的使用场景
+     * <p>
+     * 提供的主要功能：
+     * - 用户基本信息获取（用户名、用户对象等）
+     * - 权限相关信息获取（角色、权限列表等）
+     * - 客户端和应用信息获取
+     * - 令牌元数据获取（过期时间、令牌ID等）
      *
      * @author dong4j
      * @version 1.0.0
@@ -179,11 +217,11 @@ public class JwtUtils {
     @UtilityClass
     public static class PlayGround {
         /**
-         * Gets username.
+         * 从 JWT 令牌中获取用户名（需要签名验证）
          *
-         * @param key   the key
-         * @param token the token
-         * @return the username
+         * @param key   签名密钥
+         * @param token JWT 令牌
+         * @return 用户名，如果解析失败则返回 null
          * @since 1.0.0
          */
         @Nullable
@@ -196,10 +234,10 @@ public class JwtUtils {
         }
 
         /**
-         * Gets username.
+         * 从 JWT 令牌中获取用户名（无需签名验证）
          *
-         * @param token the token
-         * @return the username
+         * @param token JWT 令牌
+         * @return 用户名，如果解析失败则返回 null
          * @since 1.0.0
          */
         @Nullable
@@ -214,10 +252,10 @@ public class JwtUtils {
         }
 
         /**
-         * Gets sysAppId.
+         * 从 JWT 令牌中获取系统应用ID（无需签名验证）
          *
-         * @param token the token
-         * @return the sysAppId
+         * @param token JWT 令牌
+         * @return 系统应用ID，如果解析失败则返回 null
          * @since 1.0.0
          */
         @Nullable
@@ -232,11 +270,11 @@ public class JwtUtils {
         }
 
         /**
-         * Gets user.
+         * 从 JWT 令牌中获取用户信息对象（需要签名验证）
          *
-         * @param key   the key
-         * @param token the token
-         * @return the user
+         * @param key   签名密钥
+         * @param token JWT 令牌
+         * @return 用户信息对象，如果解析失败则返回 null
          * @since 1.0.0
          */
         @SneakyThrows
@@ -250,10 +288,10 @@ public class JwtUtils {
         }
 
         /**
-         * Gets user.
+         * 从 JWT 令牌中获取用户信息对象（无需签名验证）
          *
-         * @param token the token
-         * @return the user
+         * @param token JWT 令牌
+         * @return 用户信息对象，如果解析失败则返回 null
          * @since 1.0.0
          */
         @Nullable

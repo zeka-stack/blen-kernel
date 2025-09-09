@@ -6,7 +6,41 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>Description: 对象工具类</p>
+ * <p>对象工具类.
+ * <p>提供对象相关的操作方法，包括空值检查、比较、类型转换等.
+ * <p>主要功能：
+ * <ul>
+ *     <li>对象空值检查（isNull、isNotNull等）</li>
+ *     <li>对象比较和相等性判断（equals、isNotEqual等）</li>
+ *     <li>对象类型转换（toStr、toInt等）</li>
+ *     <li>安全的对象操作方法</li>
+ *     <li>继承Spring的对象处理功能</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 空值检查
+ * Object obj = null;
+ * boolean isNull = ObjectUtils.isNull(obj);    // true
+ * boolean isNotNull = ObjectUtils.isNotNull(obj); // false
+ *
+ * // 对象比较
+ * String str1 = "test";
+ * String str2 = "test";
+ * boolean isEqual = ObjectUtils.equals(str1, str2); // true
+ *
+ * // 类型转换
+ * Object numObj = 123;
+ * int num = ObjectUtils.toInt(numObj, 0); // 123
+ * Object strObj = "456";
+ * int num2 = ObjectUtils.toInt(strObj, 0); // 456
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>继承Spring的ObjectUtils功能</li>
+ *     <li>提供安全的对象操作方法，避免空指针异常</li>
+ *     <li>支持对象到基本类型的转换</li>
+ *     <li>提供默认值处理机制</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

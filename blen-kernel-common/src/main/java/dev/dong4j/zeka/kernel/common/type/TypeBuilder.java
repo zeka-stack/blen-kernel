@@ -10,7 +10,38 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: </p>
+ * <p>类型构建器工具类.
+ * <p>用于动态构建复杂的泛型结构，支持嵌套泛型、通配符类型等高级类型特性.
+ * <p>提供了流式 API 的方式来逐步构建复杂的参数化类型，支持多层嵌套和继承关系.
+ * <p>主要功能：
+ * <ul>
+ *     <li>动态构建参数化类型（ParameterizedType）</li>
+ *     <li>支持嵌套子类型的构建</li>
+ *     <li>支持通配符类型（WildcardType）</li>
+ *     <li>提供上下限通配符的构建</li>
+ * </ul>
+ * <p>支持的类型构建：
+ * <ul>
+ *     <li>基本类型和泛型参数</li>
+ *     <li>extends 通配符（? extends T）</li>
+ *     <li>super 通配符（? super T）</li>
+ *     <li>多层嵌套的复杂类型</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>{@code
+ * // 构建 List<String> 类型
+ * Type listStringType = TypeBuilder.newInstance(List.class)
+ *     .addTypeParam(String.class)
+ *     .build();
+ *
+ * // 构建 Map<String, List<Integer>> 类型
+ * Type complexType = TypeBuilder.newInstance(Map.class)
+ *     .addTypeParam(String.class)
+ *     .beginSubType(List.class)
+ *         .addTypeParam(Integer.class)
+ *     .endSubType()
+ *     .build();
+ * }</pre>
  *
  * @author dong4j
  * @version 1.0.0

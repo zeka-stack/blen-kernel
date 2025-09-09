@@ -10,8 +10,42 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.util.Assert;
 
 /**
- * 完全兼容微信所使用的AES加密方式.
- * aes的key必须是256byte长 (比如32个字符) ,可以使用AesKit.genAesKey()来生成一组key
+ * <p>完全兼容微信所使用的AES加密方式.
+ * <p>aes的key必须是256byte长(比如32个字符),可以使用AesKit.genAesKey()来生成一组key.
+ * <p>主要功能：
+ * <ul>
+ *     <li>AES加密解密功能</li>
+ *     <li>兼容微信AES加密方式</li>
+ *     <li>支持Base64编码的加密解密</li>
+ *     <li>密钥生成工具</li>
+ *     <li>PKCS7填充支持</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 生成AES密钥
+ * String aesKey = AesUtils.genAesKey(); // 生成32位密钥
+ * String aesKey16 = AesUtils.genAesKey(16); // 生成16位密钥
+ *
+ * // AES加密
+ * String content = "Hello World";
+ * String encrypted = AesUtils.encryptToStr(content, aesKey);
+ *
+ * // AES解密
+ * String decrypted = AesUtils.decryptToStr(encrypted, aesKey);
+ *
+ * // 字节数组加密解密
+ * byte[] contentBytes = content.getBytes(StandardCharsets.UTF_8);
+ * byte[] encryptedBytes = AesUtils.encrypt(contentBytes, aesKey);
+ * byte[] decryptedBytes = AesUtils.decrypt(encryptedBytes, aesKey);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>使用AES/CBC/NoPadding加密模式</li>
+ *     <li>支持PKCS7填充</li>
+ *     <li>密钥长度必须为2的幂次方且大于等于16位</li>
+ *     <li>兼容微信加密方式</li>
+ *     <li>提供Base64编码的便捷方法</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

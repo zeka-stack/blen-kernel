@@ -7,7 +7,32 @@ import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: 字符集工具类 </p>
+ * <p>字符集工具类.
+ * <p>提供常用的字符集常量和字符集处理功能，简化字符集操作.
+ * <p>主要功能：
+ * <ul>
+ *     <li>定义常用的字符集常量（UTF-8、GBK、ISO-8859-1等）</li>
+ *     <li>提供字符集对象的创建和转换功能</li>
+ *     <li>支持根据字符集名称获取字符集对象</li>
+ *     <li>处理字符集相关的异常情况</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 使用预定义的字符集常量
+ * String text = "中文测试";
+ * byte[] bytes = text.getBytes(Charsets.UTF_8);
+ *
+ * // 根据名称获取字符集
+ * Charset charset = Charsets.of("GBK");
+ * String decoded = new String(bytes, charset);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>使用 lombok 的 @UtilityClass 注解，确保类为 final 且构造函数私有</li>
+ *     <li>继承 Spring 的字符集处理功能</li>
+ *     <li>提供安全的字符集获取方法，避免 UnsupportedCharsetException</li>
+ *     <li>支持默认字符集的自动获取</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

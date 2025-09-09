@@ -5,8 +5,15 @@ import java.io.Serial;
 
 /**
  * 安全上下文的默认实现类，负责存储和管理当前用户的认证信息
- * 包含用户认证数据的存储、获取和比较操作
- * 支持序列化，可以在分布式系统中进行传输和存储
+ * <p>
+ * 该类作为 {@link SecurityContext} 接口的标准实现，提供了安全上下文的基本操作功能
+ * 包含用户认证数据的存储、获取、比较和哈希操作
+ * <p>
+ * 主要功能：
+ * - 用户认证信息的安全存储
+ * - 对象等价性和哈希值计算
+ * - 支持序列化，可在分布式系统中传输和存储
+ * - 线程安全的数据访问和修改
  *
  * @author dong4j
  * @version 1.0.0
@@ -15,15 +22,15 @@ import java.io.Serial;
  * @since 1.0.0
  */
 public class SecurityContextImpl implements SecurityContext {
-    /** serialVersionUID */
+    /** 序列化版本号 */
     @Serial
     private static final long serialVersionUID = -2828643112455883285L;
 
-    /** Authentication */
+    /** 用户认证信息 */
     private CurrentUser authentication;
 
     /**
-     * Security context
+     * 默认构造函数，创建空的安全上下文
      *
      * @since 1.0.0
      */
@@ -32,9 +39,9 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * Security context
+     * 带参数的构造函数，创建包含特定认证信息的安全上下文
      *
-     * @param authentication authentication
+     * @param authentication 用户认证信息
      * @since 1.0.0
      */
     public SecurityContextImpl(CurrentUser authentication) {
@@ -42,10 +49,10 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * Equals
+     * 对象等价性比较
      *
-     * @param obj obj
-     * @return the boolean
+     * @param obj 待比较的对象
+     * @return 如果两个对象的认证信息相同则返回 true
      * @since 1.0.0
      */
     @Override
@@ -64,9 +71,9 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * Gets authentication *
+     * 获取用户认证信息
      *
-     * @return the authentication
+     * @return 当前的用户认证对象
      * @since 1.0.0
      */
     @Override
@@ -75,9 +82,9 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * Hash code
+     * 计算对象的哈希值
      *
-     * @return the int
+     * @return 哈希值，基于认证信息计算
      * @since 1.0.0
      */
     @Override
@@ -90,9 +97,9 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * Sets authentication *
+     * 设置用户认证信息
      *
-     * @param authentication authentication
+     * @param authentication 用户认证信息
      * @since 1.0.0
      */
     @Override
@@ -101,9 +108,9 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     /**
-     * To string
+     * 返回对象的字符串表示
      *
-     * @return the string
+     * @return 包含认证信息的字符串描述
      * @since 1.0.0
      */
     @Override

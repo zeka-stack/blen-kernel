@@ -72,7 +72,15 @@ public final class App {
     private static final String WINDOWS_DEFAULT_USER_NAME = "Administrator";
 
     /**
-     * <p>Description: </p>
+     * <p>构建信息常量类.
+     * <p>定义了应用构建过程中的相关信息常量，用于获取构建版本、时间和用户信息.
+     * <p>主要用于应用信息展示和版本管理相关功能.
+     * <p>包含的常量：
+     * <ul>
+     *     <li>VERSION：构建版本号</li>
+     *     <li>TIME：构建时间</li>
+     *     <li>USER_NAME：构建用户名</li>
+     * </ul>
      *
      * @author dong4j
      * @version 1.0.0
@@ -91,7 +99,19 @@ public final class App {
     }
 
     /**
-     * <p>Description: </p>
+     * <p>Git 信息常量类.
+     * <p>定义了 Git 版本控制相关的信息常量，用于获取代码分支、提交信息和构建记录.
+     * <p>主要用于应用版本追踪、问题排查和部署记录管理.
+     * <p>包含的常量：
+     * <ul>
+     *     <li>BRANCH：Git 分支名称</li>
+     *     <li>BUILD_VERSION：构建版本</li>
+     *     <li>BUILD_TIME：构建时间</li>
+     *     <li>COMMIT_TIME：最后提交时间</li>
+     *     <li>BUILD_USER_NAME：构建用户</li>
+     *     <li>COMMIT_USER_NAME：提交用户</li>
+     *     <li>COMMIT_MESSAGE：提交消息</li>
+     * </ul>
      *
      * @author dong4j
      * @version 1.0.0

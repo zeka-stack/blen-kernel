@@ -35,7 +35,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * <p>Description: </p>
+ * JwtUtils 工具类单元测试
+ * <p>
+ * 该测试类用于验证 JWT 令牌的生成、解析、验证等所有功能
+ * 包括正常情况和异常情况的测试用例，确保 JWT 功能的稳定性和可靠性
  *
  * @author dong4j
  * @version 1.0.0
@@ -45,11 +48,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 @Slf4j
 class JwtUtilsTest {
-    /** Object mapper */
+    /** Jackson 对象映射器，用于测试中的 JSON 序列化 */
     private final ObjectMapper objectMapper = Jsons.getCopyMapper();
-    /** Key */
+    /** 测试用的 JWT 签名密钥 */
     private final String key = "";
-    /** Token */
+    /** 测试用的 JWT 令牌样例 */
     private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
         ".eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJyb2xlcyI6W3siaWQiOjE2LCJyb2xlTmFtZSI6Iui2hee6p" +
         "-euoeeQhuWRmCJ9XSwiZXhwIjoxNTgyNDQyNjI0LCJ1c2VyIjp7ImlkIjoxLCJtb2JpbGUiOiIxODcwMDAwMDAwMCIsInVzZXJuYW1lIjoiYWRtaW4iLCJ1c2VySWRlbnRpdHkiOjB9LCJhdXRob3JpdGllcyI6WyLotoXnuqfnrqHnkIblkZgiXSwianRpIjoiZjQ0ZWQzZWMtMDIyMS00M2JiLWE5MDEtMzQzMzEzMmM3MjhiIiwiY2xpZW50X2lkIjoiZmtoX2Rhc2hib2FyZCJ9.rIH2TeLD03ysAY8yUvx3GBlgHsIL3LveeOLUK6Hnyrs";

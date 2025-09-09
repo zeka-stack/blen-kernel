@@ -3,7 +3,23 @@ package dev.dong4j.zeka.kernel.common.constant;
 import lombok.experimental.UtilityClass;
 
 /**
- * <p>Description:  </p>
+ * <p>基础常量定义类.
+ * <p>提供系统中常用的基础常量定义，包括执行器名称、请求头字段、网关相关常量等.
+ * <p>作为工具类设计，不可实例化，所有常量都是静态的公共字段.
+ * <p>主要功能：
+ * <ul>
+ *     <li>提供系统执行器相关常量</li>
+ *     <li>定义 HTTP 请求头字段名称</li>
+ *     <li>提供网关路由和日志相关常量</li>
+ *     <li>定义请求结果包装相关常量</li>
+ * </ul>
+ * <p>包含的常量类型：
+ * <ul>
+ *     <li>线程池和执行器相关常量</li>
+ *     <li>JSON 序列化和追踪 ID 常量</li>
+ *     <li>客户端标识和网关路由常量</li>
+ *     <li>Agent 服务接口命名规则常量</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0
@@ -36,7 +52,16 @@ public final class BasicConstant {
     public static final String REQUEST_EXCEPTION_INFO_ATTR = "javax.servlet.error.exception";
 
     /**
-     * <p>Description: agent service 通用接口命名规则 </p>
+     * <p>Agent 服务通用接口命名规则常量类.
+     * <p>定义了 Agent 服务中所有接口的标准化命名编码，保证接口命名的一致性和规范性.
+     * <p>采用分类编码的方式，不同类型的操作使用不同的前缀编码.
+     * <p>编码规则：
+     * <ul>
+     *     <li>01xx：查询操作（FIND、LIST、PAGE、COUNTS）</li>
+     *     <li>02xx：创建操作（CREATE、CREATE_BATCH、CREATE_IGNORE）</li>
+     *     <li>03xx：更新操作（UPDATE、UPDATE_BATCH）</li>
+     *     <li>04xx：删除操作（DELETE、DELETE_BATCH）</li>
+     * </ul>
      *
      * @author dong4j
      * @version 1.0.0

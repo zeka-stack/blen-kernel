@@ -8,8 +8,17 @@ import org.springframework.util.StringUtils;
 
 /**
  * 安全上下文持有者，提供多种策略来存储和管理安全上下文信息
- * 支持ThreadLocal、InheritableThreadLocal和Global三种存储策略
- * 用于线程安全的用户认证信息传递和管理，确保多线程环境下的数据安全
+ * <p>
+ * 该类作为安全框架的中心组件，负责管理用户认证信息的存储和访问策略
+ * 支持三种不同的存储模式，适应不同的应用场景和线程安全需求
+ * <p>
+ * 支持的存储策略：
+ * - ThreadLocal：每个线程拥有独立的安全上下文，不支持子线程继承
+ * - InheritableThreadLocal：支持子线程继承父线程的安全上下文
+ * - Global：全局共享安全上下文，适用于单线程应用
+ * <p>
+ * 线程安全的用户认证信息传递和管理，确保多线程环境下的数据安全
+ * 可通过系统属性或配置动态选择存储策略，也支持自定义策略实现
  *
  * @author dong4j
  * @version 1.0.0
@@ -19,19 +28,19 @@ import org.springframework.util.StringUtils;
  */
 public class SecurityContextHolder {
 
-    /** MODE_THREADLOCAL */
+    /** ThreadLocal 存储模式常量 */
     public static final String MODE_THREADLOCAL = "MODE_THREADLOCAL";
-    /** MODE_INHERITABLETHREADLOCAL */
+    /** InheritableThreadLocal 存储模式常量 */
     public static final String MODE_INHERITABLETHREADLOCAL = "MODE_INHERITABLETHREADLOCAL";
-    /** MODE_GLOBAL */
+    /** 全局存储模式常量 */
     public static final String MODE_GLOBAL = "MODE_GLOBAL";
-    /** SYSTEM_PROPERTY */
+    /** 系统属性键，用于配置存储策略 */
     public static final String SYSTEM_PROPERTY = ConfigKey.PREFIX + "security.strategy";
-    /** strategyName */
+    /** 当前使用的策略名称 */
     private static String strategyName = System.getProperty(SYSTEM_PROPERTY);
-    /** strategy */
+    /** 当前的安全上下文持有策略实例 */
     private static SecurityContextHolderStrategy strategy;
-    /** initializeCount */
+    /** 初始化计数器 */
     @Getter
     private static int initializeCount = 0;
 
@@ -40,7 +49,7 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Clear context
+     * 清除当前线程的安全上下文
      *
      * @since 1.0.0
      */
@@ -49,9 +58,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Gets context *
+     * 获取当前线程的安全上下文
      *
-     * @return the context
+     * @return 安全上下文对象，包含用户认证信息
      * @since 1.0.0
      */
     public static SecurityContext getContext() {
@@ -59,7 +68,7 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Initialize
+     * 初始化安全上下文持有者，根据配置选择合适的存储策略
      *
      * @since 1.0.0
      */
@@ -94,9 +103,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Sets context *
+     * 设置当前线程的安全上下文
      *
-     * @param context context
+     * @param context 安全上下文对象，包含用户认证信息
      * @since 1.0.0
      */
     public static void setContext(SecurityContext context) {
@@ -104,9 +113,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Sets strategy name *
+     * 设置存储策略名称并重新初始化
      *
-     * @param strategyName strategy name
+     * @param strategyName 策略名称，支持预定义策略或自定义类名
      * @since 1.0.0
      */
     public static void setStrategyName(String strategyName) {
@@ -115,9 +124,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Gets context holder strategy *
+     * 获取当前使用的上下文持有策略
      *
-     * @return the context holder strategy
+     * @return 安全上下文持有策略实例
      * @since 1.0.0
      */
     public static SecurityContextHolderStrategy getContextHolderStrategy() {
@@ -125,9 +134,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * Create empty context
+     * 创建空的安全上下文实例
      *
-     * @return the security context
+     * @return 新的空安全上下文对象
      * @since 1.0.0
      */
     public static SecurityContext createEmptyContext() {
@@ -135,9 +144,9 @@ public class SecurityContextHolder {
     }
 
     /**
-     * To string
+     * 返回对象的字符串表示
      *
-     * @return the string
+     * @return 包含策略名称和初始化计数的字符串
      * @since 1.0.0
      */
     @Override

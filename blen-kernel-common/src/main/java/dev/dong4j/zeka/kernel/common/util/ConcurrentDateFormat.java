@@ -12,8 +12,42 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * <p>Description: 安全的时间格式化</p>
- * 参考 tomcat8 中的并发 DateFormat, {@link SimpleDateFormat}的线程安全包装器. 不使用ThreadLocal,创建足够的SimpleDateFormat对象来满足并发性要求.
+ * <p>安全的时间格式化.
+ * <p>参考tomcat8中的并发DateFormat，{@link SimpleDateFormat}的线程安全包装器.
+ * <p>不使用ThreadLocal，创建足够的SimpleDateFormat对象来满足并发性要求.
+ * <p>主要功能：
+ * <ul>
+ *     <li>线程安全的日期格式化和解析</li>
+ *     <li>避免SimpleDateFormat的线程安全问题</li>
+ *     <li>高性能的日期处理能力</li>
+ *     <li>支持自定义格式、时区和语言环境</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 创建线程安全的日期格式化器
+ * ConcurrentDateFormat formatter = ConcurrentDateFormat.of("yyyy-MM-dd HH:mm:ss");
+ *
+ * // 格式化日期
+ * Date date = new Date();
+ * String formatted = formatter.format(date);
+ *
+ * // 解析日期字符串
+ * String dateStr = "2023-01-01 12:00:00";
+ * Date parsed = formatter.parse(dateStr);
+ *
+ * // 使用特定时区和语言环境
+ * TimeZone timeZone = TimeZone.getTimeZone("UTC");
+ * Locale locale = Locale.CHINA;
+ * ConcurrentDateFormat formatter2 = ConcurrentDateFormat.of("yyyy-MM-dd HH:mm:ss", locale, timeZone);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>基于队列的对象池模式，避免频繁创建SimpleDateFormat实例</li>
+ *     <li>使用ConcurrentLinkedQueue实现线程安全的对象池</li>
+ *     <li>支持自定义日期格式、时区和语言环境</li>
+ *     <li>高性能，适用于高并发场景</li>
+ *     <li>自动回收和复用SimpleDateFormat实例</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

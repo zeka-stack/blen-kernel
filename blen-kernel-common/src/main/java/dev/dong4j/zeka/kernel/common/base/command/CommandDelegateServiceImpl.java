@@ -9,10 +9,33 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * <p>Description:  </p>
+ * <p>命令委托服务实现类.
+ * <p>为命令模式提供完整的实现，封装了所有的数据修改操作（创建、更新、删除）.
+ * <p>通过委托模式将具体的数据操作委托给 IRepositoryService，实现了分层架构的解耦.
+ * <p>主要功能：
+ * <ul>
+ *     <li>提供完整的 CRUD 操作实现</li>
+ *     <li>支持单条和批量数据操作</li>
+ *     <li>支持多种插入策略（忽略、替换、新增或更新）</li>
+ *     <li>提供参数校验和异常处理</li>
+ * </ul>
+ * <p>支持的操作类型：
+ * <ul>
+ *     <li>创建操作：create、createIgnore、createReplace、createOrUpdate</li>
+ *     <li>批量创建：createBatch、createIgnoreBatch、createReplaceBatch</li>
+ *     <li>更新操作：update、updateBatch、createOrUpdateBatch</li>
+ *     <li>删除操作：按 ID、按条件、批量删除</li>
+ * </ul>
+ * <p>设计优势：
+ * <ul>
+ *     <li>统一的参数校验和异常处理</li>
+ *     <li>支持微服务架构下的服务分层</li>
+ *     <li>灵活的数据操作策略选择</li>
+ *     <li>高性能的批量操作支持</li>
+ * </ul>
  *
- * @param <S>   {@link IRepositoryService} 子类
- * @param <DTO> DTO 实体
+ * @param <S>   IRepositoryService 的子类，提供具体的数据操作实现
+ * @param <DTO> 数据传输对象类型
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"

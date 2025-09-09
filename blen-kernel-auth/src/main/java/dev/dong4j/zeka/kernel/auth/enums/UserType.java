@@ -7,7 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Description: 全平台用户类型 </p>
+ * 全平台用户类型枚举，定义了系统中所有支持的用户类型分类
+ * <p>
+ * 该枚举类用于区分不同类型的用户，支持多业务场景下的用户角色管理
+ * 包括传统物流行业、新兴业务领域等多种用户类型，为不同类型用户提供差异化的服务
+ * <p>
+ * 支持的用户类型：
+ * - 系统类：N_A、SYSTEM、TENANT
+ * - 物流行业：DRIVER、FLEET、SHIPPER、FREIGHTAGE、COMPANY_VEHICLE_OWNER
+ * - 新兴业务：OIL、EARTHWORK、FLOW
+ * - 子账户：SHIPPER_CHILD
  *
  * @author dong4j
  * @version 1.0.0
@@ -18,35 +27,35 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UserType implements SerializeEnum<Integer> {
-    /** N a user type */
+    /** 未定义用户类型 */
     N_A(0, StringPool.NULL_STRING),
-    /** Tenant own user type */
+    /** 租户类型用户 */
     TENANT(10, "租户"),
-    /** Platform driver user type */
+    /** 平台用户 - 驾驶员 */
     DRIVER(1, "平台用户-驾驶员"),
-    /** Platform fleet user type */
+    /** 平台用户 - 车队物流公司 */
     FLEET(7, "平台用户-车队物流公司"),
-    /** Platform shipper user type */
+    /** 平台用户 - 货主 */
     SHIPPER(3, "平台用户-货主"),
-    /** Platform freightage user type */
+    /** 平台用户 - 信息部 */
     FREIGHTAGE(2, "平台用户-信息部"),
-    /** System admin ser type */
+    /** 系统管理员类型用户 */
     SYSTEM(6, "系统管理员"),
-    /** Company vehicle owner user type */
+    /** 平台用户 - 企业车主 */
     COMPANY_VEHICLE_OWNER(9, "平台用户-企业车主"),
-    /** Shipper child user type */
+    /** 平台用户 - 货主子账户 */
     SHIPPER_CHILD(31, "平台用户-货主子账户"),
-    /** Oil user type */
+    /** 平台用户 - 油气账户 */
     OIL(101, "平台用户-油气账户"),
-    /** Earthwork user type */
+    /** 平台用户 - 土石方账户 */
     EARTHWORK(102, "平台用户-土石方账户"),
-    /** Flow user type */
+    /** 平台用户 - 流向管控账户 */
     FLOW(103, "平台用户-流向管控账户");
 
-    /** Value */
+    /** 枚举值，用于序列化 */
     @SerializeValue
     private final Integer value;
-    /** Desc */
+    /** 用户类型描述 */
     private final String desc;
 
 }

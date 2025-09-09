@@ -364,7 +364,22 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
     }
 
     /**
-     * <p>Description: </p>
+     * <p>应用监听器常量定义类.
+     * <p>定义了应用监听器中使用的各种常量，包括支持的事件类型列表.
+     * <p>主要功能：
+     * <ul>
+     *     <li>定义 Spring Boot 应用生命周期事件类型</li>
+     *     <li>支持应用启动、准备、就绪等各阶段事件</li>
+     *     <li>包含 Web 服务器和上下文相关事件</li>
+     *     <li>为事件处理提供类型约束和过滤</li>
+     * </ul>
+     * <p>支持的事件类型：
+     * <ul>
+     *     <li>应用启动相关：ApplicationStartingEvent、ApplicationStartedEvent、ApplicationReadyEvent</li>
+     *     <li>环境准备相关：ApplicationEnvironmentPreparedEvent、ApplicationPreparedEvent</li>
+     *     <li>上下文相关：ApplicationContextInitializedEvent、ContextRefreshedEvent 等</li>
+     *     <li>异常处理：ApplicationFailedEvent</li>
+     * </ul>
      *
      * @author dong4j
      * @version 1.0.0
@@ -405,7 +420,28 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
     }
 
     /**
-     * <p>Description: 统计 listener 执行次数, 提供在第几次执行 listener, 主要用于解决在 spring cloud 下多次执行 listener 的问题
+     * <p>监听器执行统计和控制器.
+     * <p>提供监听器执行次数统计和执行时机控制功能，主要用于解决 Spring Cloud 环境下监听器多次执行的问题.
+     * <p>核心功能：
+     * <ul>
+     *     <li>统计监听器的执行次数和总体执行计数</li>
+     *     <li>控制监听器在特定时机执行（首次、最后一次、指定次数）</li>
+     *     <li>提供执行状态查询和重复执行防护</li>
+     *     <li>支持异常安全的监听器执行包装</li>
+     * </ul>
+     * <p>应用场景：
+     * <ul>
+     *     <li>Spring Cloud 环境下的重复执行控制</li>
+     *     <li>配置文件加载时机的精确控制</li>
+     *     <li>应用启动阶段的资源初始化管理</li>
+     *     <li>监听器执行状态的追踪和调试</li>
+     * </ul>
+     * <p>注意事项：
+     * <ul>
+     *     <li>首次执行只能读取 bootstrap.yml 配置</li>
+     *     <li>最后一次执行只能读取 application.yml 配置</li>
+     *     <li>所有执行都提供异常捕获和日志记录</li>
+     * </ul>
      *
      * @author dong4j
      * @version 1.0.0

@@ -17,7 +17,32 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: </p>
+ * <p>断言工具类大全.
+ * <p>提供全面的断言方法，用于参数校验、前置条件检查和业务规则验证.
+ * <p>支持各种数据类型的断言操作，包括字符串、集合、数组、数值比较等.
+ * <p>所有断言失败时都会抛出明确的异常信息，便于问题定位和调试.
+ * <p>主要特性：
+ * <ul>
+ *     <li>丰富的断言方法，覆盖常用的验证场景</li>
+ *     <li>灵活的异常处理，支持自定义错误消息和异常类型</li>
+ *     <li>支持正则表达式匹配和字符串模式验证</li>
+ *     <li>精确的数值比较，包括浮点数误差处理</li>
+ *     <li>集合和数组的空值和元素检查</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>{@code
+ * // 基本断言
+ * Assertions.notNull(user, "用户不能为空");
+ * Assertions.notBlank(name, "姓名不能为空");
+ * Assertions.isTrue(age > 0, "年龄必须大于0");
+ *
+ * // 集合断言
+ * Assertions.notEmpty(list, "列表不能为空");
+ * Assertions.noNullElements(array, "数组中不能包含空元素");
+ *
+ * // 正则匹配
+ * Assertions.isMatch("^\d+$", phoneNumber, "手机号格式不正确");
+ * }</pre>
  *
  * @author dong4j
  * @version 1.0.0

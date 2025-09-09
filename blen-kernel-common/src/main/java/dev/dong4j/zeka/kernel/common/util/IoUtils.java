@@ -10,7 +10,51 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>Description: IoUtil </p>
+ * <p>Description: IO工具类，提供IO操作相关的工具方法，包括字节流处理、字符编码转换等</p>
+ * <p>
+ * 主要功能：
+ * <ul>
+ *     <li>字节数组与字符串转换</li>
+ *     <li>输入输出流处理</li>
+ *     <li>字符编码转换</li>
+ *     <li>资源安全关闭</li>
+ * </ul>
+ * </p>
+ * <p>
+ * 使用示例：
+ * <pre>
+ * // 字节数组转字符串
+ * byte[] bytes = "Hello World".getBytes(StandardCharsets.UTF_8);
+ * String str = IoUtils.toString(bytes);
+ *
+ * // InputStream转字符串
+ * InputStream inputStream = new ByteArrayInputStream(bytes);
+ * String str2 = IoUtils.toString(inputStream);
+ *
+ * // 字符串写入OutputStream
+ * ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+ * IoUtils.write("Hello World", outputStream, StandardCharsets.UTF_8);
+ * byte[] result = outputStream.toByteArray();
+ *
+ * // 安全关闭资源
+ * InputStream is = null;
+ * try {
+ *     is = new FileInputStream("file.txt");
+ *     // 处理文件
+ * } finally {
+ *     IoUtils.closeQuietly(is);
+ * }
+ * </pre>
+ * </p>
+ * <p>
+ * 技术特性：
+ * <ul>
+ *     <li>继承Spring的StreamUtils功能</li>
+ *     <li>提供多种字符编码支持</li>
+ *     <li>安全的资源关闭机制</li>
+ *     <li>异常安全处理</li>
+ * </ul>
+ * </p>
  *
  * @author dong4j
  * @version 1.0.0
@@ -24,8 +68,8 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     /**
      * byte[] 转 String, 编码默认 UTF-8
      *
-     * @param input input
-     * @return the string
+     * @param input 输入的字节数组
+     * @return 转换后的字符串
      * @since 1.0.0
      */
     @NotNull
@@ -36,11 +80,11 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     /**
      * 使用指定的字符编码以字符串形式获取 byte[] 的内容
      *
-     * @param input    the byte array to read from
-     * @param encoding the encoding to use, null means platform default
-     * @return the requested String
-     * @throws NullPointerException if the input is null
-     * @throws IOException          if an I/O error occurs (never occurs)
+     * @param input    字节数组
+     * @param encoding 编码格式
+     * @return 转换后的字符串
+     * @throws NullPointerException 如果输入为null
+     * @throws IOException          如果发生I/O错误
      * @since 1.0.0
      */
     @NotNull
@@ -50,10 +94,10 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     }
 
     /**
-     * InputStream to String utf-8
+     * InputStream 转 String，使用UTF-8编码
      *
-     * @param input the <code>InputStream</code> to read from
-     * @return the requested String
+     * @param input 输入流
+     * @return 转换后的字符串
      * @since 1.0.0
      */
     @NotNull
@@ -62,11 +106,11 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     }
 
     /**
-     * InputStream to String
+     * InputStream 转 String
      *
-     * @param input   the <code>InputStream</code> to read from
-     * @param charset the <code>Charsets</code>
-     * @return the requested String
+     * @param input   输入流
+     * @param charset 字符集
+     * @return 转换后的字符串
      * @since 1.0.0
      */
     @NotNull
@@ -81,9 +125,9 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     }
 
     /**
-     * closeQuietly
+     * 安静地关闭资源，不抛出异常
      *
-     * @param closeable 自动关闭
+     * @param closeable 可关闭的资源
      * @since 1.0.0
      */
     public static void closeQuietly(@Nullable Closeable closeable) {
@@ -97,10 +141,10 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     }
 
     /**
-     * To byte array byte [ ].
+     * InputStream 转 byte[]
      *
-     * @param input the input
-     * @return the byte [ ]
+     * @param input 输入流
+     * @return 字节数组
      * @since 1.0.0
      */
     public static byte[] toByteArray(@Nullable InputStream input) {
@@ -114,15 +158,14 @@ public class IoUtils extends org.springframework.util.StreamUtils {
     }
 
     /**
-     * Writes chars from a <code>String</code> to bytes on an
-     * <code>OutputStream</code> using the specified character encoding.
+     * 将字符串写入OutputStream
      * <p>
-     * This method uses {@link String#getBytes(String)}.
+     * 此方法使用 {@link String#getBytes(String)} 方法
      *
-     * @param data     the <code>String</code> to write, null ignored
-     * @param output   the <code>OutputStream</code> to write to
-     * @param encoding the encoding to use, null means platform default
-     * @throws IOException if an I/O error occurs
+     * @param data     要写入的字符串
+     * @param output   输出流
+     * @param encoding 编码格式
+     * @throws IOException 如果发生I/O错误
      * @since 1.0.0
      */
     public static void write(@Nullable String data, OutputStream output, java.nio.charset.Charset encoding) throws IOException {

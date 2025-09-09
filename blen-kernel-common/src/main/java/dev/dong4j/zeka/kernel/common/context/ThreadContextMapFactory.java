@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * //  * <p>Description: </p>
+ * <p>Description: </p>
  *
  * @author dong4j
  * @version 1.0.0

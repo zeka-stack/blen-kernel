@@ -28,7 +28,24 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.SystemPropertyUtils;
 
 /**
- * <p>Description: 解析所有配置</p>
+ * <p>Zeka 环境配置解析器.
+ * <p>提供全面的 Spring 环境配置解析和显示功能，支持配置的过滤、脱敏和格式化显示.
+ * <p>可以获取环境中所有的配置信息，包括配置来源、值和原始信息，便于配置调试和问题排查.
+ * <p>主要功能：
+ * <ul>
+ *     <li>配置信息的全面解析和显示</li>
+ *     <li>支持正则表达式过滤配置项</li>
+ *     <li>敏感配置信息的脱敏处理</li>
+ *     <li>配置来源和值的追溯支持</li>
+ *     <li>占位符解析和环境变量替换</li>
+ * </ul>
+ * <p>使用场景：
+ * <ul>
+ *     <li>开发和调试阶段的配置查看</li>
+ *     <li>生产环境的配置诊断和排错</li>
+ *     <li>安全审计和配置管理</li>
+ *     <li>微服务环境下的配置监控</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0
@@ -38,16 +55,17 @@ import org.springframework.util.SystemPropertyUtils;
  */
 public class ZekaEnvironment {
 
-    /** Sanitizer */
+    /** <p>配置脱敏处理器，用于对敏感配置信息进行脱敏处理 */
     private final Sanitizer sanitizer = new Sanitizer();
 
-    /** Environment */
+    /** Spring 环境对象 */
     private final Environment environment;
 
     /**
-     * Instantiates a new environment.
+     * <p>构造方法.
+     * <p>初始化环境解析器，绑定指定的 Spring 环境对象.
      *
-     * @param environment the environment
+     * @param environment Spring 环境对象
      * @since 1.0.0
      */
     public ZekaEnvironment(Environment environment) {
@@ -55,9 +73,10 @@ public class ZekaEnvironment {
     }
 
     /**
-     * Sets keys to sanitize.
+     * <p>设置需要脱敏的配置键名称.
+     * <p>配置包含敏感信息的键名称，在显示时会被脱敏处理.
      *
-     * @param keysToSanitize the keys to sanitize
+     * @param keysToSanitize 需要脱敏的配置键名称数组
      * @since 1.0.0
      */
     public void setKeysToSanitize(String... keysToSanitize) {
@@ -65,10 +84,11 @@ public class ZekaEnvironment {
     }
 
     /**
-     * Environment environment descriptor.
+     * <p>获取环境配置描述信息.
+     * <p>根据指定的正则表达式过滤配置项，返回匹配的配置信息.
      *
-     * @param pattern the pattern
-     * @return the environment descriptor
+     * @param pattern 正则表达式模式，用于过滤配置项名称
+     * @return 环境配置描述信息
      * @since 1.0.0
      */
     public EnvironmentDescriptor environment(@Nullable String pattern) {
@@ -79,10 +99,11 @@ public class ZekaEnvironment {
     }
 
     /**
-     * Environment entry environment entry descriptor.
+     * <p>获取指定配置项的详细信息.
+     * <p>返回包含所有属性来源和值的详细描述信息.
      *
-     * @param toMatch the to match
-     * @return the environment entry descriptor
+     * @param toMatch 要查找的配置项名称
+     * @return 环境配置项描述信息
      * @since 1.0.0
      */
     public EnvironmentEntryDescriptor environmentEntry(String toMatch) {
@@ -313,7 +334,7 @@ public class ZekaEnvironment {
      */
     private static class PropertySourcesPlaceholdersSanitizingResolver extends PropertySourcesPlaceholdersResolver {
 
-        /** Sanitizer */
+        /** <p>配置脱敏处理器，用于对占位符解析过程中的敏感信息进行脱敏处理 */
         private final Sanitizer sanitizer;
 
         /**
@@ -361,10 +382,10 @@ public class ZekaEnvironment {
      */
     public static final class EnvironmentDescriptor {
 
-        /** Active profiles */
+        /** <p>激活的配置文件列表 */
         private final List<String> activeProfiles;
 
-        /** Property sources */
+        /** <p>属性源描述信息列表 */
         private final List<PropertySourceDescriptor> propertySources;
 
         /**
@@ -415,13 +436,13 @@ public class ZekaEnvironment {
      */
     public static final class EnvironmentEntryDescriptor {
 
-        /** Property */
+        /** <p>属性摘要描述信息 */
         private final PropertySummaryDescriptor property;
 
-        /** Active profiles */
+        /** <p>激活的配置文件列表 */
         private final List<String> activeProfiles;
 
-        /** Property sources */
+        /** <p>属性源条目描述信息列表 */
         private final List<PropertySourceEntryDescriptor> propertySources;
 
         /**
@@ -536,10 +557,10 @@ public class ZekaEnvironment {
      */
     public static final class PropertySourceDescriptor {
 
-        /** Name */
+        /** <p>属性源名称 */
         private final String name;
 
-        /** Properties */
+        /** <p>属性集合，包含该源中的所有属性描述信息 */
         private final Map<String, PropertyValueDescriptor> properties;
 
         /**
@@ -590,10 +611,10 @@ public class ZekaEnvironment {
      */
     public static final class PropertySourceEntryDescriptor {
 
-        /** Name */
+        /** <p>属性源条目名称 */
         private final String name;
 
-        /** Property */
+        /** <p>属性值描述信息 */
         private final PropertyValueDescriptor property;
 
         /**
@@ -644,10 +665,10 @@ public class ZekaEnvironment {
      */
     public static final class PropertyValueDescriptor {
 
-        /** Value */
+        /** <p>属性值 */
         private final Object value;
 
-        /** Origin */
+        /** <p>属性来源信息 */
         private final String origin;
 
         /**

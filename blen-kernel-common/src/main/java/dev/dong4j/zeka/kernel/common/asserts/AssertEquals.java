@@ -6,7 +6,23 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 
 /**
- * <p>Description: </p>
+ * <p>等值断言工具类.
+ * <p>专门用于各种数据类型的等值比较和断言验证，支持基本数据类型和对象类型.
+ * <p>提供了丰富的方法重载，支持不同的参数组合和错误处理方式.
+ * <p>主要功能：
+ * <ul>
+ *     <li>基本数据类型的等值比较（byte、char、short、int、long）</li>
+ *     <li>浮点数类型的精确比较（float、double）</li>
+ *     <li>浮点数的误差范围比较（delta 参数）</li>
+ *     <li>对象类型的等值比较（基于 equals 方法）</li>
+ * </ul>
+ * <p>特性说明：
+ * <ul>
+ *     <li>支持自定义错误消息和异常供应器</li>
+ *     <li>浮点数比较使用位级别的精确比较</li>
+ *     <li>支持可选的异常后操作（CheckedRunnable）</li>
+ *     <li>线程安全的静态方法设计</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

@@ -17,7 +17,22 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 国际化配置文件绑定抽象类 </p>
+ * <p>国际化配置文件绑定抽象类.
+ * <p>为国际化配置文件的加载和管理提供统一的抽象基类，支持动态加载和缓存管理.
+ * <p>主要功能：
+ * <ul>
+ *     <li>提供国际化消息的获取和格式化功能</li>
+ *     <li>支持懒加载和缓存机制，提高性能</li>
+ *     <li>提供灵活的 ClassLoader 支持</li>
+ *     <li>支持默认值和空值处理机制</li>
+ * </ul>
+ * <p>技术特性：
+ * <ul>
+ *     <li>使用软引用缓存，避免内存泄漏</li>
+ *     <li>并发安全的缓存实现，支持多线程访问</li>
+ *     <li>智能的降级机制，从 .properties 文件降级到类加载</li>
+ *     <li>支持国际化消息的参数化和格式化</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

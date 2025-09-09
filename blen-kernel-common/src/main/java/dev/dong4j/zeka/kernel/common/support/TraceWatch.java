@@ -5,7 +5,41 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.util.StopWatch;
 
 /**
- * <p>Description: </p>
+ * <p>增强版的性能监控计时器.
+ * <p>继承自 Spring 的 StopWatch，提供更丰富的功能和更便捷的使用方式.
+ * <p>实现了 AutoCloseable 接口，支持 try-with-resources 语法的自动资源管理.
+ * <p>主要功能：
+ * <ul>
+ *     <li>高精度的执行时间监控和统计</li>
+ *     <li>多任务的分段计时和性能分析</li>
+ *     <li>自动资源管理和安全关闭</li>
+ *     <li>友好的日志输出格式</li>
+ * </ul>
+ * <p>增强特性：
+ * <ul>
+ *     <li>支持链式调用的流式 API</li>
+ *     <li>提供自定义的美化输出格式</li>
+ *     <li>可配置的任务信息保留策略</li>
+ * </ul>
+ * <p>使用场景：
+ * <ul>
+ *     <li>方法执行时间的性能监控</li>
+ *     <li>复杂业务流程的性能分析</li>
+ *     <li>系统瓶颈识别和调优</li>
+ *     <li>开发阶段的性能调试</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>{@code
+ * try (TraceWatch watch = new TraceWatch("business-process")) {
+ *     watch.startings("step1");
+ *     // 执行业务逻辑 1
+ *     watch.stop();
+ *
+ *     watch.startings("step2");
+ *     // 执行业务逻辑 2
+ *     // 自动关闭时会停止计时
+ * }
+ * }</pre>
  *
  * @author dong4j
  * @version 1.0.0

@@ -6,7 +6,23 @@ import java.util.function.Supplier;
 import org.springframework.lang.Nullable;
 
 /**
- * <p>Description: </p>
+ * <p>非空断言工具类.
+ * <p>专门用于验证对象不为 null 的断言操作，是最常用的参数校验方式之一.
+ * <p>提供了灵活的错误处理机制，支持自定义错误消息和异常后操作.
+ * <p>主要功能：
+ * <ul>
+ *     <li>验证对象引用不为 null</li>
+ *     <li>支持所有类型的对象引用检查</li>
+ *     <li>自定义错误消息和异常类型</li>
+ *     <li>支持异常后的清理操作</li>
+ * </ul>
+ * <p>使用场景：
+ * <ul>
+ *     <li>方法参数的预条件检查</li>
+ *     <li>依赖注入和对象初始化的验证</li>
+ *     <li>API 输入参数的有效性检查</li>
+ *     <li>业务逻辑中的空指针防护</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

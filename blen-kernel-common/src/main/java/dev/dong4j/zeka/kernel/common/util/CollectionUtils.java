@@ -20,19 +20,51 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 集合工具类，扩展了Spring CollectionUtils的功能
+ * <p>集合工具类，扩展了Spring CollectionUtils的功能.
+ * <p>提供了丰富的集合和数组操作功能，包括集合判断、转换、合并、查找等.
+ * <p>结合Guava和Java 8 Stream API，提供更便捷的集合处理方法.
+ * <p>主要功能：
+ * <ul>
+ *     <li>集合空判断（isEmpty、isNotEmpty等）</li>
+ *     <li>数组和集合转换（toList、toMap、ofImmutableSet等）</li>
+ *     <li>数组元素查找和包含判断（contains系列方法）</li>
+ *     <li>数组合并和连接（concat系列方法）</li>
+ *     <li>不可变集合创建（ofImmutableList、ofImmutableSet）</li>
+ *     <li>Map构建工具（支持key-value对数组）</li>
+ *     <li>类型安全的查找和转换操作</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 集合空判断
+ * List<String> list = new ArrayList<>();
+ * boolean isEmpty = CollectionUtils.isEmpty(list);  // true
+ * boolean isNotEmpty = CollectionUtils.isNotEmpty(list); // false
  *
- * 提供了丰富的集合和数组操作功能，包括集合判断、转换、合并、查找等
- * 结合Guava和Java 8 Stream API，提供更便捷的集合处理方法
+ * // 数组包含判断
+ * String[] array = {"a", "b", "c"};
+ * boolean contains = CollectionUtils.contains(array, "b"); // true
  *
- * 主要功能：
- * - 集合空判断（isEmpty、isNotEmpty等）
- * - 数组和集合转换（toList、toMap、ofImmutableSet等）
- * - 数组元素查找和包含判断（contains系列方法）
- * - 数组合并和连接（concat系列方法）
- * - 不可变集合创建（ofImmutableList、ofImmutableSet）
- * - Map构建工具（支持key-value对数组）
- * - 类型安全的查找和转换操作
+ * // 数组合并
+ * String[] arr1 = {"a", "b"};
+ * String[] arr2 = {"c", "d"};
+ * String[] merged = CollectionUtils.concat(arr1, arr2); // {"a", "b", "c", "d"}
+ *
+ * // 创建不可变集合
+ * String[] elements = {"a", "b", "c"};
+ * Set<String> immutableSet = CollectionUtils.ofImmutableSet(elements);
+ * List<String> immutableList = CollectionUtils.ofImmutableList(elements);
+ *
+ * // 数组转Map
+ * Map<String, Integer> map = CollectionUtils.toMap("a", 1, "b", 2); // {a=1, b=2}
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>继承Spring的CollectionUtils功能</li>
+ *     <li>集成Google Guava的优秀集合处理能力</li>
+ *     <li>充分利用Java 8 Stream API的函数式编程特性</li>
+ *     <li>提供类型安全的集合操作方法</li>
+ *     <li>支持不可变集合的创建和使用</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

@@ -15,23 +15,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 请求响应返回结构封装, 所有请求都要求返回此类.
- * {@code
- * Result<Data> result = R.success(data);
- * <p>
- * 反序列化:
+ * <p>API 响应结果抽象基类.
+ * <p>定义统一的 API 响应结构，保证所有请求返回的一致性和规范性.
+ * <p>包含标准的响应字段：状态码、成功标识、数据内容、消息描述、跟踪标识等.
+ * <p>支持 Jackson 多态序列化，解决抽象类反序列化问题.
+ * <p>使用示例：
+ * <pre>{@code
+ * // 创建成功响应
+ * Result<Data> result = R.succeed(data);
+ *
+ * // 反序列化
  * Result<Data> result = JsonUtils.parse(json, new TypeReference<Result<Data>>(){});
  * Result result = JsonUtils.parse(json, Result.class);
- * }*
- * <p>
- * 由于 jackson 在反序列化抽象类时存在多态问题, 我们使用 {@link Result#TYPE_NAME} 来标识 json 需要被反序列化的 class.
- * 比较推荐的反序列化方式是根据不同的框架来进行反序列化, 避免使用 {@link Result}:
- * {@code
- * v8: Result result = JsonUtils.parse(json, R.class);
- * }*
- * </p>
+ * }</pre>
+ * <p>由于 Jackson 在反序列化抽象类时存在多态问题，推荐使用具体的实现类进行反序列化：
+ * <pre>{@code
+ * Result result = JsonUtils.parse(json, R.class);
+ * }</pre>
  *
- * @param <T> parameter
+ * @param <T> 响应数据的类型参数
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dongshijie@gmail.com"
@@ -46,19 +48,19 @@ import org.jetbrains.annotations.Nullable;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = R.class)
 public abstract class Result<T> implements Serializable {
 
-    /** serialVersionUID */
+    /** 序列化版本号 */
     public static final long serialVersionUID = 1L;
-    /** CODE */
+    /** 响应状态码字段名 */
     public static final String CODE = "code";
-    /** SUCCESS */
+    /** 成功标识字段名 */
     public static final String SUCCESS = "success";
-    /** DATA */
+    /** 数据内容字段名 */
     public static final String DATA = "data";
-    /** MESSAGE */
+    /** 消息描述字段名 */
     public static final String MESSAGE = "message";
-    /** TRACE_ID */
+    /** 跟踪标识字段名 */
     public static final String TRACE_ID = "traceId";
-    /** EXTEND */
+    /** 扩展字段名 */
     public static final String EXTEND = "extend";
     /** 请求成功代码 */
     public static final Integer SUCCESS_CODE = 2000;
@@ -91,12 +93,13 @@ public abstract class Result<T> implements Serializable {
     protected Object extend;
 
     /**
-     * Result
+     * <p>受保护的构造方法.
+     * <p>初始化 Result 实例的所有字段，并根据状态码自动设置成功标识.
      *
-     * @param code    code
-     * @param message message
-     * @param data    data
-     * @param traceId trace id
+     * @param code    响应状态码
+     * @param message 响应消息描述
+     * @param data    响应数据内容
+     * @param traceId 跟踪标识，用于请求链路追踪
      * @since 1.0.0
      */
     @Contract(pure = true)
@@ -109,9 +112,10 @@ public abstract class Result<T> implements Serializable {
     }
 
     /**
-     * Is ok boolean
+     * <p>判断请求是否成功 (实例方法).
+     * <p>基于当前实例的状态码和成功标识进行判断.
      *
-     * @return the boolean
+     * @return {@code true} 请求成功；{@code false} 请求失败
      * @since 1.0.0
      */
     @JsonIgnore
@@ -120,10 +124,11 @@ public abstract class Result<T> implements Serializable {
     }
 
     /**
-     * 请求是否成功
+     * <p>判断请求是否成功 (静态方法).
+     * <p>检查 Result 对象的状态码是否为成功码且成功标识为 true.
      *
-     * @param result result
-     * @return the boolean
+     * @param result 待检查的 Result 对象
+     * @return {@code true} 请求成功；{@code false} 请求失败或对象为 null
      * @since 1.0.0
      */
     @Contract("null -> false")
@@ -132,9 +137,10 @@ public abstract class Result<T> implements Serializable {
     }
 
     /**
-     * Is fail boolean
+     * <p>判断请求是否失败 (实例方法).
+     * <p>基于当前实例进行失败判断，与 isOk() 结果相反.
      *
-     * @return the boolean
+     * @return {@code true} 请求失败；{@code false} 请求成功
      * @since 1.0.0
      */
     @JsonIgnore
@@ -143,10 +149,11 @@ public abstract class Result<T> implements Serializable {
     }
 
     /**
-     * 请求是否失败
+     * <p>判断请求是否失败 (静态方法).
+     * <p>通过反向调用 isOk() 方法进行判断，null 对象视为失败.
      *
-     * @param result result
-     * @return the boolean
+     * @param result 待检查的 Result 对象
+     * @return {@code true} 请求失败或对象为 null；{@code false} 请求成功
      * @since 1.0.0
      */
     @Contract("null -> true")

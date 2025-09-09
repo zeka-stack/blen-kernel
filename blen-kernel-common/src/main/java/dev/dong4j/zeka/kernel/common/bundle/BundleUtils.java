@@ -11,7 +11,22 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 国际化配置文件绑定工具类 </p>
+ * <p>国际化配置文件绑定工具类.
+ * <p>为国际化配置文件的加载和管理提供工具方法，特别支持插件化环境的资源加载.
+ * <p>主要功能：
+ * <ul>
+ *     <li>插件化环境下的国际化资源加载</li>
+ *     <li>支持多 ClassLoader 环境的资源加载</li>
+ *     <li>自动的父子 ResourceBundle 关系绑定</li>
+ *     <li>反射工具方法的安全访问和处理</li>
+ * </ul>
+ * <p>技术特性：
+ * <ul>
+ *     <li>使用反射访问 ResourceBundle 的私有方法</li>
+ *     <li>安全的反射操作，包含异常处理</li>
+ *     <li>支持 .properties 文件格式的优先加载</li>
+ *     <li>可配置的 Locale 和 ClassLoader 支持</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0

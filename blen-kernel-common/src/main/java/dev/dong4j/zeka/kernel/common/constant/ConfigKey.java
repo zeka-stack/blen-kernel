@@ -68,7 +68,8 @@ public final class ConfigKey {
     public static final String WIKI = PREFIX + "app.wiki";
 
     /**
-     * <p>Description: </p>
+     * <p>JVM 配置常量类.
+     * <p>定义了 JVM 相关的配置参数常量，用于获取和设置 JVM 运行时参数.
      *
      * @author dong4j
      * @version 1.0.0
@@ -84,7 +85,8 @@ public final class ConfigKey {
     }
 
     /**
-     * <p>Description: </p>
+     * <p>日志系统配置常量类.
+     * <p>定义了日志系统相关的所有配置参数常量，包括日志级别、文件配置、输出格式等.
      *
      * @author dong4j
      * @version 1.0.0

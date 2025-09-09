@@ -17,7 +17,47 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * <p>Description: 类加载器的实用程序类 </p>
+ * <p>Description: 类加载器工具类，提供类加载相关的工具方法</p>
+ * <p>
+ * 主要功能：
+ * <ul>
+ *     <li>类加载器获取</li>
+ *     <li>类实例化</li>
+ *     <li>资源配置查找</li>
+ *     <li>类可用性检查</li>
+ *     <li>线程上下文类加载器处理</li>
+ * </ul>
+ * </p>
+ * <p>
+ * 使用示例：
+ * <pre>
+ * // 获取线程上下文类加载器
+ * ClassLoader classLoader = LoaderUtils.getThreadContextClassLoader();
+ *
+ * // 加载类
+ * Class<?> clazz = LoaderUtils.loadClass("com.example.MyClass");
+ *
+ * // 实例化对象
+ * MyClass instance = LoaderUtils.newInstanceOf("com.example.MyClass");
+ *
+ * // 检查类是否可用
+ * boolean isAvailable = LoaderUtils.isClassAvailable("com.example.MyClass");
+ *
+ * // 查找资源
+ * Collection<URL> resources = LoaderUtils.findResources("config.properties");
+ * </pre>
+ * </p>
+ * <p>
+ * 技术特性：
+ * <ul>
+ *     <li>支持线程上下文类加载器</li>
+ *     <li>提供类加载器链处理</li>
+ *     <li>支持资源配置查找</li>
+ *     <li>安全的类实例化机制</li>
+ *     <li>兼容不同Java版本</li>
+ *     <li>处理类加载器权限问题</li>
+ * </ul>
+ * </p>
  *
  * @author dong4j
  * @version 1.0.0
@@ -34,14 +74,14 @@ public final class LoaderUtils {
 
     /** 如果设置为 true, 则只使用本地类加载器, 如果没有设置则使用线程上下文加载器 */
     public static final String IGNORE_TCCL_PROPERTY = ConfigKey.PREFIX + "ignoreTCL";
-    /** ignoreTCCL */
+    /** 忽略TCCL标志 */
     private static Boolean ignoreTCCL;
     /**
      * GET_CLASS_LOADER_DISABLED
      * JDK 17+ 默认允许获取 ClassLoader，无需安全检查
      */
     private static final boolean GET_CLASS_LOADER_DISABLED = false;
-    /** TCCL_GETTER */
+    /** 线程上下文类加载器获取器 */
     private static final PrivilegedAction<ClassLoader> TCCL_GETTER = new ThreadContextClassLoaderGetter();
 
     /**
@@ -50,7 +90,7 @@ public final class LoaderUtils {
      * 如果系统类加载器也为空, 则返回该类的类加载器.
      * 如果使用不允许访问线程类加载器或系统类加载器的SecurityManager运行, 则返回该类的类加载器.
      *
-     * @return the current ThreadContextClassLoader.
+     * @return 当前线程上下文类加载器
      * @since 1.0.0
      */
     public static ClassLoader getThreadContextClassLoader() {
@@ -63,7 +103,7 @@ public final class LoaderUtils {
     }
 
     /**
-     * <p>Description: </p>
+     * 线程上下文类加载器获取器
      *
      * @author dong4j
      * @version 1.0.0
@@ -73,9 +113,9 @@ public final class LoaderUtils {
      */
     private static class ThreadContextClassLoaderGetter implements PrivilegedAction<ClassLoader> {
         /**
-         * Run
+         * 运行获取类加载器
          *
-         * @return the class loader
+         * @return 类加载器
          * @since 1.0.0
          */
         @Override
@@ -90,9 +130,9 @@ public final class LoaderUtils {
     }
 
     /**
-     * Get class loaders
+     * 获取类加载器数组
      *
-     * @return the class loader [ ]
+     * @return 类加载器数组
      * @since 1.0.0
      */
     public static ClassLoader[] getClassLoaders() {
@@ -121,10 +161,10 @@ public final class LoaderUtils {
     }
 
     /**
-     * Determines if a named Class can be loaded or not.
+     * 确定命名类是否可以加载
      *
-     * @param className The class name.
-     * @return {@code true} if the class could be found or {@code false} otherwise.
+     * @param className 类名
+     * @return 如果可以找到类则返回true，否则返回false
      * @since 1.0.0
      */
     public static boolean isClassAvailable(String className) {
@@ -142,9 +182,9 @@ public final class LoaderUtils {
     /**
      * 按名称加载类, 如果指定 IGNORE_TCCL_PROPERTY 属性并将其设置为除 false 之外的任何值, 则将使用默认的类加载器
      *
-     * @param className The class name.
-     * @return the Class for the given name.
-     * @throws ClassNotFoundException if the specified class name could not be found
+     * @param className 类名
+     * @return 给定名称的类
+     * @throws ClassNotFoundException 如果找不到指定的类名
      * @since 1.0.0
      */
     public static Class<?> loadClass(String className) throws ClassNotFoundException {
@@ -159,14 +199,14 @@ public final class LoaderUtils {
     }
 
     /**
-     * Loads and instantiates a Class using the default constructor.
+     * 使用默认构造函数加载和实例化类
      *
-     * @param <T>   parameter
-     * @param clazz The class.
-     * @return new instance of the class.
-     * @throws InstantiationException    if there was an exception whilst instantiating the class
-     * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
-     * @throws InvocationTargetException if there was an exception whilst constructing the class
+     * @param <T>   泛型类型
+     * @param clazz 类
+     * @return 类的新实例
+     * @throws InstantiationException    如果实例化类时出现异常
+     * @throws IllegalAccessException    如果无法通过公共构造函数实例化类
+     * @throws InvocationTargetException 如果构造类时出现异常
      * @since 1.0.0
      */
     public static <T> @NotNull T newInstanceOf(@NotNull Class<T> clazz)
@@ -183,16 +223,16 @@ public final class LoaderUtils {
     }
 
     /**
-     * Loads and instantiates a Class using the default constructor.
+     * 使用默认构造函数加载和实例化类
      *
-     * @param <T>       parameter
-     * @param className The class name.
-     * @return new instance of the class.
-     * @throws ClassNotFoundException    if the class isn't available to the usual ClassLoaders
-     * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
-     * @throws InstantiationException    if there was an exception whilst instantiating the class
-     * @throws NoSuchMethodException     if there isn't a no-args constructor on the class
-     * @throws InvocationTargetException if there was an exception whilst constructing the class
+     * @param <T>       泛型类型
+     * @param className 类名
+     * @return 类的新实例
+     * @throws ClassNotFoundException    如果该类对常规ClassLoader不可用
+     * @throws IllegalAccessException    如果无法通过公共构造函数实例化类
+     * @throws InstantiationException    如果实例化类时出现异常
+     * @throws NoSuchMethodException     如果该类上没有无参构造函数
+     * @throws InvocationTargetException 如果构造类时出现异常
      * @since 1.0.0
      */
     @SuppressWarnings("unchecked")
@@ -203,17 +243,17 @@ public final class LoaderUtils {
     }
 
     /**
-     * Loads and instantiates a derived class using its default constructor.
+     * 使用默认构造函数加载和实例化派生类
      *
-     * @param <T>       The type of the class to check.
-     * @param className The class name.
-     * @param clazz     The class to cast it to.
-     * @return new instance of the class cast to {@code T}
-     * @throws ClassNotFoundException    if the class isn't available to the usual ClassLoaders
-     * @throws NoSuchMethodException     if there isn't a no-args constructor on the class
-     * @throws InvocationTargetException if there was an exception whilst constructing the class
-     * @throws InstantiationException    if there was an exception whilst instantiating the class
-     * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
+     * @param <T>       要检查的类型
+     * @param className 类名
+     * @param clazz     要转换为的类
+     * @return 类的新实例并转换为 {@code T}
+     * @throws ClassNotFoundException    如果该类对常规ClassLoader不可用
+     * @throws NoSuchMethodException     如果该类上没有无参构造函数
+     * @throws InvocationTargetException 如果构造类时出现异常
+     * @throws InstantiationException    如果实例化类时出现异常
+     * @throws IllegalAccessException    如果无法通过公共构造函数实例化类
      * @since 1.0.0
      */
     @Contract("_, _ -> param1")
@@ -224,17 +264,17 @@ public final class LoaderUtils {
     }
 
     /**
-     * Loads and instantiates a class given by a property name.
+     * 加载并实例化由属性名给出的类
      *
-     * @param <T>          The type to cast it to.
-     * @param propertyName The property name to look up a class name for.
-     * @param clazz        The class to cast it to.
-     * @return new instance of the class given in the property or {@code null} if the property was unset.
-     * @throws ClassNotFoundException    if the class isn't available to the usual ClassLoaders
-     * @throws NoSuchMethodException     if there isn't a no-args constructor on the class
-     * @throws InvocationTargetException if there was an exception whilst constructing the class
-     * @throws InstantiationException    if there was an exception whilst instantiating the class
-     * @throws IllegalAccessException    if the class can't be instantiated through a public constructor
+     * @param <T>          要转换为的类型
+     * @param propertyName 要查找类名的属性名
+     * @param clazz        要转换为的类
+     * @return 属性中给定类的新实例，如果属性未设置则返回 {@code null}
+     * @throws ClassNotFoundException    如果该类对常规ClassLoader不可用
+     * @throws NoSuchMethodException     如果该类上没有无参构造函数
+     * @throws InvocationTargetException 如果构造类时出现异常
+     * @throws InstantiationException    如果实例化类时出现异常
+     * @throws IllegalAccessException    如果无法通过公共构造函数实例化类
      * @since 1.0.0
      */
     public static <T> @Nullable T newCheckedInstanceOfProperty(String propertyName, Class<T> clazz)
@@ -248,9 +288,9 @@ public final class LoaderUtils {
     }
 
     /**
-     * Is ignore tccl
+     * 是否忽略线程上下文类加载器
      *
-     * @return the boolean
+     * @return 是否忽略TCCL
      * @since 1.0.0
      */
     private static boolean isIgnoreTccl() {
@@ -262,10 +302,10 @@ public final class LoaderUtils {
     }
 
     /**
-     * Finds classpath {@linkplain URL resources}.
+     * 查找类路径资源
      *
-     * @param resource the name of the resource to find.
-     * @return a Collection of URLs matching the resource name. If no resources could be found, then this will be empty.
+     * @param resource 要查找的资源名称
+     * @return 匹配资源名称的URL集合。如果找不到资源，则为空
      * @since 1.0.0
      */
     public static @NotNull Collection<URL> findResources(String resource) {
@@ -278,10 +318,10 @@ public final class LoaderUtils {
     }
 
     /**
-     * Find url resources
+     * 查找URL资源
      *
-     * @param resource resource
-     * @return the collection
+     * @param resource 资源
+     * @return 集合
      * @since 1.0.0
      */
     @SuppressWarnings("PMD.Indentation")
@@ -309,52 +349,52 @@ public final class LoaderUtils {
     }
 
     /**
-     * {@link URL} and {@link ClassLoader} pair.
+     * URL和类加载器对
      *
-     * @param classLoader Class loader
-     * @param url         Url
+     * @param classLoader 类加载器
+     * @param url         URL
      * @author dong4j
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
      * @date 2020.06.04 19:21
      * @since 1.0.0
      */
-        record UrlResource(ClassLoader classLoader, URL url) {
+    record UrlResource(ClassLoader classLoader, URL url) {
         /**
-         * Url resource
+         * URL资源
          *
-         * @param classLoader class loader
-         * @param url         url
+         * @param classLoader 类加载器
+         * @param url         URL
          * @since 1.0.0
          */
         @Contract(pure = true)
         UrlResource {
         }
 
-            /**
-             * Equals
-             *
-             * @param o o
-             * @return the boolean
-             * @since 1.0.0
-             */
-            @Contract(value = "null -> false", pure = true)
-            @Override
-            public boolean equals(Object o) {
-                if (this == o) {
-                    return true;
-                }
-                if (o == null || this.getClass() != o.getClass()) {
-                    return false;
-                }
-
-                UrlResource that = (UrlResource) o;
-
-                if (!Objects.equals(this.classLoader, that.classLoader)) {
-                    return false;
-                }
-                return Objects.equals(this.url, that.url);
+        /**
+         * 判断是否相等
+         *
+         * @param o 对象
+         * @return 是否相等
+         * @since 1.0.0
+         */
+        @Contract(value = "null -> false", pure = true)
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
             }
+            if (o == null || this.getClass() != o.getClass()) {
+                return false;
+            }
+
+            UrlResource that = (UrlResource) o;
+
+            if (!Objects.equals(this.classLoader, that.classLoader)) {
+                return false;
+            }
+            return Objects.equals(this.url, that.url);
+        }
 
     }
 }

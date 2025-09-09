@@ -34,9 +34,48 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * <p>Description: GSON 封装, 简化 json 操作 </p>
- * List, Map 时间格式统一为 DEFAULT_TIMEFORMAT
- * 此工具类只适合简单的 json 操作, 如果是复杂且严格的 json 推荐使用 {@link Jsons}
+ * <p>GSON 封装, 简化 json 操作.
+ * <p>List, Map 时间格式统一为 DEFAULT_TIMEFORMAT.
+ * <p>此工具类只适合简单的 json 操作, 如果是复杂且严格的 json 推荐使用 {@link Jsons}.
+ * <p>主要功能：
+ * <ul>
+ *     <li>对象与JSON字符串互转</li>
+ *     <li>JSON美化输出</li>
+ *     <li>泛型类型处理</li>
+ *     <li>枚举类型序列化/反序列化</li>
+ *     <li>线程安全的Gson实例管理</li>
+ * </ul>
+ * <p>使用示例：
+ * <pre>
+ * // 对象转JSON
+ * Person person = new Person("张三", 25);
+ * String json = GsonUtils.toJson(person);
+ *
+ * // JSON转对象
+ * Person parsed = GsonUtils.fromJson(json, Person.class);
+ *
+ * // 美化JSON输出
+ * String prettyJson = GsonUtils.toDebugJson(person);
+ *
+ * // 处理泛型类型
+ * List<Person> list = new ArrayList<>();
+ * list.add(person);
+ * String jsonList = GsonUtils.toJson(list);
+ * List<Person> parsedList = GsonUtils.jsonToList(jsonList, Person.class);
+ *
+ * // JSON转Map
+ * Map<String, Object> map = GsonUtils.jsonToMap(json);
+ * </pre>
+ * <p>技术特性：
+ * <ul>
+ *     <li>基于Google Gson库实现</li>
+ *     <li>提供线程安全的Gson实例</li>
+ *     <li>支持自定义日期格式</li>
+ *     <li>提供美化输出功能</li>
+ *     <li>支持泛型类型处理</li>
+ *     <li>集成枚举类型处理</li>
+ *     <li>支持复杂对象的序列化/反序列化</li>
+ * </ul>
  *
  * @author dong4j
  * @version 1.0.0
