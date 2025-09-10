@@ -747,7 +747,7 @@ public class StringUtils extends org.springframework.util.StringUtils {
      * @return boolean
      */
     public static boolean isEmpty(CharSequence str) {
-        return hasLength(str);
+        return !hasLength(str);
     }
 
     /**
