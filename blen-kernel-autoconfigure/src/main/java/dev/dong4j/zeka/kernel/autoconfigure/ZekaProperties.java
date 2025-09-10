@@ -27,7 +27,9 @@ import lombok.Setter;
 @Setter
 public class ZekaProperties {
     /** 组件开关属性名常量 */
+    public static final String ENABLED = "enabled";
     /** 开启状态常量值 */
+    public static final String ON = "true";
     /** 组件全局可用状态，默认为开启 */
     private Boolean enabled = true;
 }

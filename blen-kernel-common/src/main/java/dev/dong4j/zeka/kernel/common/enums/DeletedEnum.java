@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * <p>Description: 逻辑删除枚举</p>
+ * <p>逻辑删除枚举</p>
  *
  * @author dong4j
  * @version 1.0.0
