@@ -22,19 +22,19 @@ class AutoGeneratorCodeTest {
     @Test
     void simpleAutoGeneratorCode() {
         AutoGeneratorCodeBuilder.onAutoGeneratorCode()
-            // 设置存放自动生成的代码路径, 不填则默认当前项目下
-            .withModelPath("")
+            // 设置存放自动生成的代码路径, 不填则默认当前项目下(src 上一级目录)
+            .withModelPath("/Users/dong4j/Developer/0.Worker/opensource/zeka.stack/cubo-starter/cubo-dict-spring-boot/cubo-dict-spring-boot-core")
             .withVersion("1.0.0")
-            .withCompany("xxxx")
-            .withEmail("yyy")
+            .withCompany("Zeka.Stack")
+            .withEmail("dong4j@gmail.com")
             // 设置谁作者名, 默认读取 ZEKA_NAME_SPACE 变量
             .withAuthor(SystemUtils.USER_NAME)
             // 设置包名 (前缀默认为 公司项目顶层包路径, 因此最终的包名为: ${公司项目顶层包路径}.${packageName})
-            .withPackageName("example.test")
+            .withPackageName("starter.dict")
             // 忽略前缀
-            .withPrefix(new String[]{""})
+            .withPrefix(new String[]{"sys_"})
             // 设置根据哪张表生成代码, 可写多张表
-            .withTables(new String[]{"user"})
+            .withTables(new String[]{"sys_dictionary_type", "sys_dictionary_value"})
             // 设置需要生成的模板 不设置则全部生成
             .withTemplate(
                 TemplatesConfig.DAO,

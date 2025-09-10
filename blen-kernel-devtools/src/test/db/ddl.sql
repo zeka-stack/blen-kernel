@@ -1,4 +1,5 @@
--- auto-generated definition
+# 自定义枚举: 会自动生成枚举类
+# 公共枚举: 直接使用已有的枚举类
 create table rule
 (
     `id`            bigint auto_increment primary key,

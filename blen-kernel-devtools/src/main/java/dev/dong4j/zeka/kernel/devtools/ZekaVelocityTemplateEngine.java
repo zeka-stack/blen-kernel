@@ -36,6 +36,7 @@ public class ZekaVelocityTemplateEngine extends dev.dong4j.zeka.kernel.devtools.
     @Override
     public void writer(Map<String, Object> objectMap, String templatePath, String outputFile) {
         if (StringUtils.isEmpty(templatePath)) {
+            log.warn("模板路径为空，跳过生成, templatePath:{}", templatePath);
             return;
         }
 
