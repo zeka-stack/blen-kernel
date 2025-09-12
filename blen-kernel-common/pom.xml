@@ -179,10 +179,5 @@
             <artifactId>spring-context</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- 修复 未知的枚举常量 javax.annotation.meta.When.MAYBE 警告 -->
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-        </dependency>
     </dependencies>
 </project>
