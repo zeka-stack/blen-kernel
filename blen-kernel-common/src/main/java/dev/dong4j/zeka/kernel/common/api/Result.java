@@ -85,11 +85,11 @@ public abstract class Result<T> implements Serializable {
     protected String message = "";
     /** 请求响应的溯源标识 */
     @Schema(description = "溯源标识(业务无需关心此字段)", example = "1484501823002316800")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     protected String traceId;
     /** 扩展字段 */
     @Schema(description = "扩展字段(业务无需关心此字段, 非生产环境的异常信息会写入到此字段)", example = "N/A")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     protected Object extend;
 
     /**
