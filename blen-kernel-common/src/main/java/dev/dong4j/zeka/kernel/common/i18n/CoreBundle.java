@@ -1,6 +1,5 @@
-package dev.dong4j.zeka.kernel.common;
+package dev.dong4j.zeka.kernel.common.i18n;
 
-import dev.dong4j.zeka.kernel.common.bundle.DynamicBundle;
 import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;

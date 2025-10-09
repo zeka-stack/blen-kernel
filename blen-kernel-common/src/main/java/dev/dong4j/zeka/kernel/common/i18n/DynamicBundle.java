@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -35,9 +35,9 @@ public abstract class DynamicBundle extends AbstractBundle {
     };
 
     /**
-     * Dynamic bundle
+     * Dynamic i18n
      *
-     * @param pathToBundle path to bundle
+     * @param pathToBundle path to i18n
      * @since 1.0.0
      */
     protected DynamicBundle(@NotNull String pathToBundle) {

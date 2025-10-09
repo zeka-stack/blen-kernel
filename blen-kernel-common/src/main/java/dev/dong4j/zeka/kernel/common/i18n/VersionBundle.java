@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
@@ -22,7 +22,7 @@ public final class VersionBundle extends DynamicBundle {
     private static final VersionBundle INSTANCE = new VersionBundle();
 
     /**
-     * Plugin bundle
+     * Plugin i18n
      *
      * @since 1.0.0
      */

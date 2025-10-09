@@ -1,6 +1,6 @@
 package dev.dong4j.zeka.kernel.common.exception;
 
-import dev.dong4j.zeka.kernel.common.bundle.DynamicBundle;
+import dev.dong4j.zeka.kernel.common.i18n.DynamicBundle;
 import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
@@ -23,7 +23,7 @@ public final class ServletCodeBundle extends DynamicBundle {
     private static final ServletCodeBundle INSTANCE = new ServletCodeBundle();
 
     /**
-     * Plugin bundle
+     * Plugin i18n
      *
      * @since 1.0.0
      */

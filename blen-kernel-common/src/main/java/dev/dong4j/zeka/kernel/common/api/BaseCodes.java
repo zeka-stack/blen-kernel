@@ -1,7 +1,7 @@
 package dev.dong4j.zeka.kernel.common.api;
 
-import dev.dong4j.zeka.kernel.common.CoreBundle;
 import dev.dong4j.zeka.kernel.common.assertion.LowestExceptionAssert;
+import dev.dong4j.zeka.kernel.common.i18n.CoreBundle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

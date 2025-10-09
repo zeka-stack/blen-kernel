@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import java.lang.reflect.Method;
 import java.util.Locale;
@@ -42,11 +42,11 @@ public class BundleUtils {
     private static final Method SET_PARENT = getDeclaredMethod(ResourceBundle.class, "setParent", ResourceBundle.class);
 
     /**
-     * Load language bundle
+     * Load language i18n
      *
      * @param pluginClassLoader plugin class loader
      * @param name              name
-     * @return the resource bundle
+     * @return the resource i18n
      * @since 1.0.0
      */
     @Contract("null, _ -> null")

@@ -1,10 +1,10 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Lists;
-import dev.dong4j.zeka.kernel.common.bundle.VersionBundle;
 import dev.dong4j.zeka.kernel.common.constant.App;
 import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
+import dev.dong4j.zeka.kernel.common.i18n.VersionBundle;
 import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
 import java.io.File;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import dev.dong4j.zeka.kernel.common.support.OrdinalFormat;
 import dev.dong4j.zeka.kernel.common.support.StrFormatter;
@@ -49,7 +49,7 @@ public abstract class BundleBase {
     /**
      * Message
      *
-     * @param bundle bundle
+     * @param bundle i18n
      * @param key    key
      * @param params params
      * @return the string
@@ -63,7 +63,7 @@ public abstract class BundleBase {
     /**
      * Message or default
      *
-     * @param bundle       bundle
+     * @param bundle       i18n
      * @param key          key
      * @param defaultValue default value
      * @param params       params
@@ -97,7 +97,7 @@ public abstract class BundleBase {
     /**
      * Use default value
      *
-     * @param bundle       bundle
+     * @param bundle       i18n
      * @param key          key
      * @param defaultValue default value
      * @return the string
@@ -119,7 +119,7 @@ public abstract class BundleBase {
     /**
      * 处理占位符, 同时兼容 {} 和 {0} 格式
      *
-     * @param bundle bundle
+     * @param bundle i18n
      * @param value  value
      * @param params params
      * @return the string

@@ -3,7 +3,7 @@ package dev.dong4j.zeka.kernel.common.api;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import dev.dong4j.zeka.kernel.common.CoreBundle;
+import dev.dong4j.zeka.kernel.common.i18n.CoreBundle;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import lombok.Getter;

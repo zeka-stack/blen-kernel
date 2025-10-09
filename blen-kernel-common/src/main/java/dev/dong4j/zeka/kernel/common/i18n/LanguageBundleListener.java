@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import dev.dong4j.zeka.kernel.common.ApplicationInitializedListener;
 

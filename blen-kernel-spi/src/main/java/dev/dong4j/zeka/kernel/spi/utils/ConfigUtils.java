@@ -1,6 +1,5 @@
 package dev.dong4j.zeka.kernel.spi.utils;
 
-
 import dev.dong4j.zeka.kernel.spi.constants.CommonConstants;
 import dev.dong4j.zeka.kernel.spi.extension.SPILoader;
 import java.io.File;
@@ -20,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.COMMA_SPLIT_PATTERN;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.DEFAULT_KEY;
 import static dev.dong4j.zeka.kernel.spi.constants.CommonConstants.REMOVE_VALUE_PREFIX;
-
 
 /**
  * <p>Description: </p>

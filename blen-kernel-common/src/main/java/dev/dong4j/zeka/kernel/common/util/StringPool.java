@@ -15,7 +15,7 @@ import lombok.experimental.UtilityClass;
  * <p>使用示例：
  * <pre>
  * // 使用常量代替硬编码字符串
- * String url = "http://example.com" + StringPool.SLASH + "api" + StringPool.SLASH + "users";
+ * String url = "<a href="http://example.com">...</a>" + StringPool.SLASH + "api" + StringPool.SLASH + "users";
  * // 等价于: String url = "http://example.com/api/users";
  * </pre>
  * <p>技术特性：

@@ -463,9 +463,9 @@ public final class PropertiesUtils {
     }
 
     /**
-     * Gets charsets resource bundle *
+     * Gets charsets resource i18n *
      *
-     * @return the charsets resource bundle
+     * @return the charsets resource i18n
      * @since 1.0.0
      */
     static ResourceBundle getCharsetsResourceBundle() {

@@ -1,4 +1,4 @@
-package dev.dong4j.zeka.kernel.common.bundle;
+package dev.dong4j.zeka.kernel.common.i18n;
 
 import dev.dong4j.zeka.kernel.common.support.ConcurrentFactoryMap;
 import dev.dong4j.zeka.kernel.common.support.ConcurrentSoftValueHashMap;
@@ -45,16 +45,16 @@ public abstract class AbstractBundle {
     /** ourCache */
     private static final Map<ClassLoader, Map<String, ResourceBundle>> CACHE =
         ConcurrentFactoryMap.createWeakMap(k -> new ConcurrentSoftValueHashMap<>());
-    /** My path to bundle */
+    /** My path to i18n */
     @NonNls
     private final String myPathToBundle;
-    /** My bundle */
+    /** My i18n */
     private Reference<ResourceBundle> myBundle;
 
     /**
-     * Abstract bundle
+     * Abstract i18n
      *
-     * @param pathToBundle path to bundle
+     * @param pathToBundle path to i18n
      * @since 1.0.0
      */
     @Contract(pure = true)
@@ -91,7 +91,7 @@ public abstract class AbstractBundle {
     /**
      * Message
      *
-     * @param bundle bundle
+     * @param bundle i18n
      * @param key    key
      * @param params params
      * @return the string
@@ -104,9 +104,9 @@ public abstract class AbstractBundle {
     }
 
     /**
-     * Gets resource bundle *
+     * Gets resource i18n *
      *
-     * @return the resource bundle
+     * @return the resource i18n
      * @since 1.0.0
      */
     public ResourceBundle getResourceBundle() {
@@ -114,10 +114,10 @@ public abstract class AbstractBundle {
     }
 
     /**
-     * Gets resource bundle *
+     * Gets resource i18n *
      *
      * @param classLoader class loader
-     * @return the resource bundle
+     * @return the resource i18n
      * @since 1.0.0
      */
     @NotNull
@@ -131,11 +131,11 @@ public abstract class AbstractBundle {
     }
 
     /**
-     * Gets resource bundle *
+     * Gets resource i18n *
      *
-     * @param pathToBundle path to bundle
+     * @param pathToBundle path to i18n
      * @param loader       loader
-     * @return the resource bundle
+     * @return the resource i18n
      * @since 1.0.0
      */
     @NotNull
@@ -147,7 +147,7 @@ public abstract class AbstractBundle {
                 ResourceBundle.Control control = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_PROPERTIES);
                 result = this.findBundle(pathToBundle, loader, control);
             } catch (MissingResourceException e) {
-                log.info("Cannot load resource bundle from *.properties file, falling back to slow class loading: " + pathToBundle);
+                log.info("Cannot load resource i18n from *.properties file, falling back to slow class loading: " + pathToBundle);
                 ResourceBundle.clearCache(loader);
                 result = ResourceBundle.getBundle(pathToBundle, Locale.getDefault(), loader);
             }
@@ -157,12 +157,12 @@ public abstract class AbstractBundle {
     }
 
     /**
-     * Find bundle
+     * Find i18n
      *
-     * @param pathToBundle path to bundle
+     * @param pathToBundle path to i18n
      * @param loader       loader
      * @param control      control
-     * @return the resource bundle
+     * @return the resource i18n
      * @since 1.0.0
      */
     protected ResourceBundle findBundle(@NotNull String pathToBundle, @NotNull ClassLoader loader,
@@ -186,7 +186,7 @@ public abstract class AbstractBundle {
     /**
      * Message or null
      *
-     * @param bundle bundle
+     * @param bundle i18n
      * @param key    key
      * @param params params
      * @return the string
@@ -204,7 +204,7 @@ public abstract class AbstractBundle {
     /**
      * Message or default
      *
-     * @param bundle       bundle
+     * @param bundle       i18n
      * @param key          key
      * @param defaultValue default value
      * @param params       params
