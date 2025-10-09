@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.start;
 
+import dev.dong4j.zeka.kernel.common.plugin.PluginDescriptor;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.Jsons;
 import java.util.Map;
@@ -20,7 +21,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @date 2020.01.27 04:12
  * @since 1.0.0
  */
-public interface LauncherInitiation extends Ordered {
+public interface LauncherInitiation extends Ordered, PluginDescriptor {
     /** log */
     Logger LOG = LoggerFactory.getLogger(LauncherInitiation.class);
 
@@ -92,13 +93,5 @@ public interface LauncherInitiation extends Ordered {
     default int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;
     }
-
-    /**
-     * 获取组件名
-     *
-     * @return the name
-     * @since 1.0.0
-     */
-    String getName();
 
 }

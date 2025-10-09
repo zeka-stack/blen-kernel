@@ -1,7 +1,6 @@
 package dev.dong4j.zeka.kernel.common.plugin;
 
-import java.io.File;
-import java.nio.file.Path;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -16,101 +15,33 @@ import org.jetbrains.annotations.Nullable;
 public interface PluginDescriptor {
 
     /**
-     * Gets plugin id *
-     *
-     * @return the plugin id
-     * @since 1.0.0
-     */
-    PluginId getPluginId();
-
-    /**
-     * Gets plugin class loader *
-     *
-     * @return the plugin class loader
-     * @since 1.0.0
-     */
-    ClassLoader getPluginClassLoader();
-
-    /**
-     * Is bundled
-     *
-     * @return the boolean
-     * @since 1.0.0
-     */
-    default boolean isBundled() {
-        return false;
-    }
-
-    /**
-     * Gets path *
-     *
-     * @return the path
-     * @since 1.0.0
-     */
-    File getPath();
-
-    /**
-     * Gets plugin path *
-     *
-     * @return the plugin path
-     * @since 1.0.0
-     */
-    Path getPluginPath();
-
-    /**
      * Gets description *
      *
      * @return the description
-     * @since 1.0.0
+     * @since 2024.1.1
      */
     @Nullable
-    String getDescription();
-
-    /**
-     * Gets change notes *
-     *
-     * @return the change notes
-     * @since 1.0.0
-     */
-    String getChangeNotes();
+    default String getDescription() {
+        return null;
+    }
 
     /**
      * Gets name *
      *
      * @return the name
-     * @since 1.0.0
+     * @since 2024.1.1
      */
+    @NotNull
     String getName();
-
-    /**
-     * Gets vendor *
-     *
-     * @return the vendor
-     * @since 1.0.0
-     */
-    String getVendor();
 
     /**
      * Gets version *
      *
      * @return the version
-     * @since 1.0.0
+     * @since 2024.1.1
      */
-    String getVersion();
-
-    /**
-     * Is enabled
-     *
-     * @return the boolean
-     * @since 1.0.0
-     */
-    boolean isEnabled();
-
-    /**
-     * Sets enabled *
-     *
-     * @param enabled enabled
-     * @since 1.0.0
-     */
-    void setEnabled(boolean enabled);
+    @Nullable
+    default String getVersion() {
+        return null;
+    }
 }
