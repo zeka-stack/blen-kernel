@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Concurrent strong key:K -> soft value:V map
  * 不允许使用空键;
- * 不允许使用空值;
  *
  * @param <K> parameter
  * @param <V> parameter

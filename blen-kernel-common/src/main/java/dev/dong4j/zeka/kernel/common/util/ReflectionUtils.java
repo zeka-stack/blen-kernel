@@ -3,8 +3,10 @@ package dev.dong4j.zeka.kernel.common.util;
 import cn.hutool.core.util.StrUtil;
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.common.support.ConcurrentReferenceHashMap;
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -102,6 +104,12 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
 
     /** 基本类型包装类型映射 */
     private static final Map<Class<?>, Class<?>> PRIMITIVE_WRAPPER_TYPE_MAP = new IdentityHashMap<>(8);
+
+    /** EMPTY_FIELD_ARRAY */
+    private static final Field[] EMPTY_FIELD_ARRAY = new Field[0];
+
+    /** declaredFieldsCache */
+    private static final Map<Class<?>, Field[]> declaredFieldsCache = new ConcurrentReferenceHashMap<>(256);
 
     static {
         PRIMITIVE_WRAPPER_TYPE_MAP.put(Boolean.class, boolean.class);
@@ -673,5 +681,146 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
     public static @Nullable <T> T getFieldValue(Object object, String fieldName, Class<T> type) {
         Object fieldValue = getFieldValue(object, fieldName);
         return fieldValue != null ? (T) fieldValue : null;
+    }
+
+    /**
+     * Accessible constructor
+     *
+     * @param <T>            parameter
+     * @param clazz          clazz
+     * @param parameterTypes parameter types
+     * @return the constructor
+     * @throws NoSuchMethodException no such method exception
+     * @since 2024.2.0
+     */
+    public static <T> @NotNull Constructor<T> accessibleConstructor(Class<T> clazz, Class<?>... parameterTypes)
+        throws NoSuchMethodException {
+
+        Constructor<T> ctor = clazz.getDeclaredConstructor(parameterTypes);
+        makeAccessible(ctor);
+        return ctor;
+    }
+
+    /**
+     * Make accessible
+     *
+     * @param ctor ctor
+     * @since 2024.2.0
+     */
+    @SuppressWarnings("PMD.AvoidComplexConditionRule")
+    public static void makeAccessible(Constructor<?> ctor) {
+        if ((!Modifier.isPublic(ctor.getModifiers()) ||
+            !Modifier.isPublic(ctor.getDeclaringClass().getModifiers())) && !ctor.canAccess(null)) {
+            ctor.setAccessible(true);
+        }
+    }
+
+    /**
+     * Make accessible
+     *
+     * @param field field
+     * @since 2024.2.0
+     */
+    public static void makeAccessible(Field field) {
+        if ((!Modifier.isPublic(field.getModifiers()) ||
+            !Modifier.isPublic(field.getDeclaringClass().getModifiers()) ||
+            Modifier.isFinal(field.getModifiers())) && !field.canAccess(null)) {
+            field.setAccessible(true);
+        }
+    }
+
+    /**
+     * Do with fields
+     *
+     * @param clazz clazz
+     * @param fc    fc
+     * @param ff    ff
+     * @since 2024.2.0
+     */
+    public static void doWithFields(Class<?> clazz, FieldCallback fc, @Nullable FieldFilter ff) {
+        // Keep backing up the inheritance hierarchy.
+        Class<?> targetClass = clazz;
+        do {
+            Field[] fields = getDeclaredFields(targetClass);
+            for (Field field : fields) {
+                if (ff != null && !ff.matches(field)) {
+                    continue;
+                }
+                try {
+                    fc.doWith(field);
+                } catch (IllegalAccessException ex) {
+                    throw new IllegalStateException("Not allowed to access field '" + field.getName() + "': " + ex);
+                }
+            }
+            targetClass = targetClass.getSuperclass();
+        }
+        while (targetClass != null && targetClass != Object.class);
+    }
+
+    /**
+     * Get declared fields
+     *
+     * @param clazz clazz
+     * @return the field [ ]
+     * @since 2024.2.0
+     */
+    private static Field[] getDeclaredFields(Class<?> clazz) {
+        cn.hutool.core.lang.Assert.notNull(clazz, "Class must not be null");
+        Field[] result = declaredFieldsCache.get(clazz);
+        if (result == null) {
+            try {
+                result = clazz.getDeclaredFields();
+                declaredFieldsCache.put(clazz, (result.length == 0 ? EMPTY_FIELD_ARRAY : result));
+            } catch (Throwable ex) {
+                throw new IllegalStateException("Failed to introspect Class [" + clazz.getName() +
+                    "] from ClassLoader [" + clazz.getClassLoader() + "]", ex);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Callback interface invoked on each field in the hierarchy.
+     *
+     * @author Spark.Team
+     * @version 1.0.0
+     * @email "mailto:Spark.Team@gmail.com"
+     * @date 2024.02.04 11:29
+     * @since 2024.2.0
+     */
+    @FunctionalInterface
+    public interface FieldCallback {
+
+        /**
+         * Perform an operation using the given field.
+         *
+         * @param field the field to operate on
+         * @throws IllegalArgumentException illegal argument exception
+         * @throws IllegalAccessException   illegal access exception
+         * @since 2024.2.0
+         */
+        void doWith(Field field) throws IllegalArgumentException, IllegalAccessException;
+    }
+
+    /**
+     * Callback optionally used to filter fields to be operated on by a field callback.
+     *
+     * @author Spark.Team
+     * @version 1.0.0
+     * @email "mailto:Spark.Team@gmail.com"
+     * @date 2024.02.04 11:29
+     * @since 2024.2.0
+     */
+    @FunctionalInterface
+    public interface FieldFilter {
+
+        /**
+         * Determine whether the given field matches.
+         *
+         * @param field the field to check
+         * @return the boolean
+         * @since 2024.2.0
+         */
+        boolean matches(Field field);
     }
 }
