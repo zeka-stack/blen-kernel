@@ -108,7 +108,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @date 2019.12.26 21:37
  * @since 1.0.0
  */
-public interface ZekaApplicationListener extends GenericApplicationListener {
+public interface ZekaApplicationListener extends GenericApplicationListener, AfterEnvironmentPrepared {
 
     /**
      * 主事件分发器，根据事件类型调用相应的处理方法
@@ -130,8 +130,9 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
 
         if (event instanceof ApplicationStartingEvent) {
             this.onApplicationStartingEvent((ApplicationStartingEvent) event);
-        } else if (event instanceof ApplicationEnvironmentPreparedEvent) {
-            this.onApplicationEnvironmentPreparedEvent((ApplicationEnvironmentPreparedEvent) event);
+        } else if (event instanceof ApplicationEnvironmentPreparedEvent environmentPreparedEvent) {
+            this.onApplicationEnvironmentPreparedEvent(environmentPreparedEvent);
+            this.postProcessing(environmentPreparedEvent.getEnvironment());
         } else if (event instanceof ApplicationContextInitializedEvent) {
             this.onApplicationContextInitializedEvent((ApplicationContextInitializedEvent) event);
         } else if (event instanceof ApplicationPreparedEvent) {
@@ -153,7 +154,6 @@ public interface ZekaApplicationListener extends GenericApplicationListener {
         } else if (event instanceof ContextClosedEvent) {
             this.onContextClosedEvent((ContextClosedEvent) event);
         }
-
     }
 
     /**

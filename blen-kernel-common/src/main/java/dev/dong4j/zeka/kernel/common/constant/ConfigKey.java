@@ -189,14 +189,12 @@ public final class ConfigKey {
      */
     @UtilityClass
     public static class MvcConfigKey {
-        /** NO_HANDLER_FOUND */
-        public static final String NO_HANDLER_FOUND = "spring.mvc.throw-exception-if-no-handler-found";
         /** ENCODING_FORCE */
-        public static final String ENCODING_FORCE = "spring.http.encoding.force";
+        public static final String ENCODING_FORCE = "server.http.encoding.force";
         /** ENCODING_CHARSET */
-        public static final String ENCODING_CHARSET = "spring.http.encoding.charset";
+        public static final String ENCODING_CHARSET = "server.http.encoding.charset";
         /** ENCODING_ENABLED */
-        public static final String ENCODING_ENABLED = "spring.http.encoding.enabled";
+        public static final String ENCODING_ENABLED = "server.http.encoding.enabled";
     }
 
     /**

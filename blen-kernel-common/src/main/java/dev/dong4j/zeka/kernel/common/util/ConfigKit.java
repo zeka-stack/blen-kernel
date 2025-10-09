@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -202,7 +203,22 @@ public class ConfigKit {
      * @since 1.0.0
      */
     public static void setSystemProperties(String key, String value) {
-        System.setProperty(key, value);
+        if (System.getProperty(key) == null && value != null) {
+            System.setProperty(key, value);
+        }
+    }
+
+    /**
+     * 设置系统环境变量, 可传入多个变量名
+     *
+     * @param value value
+     * @param names names
+     * @since 2024.2.0
+     */
+    public static void setSystemProperty(String value, String... names) {
+        Arrays.stream(names).forEach(name -> {
+            setSystemProperties(name, value);
+        });
     }
 
     /**

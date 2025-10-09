@@ -72,23 +72,23 @@ public abstract class Result<T> implements Serializable {
     public static final String FAILURE_MESSAGE = CoreBundle.message("failure.message");
 
     /** 请求响应状态码 */
-    @Schema(description = "状态码", example = "2000")
+    @Schema(description = "状态码", requiredMode = Schema.RequiredMode.AUTO, example = "2000")
     protected Integer code;
     /** 请求响应成功标识 */
-    @Schema(description = "请求成功的状态", example = "true")
+    @Schema(description = "请求成功的状态", requiredMode = Schema.RequiredMode.AUTO, example = "true")
     protected boolean success;
     /** 请求响应的数据 */
-    @Schema(description = "承载的数据")
+    @Schema(description = "承载的数据", requiredMode = Schema.RequiredMode.AUTO)
     protected T data;
     /** 请求响应的消息 */
-    @Schema(description = "返回的消息", example = "操作成功")
+    @Schema(description = "返回的消息", requiredMode = Schema.RequiredMode.AUTO, example = "操作成功")
     protected String message = "";
     /** 请求响应的溯源标识 */
-    @Schema(description = "溯源标识(业务无需关心此字段)", example = "1484501823002316800")
+    @Schema(description = "溯源标识(业务无需关心此字段)", requiredMode = Schema.RequiredMode.AUTO, example = "1484501823002316800")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     protected String traceId;
     /** 扩展字段 */
-    @Schema(description = "扩展字段(业务无需关心此字段, 非生产环境的异常信息会写入到此字段)", example = "N/A")
+    @Schema(description = "扩展字段(业务无需关心此字段, 非生产环境的异常信息会写入到此字段)", requiredMode = Schema.RequiredMode.AUTO, example = "N/A")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     protected Object extend;
 
