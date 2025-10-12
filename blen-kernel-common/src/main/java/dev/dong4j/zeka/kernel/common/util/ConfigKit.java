@@ -14,7 +14,6 @@ import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serial;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -343,7 +342,6 @@ public class ConfigKit {
             return profile;
         }
 
-        processorProfileActive(environment);
         // 获取配置文件中的环境变量
         String activeProfile = environment.getProperty(ConfigKey.SpringConfigKey.PROFILE_ACTIVE, ZekaEnv.LOCAL.getName());
         List<String> profiles = StringUtils.splitTrim(activeProfile, CharPool.COMMA);
@@ -368,29 +366,6 @@ public class ConfigKit {
         System.setProperty(ConfigKey.SpringConfigKey.PROFILE_ACTIVE, profile);
         return profile;
     }
-
-    /**
-     * 处理 spring.profiles.active.
-     * 如果在配置文件中配置了 spring.profile.active=${profile.active}, 在没有经过 maven 编译后就执行时, 会造成启动失败, 因为现在已经将所有的 profile
-     * 删除, 因此这里将 profile.active 设置为 local, 兼容以前的项目.
-     *
-     * @param environment environment
-     * @since 1.0.0
-     */
-    @SuppressWarnings("java:S1171")
-    private static void processorProfileActive(@NotNull ConfigurableEnvironment environment) {
-        environment.getPropertySources()
-            .addLast(new MapPropertySource("local.profile.active",
-                new HashMap<String, Object>(2) {
-                    @Serial
-                    private static final long serialVersionUID = 7174510826497115206L;
-
-                    {
-                        this.put("profile.active", ZekaEnv.LOCAL.getName());
-                    }
-                }));
-    }
-
 
     /**
      * 获取当前激活的 profile name
