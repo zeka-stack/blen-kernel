@@ -41,14 +41,16 @@ public class ServletErrorController extends BasicErrorController {
     /** Object mapper */
     @Resource
     private ObjectMapper objectMapper;
+
     /** Global exception handler */
     private final ServletGlobalExceptionHandler servletGlobalExceptionHandler;
 
     /**
      * Servlet error controller
      *
-     * @param errorAttributes error attributes
-     * @param errorProperties error properties
+     * @param errorAttributes               error attributes
+     * @param errorProperties               error properties
+     * @param servletGlobalExceptionHandler servlet global exception handler
      * @since 1.0.0
      */
     public ServletErrorController(ErrorAttributes errorAttributes,
@@ -58,9 +60,8 @@ public class ServletErrorController extends BasicErrorController {
         this.servletGlobalExceptionHandler = servletGlobalExceptionHandler;
     }
 
-
     /**
-     * Error response entity
+     * 处理非框架异常, 如果 Filter
      *
      * @param request request
      * @return the response entity
@@ -94,10 +95,11 @@ public class ServletErrorController extends BasicErrorController {
     }
 
     /**
-     * Check exception
+     * 如果是框架层异常, 往上抛出让全局异常处理器处理
      *
      * @param request request
-     * @since 1.0.0
+     * @return the exception
+     * @since 1.7.0
      */
     private Exception checkException(HttpServletRequest request) {
         Exception exception = (Exception) request.getAttribute(BasicConstant.REQUEST_EXCEPTION_INFO_ATTR);
@@ -123,10 +125,11 @@ public class ServletErrorController extends BasicErrorController {
     }
 
     /**
+     * <p>Company: Atom Inc. </p>
      * <p>Description: </p>
      *
      * @author dong4j
-     * @version 1.0.0
+     * @version 1.2.3
      * @email "mailto:dong4j@gmail.com"
      * @date 2019.12.02 02:37
      * @since 1.0.0

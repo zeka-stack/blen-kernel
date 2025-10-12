@@ -10,6 +10,8 @@ import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import static org.reflections.Reflections.log;
+
 /**
  * <p>Description: 异常处理工具类 </p>
  *
@@ -93,6 +95,20 @@ public class Exceptions extends ExceptionUtil {
         FastStringWriter stringWriter = new FastStringWriter();
         ex.printStackTrace(new PrintWriter(stringWriter));
         return stringWriter.toString();
+    }
+
+    /**
+     * 忽略异常
+     *
+     * @param runnable runnable
+     * @since 2024.2.0
+     */
+    public static void ignore(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Throwable e) {
+            log.trace("Ignored exception: {}", e.getMessage());
+        }
     }
 
     /**

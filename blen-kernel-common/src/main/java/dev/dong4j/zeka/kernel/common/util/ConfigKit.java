@@ -375,6 +375,17 @@ public class ConfigKit {
      */
     public static String getProfile() {
         String profile = getProperty(ConfigKey.SpringConfigKey.PROFILE_ACTIVE);
+        if (StringUtils.isBlank(profile)) {
+            // 直接从配置文件中读取
+            try {
+                final PropertySource<?> propertySource = getPropertySource(BOOT_CONFIG_FILE_NAME);
+                final Object property = propertySource.getProperty(ConfigKey.SpringConfigKey.PROFILE_ACTIVE);
+                if (property != null) {
+                    return property.toString();
+                }
+            } catch (Exception ignored) {
+            }
+        }
         return StringUtils.isBlank(profile) ? DEFAULT_PROFILE : profile;
     }
 

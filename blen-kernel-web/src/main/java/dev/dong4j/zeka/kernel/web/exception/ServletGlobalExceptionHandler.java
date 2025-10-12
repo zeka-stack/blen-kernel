@@ -28,7 +28,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 @Slf4j
 @RestControllerAdvice
-@Order(Ordered.HIGHEST_PRECEDENCE + 1000)
+@Order(Ordered.LOWEST_PRECEDENCE - 100)
 @ConditionalOnClass(value = {Servlet.class, DispatcherServlet.class})
 public class ServletGlobalExceptionHandler extends GlobalExceptionHandler {
 

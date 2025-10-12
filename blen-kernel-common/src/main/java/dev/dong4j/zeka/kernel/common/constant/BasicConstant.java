@@ -49,7 +49,7 @@ public final class BasicConstant {
     public static final String RESULT_WRAPPER_VALUE_KEY = "value";
 
     /** REQUEST_EXCEPTION_INFO_ATTR */
-    public static final String REQUEST_EXCEPTION_INFO_ATTR = "javax.servlet.error.exception";
+    public static final String REQUEST_EXCEPTION_INFO_ATTR = "jakarta.servlet.error.exception";
 
     /**
      * <p>Agent 服务通用接口命名规则常量类.
