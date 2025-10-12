@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.common.start;
 
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import dev.dong4j.zeka.kernel.common.plugin.PluginDescriptor;
 import dev.dong4j.zeka.kernel.common.util.ConfigKit;
 import dev.dong4j.zeka.kernel.common.util.Jsons;
@@ -26,6 +27,15 @@ public interface LauncherInitiation extends Ordered, PluginDescriptor {
     Logger LOG = LoggerFactory.getLogger(LauncherInitiation.class);
 
     /**
+     * 在启动 Springboot 容器之前执行
+     *
+     * @param isLocalLaunch is local launch
+     * @since 2024.2.0
+     */
+    default void beforeWrapper(boolean isLocalLaunch) {
+    }
+
+    /**
      * 启动时 处理 SpringApplicationBuilder
      *
      * @param env               系统变量 Environment
@@ -40,8 +50,8 @@ public interface LauncherInitiation extends Ordered, PluginDescriptor {
                                  boolean isLocalLaunch) {
         this.before(appName);
         Map<String, Object> map = this.setDefaultProperties(env, appName, isLocalLaunch);
-        // 优先使用 192.168 网段, 避免后期因服务器存在多个网卡导致 ip 获取错误
-        map.putIfAbsent("spring.cloud.inetutils.preferred-networks", "192.168.2,192.168.8");
+        // 优先使用 192.168 网段, 避免后期因服务器存在多个网卡导致 ip 获取错误 todo-dong4j : (2025.10.10 00:43) []
+        map.putIfAbsent(ConfigKey.CloudConfigKey.INETUTILS_PREFERRED_NETWORKS, "192.168");
         map.putIfAbsent("spring.cloud.inetutils.ignored-interfaces[0]", "veth*");
         map.putIfAbsent("spring.cloud.inetutils.ignored-interfaces[1]", "vnet*");
         map.putIfAbsent("spring.cloud.inetutils.ignored-interfaces[2]", "docker*");

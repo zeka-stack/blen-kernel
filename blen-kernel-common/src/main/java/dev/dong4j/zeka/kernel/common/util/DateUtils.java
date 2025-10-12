@@ -15,10 +15,14 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalQuery;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.TimeZone;
+import java.util.function.Function;
+import java.util.stream.Stream;
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -722,6 +726,70 @@ public class DateUtils {
         return startTime.getTime() <= targetDate.getTime()
             && endTime.getTime() >= targetDate.getTime();
     }
+
+    /**
+     * Between
+     *
+     * @param startTime  start time
+     * @param targetDate target date
+     * @param endTime    end time
+     * @param equals     是否包含等于
+     * @return the boolean
+     * @since 2024.1.1
+     */
+    public static boolean between(Date startTime, Date targetDate, Date endTime, boolean equals) {
+        if (equals) {
+            return startTime.getTime() < targetDate.getTime()
+                && endTime.getTime() > targetDate.getTime();
+        }
+        return between(startTime, targetDate, endTime);
+    }
+
+    /**
+     * 获取到具有重叠的时间
+     *
+     * @param <T>   parameter
+     * @param data  shift plan relevancy data
+     * @param start start
+     * @param end   end
+     * @return the list
+     * @since 1.0.0
+     */
+    public static <T> boolean whetherThereIsOverlap(List<T> data, Function<T, Date> start, Function<T, Date> end) {
+        return CollectionUtils.isNotEmpty(getsToTheOverlapTime(data, start, end));
+    }
+
+    /**
+     * Gets to the overlap time *
+     *
+     * @param <T>   parameter
+     * @param data  data
+     * @param start start
+     * @param end   end
+     * @return the to the overlap time
+     * @since 2024.2.0
+     */
+    public static <T> List<T> getsToTheOverlapTime(List<T> data, Function<T, Date> start, Function<T, Date> end) {
+        return Stream.iterate(0, i -> ++i)
+            .limit(data.size())
+            .filter(i -> {
+                T dto = data.get(i);
+                Date startTime = start.apply(dto);
+                Date endTime = end.apply(dto);
+                List<T> tempList = new ArrayList<>(data.size() - 1);
+                tempList.addAll(data);
+                tempList.remove(dto);
+                return tempList.stream().anyMatch(relevancyDto -> {
+                    Date nextStartTime = start.apply(relevancyDto);
+                    Date nextEndTime = end.apply(relevancyDto);
+                    return DateUtils.between(nextStartTime, startTime, nextEndTime)
+                        || DateUtils.between(nextStartTime, endTime, nextEndTime);
+                });
+            })
+            .map(data::get)
+            .toList();
+    }
+
 
     /**
      * 将秒数转换为日时分秒

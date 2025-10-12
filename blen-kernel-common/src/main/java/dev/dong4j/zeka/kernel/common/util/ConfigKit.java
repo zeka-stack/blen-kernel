@@ -48,6 +48,7 @@ import org.springframework.boot.context.properties.source.MapConfigurationProper
 import org.springframework.core.env.CompositePropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
@@ -57,6 +58,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertySourceFactory;
+import org.springframework.util.AntPathMatcher;
 
 /**
  * <p>Description: 全局配置工具类, 用于获取整个应用的配置 </p>
@@ -87,6 +89,8 @@ public class ConfigKit {
     public static final String DEFAULT_PROFILE = "default";
     /** 默认的配置文件解析器 */
     private static final PropertySourceFactory DEFAULT_PROPERTY_SOURCE_FACTORY = new DefaultPropertySourceFactory();
+    /** ant表达式匹配器 */
+    private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher(StringPool.DOT);
     /** environment */
     private static ConfigurableEnvironment environment;
     /** yaml 类型的配置文件 */
@@ -242,7 +246,7 @@ public class ConfigKit {
      * @return the property
      * @since 1.0.0
      */
-    public static String getProperty(ConfigurableEnvironment environment, String key, String defaultValue) {
+    public static String getProperty(Environment environment, String key, String defaultValue) {
         String value = getProperty(environment, key);
         return value == null ? defaultValue : value;
     }
@@ -266,7 +270,7 @@ public class ConfigKit {
      * @return the property
      * @since 1.0.0
      */
-    public static String getProperty(ConfigurableEnvironment environment, String key) {
+    public static String getProperty(Environment environment, String key) {
         String value;
         if (environment != null) {
             value = environment.getProperty(key);
@@ -277,6 +281,33 @@ public class ConfigKit {
             return System.getProperty(key);
         }
         return value;
+    }
+
+    /**
+     * 通过ant表达式获取到所有匹配的配置属性
+     *
+     * @param express 配置的表达式
+     * @return the map
+     * @since 2024.2.0
+     */
+    @SuppressWarnings("all")
+    public static Map<Object, Object> getPropertiesByExpression(String express) {
+        MutablePropertySources propertySources = environment.getPropertySources();
+        Map<Object, Object> result = new HashMap<>();
+        propertySources.forEach(propertySource -> {
+            Object source = propertySource.getSource();
+            if (source instanceof Map map) {
+                map.keySet()
+                    .forEach(k -> {
+                        boolean match = ANT_PATH_MATCHER.match(express, String.valueOf(k));
+                        if (!match) {
+                            return;
+                        }
+                        result.put(k, map.get(k));
+                    });
+            }
+        });
+        return result;
     }
 
     /**
@@ -1427,7 +1458,7 @@ public class ConfigKit {
      * @since 1.0.0
      */
     public static boolean isV8Framework() {
-        return BasicUtils.isV8Framework();
+        return ZeakStackUtils.isV8Framework();
     }
 
     /**
@@ -1437,7 +1468,7 @@ public class ConfigKit {
      * @since 1.0.0
      */
     public static String getAppVersion() {
-        return BasicUtils.getAppVersion();
+        return ZeakStackUtils.getAppVersion();
     }
 
     /**
@@ -1447,7 +1478,7 @@ public class ConfigKit {
      * @since 1.0.0
      */
     public static String getFrameworkVersion() {
-        return BasicUtils.getFrameworkVersion();
+        return ZeakStackUtils.getFrameworkVersion();
     }
 
 }

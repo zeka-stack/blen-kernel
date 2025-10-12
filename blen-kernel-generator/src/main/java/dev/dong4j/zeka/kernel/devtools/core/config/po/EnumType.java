@@ -1,8 +1,6 @@
 package dev.dong4j.zeka.kernel.devtools.core.config.po;
 
 import dev.dong4j.zeka.kernel.common.enums.EnabledEnum;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,8 +29,8 @@ public enum EnumType {
     public static final Map<String, String> CACHE;
 
     static {
-        Map<String, String> map = new HashMap<>();
-        map.put("EnabledEnum", "dev.dong4j.zeka.kernel.common.enums.EnabledEnum");
-        CACHE = Collections.unmodifiableMap(map);
+        CACHE = Map.of(
+            "EnabledEnum", "dev.dong4j.zeka.kernel.common.enums.EnabledEnum"
+        );
     }
 }

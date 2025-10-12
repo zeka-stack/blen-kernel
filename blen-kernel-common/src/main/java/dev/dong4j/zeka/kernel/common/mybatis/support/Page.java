@@ -3,6 +3,7 @@ package dev.dong4j.zeka.kernel.common.mybatis.support;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,20 +25,25 @@ import lombok.Setter;
  */
 @Data
 @JsonTypeName(value = "generalPage")
+@Schema(name = "查询-分页实体")
 public class Page<T> implements IPage<T> {
 
     @Serial
     private static final long serialVersionUID = 8545996863226528798L;
 
     /** 查询数据列表 */
+    @Schema(description = "分页数据")
     private List<T> records = Collections.emptyList();
 
     /** 总数 */
+    @Schema(description = "总记录数量")
     private long total = 0;
     /** 每页显示条数，默认 10 */
+    @Schema(description = "每页显示条数")
     private long size = 10;
 
     /** 当前页 */
+    @Schema(description = "当前页数")
     private long current = 1;
 
     /** 排序字段信息 */

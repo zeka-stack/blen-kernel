@@ -1,8 +1,8 @@
-# Blen Kernel Devtools
+# Blen Kernel Generator
 
 ## 概述
 
-`blen-kernel-devtools` 是 Zeka.Stack 框架的开发工具模块，基于 MyBatis-Plus Generator 提供了强大的代码生成功能。该模块可以帮助开发者快速生成标准的
+`blen-kernel-generator` 是 Zeka.Stack 框架的开发工具模块，基于 MyBatis-Plus Generator 提供了强大的代码生成功能。该模块可以帮助开发者快速生成标准的
 CRUD 代码，包括实体类、Mapper、Service、Controller 等，大大提升开发效率。
 
 ## 主要功能
@@ -379,11 +379,66 @@ project/
 
 ## 注意事项
 
-1. **数据库连接**: 确保数据库连接配置正确
-2. **表结构**: 确保表结构设计合理
-3. **模板路径**: 确保模板文件路径正确
-4. **文件覆盖**: 注意文件覆盖策略
-5. **依赖管理**: 确保相关依赖已正确配置
+为了完成枚举的生成和自动替换, 需要按照一定的规范编写 SQL 脚本.
+
+```
+create table rule
+(
+    `id`            BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `ip_from`       BIGINT       NULL COMMENT 'IP范围开始地址',
+    `ip_to`         BIGINT       NULL COMMENT 'IP范围结束地址',
+    `match_mode`    VARCHAR(20)  NULL COMMENT '域名匹配模式',
+    `name`          VARCHAR(100) NULL COMMENT '匹配的域名',
+    `priority`      INT          NULL COMMENT '匹配优先级',
+    `enabled`       BIT                   DEFAULT b'1' NULL COMMENT '公共枚举:EnableEnum:可用状态',
+    `dispatch_mode` VARCHAR(20)  NULL COMMENT '分发模式, 如iphash、round-robin、random',
+    `create_time`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间 (公共字段)',
+    `update_time`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间 (公共字段)',
+    `deleted`       BIGINT       NOT NULL DEFAULT 0 COMMENT '通用枚举:删除状态:0: 未删除，删除就是当前数据的主键id用于代表唯一性'
+) ENGINE = INNODB
+  AUTO_INCREMENT = 0
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = '解析规则';
+
+create table user
+(
+    `id`           BIGINT UNSIGNED AUTO_INCREMENT COMMENT '自增主键' primary key,
+    `phone`        VARCHAR(11)  not NULL COMMENT '用户电话号码',
+    `user_name`    VARCHAR(64)  not NULL COMMENT '用户名',
+    `gender`       TINYINT(4)   not NULL COMMENT '性别',
+    `nick_name`    VARCHAR(64)  not NULL COMMENT '姓名',
+    `company_name` VARCHAR(64)  not NULL COMMENT '公司名称',
+    `password`     VARCHAR(128) not NULL COMMENT '密码',
+    `salt`         VARCHAR(128) not NULL COMMENT '密码加密盐值',
+    `api_key`      VARCHAR(50)  NULL COMMENT 'open api key',
+    `secret_key`   VARCHAR(50)  NULL COMMENT 'open api secret key',
+    `email`        VARCHAR(128) NULL COMMENT '用户邮箱',
+    `status`       TINYINT(2) UNSIGNED   DEFAULT 0 NOT NULL COMMENT '自定义枚举:Integer:用户状态:AAA(0, "未审核"),:BBB(1, "审核中"),:CCC(2, "审核未通过"),:DDD(3,"已锁定"),:EEE(4,"正常");',
+    `create_time`  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间 (公共字段)',
+    `update_time`  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间 (公共字段)',
+    `deleted`      BIGINT       NOT NULL DEFAULT 0 COMMENT '通用枚举:删除状态:0: 未删除，删除就是当前数据的主键id用于代表唯一性'
+) ENGINE = INNODB
+  AUTO_INCREMENT = 0
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = '用户信息表';
+```
+
+以上是一个标注的 SQL 写法, 需要关注 rule.enabled 字段和 user.status 字段
+我们将枚举分为 3 类:
+
+1. 自定义枚举: 业务上需要自定义的状态映射为此枚举;
+2. 公共枚举: 框架层已提供的状态枚举, 此类枚举与业务无关, 能够 100% 确认枚举值, 比如 EnableEnum;
+3. 通用枚举: SQL 中一般会存在的状态, 比如表示数据是否被删除的 DeleteEnum, 此类枚举一般存在与父类实体中, 子类不需要重复定义;
+
+规则:
+
+1. 一般表示可用/不可用的状态可以直接使用框架提供的 EnableEnum 枚举, 注释的写法为固定格式: 公共枚举:EnableEnum:可用状态
+2. 如果业务上存在多个状态的属性(即使现在没有多个, 也应该预计将来会不会存在多个的情况), 应该使用 TINYINT(2) 类型 (128 个状态值应该够用了吧,
+   如果超过 128 个状态那一定是产品的问题);
+3. 对于自定义枚举的注释需要按照固定格式编写: 自定义枚举:{value 类型}:{枚举注释}:枚举名1(value1, "描述1"),:枚举名2(value2, "描述2");
+   3.1 「自定义枚举」 是一个固定值, 代码生成时需要通过这个固定值去匹配生成逻辑;
+   3.2 「value 类型」需要使用 Java 中的类名, 比如 Integer , Long , String 等;
+   3.3 枚举名(枚举 value, "枚举描述") 这个格式是固定的, 不能更改, 需要注意最后一个枚举是分号;
 
 ## 版本历史
 

@@ -90,7 +90,7 @@
         <module>blen-kernel-notify</module>
         <module>blen-kernel-test</module>
         <module>blen-kernel-spi</module>
-        <module>blen-kernel-devtools</module>
+        <module>blen-kernel-generator</module>
         <module>blen-kernel-validation</module>
         <module>blen-kernel-autoconfigure</module>
         <module>blen-kernel-web</module>

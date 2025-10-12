@@ -142,14 +142,15 @@ public class ConfigBuilder {
     @Getter
     private InjectionConfig injectionConfig;
 
-    /** enumCommentPrefix */
+    /** 生成自定义枚举前缀 */
     private static final String customEnumCommentPrefix = "自定义枚举:";
+    /** 生成公共枚举注释前缀 */
     private static final String commonEnumCommentPrefix = "公共枚举:";
+    /** 生成通用枚举注释前缀 */
     private static final String generalEnumCommentPrefix = "通用枚举:";
+    /** 生成查询字段的前缀 */
     private static final String queryCommentPrefix = "Q@";
-    /**
-     * 过滤正则
-     */
+    /** 过滤正则 */
     private static final Pattern REGX = Pattern.compile("[~!/@#$%^&*()+\\\\\\[\\]|{};:'\",<.>?]+");
 
     /**

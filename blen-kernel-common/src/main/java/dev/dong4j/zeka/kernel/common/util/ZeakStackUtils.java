@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * @since 1.0.0
  */
 @UtilityClass
-public class BasicUtils {
+public class ZeakStackUtils {
 
     /**
      * Is v 5 framework

@@ -39,7 +39,7 @@
             </dependency>
             <dependency>
                 <groupId>dev.dong4j</groupId>
-                <artifactId>blen-kernel-devtools</artifactId>
+                <artifactId>blen-kernel-generator</artifactId>
                 <version>${blen-kernel-dependencies.version}</version>
                 <scope>test</scope>
             </dependency>

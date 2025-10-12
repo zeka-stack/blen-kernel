@@ -16,9 +16,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum EnabledEnum implements SerializeEnum<Boolean> {
     /** On enable enum */
-    ON(Boolean.TRUE, "可用状态"),
+    ON(Boolean.TRUE, "启用"),
     /** Off enable enum */
-    OFF(Boolean.FALSE, "不可用状态");
+    OFF(Boolean.FALSE, "未启用");
 
     /** 数据库存储的值 */
     private final Boolean value;

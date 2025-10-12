@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.experimental.UtilityClass;
@@ -349,6 +350,54 @@ public class CollectionUtils extends org.springframework.util.CollectionUtils {
             return list.get(0);
         }
         return list.get(THREAD_LOCAL_RANDOM.nextInt(size - 1));
+    }
+
+    /**
+     * 判断老的集合哪些是新增、修改、删除的数据
+     *
+     * @param <T>               parameter
+     * @param oldList           老的列表
+     * @param newList           新操作的列表
+     * @param keyFunction       主键标识符
+     * @param updateConsumer    更新操作
+     * @param newCreateConsumer 新增操作
+     * @param removeConsumer    删除操作
+     * @since 2024.2.0
+     */
+    @SuppressWarnings("all")
+    public static <T> void filter(List<T> oldList,
+                                  List<T> newList,
+                                  Function<T, ?> keyFunction,
+                                  java.util.function.Consumer<List<T>> updateConsumer,
+                                  java.util.function.Consumer<List<T>> newCreateConsumer,
+                                  java.util.function.Consumer<List<T>> removeConsumer) {
+        List<T> newCreate = new ArrayList<>();
+        List<T> update = new ArrayList<>();
+        List<T> deleted = new ArrayList<>();
+        // 将老的数据，根据指定的key进行分组
+        Map<?, T> oldMap = oldList.stream().collect(Collectors.toMap(keyFunction, item -> item));
+        newList.forEach(item -> {
+            Object key = keyFunction.apply(item);
+            if (key == null) {
+                newCreate.add(item);
+            } else {
+                T oldItem = oldMap.get(key);
+                if (oldItem != null) {
+                    update.add(item);
+                }
+            }
+        });
+        Map<?, T> newMap = newList.stream().collect(Collectors.toMap(keyFunction, item -> item));
+        oldList.forEach(item -> {
+            Object key = keyFunction.apply(item);
+            T t = newMap.get(key);
+            if (t == null) {
+                deleted.add(item);
+            }
+        });
+        newCreateConsumer.accept(newCreate);
+        updateConsumer.accept(update);
+        removeConsumer.accept(deleted);
     }
 
 }
