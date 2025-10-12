@@ -1,5 +1,6 @@
 package dev.dong4j.zeka.kernel.web.jackson;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JavaType;
@@ -54,10 +55,12 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
                                                      BeanDescription beanDesc,
                                                      @NotNull List<BeanPropertyWriter> beanProperties) {
         beanProperties.forEach(writer -> {
-            // 如果已经有 null 序列化处理如注解: @JsonSerialize(nullsUsing = xxx) 跳过
-            if (writer.hasNullSerializer()) {
+            // 如果已经有 null 序列化处理如注解: @JsonSerialize(nullsUsing = xxx) 或者 @JsonInclude(JsonInclude.Include.NON_NULL) 则跳过
+            final JsonInclude annotation = writer.getAnnotation(JsonInclude.class);
+            if (annotation != null && JsonInclude.Include.NON_NULL.equals(annotation.value()) || writer.hasNullSerializer()) {
                 return;
             }
+
             JavaType type = writer.getType();
             Class<?> clazz = type.getRawClass();
             if (type.isTypeOrSubTypeOf(Number.class)) {
@@ -87,8 +90,8 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
      * @author dong4j
      * @version 1.0.0
      * @email "mailto:dong4j@gmail.com"
-     * @date 2019.12.24 01:46
-     * @since 1.0.0
+     * @date 2023.11.11 01:46
+     * @since 2024.1.1
      */
     @SuppressWarnings("checkstyle:InterfaceIsType")
     public interface NullJsonSerializers {
@@ -96,7 +99,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         /**
          * The constant STRING_JSON_SERIALIZER.
          */
-        JsonSerializer<Object> STRING_JSON_SERIALIZER = new JsonSerializer<Object>() {
+        JsonSerializer<Object> STRING_JSON_SERIALIZER = new JsonSerializer<>() {
             @Override
             public void serialize(Object value, @NotNull JsonGenerator gen, SerializerProvider serializers) throws IOException {
                 gen.writeString(StringPool.EMPTY);
@@ -106,7 +109,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         /**
          * The constant NUMBER_JSON_SERIALIZER.
          */
-        JsonSerializer<Object> NUMBER_JSON_SERIALIZER = new JsonSerializer<Object>() {
+        JsonSerializer<Object> NUMBER_JSON_SERIALIZER = new JsonSerializer<>() {
             @Override
             public void serialize(Object value, @NotNull JsonGenerator gen, SerializerProvider serializers) throws IOException {
                 gen.writeNumber(StringUtils.INDEX_NOT_FOUND);
@@ -116,7 +119,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         /**
          * The constant BOOLEAN_JSON_SERIALIZER.
          */
-        JsonSerializer<Object> BOOLEAN_JSON_SERIALIZER = new JsonSerializer<Object>() {
+        JsonSerializer<Object> BOOLEAN_JSON_SERIALIZER = new JsonSerializer<>() {
             @Override
             public void serialize(Object value, @NotNull JsonGenerator gen, SerializerProvider serializers) throws IOException {
                 gen.writeObject(Boolean.FALSE);
@@ -126,7 +129,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         /**
          * The constant ARRAY_JSON_SERIALIZER.
          */
-        JsonSerializer<Object> ARRAY_JSON_SERIALIZER = new JsonSerializer<Object>() {
+        JsonSerializer<Object> ARRAY_JSON_SERIALIZER = new JsonSerializer<>() {
             @Override
             public void serialize(Object value, @NotNull JsonGenerator gen, SerializerProvider serializers) throws IOException {
                 gen.writeStartArray();
@@ -137,7 +140,7 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         /**
          * The constant OBJECT_JSON_SERIALIZER.
          */
-        JsonSerializer<Object> OBJECT_JSON_SERIALIZER = new JsonSerializer<Object>() {
+        JsonSerializer<Object> OBJECT_JSON_SERIALIZER = new JsonSerializer<>() {
             @Override
             public void serialize(Object value, @NotNull JsonGenerator gen, SerializerProvider serializers) throws IOException {
                 gen.writeStartObject();
@@ -146,5 +149,4 @@ public class DefaultBeanSerializerModifier extends com.fasterxml.jackson.databin
         };
 
     }
-
 }
