@@ -730,56 +730,6 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
     }
 
     /**
-     * Do with fields
-     *
-     * @param clazz clazz
-     * @param fc    fc
-     * @param ff    ff
-     * @since 2024.2.0
-     */
-    public static void doWithFields(Class<?> clazz, FieldCallback fc, @Nullable FieldFilter ff) {
-        // Keep backing up the inheritance hierarchy.
-        Class<?> targetClass = clazz;
-        do {
-            Field[] fields = getDeclaredFields(targetClass);
-            for (Field field : fields) {
-                if (ff != null && !ff.matches(field)) {
-                    continue;
-                }
-                try {
-                    fc.doWith(field);
-                } catch (IllegalAccessException ex) {
-                    throw new IllegalStateException("Not allowed to access field '" + field.getName() + "': " + ex);
-                }
-            }
-            targetClass = targetClass.getSuperclass();
-        }
-        while (targetClass != null && targetClass != Object.class);
-    }
-
-    /**
-     * Get declared fields
-     *
-     * @param clazz clazz
-     * @return the field [ ]
-     * @since 2024.2.0
-     */
-    private static Field[] getDeclaredFields(Class<?> clazz) {
-        cn.hutool.core.lang.Assert.notNull(clazz, "Class must not be null");
-        Field[] result = declaredFieldsCache.get(clazz);
-        if (result == null) {
-            try {
-                result = clazz.getDeclaredFields();
-                declaredFieldsCache.put(clazz, (result.length == 0 ? EMPTY_FIELD_ARRAY : result));
-            } catch (Throwable ex) {
-                throw new IllegalStateException("Failed to introspect Class [" + clazz.getName() +
-                    "] from ClassLoader [" + clazz.getClassLoader() + "]", ex);
-            }
-        }
-        return result;
-    }
-
-    /**
      * Callback interface invoked on each field in the hierarchy.
      *
      * @author Spark.Team
