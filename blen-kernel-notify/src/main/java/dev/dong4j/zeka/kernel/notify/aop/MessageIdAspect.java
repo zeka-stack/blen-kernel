@@ -47,7 +47,7 @@ public class MessageIdAspect {
      * @since 1.0.0
      */
     @Before(value = "notifyPointCut()")
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "D"})
     public void before(@NotNull JoinPoint joinPoint) {
         // 获取目标方法的参数信息
         Object[] obj = joinPoint.getArgs();
