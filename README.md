@@ -58,12 +58,12 @@ Blen Kernel 是 Zeka.Stack 框架的核心包，提供了企业级 Java 应用�
 
 ### 工具模块
 
-| 模块                                             | 功能描述    | 依赖关系   |
-|------------------------------------------------|---------|--------|
-| [blen-kernel-devtools](./blen-kernel-devtools) | 代码生成工具  | common |
-| [blen-kernel-test](./blen-kernel-test)         | 测试工具和注解 | common |
-| [blen-kernel-notify](./blen-kernel-notify)     | 消息通知    | common |
-| [blen-kernel-spi](./blen-kernel-spi)           | 服务提供者接口 | common |
+| 模块                                               | 功能描述    | 依赖关系   |
+|--------------------------------------------------|---------|--------|
+| [blen-kernel-generator](./blen-kernel-generator) | 代码生成工具  | common |
+| [blen-kernel-test](./blen-kernel-test)           | 测试工具和注解 | common |
+| [blen-kernel-notify](./blen-kernel-notify)       | 消息通知    | common |
+| [blen-kernel-spi](./blen-kernel-spi)             | 服务提供者接口 | common |
 
 ### 扩展模块
 

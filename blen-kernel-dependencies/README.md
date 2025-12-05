@@ -56,7 +56,7 @@
 - **blen-kernel-autoconfigure**: 自动配置模块
 - **blen-kernel-auth**: 认证模块
 - **blen-kernel-common**: 通用模块
-- **blen-kernel-devtools**: 开发工具模块
+- **blen-kernel-generator**: 开发工具模块
 - **blen-kernel-notify**: 通知模块
 - **blen-kernel-spi**: SPI 模块
 - **blen-kernel-test**: 测试模块

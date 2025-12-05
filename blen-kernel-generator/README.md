@@ -98,7 +98,7 @@ CRUD 代码，包括实体类、Mapper、Service、Controller 等，大大提升
 ```xml
 <dependency>
     <groupId>dev.dong4j</groupId>
-    <artifactId>blen-kernel-devtools</artifactId>
+    <artifactId>blen-kernel-generator</artifactId>
     <version>${blen-kernel.version}</version>
     <scope>test</scope>
 </dependency>
