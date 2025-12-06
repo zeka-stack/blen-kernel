@@ -1,10 +1,5 @@
 package dev.dong4j.zeka.kernel.common.config.refresh;
 
-import dev.dong4j.zeka.kernel.common.util.Jsons;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.origin.OriginTrackedValue;
@@ -12,6 +7,13 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+import dev.dong4j.zeka.kernel.common.util.Jsons;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 6: 根据配置变更项（扁平化 key 集合）精准刷新受影响的 {@code @ConfigurationProperties} Bean。
@@ -63,8 +65,8 @@ public class RefreshScopeRefresher {
         }
 
         for (RefreshScopeRegistry.BindableTarget target : registry.getBindableTargets()) {
-            String prefix = target.getPrefix();
-            Object bean = target.getBean();
+            String prefix = target.prefix();
+            Object bean = target.bean();
 
             boolean affected = changedKeys.stream().anyMatch(k -> k.startsWith(prefix));
             if (!affected) {

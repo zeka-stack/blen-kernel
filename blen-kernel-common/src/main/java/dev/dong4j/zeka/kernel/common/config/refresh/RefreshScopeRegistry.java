@@ -1,15 +1,16 @@
 package dev.dong4j.zeka.kernel.common.config.refresh;
 
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.ApplicationContext;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import lombok.Getter;
+
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.context.ApplicationContext;
 
 /**
  * 2: 构建核心配置类注册与管理中心
@@ -71,14 +72,6 @@ public class RefreshScopeRegistry {
         return prefix.endsWith(".") ? prefix : prefix + ".";
     }
 
-    @Getter
-    public static class BindableTarget {
-        private final Object bean;
-        private final String prefix;
-
-        public BindableTarget(Object bean, String prefix) {
-            this.bean = bean;
-            this.prefix = prefix;
-        }
+    public record BindableTarget(Object bean, String prefix) {
     }
 }
