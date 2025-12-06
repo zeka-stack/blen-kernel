@@ -4,18 +4,34 @@
 
 这是一个基于Jackson的多态序列化框架，主要包含以下组件：
 
-- **[IPolymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)** - 多态序列化标记接口
-- **[@Polymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/Polymorphic.java#L32-L113)** - 多态序列化配置注解
-- **[PolymorphicSerialize](src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicSerialize.java#L45-L177)** - 多态对象序列化器
-- **[PolymorphicDeserialize](src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicDeserialize.java#L50-L194)** -
+-
+    *
+*[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
+** - 多态序列化标记接口
+-
+    *
+*[@Polymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/Polymorphic.java#L32-L113)
+** - 多态序列化配置注解
+-
+    *
+*[PolymorphicSerialize](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicSerialize.java#L45-L177)
+** - 多态对象序列化器
+-
+    *
+*[PolymorphicDeserialize](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicDeserialize.java#L50-L194)
+** -
   多态对象反序列化器
-- **[PolymorphicModule](src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicModule.java#L31-L51)** - Jackson模块注册器
+-
+    *
+*[PolymorphicModule](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicModule.java#L31-L51)
+** - Jackson模块注册器
 
 ### 2. 使用步骤
 
 #### 步骤1：实现IPolymorphic接口
 
-所有需要进行多态序列化的类都必须实现[IPolymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)接口：
+所有需要进行多态序列化的类都必须实现[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
+接口：
 
 java
 
@@ -40,7 +56,8 @@ public class Cat extends Animal {
 
 #### 步骤2：创建枚举映射（推荐方式）
 
-实现[SerializeEnum](src/main/java/dev/dong4j/zeka/kernel/common/enums/SerializeEnum.java#L32-L170)接口创建类型映射枚举：
+实现[SerializeEnum](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/enums/SerializeEnum.java#L32-L170)
+接口创建类型映射枚举：
 
 java
 
@@ -121,7 +138,7 @@ json
 #### 自动配置（推荐）
 
 框架使用[@AutoService]
-注解，Jackson会自动发现并注册[PolymorphicModule](src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicModule.java#L31-L51)：
+注解，Jackson会自动发现并注册[PolymorphicModule](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicModule.java#L31-L51)：
 
 java
 
@@ -144,7 +161,9 @@ mapper.registerModule(new PolymorphicModule());
 
 ### 5. 支持的场景
 
-1. **单个多态对象**：直接在字段上使用[@Polymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/Polymorphic.java#L32-L113)注解
+1. **单个多态对象**
+   ：直接在字段上使用[@Polymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/Polymorphic.java#L32-L113)
+   注解
 2. **集合中的多态对象**：框架会自动处理List、Set等集合中的多态对象
 3. **嵌套多态对象**：支持多层嵌套的多态对象处理
 4. **混合类型映射**：同一个项目中可以使用枚举和配置两种映射方式
@@ -158,9 +177,15 @@ mapper.registerModule(new PolymorphicModule());
 
 ### 7. 注意事项
 
-- 所有参与多态序列化的类必须实现[IPolymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)接口
+-
+
+所有参与多态序列化的类必须实现[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
+接口
 - 类型标识字符串在同一个映射配置中必须唯一
-- 框架会进行类型验证，确保目标类实现了[IPolymorphic](src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)接口
+-
+
+框架会进行类型验证，确保目标类实现了[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
+接口
 - 集合类型中的多态对象会被递归处理
 
 这个框架为复杂的多态对象序列化提供了灵活而强大的解决方案，特别适用于需要在JSON中保持类型信息的场景。
