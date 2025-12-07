@@ -1,4 +1,8 @@
-# Blen Kernel Auth
+---
+published: 2022.05.09
+---
+
+# 认证授权
 
 ## 概述
 

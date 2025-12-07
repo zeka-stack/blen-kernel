@@ -1,4 +1,8 @@
-# Blen Kernel Generator
+---
+published: 2022.06.06
+---
+
+# 代码生成器
 
 ## 概述
 

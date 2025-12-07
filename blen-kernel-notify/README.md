@@ -1,4 +1,8 @@
-# Blen Kernel Notify
+---
+published: 2022.06.20
+---
+
+# 消息通知
 
 ## 概述
 

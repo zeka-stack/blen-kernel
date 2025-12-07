@@ -1,4 +1,8 @@
-# Blen Kernel SPI
+---
+published: 2022.06.27
+---
+
+# SPI 机制
 
 ## 概述
 

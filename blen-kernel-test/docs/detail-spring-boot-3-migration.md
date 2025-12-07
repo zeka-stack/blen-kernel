@@ -1,3 +1,7 @@
+---
+published: 2022.02.28
+---
+
 # Spring Boot 3 迁移指南
 
 ## 概述

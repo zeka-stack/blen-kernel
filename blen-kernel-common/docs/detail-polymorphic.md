@@ -1,3 +1,7 @@
+---
+published: 2022.02.07
+---
+
 ## 多态序列化框架使用说明
 
 ### 1. 框架概述
@@ -6,23 +10,32 @@
 
 -
     *
+
 *[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
 ** - 多态序列化标记接口
+
 -
     *
+
 *[@Polymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/Polymorphic.java#L32-L113)
 ** - 多态序列化配置注解
+
 -
     *
+
 *[PolymorphicSerialize](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicSerialize.java#L45-L177)
 ** - 多态对象序列化器
+
 -
     *
+
 *[PolymorphicDeserialize](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicDeserialize.java#L50-L194)
 ** -
-  多态对象反序列化器
+多态对象反序列化器
+
 -
     *
+
 *[PolymorphicModule](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/serialize/PolymorphicModule.java#L31-L51)
 ** - Jackson模块注册器
 
@@ -181,11 +194,13 @@ mapper.registerModule(new PolymorphicModule());
 
 所有参与多态序列化的类必须实现[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
 接口
+
 - 类型标识字符串在同一个映射配置中必须唯一
 -
 
 框架会进行类型验证，确保目标类实现了[IPolymorphic](https://github.com/zeka-stack/blen-kernel/tree/main/blen-kernel-common/src/main/java/dev/dong4j/zeka/kernel/common/jackson/IPolymorphic.java#L26-L28)
 接口
+
 - 集合类型中的多态对象会被递归处理
 
 这个框架为复杂的多态对象序列化提供了灵活而强大的解决方案，特别适用于需要在JSON中保持类型信息的场景。

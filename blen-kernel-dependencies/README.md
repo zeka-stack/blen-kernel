@@ -1,4 +1,8 @@
-# Blen Kernel Dependencies
+---
+published: 2022.05.03
+---
+
+# 依赖管理
 
 ## 概述
 

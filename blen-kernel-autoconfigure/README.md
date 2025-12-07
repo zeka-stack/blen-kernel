@@ -1,4 +1,8 @@
-# Blen Kernel AutoConfigure
+---
+published: 2022.05.30
+---
+
+# 自动配置
 
 ## 概述
 

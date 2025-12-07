@@ -1,4 +1,8 @@
-# Blen Kernel Common
+---
+published: 2022.05.02
+---
+
+# 通用模块
 
 ## 概述
 

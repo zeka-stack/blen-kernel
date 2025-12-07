@@ -1,4 +1,8 @@
-# Blen Kernel Validation
+---
+published: 2022.05.16
+---
+
+# 数据验证
 
 ## 概述
 
