@@ -1,13 +1,5 @@
 package dev.dong4j.zeka.kernel.common.env;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.context.properties.bind.PlaceholdersResolver;
@@ -26,6 +18,15 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.PropertyPlaceholderHelper;
 import org.springframework.util.StringUtils;
 import org.springframework.util.SystemPropertyUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 /**
  * <p>Zeka 环境配置解析器.
@@ -125,7 +126,7 @@ public class ZekaEnvironment {
         getPropertySourcesAsMap().forEach((sourceName, source) -> {
             if (source instanceof EnumerablePropertySource) {
                 propertySources.add(describeSource(sourceName, (EnumerablePropertySource<?>) source, resolver,
-                    propertyNamePredicate));
+                                                   propertyNamePredicate));
             }
         });
         return new EnvironmentDescriptor(Arrays.asList(environment.getActiveProfiles()), propertySources);
@@ -143,7 +144,7 @@ public class ZekaEnvironment {
         Map<String, PropertyValueDescriptor> descriptors = getPropertySourceDescriptors(propertyName);
         PropertySummaryDescriptor summary = getPropertySummaryDescriptor(descriptors);
         return new EnvironmentEntryDescriptor(summary, Arrays.asList(environment.getActiveProfiles()),
-            toPropertySourceDescriptors(descriptors));
+                                              toPropertySourceDescriptors(descriptors));
     }
 
     /**
@@ -191,9 +192,9 @@ public class ZekaEnvironment {
         PlaceholdersResolver resolver = getResolver();
         getPropertySourcesAsMap()
             .forEach((sourceName, source) ->
-                propertySources.put(sourceName, source.containsProperty(propertyName)
-                    ? describeValueOf(propertyName, source, resolver)
-                    : null));
+                         propertySources.put(sourceName, source.containsProperty(propertyName)
+                                                         ? describeValueOf(propertyName, source, resolver)
+                                                         : null));
         return propertySources;
     }
 
@@ -346,10 +347,10 @@ public class ZekaEnvironment {
          */
         PropertySourcesPlaceholdersSanitizingResolver(Iterable<PropertySource<?>> sources, Sanitizer sanitizer) {
             super(sources, new PropertyPlaceholderHelper(SystemPropertyUtils.PLACEHOLDER_PREFIX,
-                SystemPropertyUtils.PLACEHOLDER_SUFFIX,
-                SystemPropertyUtils.VALUE_SEPARATOR,
-                SystemPropertyUtils.ESCAPE_CHARACTER,
-                true));
+                                                         SystemPropertyUtils.PLACEHOLDER_SUFFIX,
+                                                         SystemPropertyUtils.VALUE_SEPARATOR,
+                                                         SystemPropertyUtils.ESCAPE_CHARACTER,
+                                                         true));
             this.sanitizer = sanitizer;
         }
 
@@ -507,7 +508,7 @@ public class ZekaEnvironment {
      * @date 2020.01.26 20:40
      * @since 1.0.0
      */
-        public record PropertySummaryDescriptor(String source, Object value) {
+    public record PropertySummaryDescriptor(String source, Object value) {
 
         /**
          * Instantiates a new Property summary descriptor.
@@ -520,31 +521,31 @@ public class ZekaEnvironment {
         public PropertySummaryDescriptor {
         }
 
-            /**
-             * Gets source.
-             *
-             * @return the source
-             * @since 1.0.0
-             */
-            @Override
-            @Contract(pure = true)
-            public String source() {
-                return source;
-            }
-
-            /**
-             * Gets value.
-             *
-             * @return the value
-             * @since 1.0.0
-             */
-            @Override
-            @Contract(pure = true)
-            public Object value() {
-                return value;
-            }
-
+        /**
+         * Gets source.
+         *
+         * @return the source
+         * @since 1.0.0
+         */
+        @Override
+        @Contract(pure = true)
+        public String source() {
+            return source;
         }
+
+        /**
+         * Gets value.
+         *
+         * @return the value
+         * @since 1.0.0
+         */
+        @Override
+        @Contract(pure = true)
+        public Object value() {
+            return value;
+        }
+
+    }
 
     /**
      * A description of a {@link PropertySource}.

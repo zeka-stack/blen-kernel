@@ -1,15 +1,18 @@
 package dev.dong4j.zeka.kernel.common.context;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import dev.dong4j.zeka.kernel.common.util.PropertiesUtils;
-import dev.dong4j.zeka.kernel.common.util.StringPool;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+
+import dev.dong4j.zeka.kernel.common.util.PropertiesUtils;
+import dev.dong4j.zeka.kernel.common.util.StringPool;
 
 /**
  * <p>Description: 实际的ThreadContext映射.
@@ -47,15 +50,14 @@ public class DefaultThreadContextMap implements ThreadContextMap {
      * @return the thread local
      * @since 1.0.0
      */
-    static @NotNull
-    ThreadLocal<Map<String, String>> createThreadLocalMap(boolean isMapEnabled) {
+    static @NotNull ThreadLocal<Map<String, String>> createThreadLocalMap(boolean isMapEnabled) {
         if (inheritableMap) {
             return new TransmittableThreadLocal<>() {
                 @Override
                 protected Map<String, String> childValue(Map<String, String> parentValue) {
                     return parentValue != null && isMapEnabled
-                        ? Map.copyOf(parentValue)
-                        : null;
+                           ? Map.copyOf(parentValue)
+                           : null;
                 }
             };
         }

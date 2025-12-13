@@ -1,6 +1,9 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
@@ -11,10 +14,9 @@ import java.util.Enumeration;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
 import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 类加载器工具类，提供类加载相关的工具方法</p>
@@ -394,6 +396,20 @@ public final class LoaderUtils {
                 return false;
             }
             return Objects.equals(this.url, that.url);
+        }
+
+        /**
+         * 计算当前对象的哈希码
+         * <p>
+         * 根据类加载器和 URL 的哈希值计算对象的哈希码, 用于在哈希表中存储和检索对象
+         *
+         * @return 计算得到的哈希码值
+         */
+        @Override
+        public int hashCode() {
+            int result = this.classLoader != null ? this.classLoader.hashCode() : 0;
+            result = 31 * result + (this.url != null ? this.url.hashCode() : 0);
+            return result;
         }
 
     }

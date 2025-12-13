@@ -1,6 +1,12 @@
 package dev.dong4j.zeka.kernel.common.support;
 
 import com.google.common.collect.Maps;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,10 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * 线程安全的工厂式Map实现，支持懒加载和自动创建值
@@ -97,7 +99,7 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * }</pre>
      *
      * @param <T>          键类型
-     * @param <V>          值类型  
+     * @param <V>          值类型
      * @param computeValue 用于根据键计算值的函数
      * @return 创建的工厂Map实例
      * @since 1.0.0
@@ -714,26 +716,26 @@ public abstract class ConcurrentFactoryMap<K, V> implements ConcurrentMap<K, V> 
      * @date 2020.05.19 10:04
      * @since 1.0.0
      */
-        private record Sentinel(String myName) {
-            /**
-             * Sentinel
-             *
-             * @param myName name
-             * @since 1.0.0
-             */
-            private Sentinel(@NotNull String myName) {
-                this.myName = myName;
-            }
-
-            /**
-             * To string
-             *
-             * @return the string
-             * @since 1.0.0
-             */
-            @Override
-            public String toString() {
-                return this.myName;
-            }
+    private record Sentinel(String myName) {
+        /**
+         * Sentinel
+         *
+         * @param myName name
+         * @since 1.0.0
+         */
+        private Sentinel(@NotNull String myName) {
+            this.myName = myName;
         }
+
+        /**
+         * To string
+         *
+         * @return the string
+         * @since 1.0.0
+         */
+        @Override
+        public String toString() {
+            return this.myName;
+        }
+    }
 }

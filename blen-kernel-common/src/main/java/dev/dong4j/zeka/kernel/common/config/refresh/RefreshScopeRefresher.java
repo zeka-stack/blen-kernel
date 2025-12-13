@@ -16,36 +16,51 @@ import dev.dong4j.zeka.kernel.common.util.Jsons;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 6: 根据配置变更项（扁平化 key 集合）精准刷新受影响的 {@code @ConfigurationProperties} Bean。
+ * 配置刷新管理类
+ * <p>
+ * 负责根据配置项的变化触发对应的配置刷新操作, 主要处理配置前缀匹配的 Bean, 并更新其配置值.
+ * 该类通过动态加载配置, 扁平化处理配置数据, 并将最新配置绑定到对应的 Bean 实例上, 实现配置的动态刷新功能.
  *
- * <p>刷新逻辑：</p>
- * <ol>
- *   <li>从 {@link RefreshScopeRegistry} 获取所有被 {@code @RefreshScope} 标记且
- *       同时带 {@code @ConfigurationProperties} 的 Bean。</li>
- *   <li>读取其 {@code prefix}，判断变更的 key 是否以该前缀开头。</li>
- *   <li>若受影响则使用 Spring Boot {@link Binder} 将最新
- *       {@link Environment} 值重新绑定到现有 Bean 实例。</li>
- * </ol>
- *
- * <p>注意：此实现<strong>不会</strong>重新创建 Bean，只是把新值绑定到已有实例，
- * 因此要求属性通过标准的 setter 或可变字段暴露。</p>
- *
- * @author dong4j
+ * @author zeka.stack.team
  * @version 1.0.0
- * @email "mailto:dong4j@gmail.com"
- * @date 2025.07.29
- * @since 1.0.0
+ * @email "mailto:zeka.stack@gmail.com"
+ * @date 2025.12.13
+ * @since 2.0.0
  */
 @Slf4j
 public class RefreshScopeRefresher {
 
-    /** Spring 的环境对象，包含最新 PropertySource */
+    /**
+     * 应用程序的环境配置
+     * <p>
+     * 用于获取和管理应用程序运行时的环境变量和配置信息
+     */
     private final Environment environment;
+    /**
+     * 动态配置加载器
+     * <p>
+     * 用于加载和管理动态配置信息
+     */
     private final DynamicConfigLoader dynamicConfigLoader;
 
-    /** 可刷新 Bean 注册表 */
+    /**
+     * 注册表, 用于管理刷新作用域
+     * <p>
+     * 该注册表负责跟踪和管理所有刷新作用域的生命周期和状态
+     *
+     * @see RefreshScopeRegistry
+     */
     private final RefreshScopeRegistry registry;
 
+    /**
+     * 初始化 RefreshScopeRefresher 实例
+     * <p>
+     * 通过传入的环境, 刷新作用域注册表和动态配置加载器来初始化对象
+     *
+     * @param environment         环境配置对象
+     * @param registry            刷新作用域注册表
+     * @param dynamicConfigLoader 动态配置加载器
+     */
     public RefreshScopeRefresher(Environment environment,
                                  RefreshScopeRegistry registry,
                                  DynamicConfigLoader dynamicConfigLoader) {
@@ -55,9 +70,11 @@ public class RefreshScopeRefresher {
     }
 
     /**
-     * 根据发生变化的配置 key 刷新对应的配置类。
+     * 根据变更的配置键刷新对应的配置对象
+     * <p>
+     * 遍历所有可绑定的目标对象, 检查是否有配置键以目标对象的前缀开头. 如果有, 则加载最新的配置并刷新该对象.
      *
-     * @param changedKeys 以点号扁平化的配置 key，如 {@code spring.datasource.url}
+     * @param changedKeys 已变更的配置键集合, 用于判断哪些配置对象需要刷新
      */
     public void refreshByChangedKeys(Set<String> changedKeys) {
         if (changedKeys == null || changedKeys.isEmpty()) {
@@ -91,9 +108,11 @@ public class RefreshScopeRefresher {
     }
 
     /**
-     * 使用最新配置更新环境
+     * 使用最新的配置更新环境属性
+     * <p>
+     * 将指定的最新配置作为 "refresh-overrides" 属性源添加到环境的最前面, 如果已存在同名属性源则先移除
      *
-     * @param latestConfig 最新配置
+     * @param latestConfig 最新的配置项, 以键值对形式表示
      */
     private void updateEnvironmentWithLatestConfig(Map<String, Object> latestConfig) {
         ConfigurableEnvironment configurableEnvironment =
@@ -112,10 +131,12 @@ public class RefreshScopeRefresher {
     }
 
     /**
-     * 平坦而干净
+     * 将嵌套的 Map 结构展平并清理, 去除 OriginTrackedValue 包装
+     * <p>
+     * 遍历原始 Map, 若值为 OriginTrackedValue 则提取其内部值; 若值为 Map 则递归展平并合并到结果中, 使用父键名拼接子键名; 否则直接保留原值.
      *
-     * @param original 原来
-     * @return 地图<字符串 ， 对象>
+     * @param original 原始的嵌套 Map 对象
+     * @return 展平并清理后的 Map 对象
      */
     private Map<String, Object> flattenAndClean(Map<String, Object> original) {
         Map<String, Object> result = new LinkedHashMap<>();

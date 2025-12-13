@@ -1,13 +1,15 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.File;
+
 import cn.hutool.core.util.StrUtil;
 import dev.dong4j.zeka.kernel.common.support.JavaVersion;
 import dev.dong4j.zeka.kernel.common.support.SystemProperties;
-import java.io.File;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>Description: 系统工具类</p>
@@ -319,7 +321,9 @@ public class SystemUtils {
         IS_OS_OS2 = getOsMatchesName("OS/2");
         IS_OS_SOLARIS = getOsMatchesName("Solaris");
         IS_OS_SUN_OS = getOsMatchesName("SunOS");
-        IS_OS_UNIX = IS_OS_AIX || IS_OS_HP_UX || IS_OS_IRIX || IS_OS_LINUX || IS_OS_MAC_OSX || IS_OS_SOLARIS || IS_OS_SUN_OS || IS_OS_FREE_BSD || IS_OS_OPEN_BSD || IS_OS_NET_BSD;
+        IS_OS_UNIX = IS_OS_AIX || IS_OS_HP_UX || IS_OS_IRIX || IS_OS_LINUX
+                     || IS_OS_MAC_OSX || IS_OS_SOLARIS || IS_OS_SUN_OS
+                     || IS_OS_FREE_BSD || IS_OS_OPEN_BSD || IS_OS_NET_BSD;
         IS_OS_WINDOWS = getOsMatchesName("Windows");
         IS_OS_WINDOWS_2000 = getOsMatchesName("Windows 2000");
         IS_OS_WINDOWS_2003 = getOsMatchesName("Windows 2003");

@@ -1,9 +1,14 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import cn.hutool.core.util.StrUtil;
-import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.exception.LowestException;
-import dev.dong4j.zeka.kernel.common.support.ConcurrentReferenceHashMap;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.beans.BeansException;
+import org.springframework.cglib.core.CodeGenerationException;
+import org.springframework.core.convert.Property;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.util.Assert;
+
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -23,16 +28,13 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import cn.hutool.core.util.StrUtil;
+import dev.dong4j.zeka.kernel.common.asserts.Assertions;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.common.support.ConcurrentReferenceHashMap;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.beans.BeansException;
-import org.springframework.cglib.core.CodeGenerationException;
-import org.springframework.core.convert.Property;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.util.Assert;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
@@ -97,6 +99,7 @@ import static java.util.stream.Collectors.toMap;
  */
 @Slf4j
 @UtilityClass
+@SuppressWarnings("checkstyle:MethodLimit")
 public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
 
     /** 类字段缓存 */
@@ -104,9 +107,6 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
 
     /** 基本类型包装类型映射 */
     private static final Map<Class<?>, Class<?>> PRIMITIVE_WRAPPER_TYPE_MAP = new IdentityHashMap<>(8);
-
-    /** EMPTY_FIELD_ARRAY */
-    private static final Field[] EMPTY_FIELD_ARRAY = new Field[0];
 
     /** declaredFieldsCache */
     private static final Map<Class<?>, Field[]> declaredFieldsCache = new ConcurrentReferenceHashMap<>(256);

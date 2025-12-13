@@ -1,13 +1,16 @@
 package dev.dong4j.zeka.kernel.common.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import dev.dong4j.zeka.kernel.common.asserts.Assertions;
+
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 
 /**
  * <p>CRUD 委托服务实现类.
@@ -53,6 +56,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class CrudDelegateImpl<S extends IRepositoryService<DTO>, DTO> implements ICrudDelegate<DTO> {
+    /**
+     * 用于注入的业务服务对象
+     * <p>
+     * 通过 Spring 的 @Autowired 注解自动注入, 用于访问相关业务逻辑
+     *
+     * @see S
+     */
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected S service;

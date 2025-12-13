@@ -1,15 +1,18 @@
 package dev.dong4j.zeka.kernel.common.base.query;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+
 import dev.dong4j.zeka.kernel.common.asserts.Assertions;
 import dev.dong4j.zeka.kernel.common.base.BaseDTO;
 import dev.dong4j.zeka.kernel.common.base.BaseQuery;
 import dev.dong4j.zeka.kernel.common.base.IRepositoryService;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>查询委托服务实现类.
@@ -61,6 +64,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @SuppressWarnings(value = {"java:S119", "SpringJavaAutowiredMembersInspection"})
 public class QueryDelegateServiceImpl<S extends IRepositoryService<DTO>, DTO> implements IQueryDelegateService<DTO> {
+    /**
+     * 用于注入的业务服务对象
+     * <p>
+     * 通过 Spring 自动注入的 service 实例, 用于执行业务逻辑操作
+     *
+     * @see S
+     */
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected S service;
