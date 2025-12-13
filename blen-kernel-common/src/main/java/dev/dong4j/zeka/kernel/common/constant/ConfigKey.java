@@ -46,6 +46,8 @@ public final class ConfigKey {
     public static final String MYBATIS_ENABLE_ILLEGAL_SQL_INTERCEPTOR = PREFIX + "mybatis.enable-illegal-sql-interceptor";
     /** MYBATIS_ENABLE_SQL_EXPLAIN_INTERCEPTOR */
     public static final String MYBATIS_ENABLE_SQL_EXPLAIN_INTERCEPTOR = PREFIX + "mybatis.enable-sql-explain-interceptor";
+    /** MYBATIS_JDBC_CHECK_ENABLED */
+    public static final String MYBATIS_JDBC_CHECK_ENABLED = PREFIX + "mybatis.jdbc-check.enabled";
     /** POM_INFO_VERSION */
     public static final String POM_INFO_VERSION = "info.version";
     /** POM_INFO_GROUPID */
