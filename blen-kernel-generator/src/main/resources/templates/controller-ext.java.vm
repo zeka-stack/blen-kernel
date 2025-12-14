@@ -97,7 +97,7 @@ public class $!{table.controllerName} extends $!{superControllerClass} {
     @GetMapping("/{id}")
     @Operation(summary = "详情")
     @ApiOperationSupport(order = 4)
-    public $!{entity}DTO detail(@PathVariable("id") Long id) {
+    public $!{entity}DTO detail(@PathVariable Long id) {
         return this.$!{table.referenceName}Service.detail(id);
     }
 
@@ -111,7 +111,7 @@ public class $!{table.controllerName} extends $!{superControllerClass} {
     @PutMapping("/{id}")
     @Operation(summary = "修改数据")
     @ApiOperationSupport(order = 5)
-    public void edit(@PathVariable("id") Long id, @Validated({UpdateGroup.class, Default.class}) @RequestBody $!{entity}Form form) {
+    public void edit(@PathVariable Long id, @Validated( {UpdateGroup.class, Default.class}) @RequestBody $!{entity}Form form) {
         BaseCodes.PARAM_VERIFY_ERROR.isTrue(id.equals(form.getId()), "id 不一致");
         BaseCodes.DATA_ERROR.notNull($!{table.referenceName}Service.getById(form.getId()), "指定的数据不存在: " + id);
         this.$!{table.referenceName}Service.edit(form);
