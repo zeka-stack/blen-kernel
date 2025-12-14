@@ -1,10 +1,5 @@
 package dev.dong4j.zeka.kernel.test;
 
-import jakarta.servlet.Filter;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.boot.test.autoconfigure.filter.StandardAnnotationCustomizableTypeExcludeFilter;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,6 +18,13 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import jakarta.servlet.Filter;
+
 /**
  * WebMvc 类型排除过滤器, 用于 @WebMvcTest 注解的组件过滤
  *
@@ -34,7 +36,9 @@ public final class WebMvcTypeExcludeFilter extends StandardAnnotationCustomizabl
     /** 空控制器数组常量 */
     private static final Class<?>[] NO_CONTROLLERS = new Class<?>[0];
     /** 可选包含的类名数组 */
-    private static final String[] OPTIONAL_INCLUDES = new String[]{"org.springframework.security.config.annotation.web.WebSecurityConfigurer"};
+    private static final String[] OPTIONAL_INCLUDES = new String[] {
+        "org.springframework.security.config.annotation.web.WebSecurityConfigurer"
+    };
     /** 默认包含的组件集合 */
     private static final Set<Class<?>> DEFAULT_INCLUDES;
     /** 默认包含的组件和控制器集合 */
