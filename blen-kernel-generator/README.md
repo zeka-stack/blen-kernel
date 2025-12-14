@@ -394,7 +394,7 @@ create table rule
     `match_mode`    VARCHAR(20)  NULL COMMENT '域名匹配模式',
     `name`          VARCHAR(100) NULL COMMENT '匹配的域名',
     `priority`      INT          NULL COMMENT '匹配优先级',
-    `enabled`       BIT                   DEFAULT b'1' NULL COMMENT '公共枚举:EnableEnum:可用状态',
+    `enabled`       BIT                   DEFAULT b'1' NULL COMMENT '公共枚举:EnabledEnum:可用状态',
     `dispatch_mode` VARCHAR(20)  NULL COMMENT '分发模式, 如iphash、round-robin、random',
     `create_time`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间 (公共字段)',
     `update_time`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间 (公共字段)',
@@ -431,12 +431,12 @@ create table user
 我们将枚举分为 3 类:
 
 1. 自定义枚举: 业务上需要自定义的状态映射为此枚举;
-2. 公共枚举: 框架层已提供的状态枚举, 此类枚举与业务无关, 能够 100% 确认枚举值, 比如 EnableEnum;
+2. 公共枚举: 框架层已提供的状态枚举, 此类枚举与业务无关, 能够 100% 确认枚举值, 比如 EnabledEnum;
 3. 通用枚举: SQL 中一般会存在的状态, 比如表示数据是否被删除的 DeleteEnum, 此类枚举一般存在与父类实体中, 子类不需要重复定义;
 
 规则:
 
-1. 一般表示可用/不可用的状态可以直接使用框架提供的 EnableEnum 枚举, 注释的写法为固定格式: 公共枚举:EnableEnum:可用状态
+1. 一般表示可用/不可用的状态可以直接使用框架提供的 EnabledEnum 枚举, 注释的写法为固定格式: 公共枚举:EnabledEnum:可用状态
 2. 如果业务上存在多个状态的属性(即使现在没有多个, 也应该预计将来会不会存在多个的情况), 应该使用 TINYINT(2) 类型 (128 个状态值应该够用了吧,
    如果超过 128 个状态那一定是产品的问题);
 3. 对于自定义枚举的注释需要按照固定格式编写: 自定义枚举:{value 类型}:{枚举注释}:枚举名1(value1, "描述1"),:枚举名2(value2, "描述2");
