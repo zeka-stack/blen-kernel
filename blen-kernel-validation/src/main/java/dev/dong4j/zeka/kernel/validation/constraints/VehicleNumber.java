@@ -1,30 +1,32 @@
 package dev.dong4j.zeka.kernel.validation.constraints;
 
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.StringUtils;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import dev.dong4j.zeka.kernel.validation.util.RegexUtils;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.StringUtils;
 
 /**
  * 车牌号验证注解，用于验证字符串是否为有效的车牌号码格式
- *
+ * <p>
  * 该注解基于JSR-303规范实现，使用正则表达式验证中国车牌号码格式
  * 支持普通车牌和新能源车牌的验证，可为null和空字符串
- *
+ * <p>
  * 主要特性：
  * - 支持普通车牌和新能源车牌验证
  * - 支持带横线和不带横线的格式（如：川A-06D4J或川A06D4J）
  * - 允许空值和空字符串（应配合@NotBlank使用）
  * - 可自定义正则表达式模式
  * - 基于RegexUtils工具类的高性能匹配
- *
+ * <p>
  * 使用示例：
  * {@code @VehicleNumber private String plateNumber;}
  * {@code @VehicleNumber(regexp = "自定义正则") private String customPlate;}
@@ -38,6 +40,7 @@ import org.springframework.util.StringUtils;
 @Target(value = {ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = VehicleNumber.Validator.class)
+@SuppressWarnings("PMD.RemoveCommentedCodeRule")
 public @interface VehicleNumber {
     /** 车牌号码正则表达式常量 */
     String VEHICLE_NUMBER = RegexUtils.VEHICLE_NUMBER;
@@ -68,7 +71,7 @@ public @interface VehicleNumber {
 
     /**
      * 车牌号码验证的正则表达式
-     *
+     * <p>
      * 支持普通车牌和新能源车牌的验证
      * 如：川A-06D4J或者川A06D4J都支持
      * 默认使用VEHICLE_NUMBER常量定义的车牌号正则
@@ -80,7 +83,7 @@ public @interface VehicleNumber {
 
     /**
      * 车牌号码验证器实现类
-     *
+     * <p>
      * 实现ConstraintValidator接口，提供车牌号码验证的具体逻辑
      * 使用RegexUtils工具类进行正则表达式匹配，支持自定义正则模式
      *
@@ -107,7 +110,7 @@ public @interface VehicleNumber {
 
         /**
          * 执行车牌号码验证
-         *
+         * <p>
          * 对于空值和空字符串返回true（由@NotBlank处理非空验证）
          * 使用RegexUtils工具类进行正则匹配，验证车牌号码格式
          *

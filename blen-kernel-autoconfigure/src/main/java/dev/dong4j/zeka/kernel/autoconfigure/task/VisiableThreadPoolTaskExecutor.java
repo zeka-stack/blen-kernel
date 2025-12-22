@@ -1,12 +1,14 @@
 package dev.dong4j.zeka.kernel.autoconfigure.task;
 
+import org.jetbrains.annotations.NotNull;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
 import java.io.Serial;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
+
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * <p>可视化线程池任务执行器.
@@ -46,10 +48,14 @@ public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
         log.info("{}, {},taskCount [{}], completedTaskCount [{}], activeCount [{}], queueSize [{}]",
             this.getThreadNamePrefix(),
             prefix,
-            threadPoolExecutor.getTaskCount(),           // 任务总数
-            threadPoolExecutor.getCompletedTaskCount(),  // 已完成任务数
-            threadPoolExecutor.getActiveCount(),         // 活跃线程数
-            threadPoolExecutor.getQueue().size());       // 队列中等待的任务数
+            // 任务总数
+                 threadPoolExecutor.getTaskCount(),
+            // 已完成任务数
+                 threadPoolExecutor.getCompletedTaskCount(),
+            // 活跃线程数
+                 threadPoolExecutor.getActiveCount(),
+            // 队列中等待的任务数
+                 threadPoolExecutor.getQueue().size());
     }
 
     /**

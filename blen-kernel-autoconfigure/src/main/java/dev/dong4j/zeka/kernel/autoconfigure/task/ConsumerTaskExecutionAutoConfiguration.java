@@ -1,10 +1,5 @@
 package dev.dong4j.zeka.kernel.autoconfigure.task;
 
-import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
-import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -20,6 +15,13 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.task.TaskDecorator;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import dev.dong4j.zeka.kernel.common.constant.BasicConstant;
+import dev.dong4j.zeka.kernel.common.start.ZekaAutoConfiguration;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 消费者任务执行自动配置类，为 Spring Boot 应用提供定制化的线程池任务执行器
@@ -60,9 +62,10 @@ public class ConsumerTaskExecutionAutoConfiguration implements ZekaAutoConfigura
      */
     @Bean
     @Primary
-    public ThreadPoolTaskExecutorBuilder taskExecutorBuilder(@NotNull TaskExecutionProperties properties,
-                                                             @NotNull ObjectProvider<ThreadPoolTaskExecutorCustomizer> taskExecutorCustomizers,
-                                                             @NotNull ObjectProvider<TaskDecorator> taskDecorator) {
+    public ThreadPoolTaskExecutorBuilder taskExecutorBuilder(
+        @NotNull TaskExecutionProperties properties,
+        @NotNull ObjectProvider<ThreadPoolTaskExecutorCustomizer> taskExecutorCustomizers,
+        @NotNull ObjectProvider<TaskDecorator> taskDecorator) {
         TaskExecutionProperties.Pool pool = properties.getPool();
         ThreadPoolTaskExecutorBuilder builder = new ThreadPoolTaskExecutorBuilder();
 

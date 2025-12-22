@@ -1,12 +1,5 @@
 package dev.dong4j.zeka.kernel.validation.constraints;
 
-import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
-import dev.dong4j.zeka.kernel.common.exception.ServiceInternalException;
-import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import jakarta.validation.Constraint;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -15,6 +8,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+
+import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
+import dev.dong4j.zeka.kernel.common.exception.ServiceInternalException;
+import dev.dong4j.zeka.kernel.common.support.StrFormatter;
+import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
 import lombok.extern.slf4j.Slf4j;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
@@ -24,16 +25,16 @@ import static java.lang.annotation.ElementType.PARAMETER;
 
 /**
  * 枚举值验证注解，用于验证字段值是否为指定枚举类的有效值
- *
+ * <p>
  * 该注解基于JSR-303规范实现，支持通过反射机制动态获取枚举值
  * 支持通过指定方法名获取枚举的业务值，默认使用getValue()方法
- *
+ * <p>
  * 主要特性：
  * - 支持枚举名称（name()）和业务值的双重匹配
  * - 可自定义获取枚举值的方法名
  * - 支持SerializeEnum接口的标准化验证
  * - 错误处理和日志记录
- *
+ * <p>
  * 使用示例：
  * {@code @EnumX(StatusEnum.class) private String status;}
  * {@code @EnumX(value = ColorEnum.class, method = "getCode") private Integer colorCode;}
@@ -48,10 +49,11 @@ import static java.lang.annotation.ElementType.PARAMETER;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = {FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Constraint(validatedBy = EnumX.Validator.class)
+@SuppressWarnings("PMD.RemoveCommentedCodeRule")
 public @interface EnumX {
     /**
      * 要验证的枚举类型
-     *
+     * <p>
      * 指定一个枚举类，验证器将从该枚举中获取所有可用值
      *
      * @return 枚举类型
@@ -69,7 +71,7 @@ public @interface EnumX {
 
     /**
      * 获取枚举值的方法名
-     *
+     * <p>
      * 默认使用SerializeEnum.VALUE_METHOD_NAME（即"getValue"）
      * 可以指定其他方法名来获取枚举的业务值
      *
@@ -96,7 +98,7 @@ public @interface EnumX {
 
     /**
      * 枚举值验证器实现类
-     *
+     * <p>
      * 实现ConstraintValidator接口，提供枚举值验证的具体逻辑
      * 通过反射机制获取枚举的所有可用值，支持name()和自定义方法的双重匹配
      *
@@ -116,7 +118,7 @@ public @interface EnumX {
 
         /**
          * 初始化验证器，获取枚举的所有可用值
-         *
+         * <p>
          * 通过反射机制获取枚举的所有实例，并调用指定方法获取业务值
          * 同时保存枚举的name()值，支持双重匹配验证
          *
@@ -140,18 +142,18 @@ public @interface EnumX {
                 }
             } catch (NoSuchMethodException e) {
                 throw new ServiceInternalException(StrFormatter.format("{} 不存在 method: {}",
-                    aClass.getName(),
-                    enumValidator.method()));
+                                                                       aClass.getName(),
+                                                                       enumValidator.method()));
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 log.error(StrFormatter.format("获取枚举值失败, class: {}, method: {}",
-                    aClass.getName(),
-                    enumValidator.method()));
+                                              aClass.getName(),
+                                              enumValidator.method()));
             }
         }
 
         /**
          * 执行枚举值验证
-         *
+         * <p>
          * 将待验证值转为字符串，并在values和enumNames集合中查找匹配
          * 支持枚举名称和业务值的双重匹配
          *

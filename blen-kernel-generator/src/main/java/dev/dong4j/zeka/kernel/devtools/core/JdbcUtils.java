@@ -15,10 +15,12 @@
  */
 package dev.dong4j.zeka.kernel.devtools.core;
 
-import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.annotation.DbType;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
+
 import java.util.regex.Pattern;
+
+import cn.hutool.core.lang.Assert;
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
 
 /**
  * JDBC 工具类
@@ -29,6 +31,7 @@ import java.util.regex.Pattern;
  * @date 2024.04.02 23:58
  * @since 2016 -12-05
  */
+@SuppressWarnings("PMD.UndefineMagicConstantRule")
 public class JdbcUtils {
 
     /**

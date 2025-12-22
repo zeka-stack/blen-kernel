@@ -18,14 +18,16 @@ package dev.dong4j.zeka.kernel.devtools.core.config.po;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import dev.dong4j.zeka.kernel.devtools.core.config.StrategyConfig;
-import dev.dong4j.zeka.kernel.devtools.core.config.rules.NamingStrategy;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
+
+import dev.dong4j.zeka.kernel.common.util.CollectionUtils;
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
+import dev.dong4j.zeka.kernel.devtools.core.config.StrategyConfig;
+import dev.dong4j.zeka.kernel.devtools.core.config.rules.NamingStrategy;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -44,6 +46,7 @@ public class TableInfo {
 
     /** Import packages */
     private final Set<String> importPackages = new HashSet<>();
+    /** 用于查询的导入包集合 */
     private final Set<String> queryImportPackages = new HashSet<>();
     /** Convert */
     private boolean convert;
@@ -73,7 +76,9 @@ public class TableInfo {
     private List<TableField> queryFields;
     /** Have primary key */
     private boolean havePrimaryKey;
+    /** 是否包含枚举字段 */
     private boolean haveEnumField;
+    /** 是否包含查询参数字段 */
     private boolean haveQueryField;
     /**
      * 公共字段

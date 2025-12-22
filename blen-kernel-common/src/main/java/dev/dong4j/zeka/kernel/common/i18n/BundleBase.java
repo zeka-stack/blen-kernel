@@ -1,15 +1,17 @@
 package dev.dong4j.zeka.kernel.common.i18n;
 
-import dev.dong4j.zeka.kernel.common.support.OrdinalFormat;
-import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import dev.dong4j.zeka.kernel.common.support.SystemInfoRt;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import dev.dong4j.zeka.kernel.common.support.OrdinalFormat;
+import dev.dong4j.zeka.kernel.common.support.StrFormatter;
+import dev.dong4j.zeka.kernel.common.support.SystemInfoRt;
 
 /**
  * <p>Description: 国际化配置文件绑定基类</p>
@@ -20,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
  * @date 2020.05.19 09:44
  * @since 1.0.0
  */
-@SuppressWarnings("java:S1118")
+@SuppressWarnings("all")
 public abstract class BundleBase {
 
     /** MNEMONIC */

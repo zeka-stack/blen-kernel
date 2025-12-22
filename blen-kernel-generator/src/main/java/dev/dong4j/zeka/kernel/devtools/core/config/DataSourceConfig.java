@@ -16,14 +16,16 @@
 package dev.dong4j.zeka.kernel.devtools.core.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import dev.dong4j.zeka.kernel.common.exception.LowestException;
-import dev.dong4j.zeka.kernel.devtools.core.config.converts.MySqlTypeConvert;
-import dev.dong4j.zeka.kernel.devtools.core.config.converts.TypeConverts;
-import dev.dong4j.zeka.kernel.devtools.core.config.querys.DbQueryRegistry;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
+
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.devtools.core.config.converts.MySqlTypeConvert;
+import dev.dong4j.zeka.kernel.devtools.core.config.converts.TypeConverts;
+import dev.dong4j.zeka.kernel.devtools.core.config.querys.DbQueryRegistry;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -120,6 +122,7 @@ public class DataSourceConfig {
      * @return 类型枚举值 ，如果没找到，则返回 null
      * @since 1.0.0
      */
+    @SuppressWarnings("PMD.UndefineMagicConstantRule")
     private DbType getDbType(String str) {
         if (str.contains(":mysql:") || str.contains(":cobar:")) {
             return DbType.MYSQL;

@@ -13,13 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package dev.dong4j.zeka.kernel.devtools.core.config.po;
+
+import java.util.List;
+import java.util.Map;
 
 import dev.dong4j.zeka.kernel.devtools.core.config.StrategyConfig;
 import dev.dong4j.zeka.kernel.devtools.core.config.rules.IColumnType;
 import dev.dong4j.zeka.kernel.devtools.core.config.rules.NamingStrategy;
-import java.util.List;
-import java.util.Map;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -197,6 +199,7 @@ public class TableField {
      * @return 字段 annotation column name
      * @since 1.0.0
      */
+    @SuppressWarnings("PMD.UndefineMagicConstantRule")
     public String getAnnotationColumnName() {
         if (keyWords) {
             if (columnName.startsWith("\"")) {

@@ -1,14 +1,16 @@
 package dev.dong4j.zeka.kernel.validation.constraints;
 
+import org.springframework.util.StringUtils;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
 import dev.dong4j.zeka.kernel.common.util.Jsons;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import org.springframework.util.StringUtils;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;
@@ -18,16 +20,16 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * JSON字符串验证注解，用于验证字符串是否为有效的JSON格式
- *
+ * <p>
  * 该注解基于JSR-303规范实现，使用Jsons工具类验证JSON字符串的有效性
  * 可以验证JSON对象、JSON数组等各种类型的JSON结构
- *
+ * <p>
  * 主要特性：
  * - 支持完整的JSON格式验证
  * - 允许空值和空字符串（应配合@NotBlank使用）
  * - 基于Jackson库的高性能解析
  * - 支持Bean Validation分组验证
- *
+ * <p>
  * 使用示例：
  * {@code @Json private String jsonData;}
  * {@code @Json @NotBlank private String requiredJson;}
@@ -38,10 +40,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @date 2020.03.04 11:27
  * @since 1.0.0
  */
-@Target({FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
+@Target(value = {FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = Json.Validator.class)
 @Documented
+@SuppressWarnings("PMD.RemoveCommentedCodeRule")
 public @interface Json {
     /**
      * 验证失败时的错误消息
@@ -70,7 +73,7 @@ public @interface Json {
 
     /**
      * JSON字符串验证器实现类
-     *
+     * <p>
      * 实现ConstraintValidator接口，提供JSON字符串验证的具体逻辑
      * 使用Jsons工具类进行JSON格式验证，支持完整的JSON结构解析
      *
@@ -94,7 +97,7 @@ public @interface Json {
 
         /**
          * 执行JSON字符串验证
-         *
+         * <p>
          * 对于空值和空字符串返回true（由@NotBlank处理非空验证）
          * 使用Jsons.isJson()方法验证JSON字符串的格式正确性
          *

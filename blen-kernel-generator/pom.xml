@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>blen-kernel-generator</artifactId>
-    <name>Blen Kernel Devtools</name>
+    <name>Blen Kernel Generator</name>
 
     <dependencies>
         <dependency>

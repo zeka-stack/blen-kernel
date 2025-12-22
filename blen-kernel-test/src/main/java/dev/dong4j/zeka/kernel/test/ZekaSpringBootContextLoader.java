@@ -141,8 +141,9 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
      * @throws Exception 在加载上下文过程中发生错误时抛出
      */
     @Override
-    public @NotNull ApplicationContext loadContextForAotRuntime(@NotNull MergedContextConfiguration mergedConfig,
-                                                                @NotNull ApplicationContextInitializer<ConfigurableApplicationContext> initializer)
+    public @NotNull ApplicationContext loadContextForAotRuntime(
+        @NotNull MergedContextConfiguration mergedConfig,
+        @NotNull ApplicationContextInitializer<ConfigurableApplicationContext> initializer)
         throws Exception {
         return this.loadContext(mergedConfig, Mode.AOT_RUNTIME, initializer, null);
     }
@@ -172,8 +173,9 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
             if (runtimeHints != null) {
                 runtimeHints.reflection().registerMethod(mainMethod, ExecutableMode.INVOKE);
             }
-            ContextLoaderHook hook = new ContextLoaderHook(mode, initializer,
-                                                           (application) -> this.configure(mergedConfig, application));
+            ContextLoaderHook hook = new ContextLoaderHook(
+                mode, initializer,
+                (application) -> this.configure(mergedConfig, application));
             return hook.runMain(() -> ReflectionUtils.invokeMethod(mainMethod, null, new Object[] {args}));
         }
         SpringApplication application = this.getSpringApplication();
@@ -195,9 +197,9 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
         boolean hasClasses = !ObjectUtils.isEmpty(mergedConfig.getClasses());
         boolean hasLocations = !ObjectUtils.isEmpty(mergedConfig.getLocations());
         Assert.state(hasClasses || hasLocations,
-            () -> "No configuration classes or locations found in @SpringApplicationConfiguration. "
-                + "For default configuration detection to work you need Spring 4.0.3 or better (found "
-                + SpringVersion.getVersion() + ").");
+                     () -> "No configuration classes or locations found in @SpringApplicationConfiguration. "
+                           + "For default configuration detection to work you need Spring 4.0.3 or better (found "
+                           + SpringVersion.getVersion() + ").");
     }
 
     /**
@@ -671,8 +673,8 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
          * @date 2025.12.14
          * @since 2.0.0
          */
-                private record DefensiveWebApplicationContextInitializer(ServletContextApplicationContextInitializer delegate)
-                    implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+        private record DefensiveWebApplicationContextInitializer(ServletContextApplicationContextInitializer delegate)
+            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
             /**
              * 构造函数, 用于初始化 DefensiveWebApplicationContextInitializer 实例
@@ -684,21 +686,21 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
             private DefensiveWebApplicationContextInitializer {
             }
 
-                    /**
-                     * 初始化应用上下文
-                     * <p>
-                     * 如果提供的应用上下文是 ConfigurableWebApplicationContext 类型, 则调用 delegate 的 initialize 方法进行初始化.
-                     *
-                     * @param applicationContext 需要初始化的配置化应用上下文
-                     * @throws IllegalArgumentException 如果 applicationContext 不是 ConfigurableWebApplicationContext 类型, 可能无法正确初始化
-                     */
-                    @Override
-                    public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
-                        if (applicationContext instanceof ConfigurableWebApplicationContext webApplicationContext) {
-                            this.delegate.initialize(webApplicationContext);
-                        }
-                    }
+            /**
+             * 初始化应用上下文
+             * <p>
+             * 如果提供的应用上下文是 ConfigurableWebApplicationContext 类型, 则调用 delegate 的 initialize 方法进行初始化.
+             *
+             * @param applicationContext 需要初始化的配置化应用上下文
+             * @throws IllegalArgumentException 如果 applicationContext 不是 ConfigurableWebApplicationContext 类型, 可能无法正确初始化
+             */
+            @Override
+            public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
+                if (applicationContext instanceof ConfigurableWebApplicationContext webApplicationContext) {
+                    this.delegate.initialize(webApplicationContext);
                 }
+            }
+        }
     }
 
     /**
@@ -717,8 +719,8 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
      * @date 2025.12.14
      * @since 2.0.0
      */
-        private record ContextCustomizerAdapter(ContextCustomizer contextCustomizer, MergedContextConfiguration mergedConfig)
-            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    private record ContextCustomizerAdapter(ContextCustomizer contextCustomizer, MergedContextConfiguration mergedConfig)
+        implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
         /**
          * 构造函数, 用于初始化 ContextCustomizerAdapter 实例
@@ -731,18 +733,18 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
         private ContextCustomizerAdapter {
         }
 
-            /**
-             * 初始化应用上下文
-             * <p>
-             * 使用配置信息对给定的应用上下文进行自定义初始化
-             *
-             * @param applicationContext 需要初始化的配置化应用上下文
-             */
-            @Override
-            public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
-                this.contextCustomizer.customizeContext(applicationContext, this.mergedConfig);
-            }
+        /**
+         * 初始化应用上下文
+         * <p>
+         * 使用配置信息对给定的应用上下文进行自定义初始化
+         *
+         * @param applicationContext 需要初始化的配置化应用上下文
+         */
+        @Override
+        public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
+            this.contextCustomizer.customizeContext(applicationContext, this.mergedConfig);
         }
+    }
 
     /**
      * 父上下文应用上下文初始化器
@@ -1084,12 +1086,12 @@ public final class ZekaSpringBootContextLoader extends AbstractContextLoader imp
         launcherList.stream().sorted(Comparator.comparing(LauncherInitiation::getOrder))
             .toList()
             .forEach(launcherService -> launcherService.launcherWrapper(environment,
-                defaultProperties,
-                appName,
-                true));
+                                                                        defaultProperties,
+                                                                        appName,
+                                                                        true));
 
         propertySources.addLast(new MapPropertySource(DefaultEnvironment.DEFAULT_PROPERTIES_PROPERTY_SOURCE_NAME,
-            Tools.getMapFromProperties(defaultProperties)));
+                                                      Tools.getMapFromProperties(defaultProperties)));
         return defaultProperties;
     }
 }

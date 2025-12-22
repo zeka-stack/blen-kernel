@@ -1,29 +1,31 @@
 package dev.dong4j.zeka.kernel.validation.constraints;
 
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.StringUtils;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import dev.dong4j.zeka.kernel.validation.util.RegexUtils;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.StringUtils;
 
 /**
  * IP地址验证注解，用于验证字符串是否为有效的IP地址格式
- *
+ * <p>
  * 该注解基于JSR-303规范实现，使用正则表达式验证IP地址的格式
  * 支持IPv4地址的验证，可自定义正则表达式模式
- *
+ * <p>
  * 主要特性：
  * - 默认支持IPv4地址验证
  * - 允许空值和空字符串（应配合@NotBlank使用）
  * - 可自定义正则表达式模式
  * - 基于RegexUtils工具类的高性能匹配
- *
+ * <p>
  * 使用示例：
  * {@code @IPAddress private String serverIp;}
  * {@code @IPAddress(regexp = "自定义正则") private String customIp;}
@@ -37,6 +39,7 @@ import org.springframework.util.StringUtils;
 @Target(value = {ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = IPAddress.Validator.class)
+@SuppressWarnings("PMD.RemoveCommentedCodeRule")
 public @interface IPAddress {
     /** IP地址正则表达式常量 */
     String IP = RegexUtils.IP;
@@ -67,7 +70,7 @@ public @interface IPAddress {
 
     /**
      * IP地址验证的正则表达式
-     *
+     * <p>
      * 默认使用IP常量定义的IPv4地址正则
      * 可以自定义正则表达式来适应不同的IP地址格式需求
      *
@@ -78,7 +81,7 @@ public @interface IPAddress {
 
     /**
      * IP地址验证器实现类
-     *
+     * <p>
      * 实现ConstraintValidator接口，提供IP地址验证的具体逻辑
      * 使用RegexUtils工具类进行正则表达式匹配，支持自定义正则模式
      *
@@ -105,7 +108,7 @@ public @interface IPAddress {
 
         /**
          * 执行IP地址验证
-         *
+         * <p>
          * 对于空值和空字符串返回true（由@NotBlank处理非空验证）
          * 使用RegexUtils工具类进行正则匹配，验证IP地址格式
          *
