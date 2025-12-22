@@ -1,17 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import java.net.URI;
-import java.nio.charset.Charset;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Stream;
-import javax.net.ssl.SSLContext;
-import lombok.experimental.UtilityClass;
 import org.apache.hc.client5.http.ConnectionKeepAliveStrategy;
 import org.apache.hc.client5.http.impl.DefaultHttpRequestRetryStrategy;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -33,6 +21,21 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
+
+import javax.net.ssl.SSLContext;
+
+import lombok.experimental.UtilityClass;
+
 /**
  * <p>Description: HTTP客户端工具类，基于Apache HttpClient实现，提供HTTP请求相关的工具方法</p>
  * <p>
@@ -53,13 +56,13 @@ import org.springframework.web.client.RestTemplate;
  * String result = HttpClientUtils.getForObject("https://api.example.com/data", String.class);
  *
  * // 发送POST请求
- * Map<String, Object> requestData = new HashMap<>();
+ * Map requestData = new HashMap<>();
  * requestData.put("name", "test");
  * requestData.put("value", 123);
  * MyResponse response = HttpClientUtils.postForObject("https://api.example.com/data", requestData, MediaType.APPLICATION_JSON, MyResponse.class);
  *
  * // 发送带自定义头部的GET请求
- * Map<String, String[]> headers = new HashMap<>();
+ * Map headers = new HashMap<>();
  * headers.put("Authorization", new String[]{"Bearer token"});
  * MyResponse response = HttpClientUtils.getForObjectWithHeader("https://api.example.com/data", headers, MyResponse.class);
  *
@@ -295,7 +298,7 @@ public class HttpClientUtils {
             .build();
 
         // KeepAlive 策略（默认可用）
-        ConnectionKeepAliveStrategy keepAliveStrategy = (response, context) -> TimeValue.ofDays(30_000); // 30 秒
+        ConnectionKeepAliveStrategy keepAliveStrategy = (response, context) -> TimeValue.ofDays(30_000);
 
         // 构建 HttpClient
         return HttpClients.custom()

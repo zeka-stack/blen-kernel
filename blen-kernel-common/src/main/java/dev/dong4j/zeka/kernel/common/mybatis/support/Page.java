@@ -20,6 +20,7 @@ import lombok.Setter;
  * <p>
  * 用于封装分页查询的结果数据, 包括分页参数 (当前页, 每页数量, 总记录数) 以及排序信息等, 适用于需要分页展示数据的业务场景.
  *
+ * @param <T> 实体类型
  * @author zeka.stack.team
  * @version 1.0.0
  * @email "mailto:zeka.stack@gmail.com"
@@ -418,6 +419,7 @@ public class Page<T> implements IPage<T> {
      * <p>
      * 根据当前页码, 每页大小, 总记录数和是否进行计数查询, 生成一个分页实例.
      *
+     * @param <T>         实体类型
      * @param current     当前页码
      * @param size        每页显示的记录数
      * @param total       总记录数
@@ -486,6 +488,7 @@ public class Page<T> implements IPage<T> {
      * <p>
      * 根据当前页码, 每页大小和默认的偏移量 (0) 创建一个分页对象
      *
+     * @param <T>     实体类型
      * @param current 当前页码, 从 1 开始计数
      * @param size    每页显示的记录数
      * @return 分页对象
@@ -501,6 +504,7 @@ public class Page<T> implements IPage<T> {
      * 该方法用于生成一个分页对象, 其中包含当前页码, 每页大小, 总记录数以及是否需要计算总页数的标志.
      * 此方法调用另一个重载的 of 方法, 并设置计算总页数的标志为 true.
      *
+     * @param <T>     实体类型
      * @param current 当前页码 (从 1 开始)
      * @param size    每页显示的记录数
      * @param total   总记录数
@@ -516,6 +520,7 @@ public class Page<T> implements IPage<T> {
      * <p>
      * 根据当前页码, 每页大小和是否搜索总数来创建分页对象, 偏移量默认为 0
      *
+     * @param <T>         实体类型
      * @param current     当前页码
      * @param size        每页显示的记录数
      * @param searchCount 是否搜索总数
@@ -549,18 +554,18 @@ public class Page<T> implements IPage<T> {
      */
     @Override
     public String toString() {
-        return "Page{" +
-            "records=" + records +
-            ", total=" + total +
-            ", size=" + size +
-            ", current=" + current +
-            ", orders=" + orders +
-            ", optimizeCountSql=" + optimizeCountSql +
-            ", searchCount=" + searchCount +
-            ", optimizeJoinOfCountSql=" + optimizeJoinOfCountSql +
-            ", maxLimit=" + maxLimit +
-            ", countId='" + countId + '\'' +
-            '}';
+        return "Page{"
+               + "records=" + records
+               + ", total=" + total
+               + ", size=" + size
+               + ", current=" + current
+               + ", orders=" + orders
+               + ", optimizeCountSql=" + optimizeCountSql
+               + ", searchCount=" + searchCount
+               + ", optimizeJoinOfCountSql=" + optimizeJoinOfCountSql
+               + ", maxLimit=" + maxLimit
+               + ", countId='" + countId + '\''
+               + '}';
     }
 
 }

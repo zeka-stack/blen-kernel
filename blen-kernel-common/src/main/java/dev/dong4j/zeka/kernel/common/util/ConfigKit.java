@@ -1,37 +1,7 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
-import dev.dong4j.zeka.kernel.common.constant.App;
-import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
-import dev.dong4j.zeka.kernel.common.enums.ZekaEnv;
-import dev.dong4j.zeka.kernel.common.env.DefaultEnvironment;
-import dev.dong4j.zeka.kernel.common.env.ZekaEnvironment;
-import dev.dong4j.zeka.kernel.common.exception.LowestException;
-import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
-import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
@@ -58,6 +28,39 @@ import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertySourceFactory;
 import org.springframework.util.AntPathMatcher;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
+
+import dev.dong4j.zeka.kernel.common.constant.App;
+import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import dev.dong4j.zeka.kernel.common.enums.ZekaEnv;
+import dev.dong4j.zeka.kernel.common.env.DefaultEnvironment;
+import dev.dong4j.zeka.kernel.common.env.ZekaEnvironment;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.common.exception.PropertiesException;
+import dev.dong4j.zeka.kernel.common.support.StrFormatter;
+import dev.dong4j.zeka.kernel.common.yml.YmlPropertyLoaderFactory;
+import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>Description: 全局配置工具类, 用于获取整个应用的配置 </p>
@@ -497,6 +500,7 @@ public class ConfigKit {
      * @return the config path
      * @since 1.0.0
      */
+    @SuppressWarnings("PMD.AvoidComplexConditionRule")
     public static @NotNull String getConfigPath() {
         String configPath;
         String startType = System.getProperty(App.START_TYPE);

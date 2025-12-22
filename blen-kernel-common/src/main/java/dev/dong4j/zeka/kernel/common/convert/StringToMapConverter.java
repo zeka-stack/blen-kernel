@@ -1,35 +1,27 @@
 package dev.dong4j.zeka.kernel.common.convert;
 
-import dev.dong4j.zeka.kernel.common.util.Jsons;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.ConditionalGenericConverter;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+
+import dev.dong4j.zeka.kernel.common.util.Jsons;
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
+
 /**
- * 将字符串(String)转换为Map类型
- * <code>
- * @formatter:off
- * @RestController
- * public class MyController {
- *     @PostMapping("/api/data")
- *     public ResponseEntity<?> handleData(@RequestParam Map<String, Object> dataMap) {
- *         // 字符串参数会自动转换为Map
- *         return ResponseEntity.ok(dataMap);
- *     }
- * }
- * </code>
- * @formatter:on
+ * 字符串到 Map 的转换器
+ * <p> 实现 ConditionalGenericConverter 接口, 用于将字符串类型的数据转换为 Map 类型, 支持根据目标类型进行条件转换.
+ * 该转换器在字符串内容为 JSON 格式时, 使用 Jsons 工具类进行解析, 适用于 Spring 框架中的类型转换场景.
+ *
  * @author dong4j
  * @version 1.0.0
  * @email "mailto:dong4j@gmail.com"
- * @date 2025.02.28 11:50
- * @since 1.0.0
+ * @date 2025.12.22
+ * @since 2.0.0
  */
-@SuppressWarnings("JavadocDeclaration")
 public class StringToMapConverter implements ConditionalGenericConverter {
     /**
      * Matches

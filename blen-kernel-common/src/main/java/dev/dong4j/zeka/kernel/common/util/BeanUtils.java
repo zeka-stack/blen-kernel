@@ -1,18 +1,7 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
-import dev.dong4j.zeka.kernel.common.convert.CustomConverter;
-import dev.dong4j.zeka.kernel.common.exception.LowestException;
-import dev.dong4j.zeka.kernel.common.support.BaseBeanCopier;
-import dev.dong4j.zeka.kernel.common.support.BeanProperty;
-import java.beans.PropertyDescriptor;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import lombok.experimental.UtilityClass;
+
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
@@ -21,6 +10,20 @@ import org.springframework.cglib.beans.BeanMap;
 import org.springframework.cglib.core.CodeGenerationException;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
+
+import java.beans.PropertyDescriptor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+import dev.dong4j.zeka.kernel.common.convert.CustomConverter;
+import dev.dong4j.zeka.kernel.common.exception.LowestException;
+import dev.dong4j.zeka.kernel.common.support.BaseBeanCopier;
+import dev.dong4j.zeka.kernel.common.support.BeanProperty;
+import lombok.experimental.UtilityClass;
 
 /**
  * <p>Description: Bean工具类，扩展了Spring BeanUtils的功能，提供强大的Java Bean操作功能</p>
@@ -51,10 +54,10 @@ import org.springframework.util.Assert;
  * MyTargetClass target = BeanUtils.copy(source, MyTargetClass.class);
  *
  * // 批量对象复制
- * List<MyTargetClass> targets = BeanUtils.copy(sourceList, MyTargetClass.class);
+ * List targets = BeanUtils.copy(sourceList, MyTargetClass.class);
  *
  * // Map与Bean转换
- * Map<String, Object> map = BeanUtils.toMap(bean);
+ * Map map = BeanUtils.toMap(bean);
  * MyClass bean = BeanUtils.toBean(map, MyClass.class);
  *
  * // 对象克隆

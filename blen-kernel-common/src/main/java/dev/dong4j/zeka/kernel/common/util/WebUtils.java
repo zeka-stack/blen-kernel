@@ -1,16 +1,18 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import cn.hutool.http.useragent.Browser;
-import cn.hutool.http.useragent.UserAgent;
-import cn.hutool.http.useragent.UserAgentUtil;
 import com.google.common.collect.Maps;
-import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.context.AgentRequestContextHolder;
-import jakarta.servlet.ReadListener;
-import jakarta.servlet.ServletInputStream;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.util.ContentCachingRequestWrapper;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,19 +28,20 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+
+import cn.hutool.http.useragent.Browser;
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
+import dev.dong4j.zeka.kernel.common.asserts.Assertions;
+import dev.dong4j.zeka.kernel.common.context.AgentRequestContextHolder;
+import jakarta.servlet.ReadListener;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.util.ContentCachingRequestWrapper;
 
 /**
  * <p>Description: Web工具类，用于处理HTTP请求相关的工具方法</p>
@@ -67,7 +70,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
  * WebUtils.removeCookie(response, "sessionId");
  *
  * // 返回JSON响应
- * Map<String, Object> result = new HashMap<>();
+ * Map result = new HashMap<>();
  * result.put("code", 200);
  * result.put("message", "success");
  * WebUtils.renderJson(response, result);
@@ -76,7 +79,7 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
  * String clientIp = WebUtils.getIp(request);
  *
  * // 获取请求参数
- * Map<String, String> params = WebUtils.getParameterMap(request);
+ * Map params = WebUtils.getParameterMap(request);
  *
  * // 获取浏览器信息
  * String browser = WebUtils.getBrowser(request);

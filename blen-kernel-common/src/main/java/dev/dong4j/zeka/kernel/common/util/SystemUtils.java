@@ -475,7 +475,7 @@ public class SystemUtils {
      * @since 2024.2.0
      */
     public static boolean isJavaAwtHeadless() {
-        return Boolean.TRUE.toString().equals(JAVA_AWT_HEADLESS);
+        return JAVA_AWT_HEADLESS.equals(Boolean.TRUE.toString());
     }
 
     /**
@@ -522,6 +522,7 @@ public class SystemUtils {
      * @return the boolean
      * @since 2024.2.0
      */
+    @SuppressWarnings("PMD.LowerCamelCaseVariableNamingRule")
     static boolean isOSMatch(String osName, String osVersion, String osNamePrefix, String osVersionPrefix) {
         if (osName != null && osVersion != null) {
             return isOSNameMatch(osName, osNamePrefix) && isOSVersionMatch(osVersion, osVersionPrefix);
@@ -538,6 +539,7 @@ public class SystemUtils {
      * @return the boolean
      * @since 2024.2.0
      */
+    @SuppressWarnings("PMD.LowerCamelCaseVariableNamingRule")
     static boolean isOSNameMatch(String osName, String osNamePrefix) {
         return osName != null && osName.startsWith(osNamePrefix);
     }
@@ -550,6 +552,7 @@ public class SystemUtils {
      * @return the boolean
      * @since 2024.2.0
      */
+    @SuppressWarnings("PMD.LowerCamelCaseVariableNamingRule")
     static boolean isOSVersionMatch(String osVersion, String osVersionPrefix) {
         if (StrUtil.isEmpty(osVersion)) {
             return false;

@@ -63,7 +63,6 @@ public class ConfigFileWatcherRunner {
      *
      * @param loader          配置加载器, 用于加载动态配置
      * @param handlerProvider 配置变更处理器的提供者, 用于获取配置变更处理器列表
-     * @throws 无明确抛出异常, 但如果 handlerProvider.getIfAvailable 返回 null, 可能会导致后续操作失败
      */
     public ConfigFileWatcherRunner(DynamicConfigLoader loader,
                                    ObjectProvider<List<ConfigChangedHandler>> handlerProvider) {
@@ -78,10 +77,8 @@ public class ConfigFileWatcherRunner {
      * 启动配置监听线程
      * <p>
      * 如果配置监听线程已启动, 则记录警告日志并返回. 否则, 标记为已启动, 并加载当前环境配置, 创建并启动配置文件监听线程.
-     *
-     * @param 无参数
-     * @throws 无异常抛出
      */
+    @SuppressWarnings("PMD.AvoidManuallyCreateThreadRule")
     public void start() {
         if (started) {
             log.warn("配置监听线程已启动, 忽略重复启动");

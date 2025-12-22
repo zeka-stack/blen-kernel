@@ -1,8 +1,12 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import cn.hutool.core.text.StrSplitter;
-import dev.dong4j.zeka.kernel.common.support.StrFormatter;
-import dev.dong4j.zeka.kernel.common.support.StrSpliter;
+import org.apache.commons.text.StringSubstitutor;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.util.HtmlUtils;
+
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.text.MessageFormat;
@@ -15,12 +19,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import org.apache.commons.text.StringSubstitutor;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.util.HtmlUtils;
+
+import cn.hutool.core.text.StrSplitter;
+import dev.dong4j.zeka.kernel.common.support.StrFormatter;
+import dev.dong4j.zeka.kernel.common.support.StrSpliter;
 
 /**
  * <p>字符串工具类，扩展了Spring的StringUtils功能.
@@ -45,8 +47,7 @@ import org.springframework.web.util.HtmlUtils;
  * boolean isNotEmpty = StringUtils.isNotBlank("abc"); // true
  *
  * // 字符串连接
- * List<String> list = Arrays.asList("a", "b", "c");
- * String joined = StringUtils.join(list, ","); // "a,b,c"
+ * String joined = StringUtils.join(Arrays.asList("a", "b", "c"), ","); // "a,b,c"
  *
  * // 数字验证
  * boolean isNum = StringUtils.isNumeric("123"); // true

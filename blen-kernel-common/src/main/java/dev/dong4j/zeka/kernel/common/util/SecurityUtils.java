@@ -1,16 +1,19 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Sets;
-import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
+
+import org.jetbrains.annotations.NotNull;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.PathMatcher;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import dev.dong4j.zeka.kernel.common.enums.LibraryEnum;
 import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.PathMatcher;
 
 /**
  * <p>安全相关工具类.
@@ -25,11 +28,11 @@ import org.springframework.util.PathMatcher;
  * <p>使用示例：
  * <pre>
  * // 获取默认忽略的URL列表
- * Set<String> defaultSkipUrls = SecurityUtils.DEFAULT_SKIP_URL;
+ * Set defaultSkipUrls = SecurityUtils.DEFAULT_SKIP_URL;
  *
  * // 合并自定义忽略URL
  * String customIgnoreUrls = "/api/test/**,/static/**";
- * Set<String> mergedUrls = SecurityUtils.mergeSkipPatterns(customIgnoreUrls);
+ * Set mergedUrls = SecurityUtils.mergeSkipPatterns(customIgnoreUrls);
  *
  * // 路径匹配检查
  * String requestPath = "/api/users";

@@ -23,8 +23,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ClientType implements SerializeEnum<Integer> {
-    /** SaaS */ SAAS(1, "Zeka Stack"),
-    ;
+    /** SaaS */
+    SAAS(1, "Zeka Stack");
 
     /** 枚举值，用于序列化 */
     @SerializeValue

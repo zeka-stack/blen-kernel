@@ -1,5 +1,8 @@
 package dev.dong4j.zeka.kernel.common.util;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,9 +10,8 @@ import java.util.Locale;
 import java.util.Queue;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
 import lombok.Getter;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * <p>安全的时间格式化.
@@ -144,6 +146,7 @@ public final class ConcurrentDateFormat {
      * @return the string
      * @since 1.0.0
      */
+    @SuppressWarnings("PMD.AvoidCallStaticSimpleDateFormatRule")
     public @NotNull String format(Date date) {
         SimpleDateFormat sdf = this.queue.poll();
         if (sdf == null) {

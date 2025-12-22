@@ -1,8 +1,13 @@
 package dev.dong4j.zeka.kernel.common.convert;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import dev.dong4j.zeka.kernel.common.util.ConvertUtils;
-import dev.dong4j.zeka.kernel.common.util.StringUtils;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.ConditionalGenericConverter;
+import org.springframework.lang.Nullable;
+
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -12,12 +17,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import dev.dong4j.zeka.kernel.common.util.ConvertUtils;
+import dev.dong4j.zeka.kernel.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.core.convert.converter.ConditionalGenericConverter;
-import org.springframework.lang.Nullable;
 
 /**
  * <p>Description: 接收参数 同 jackson String -> Enum 转换 </p>
@@ -148,6 +151,7 @@ public class StringToEnumConverter implements ConditionalGenericConverter {
      */
     @Contract("_, null, _ -> null")
     @Nullable
+    @SuppressWarnings("PMD.UndefineMagicConstantRule")
     private static Object invoke(Class<?> clazz, AccessibleObject accessibleObject, String value)
         throws IllegalAccessException, InvocationTargetException, InstantiationException {
         if (accessibleObject instanceof @SuppressWarnings("rawtypes")Constructor constructor) {

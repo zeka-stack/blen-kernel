@@ -46,7 +46,7 @@ import lombok.experimental.UtilityClass;
  * boolean isAvailable = LoaderUtils.isClassAvailable("com.example.MyClass");
  *
  * // 查找资源
- * Collection<URL> resources = LoaderUtils.findResources("config.properties");
+ * Collection resources = LoaderUtils.findResources("config.properties");
  * </pre>
  * </p>
  * <p>

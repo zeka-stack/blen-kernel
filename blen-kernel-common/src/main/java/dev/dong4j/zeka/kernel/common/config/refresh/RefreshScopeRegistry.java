@@ -67,7 +67,6 @@ public class RefreshScopeRegistry {
      * 如果存在, 则将其添加到可刷新 Bean 集合中, 并建立前缀与绑定目标的映射关系.
      * 如果未添加 {@code @ConfigurationProperties} 注解, 则记录警告信息.
      *
-     * @param context 应用上下文, 用于获取带有 {@code @RefreshScope} 注解的 Bean
      */
     private void initialize() {
         Map<String, Object> candidates = context.getBeansWithAnnotation(RefreshScope.class);
@@ -138,13 +137,12 @@ public class RefreshScopeRegistry {
 
     /**
      * 可绑定目标记录类
-     * <p>
-     * 用于表示一个可绑定的目标对象, 包含目标对象和绑定前缀信息, 通常用于数据绑定或配置场景中
+     * <p> 用于表示一个可绑定的目标对象, 包含目标对象和绑定前缀信息, 通常用于数据绑定或配置场景中.
      *
-     * @author zeka.stack.team
+     * @author dong4j
      * @version 1.0.0
-     * @email "mailto:zeka.stack@gmail.com"
-     * @date 2025.12.13
+     * @email "mailto:dong4j@gmail.com"
+     * @date 2025.12.22
      * @since 2.0.0
      */
     public record BindableTarget(Object bean, String prefix) {

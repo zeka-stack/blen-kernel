@@ -57,7 +57,7 @@ import static java.util.stream.Collectors.toMap;
  * 使用示例：
  * <pre>
  * // 获取类的所有字段
- * List<Field> fields = ReflectionUtils.getFieldList(MyClass.class);
+ * List fields = ReflectionUtils.getFieldList(MyClass.class);
  *
  * // 获取字段上的注解
  * MyAnnotation annotation = ReflectionUtils.getAnnotation(MyClass.class, "fieldName", MyAnnotation.class);
@@ -109,7 +109,7 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
     private static final Map<Class<?>, Class<?>> PRIMITIVE_WRAPPER_TYPE_MAP = new IdentityHashMap<>(8);
 
     /** declaredFieldsCache */
-    private static final Map<Class<?>, Field[]> declaredFieldsCache = new ConcurrentReferenceHashMap<>(256);
+    private static final Map<Class<?>, Field[]> DECLARED_FIELDS_CACHE = new ConcurrentReferenceHashMap<>(256);
 
     static {
         PRIMITIVE_WRAPPER_TYPE_MAP.put(Boolean.class, boolean.class);
@@ -721,6 +721,7 @@ public class ReflectionUtils extends org.springframework.util.ReflectionUtils {
      * @param field field
      * @since 2024.2.0
      */
+    @SuppressWarnings("PMD.AvoidComplexConditionRule")
     public static void makeAccessible(Field field) {
         if ((!Modifier.isPublic(field.getModifiers()) ||
             !Modifier.isPublic(field.getDeclaringClass().getModifiers()) ||

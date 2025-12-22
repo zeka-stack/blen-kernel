@@ -1,6 +1,11 @@
 package dev.dong4j.zeka.kernel.common.util;
 
 import com.google.common.collect.Maps;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +20,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import lombok.experimental.UtilityClass;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * <p>集合工具类，扩展了Spring CollectionUtils的功能.
@@ -37,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>使用示例：
  * <pre>
  * // 集合空判断
- * List<String> list = new ArrayList<>();
+ * Listlist = new ArrayList<>();
  * boolean isEmpty = CollectionUtils.isEmpty(list);  // true
  * boolean isNotEmpty = CollectionUtils.isNotEmpty(list); // false
  *
@@ -52,11 +55,11 @@ import org.jetbrains.annotations.Nullable;
  *
  * // 创建不可变集合
  * String[] elements = {"a", "b", "c"};
- * Set<String> immutableSet = CollectionUtils.ofImmutableSet(elements);
- * List<String> immutableList = CollectionUtils.ofImmutableList(elements);
+ * CollectionUtils.ofImmutableSet(elements);
+ * CollectionUtils.ofImmutableList(elements);
  *
  * // 数组转Map
- * Map<String, Integer> map = CollectionUtils.toMap("a", 1, "b", 2); // {a=1, b=2}
+ * CollectionUtils.toMap("a", 1, "b", 2); // {a=1, b=2}
  * </pre>
  * <p>技术特性：
  * <ul>

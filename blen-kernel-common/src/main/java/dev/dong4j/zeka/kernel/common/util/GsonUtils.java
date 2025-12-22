@@ -6,13 +6,15 @@ import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
-import dev.dong4j.zeka.kernel.common.type.ConsumerObjectTypeAdapter;
-import dev.dong4j.zeka.kernel.common.type.GsonEnumTypeAdapter;
-import dev.dong4j.zeka.kernel.common.type.TypeBuilder;
-import dev.dong4j.zeka.kernel.common.type.TypeToken;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ConfigurationBuilder;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -22,16 +24,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import dev.dong4j.zeka.kernel.common.asserts.Assertions;
+import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
+import dev.dong4j.zeka.kernel.common.enums.SerializeEnum;
+import dev.dong4j.zeka.kernel.common.type.ConsumerObjectTypeAdapter;
+import dev.dong4j.zeka.kernel.common.type.GsonEnumTypeAdapter;
+import dev.dong4j.zeka.kernel.common.type.TypeBuilder;
+import dev.dong4j.zeka.kernel.common.type.TypeToken;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.util.ConfigurationBuilder;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * <p>GSON 封装, 简化 json 操作.
@@ -58,13 +61,13 @@ import org.springframework.util.StringUtils;
  * String prettyJson = GsonUtils.toDebugJson(person);
  *
  * // 处理泛型类型
- * List<Person> list = new ArrayList<>();
+ * List list = new ArrayList<>();
  * list.add(person);
  * String jsonList = GsonUtils.toJson(list);
- * List<Person> parsedList = GsonUtils.jsonToList(jsonList, Person.class);
+ * List parsedList = GsonUtils.jsonToList(jsonList, Person.class);
  *
  * // JSON转Map
- * Map<String, Object> map = GsonUtils.jsonToMap(json);
+ * Map map = GsonUtils.jsonToMap(json);
  * </pre>
  * <p>技术特性：
  * <ul>

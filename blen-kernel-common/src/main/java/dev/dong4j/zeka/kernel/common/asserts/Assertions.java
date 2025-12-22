@@ -1,20 +1,22 @@
 package dev.dong4j.zeka.kernel.common.asserts;
 
-import dev.dong4j.zeka.kernel.common.exception.AssertionFailedException;
-import dev.dong4j.zeka.kernel.common.function.CheckedCallable;
-import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
-import dev.dong4j.zeka.kernel.common.util.ClassUtils;
-import java.util.Collection;
-import java.util.Map;
-import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
-import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.function.BooleanSupplier;
+import java.util.function.Supplier;
+
+import dev.dong4j.zeka.kernel.common.exception.AssertionFailedException;
+import dev.dong4j.zeka.kernel.common.function.CheckedCallable;
+import dev.dong4j.zeka.kernel.common.function.CheckedRunnable;
+import dev.dong4j.zeka.kernel.common.util.ClassUtils;
+import lombok.experimental.UtilityClass;
 
 /**
  * <p>断言工具类大全.
@@ -51,7 +53,7 @@ import org.springframework.util.StringUtils;
  * @since 1.0.0
  */
 @UtilityClass
-@SuppressWarnings("all")
+@SuppressWarnings("PMD.FileLength")
 public class Assertions {
 
     /**

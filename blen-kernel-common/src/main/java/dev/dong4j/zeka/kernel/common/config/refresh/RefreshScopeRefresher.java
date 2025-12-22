@@ -114,6 +114,7 @@ public class RefreshScopeRefresher {
      *
      * @param latestConfig 最新的配置项, 以键值对形式表示
      */
+    @SuppressWarnings("PMD.UndefineMagicConstantRule")
     private void updateEnvironmentWithLatestConfig(Map<String, Object> latestConfig) {
         ConfigurableEnvironment configurableEnvironment =
             (ConfigurableEnvironment) this.environment;
@@ -127,7 +128,8 @@ public class RefreshScopeRefresher {
 
         // 加入新的临时 PropertySource
         MapPropertySource override = new MapPropertySource("refresh-overrides", latestConfig);
-        sources.addFirst(override); // 确保优先级最高
+        // 确保优先级最高
+        sources.addFirst(override);
     }
 
     /**

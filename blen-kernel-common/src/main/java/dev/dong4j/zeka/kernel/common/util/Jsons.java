@@ -1,6 +1,5 @@
 package dev.dong4j.zeka.kernel.common.util;
 
-import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.core.JsonParser;
@@ -17,14 +16,16 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.type.CollectionLikeType;
 import com.fasterxml.jackson.databind.type.MapType;
-import dev.dong4j.zeka.ZekaStack;
-import dev.dong4j.zeka.kernel.common.asserts.Assertions;
-import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
-import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
-import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerDeserializer;
-import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerSerializer;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
+
+import org.apache.commons.lang3.time.StopWatch;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
+import org.springframework.util.ObjectUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -36,16 +37,18 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
+
+import cn.hutool.core.util.ObjectUtil;
+import dev.dong4j.zeka.ZekaStack;
+import dev.dong4j.zeka.kernel.common.asserts.Assertions;
+import dev.dong4j.zeka.kernel.common.constant.ConfigDefaultValue;
+import dev.dong4j.zeka.kernel.common.constant.ConfigKey;
+import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerDeserializer;
+import dev.dong4j.zeka.kernel.common.serialize.StringTrimmerSerializer;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.time.StopWatch;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
-import org.reflections.util.ConfigurationBuilder;
-import org.springframework.util.ObjectUtils;
 
 /**
  * <p>Jackson JSON处理工具类，提供统一的JSON序列化和反序列化功能.
@@ -75,10 +78,10 @@ import org.springframework.util.ObjectUtils;
  * Person parsed = Jsons.parse(json, Person.class);
  *
  * // 使用TypeReference处理泛型
- * List<Person> list = new ArrayList<>();
+ * List list = new ArrayList<>();
  * list.add(person);
  * String jsonList = Jsons.toJson(list);
- * List<Person> parsedList = Jsons.parse(jsonList, new TypeReference<List<Person>>() {});
+ * List parsedList = Jsons.parse(jsonList, new TypeReference() {});
  *
  * // 验证JSON格式
  * boolean isValid = Jsons.isJson(json); // true

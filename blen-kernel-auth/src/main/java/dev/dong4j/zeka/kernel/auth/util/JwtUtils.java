@@ -4,6 +4,18 @@ import com.fasterxml.jackson.core.json.PackageVersion;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.springframework.util.StringUtils;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import dev.dong4j.zeka.kernel.auth.constant.AuthConstant;
 import dev.dong4j.zeka.kernel.auth.entity.AuthorizationRole;
 import dev.dong4j.zeka.kernel.auth.entity.AuthorizationUser;
@@ -21,18 +33,9 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.http.HttpServletRequest;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.util.StringUtils;
 
 /**
  * JWT 令牌工具类，提供 JWT 令牌的解析、生成、验证等全套功能
@@ -111,6 +114,7 @@ public class JwtUtils {
      * @throws IllegalArgumentException 当令牌格式错误时抛出
      * @since 1.0.0
      */
+    @SuppressWarnings("PMD.UndefineMagicConstantRule")
     @SneakyThrows
     public static Claims getUnsignedClaims(String token) {
         // 分割 JWT token
