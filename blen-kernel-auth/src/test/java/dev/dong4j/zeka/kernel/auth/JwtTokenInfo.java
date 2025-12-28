@@ -3,6 +3,7 @@ package dev.dong4j.zeka.kernel.auth;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -31,5 +32,4 @@ public class JwtTokenInfo implements Serializable {
     private String username;
     /** 测试时间戳 */
     private Date time;
-    /** 测试过期时间 */
 }
