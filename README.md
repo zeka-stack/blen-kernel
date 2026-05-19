@@ -86,7 +86,7 @@ Blen Kernel 是 Zeka.Stack 框架的核心包，提供了企业级 Java 应用�
 <dependency>
     <groupId>dev.dong4j</groupId>
     <artifactId>blen-kernel</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <type>pom</type>
 </dependency>
 ```
@@ -97,13 +97,13 @@ Blen Kernel 是 Zeka.Stack 框架的核心包，提供了企业级 Java 应用�
 <dependency>
     <groupId>dev.dong4j</groupId>
     <artifactId>blen-kernel-common</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
 </dependency>
 
 <dependency>
     <groupId>dev.dong4j</groupId>
     <artifactId>blen-kernel-auth</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
