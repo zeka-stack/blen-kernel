@@ -3,6 +3,8 @@ package dev.dong4j.zeka.kernel.common.constant;
 import dev.dong4j.zeka.kernel.common.util.StringPool;
 import lombok.experimental.UtilityClass;
 
+import static dev.dong4j.zeka.kernel.common.constant.ConfigKey.PARENT_PACKAGE_NAME;
+
 /**
  * <p>Description: 常用的配置默认值</p>
  *
@@ -48,7 +50,7 @@ public final class ConfigDefaultValue {
     /** RIBBON_NAME */
     public static final String RIBBON_NAME = "gateway";
     /** BASE_PACKAGES */
-    public static final String BASE_PACKAGES = System.getProperty("PARENT_PACKAGE_NAME", "dev.dong4j.zeka");
+    public static final String BASE_PACKAGES = System.getProperty(PARENT_PACKAGE_NAME, "dev.dong4j.zeka");
     /** CONTAINER_LOCATION */
     public static final String CONTAINER_LOCATION = "/mnt/tmp";
     /** v8 服务默认的日志主目录 */

@@ -24,7 +24,6 @@ public final class ConfigKey {
     public static final String APPLICATION_FRAMEWORK_VERSION = PREFIX + "framework.version";
     /** EXTEND_ENABLE_AUTOWIRED_IS_NULL */
     public static final String EXTEND_ENABLE_AUTOWIRED_IS_NULL = PREFIX + "extend.enable-autowired-is-null";
-    /** EXTEND_ENABLE_RESOURCE_IS_NULL */
     public static final String EXTEND_ENABLE_RESOURCE_IS_NULL = PREFIX + "extend.enable-resource-is-null";
     /** REST_ENABLE_GLOBAL_CACHE_FILTER */
     public static final String WEB_ENABLE_GLOBAL_CACHE_FILTER = PREFIX + "web.enable-global-cache-filter";
