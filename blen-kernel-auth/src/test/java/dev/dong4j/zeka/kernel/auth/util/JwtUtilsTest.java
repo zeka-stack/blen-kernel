@@ -1,8 +1,21 @@
 package dev.dong4j.zeka.kernel.auth.util;
 
+import com.google.common.collect.Maps;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Maps;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.Serial;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import dev.dong4j.zeka.kernel.auth.JwtTokenInfo;
 import dev.dong4j.zeka.kernel.auth.constant.AuthConstant;
 import dev.dong4j.zeka.kernel.auth.entity.AuthorizationRole;
@@ -18,17 +31,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.security.Keys;
-import java.io.IOException;
-import java.io.Serial;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -54,8 +58,8 @@ class JwtUtilsTest {
     private final String key = "";
     /** 测试用的 JWT 令牌样例 */
     private String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-        ".eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJyb2xlcyI6W3siaWQiOjE2LCJyb2xlTmFtZSI6Iui2hee6p" +
-        "-euoeeQhuWRmCJ9XSwiZXhwIjoxNTgyNDQyNjI0LCJ1c2VyIjp7ImlkIjoxLCJtb2JpbGUiOiIxODcwMDAwMDAwMCIsInVzZXJuYW1lIjoiYWRtaW4iLCJ1c2VySWRlbnRpdHkiOjB9LCJhdXRob3JpdGllcyI6WyLotoXnuqfnrqHnkIblkZgiXSwianRpIjoiZjQ0ZWQzZWMtMDIyMS00M2JiLWE5MDEtMzQzMzEzMmM3MjhiIiwiY2xpZW50X2lkIjoiZmtoX2Rhc2hib2FyZCJ9.rIH2TeLD03ysAY8yUvx3GBlgHsIL3LveeOLUK6Hnyrs";
+                           ".eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJyb2xlcyI6W3siaWQiOjE2LCJyb2xlTmFtZSI6Iui2hee6p" +
+                           "-euoeeQhuWRmCJ9XSwiZXhwIjoxNTgyNDQyNjI0LCJ1c2VyIjp7ImlkIjoxLCJtb2JpbGUiOiIxODcwMDAwMDAwMCIsInVzZXJuYW1lIjoiYWRtaW4iLCJ1c2VySWRlbnRpdHkiOjB9LCJhdXRob3JpdGllcyI6WyLotoXnuqfnrqHnkIblkZgiXSwianRpIjoiZjQ0ZWQzZWMtMDIyMS00M2JiLWE5MDEtMzQzMzEzMmM3MjhiIiwiY2xpZW50X2lkIjoiZmtoX2Rhc2hib2FyZCJ9.rIH2TeLD03ysAY8yUvx3GBlgHsIL3LveeOLUK6Hnyrs";
 
     /**
      * token 过期
@@ -65,9 +69,9 @@ class JwtUtilsTest {
     @Test
     void test1() {
         assertThrows(ExpiredJwtException.class,
-            () -> {
-                JwtUtils.getClaims("1234567890", this.token);
-            });
+                     () -> {
+                         JwtUtils.getClaims("1234567890", this.token);
+                     });
 
     }
 
@@ -79,9 +83,9 @@ class JwtUtilsTest {
     @Test
     void test2() {
         assertThrows(SignatureException.class,
-            () -> {
-                JwtUtils.getClaims("123456789", this.token);
-            });
+                     () -> {
+                         JwtUtils.getClaims("123456789", this.token);
+                     });
 
     }
 
@@ -93,9 +97,9 @@ class JwtUtilsTest {
     @Test
     void test3() {
         assertThrows(MalformedJwtException.class,
-            () -> {
-                JwtUtils.getClaims("123456789", "token");
-            });
+                     () -> {
+                         JwtUtils.getClaims("123456789", "token");
+                     });
     }
 
     /**
@@ -224,8 +228,8 @@ class JwtUtilsTest {
     void testGetExpiration() {
         Date expectedResult = new Date(1573207413000L);
         this.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-            ".eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJyb2xlcyI6W3siaWQiOjE2LCJyb2xlTmFtZSI6Iui2hee6p" +
-            "-euoeeQhuWRmCIsInJlbWFyayI6bnVsbH1dLCJleHAiOjE1NzMyOTE0MjYsInVzZXIiOnsiaWQiOjEsIm1vYmlsZSI6IjE4NzAwMDAwMDAwIiwidXNlcm5hbWUiOiJhZG1pbiIsImRlcHRDb2RlIjoiRktISlBUIn0sImF1dGhvcml0aWVzIjpbIui2hee6p-euoeeQhuWRmCJdLCJqdGkiOiI5NzZjODBhOC0yMjM5LTQ4MGYtYmEzMS1iZGZhOWEzNDNjYjkiLCJjbGllbnRfaWQiOiJma2hfZGFzaGJvYXJkIn0.xnDTGi285AWP3BGEQYPNo4xp-mxyFSBe5ujT8njh5iM";
+                     ".eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdLCJyb2xlcyI6W3siaWQiOjE2LCJyb2xlTmFtZSI6Iui2hee6p" +
+                     "-euoeeQhuWRmCIsInJlbWFyayI6bnVsbH1dLCJleHAiOjE1NzMyOTE0MjYsInVzZXIiOnsiaWQiOjEsIm1vYmlsZSI6IjE4NzAwMDAwMDAwIiwidXNlcm5hbWUiOiJhZG1pbiIsImRlcHRDb2RlIjoiRktISlBUIn0sImF1dGhvcml0aWVzIjpbIui2hee6p-euoeeQhuWRmCJdLCJqdGkiOiI5NzZjODBhOC0yMjM5LTQ4MGYtYmEzMS1iZGZhOWEzNDNjYjkiLCJjbGllbnRfaWQiOiJma2hfZGFzaGJvYXJkIn0.xnDTGi285AWP3BGEQYPNo4xp-mxyFSBe5ujT8njh5iM";
         // Run the test
         Date result = JwtUtils.getExpiration(this.key, this.token);
 
@@ -309,10 +313,10 @@ class JwtUtilsTest {
     @Test
     void testGetJwt_1() {
         assertThrows(IllegalArgumentException.class,
-            () -> {
-                String authentication = "token";
-                assertNull(JwtUtils.getJwtToken(authentication));
-            });
+                     () -> {
+                         String authentication = "token";
+                         assertNull(JwtUtils.getJwtToken(authentication));
+                     });
 
     }
 
@@ -324,10 +328,10 @@ class JwtUtilsTest {
     @Test
     void testGetJwt_2() {
         assertThrows(IllegalArgumentException.class,
-            () -> {
-                String authentication = AuthConstant.BEARER + "token";
-                assertNull(JwtUtils.getJwtToken(authentication));
-            });
+                     () -> {
+                         String authentication = AuthConstant.BEARER + "token";
+                         assertNull(JwtUtils.getJwtToken(authentication));
+                     });
 
     }
 
@@ -490,8 +494,8 @@ class JwtUtilsTest {
         claims.put(ZekaClaims.USER_NAME, "dong4j");
 
         claims.put(ZekaClaims.USER,
-            JwtUtils.MAPPER.writeValueAsString(AuthorizationUser.builder().id(1L).userType(UserType.SHIPPER).mobile("18700000000").username(
-                "admin").build()));
+                   JwtUtils.MAPPER.writeValueAsString(AuthorizationUser.builder().id(1L).userType(UserType.SHIPPER).mobile("18700000000").username(
+                       "admin").build()));
         List<AuthorizationRole> authorizationRoles =
             Collections.singletonList(AuthorizationRole.builder().id(16L).roleName("超级管理员").build());
         claims.put(ZekaClaims.ROLES, authorizationRoles);
@@ -517,7 +521,6 @@ class JwtUtilsTest {
     void test_1() {
         Date expiration = new Date(System.currentTimeMillis() + 60 * 1000L);
         JwtTokenInfo jwtTokenInfo = JwtTokenInfo.builder().userId(1L).username("dong4j").time(new Date()).build();
-        jwtTokenInfo.setExp(expiration.getTime());
         Map<String, Object> stringObjectMap = BeanUtils.toMap(jwtTokenInfo);
         String token = JwtUtils.generateToken(stringObjectMap, "123456", expiration);
         log.info("{}", token);
@@ -587,6 +590,6 @@ class JwtUtilsTest {
     @Test
     void test_12() {
         log.info("{}", JwtUtils.getJwtToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-            ".eyJ1c2VyX25hbWUiOiJkb25nNGoiLCJzY29wZSI6WyJhbGwiXSwicm9sZXMiOlt7ImlkIjoxLCJyb2xlTmFtZSI6bnVsbH1dLCJjbGllbnRfdHlwZSI6IntcInZhbHVlXCI6MyxcImRlc2NcIjpcIuWkmuenn-aIt-WtkOW6lOeUqC3kuJrliqHns7vnu59cIn0iLCJleHAiOjE1OTQwNjY3MTgsInVzZXIiOiJ7XCJpZFwiOjEsXCJ1c2VybmFtZVwiOlwiZG9uZzRqXCIsXCJtb2JpbGVcIjpcIjE4NjI4MzYyOTA2XCIsXCJlbWFpbFwiOlwiYXJyYXlkc2pAMTYzLmNvbVwiLFwidXNlclR5cGVcIjp7XCJ2YWx1ZVwiOjIsXCJkZXNjXCI6XCLlubPlj7DnlKjmiLct6am-6am25ZGYXCJ9LFwidGVuYW50SWRcIjowfSIsImFwcF9pZCI6MywiYXV0aG9yaXRpZXMiOltudWxsXSwianRpIjoiMjYwYWU0NmItYWE3OC00ZGViLWFiYzctMThiOTVjYzYwOTkyIiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.kMtTwE7Qm3EnIPvoxU_dRO4sXtmc920PCD2LZXVLm7o"));
+                                            ".eyJ1c2VyX25hbWUiOiJkb25nNGoiLCJzY29wZSI6WyJhbGwiXSwicm9sZXMiOlt7ImlkIjoxLCJyb2xlTmFtZSI6bnVsbH1dLCJjbGllbnRfdHlwZSI6IntcInZhbHVlXCI6MyxcImRlc2NcIjpcIuWkmuenn-aIt-WtkOW6lOeUqC3kuJrliqHns7vnu59cIn0iLCJleHAiOjE1OTQwNjY3MTgsInVzZXIiOiJ7XCJpZFwiOjEsXCJ1c2VybmFtZVwiOlwiZG9uZzRqXCIsXCJtb2JpbGVcIjpcIjE4NjI4MzYyOTA2XCIsXCJlbWFpbFwiOlwiYXJyYXlkc2pAMTYzLmNvbVwiLFwidXNlclR5cGVcIjp7XCJ2YWx1ZVwiOjIsXCJkZXNjXCI6XCLlubPlj7DnlKjmiLct6am-6am25ZGYXCJ9LFwidGVuYW50SWRcIjowfSIsImFwcF9pZCI6MywiYXV0aG9yaXRpZXMiOltudWxsXSwianRpIjoiMjYwYWU0NmItYWE3OC00ZGViLWFiYzctMThiOTVjYzYwOTkyIiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.kMtTwE7Qm3EnIPvoxU_dRO4sXtmc920PCD2LZXVLm7o"));
     }
 }
