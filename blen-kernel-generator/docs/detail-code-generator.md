@@ -132,9 +132,9 @@ public class User {
 ```java
 @RestController
 @RequestMapping("/users")
+@lombok.RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping("/{id}")
     public Result<User> getUser(@PathVariable Long id) {

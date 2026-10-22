@@ -29,7 +29,7 @@ import lombok.experimental.SuperBuilder;
  * <p>使用约束：
  * <ul>
  *     <li>必须使用 validation 相关注解对字段进行标识</li>
- *     <li>禁止在服务层和数据层中使用</li>
+ *     <li>简单 CRUD 可在 Controller 与 Service 间传递，进入持久层前必须转换为 PO 或查询条件</li>
  *     <li>应该包含业务验证规则和格式检查</li>
  *     <li>建议使用不可变对象设计</li>
  * </ul>

@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * <p>服务层数据传输对象基类.
- * <p>为服务层与其他层之间的数据交换提供统一的基础类，仅在服务层内部使用.
+ * <p>为服务层与其他层之间的数据交换提供统一的基础类，用于 Service 与 Controller 间的数据契约.
  * <p>主要功能：
  * <ul>
  *     <li>为服务层数据传输提供统一的基础结构</li>
@@ -21,16 +21,16 @@ import lombok.experimental.SuperBuilder;
  * </ul>
  * <p>适用场景：
  * <ul>
- *     <li>在服务层内部在不同组件间传递数据</li>
+ *     <li>在 Service 与 Controller 等组件间传递数据</li>
  *     <li>业务逻辑处理中的中间数据结构</li>
- *     <li>服务层与 Repository 层的数据交换</li>
+ *     <li>业务输出模型的显式字段约束</li>
  *     <li>需要业务逻辑封装的复杂数据结构</li>
  * </ul>
  * <p>使用约束：
  * <ul>
- *     <li>禁止在 Controller 层使用作为参数或返回值</li>
+ *     <li>可以作为 Controller 返回值；请求输入使用 Form，避免直接暴露持久层 PO</li>
  *     <li>禁止在数据持久化层直接使用</li>
- *     <li>应该包含业务相关的数据和逻辑</li>
+ *     <li>只描述传输数据，业务处理逻辑应保留在 Service</li>
  * </ul>
  *
  * @param <T> 主键类型，必须实现 Serializable 接口
